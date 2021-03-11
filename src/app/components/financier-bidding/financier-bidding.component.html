@@ -161,91 +161,242 @@
 
 <div>
   <!-- <button type="button" class="btn btn-primary" >Open modal</button> -->
-
+ 
   <ng-template #template>
      <div class="modal-header">
-        <h4 class="modal-title pull-left">Modal</h4>
+        <h4 class="modal-title pull-left">Finance Bidding</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
            <span aria-hidden="true">×</span>
         </button>
      </div>
      <div class="modal-body">
-  
-<table class="table-bordered table" id="customers">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">
+                                Invoice Reference 
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">
+                                Invoice ID
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">
+                                Buyer Name
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                       
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">
+                              Invoice Date
+                            </label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" />
+                        </div>
+                        <div class="form-group">
+                             
+                            <label for="exampleInputPassword1">
+                               Invoice Due Date
+                            </label>
+                            <input type="date" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">
+                                Amount
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">
+                              Invoice Date
+                            </label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" />
+                        </div>
+                        <div class="form-group">
+                             
+                            <label for="exampleInputPassword1">
+                               Invoice Due Date
+                            </label>
+                            <input type="date" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">
+                                Amount
+                            </label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+<table class="table-bordered " id="financBidding">
   <tr>
-  <th>All Transactions</th>
-  <th>148 (Transactions)</th>
-  <th>Type</th>
+  <th>S No</th>
+  <th>Dese of Goods</th>
+  <th>ID No</th>
+  <th>Quantity</th>
+  <th>Rate</th>
+  <th>Amt</th>
+  <th>Disc Amt</th>
+  <th>Net Amt</th>
+  <th>Tax Rate</th>
+  <th>Tax Amt</th>
+  <th>Total</th>
+ </tr>
+  <tr>
+    <td></td>
+    <td>Steel Rod</td>
+    <td>54648 </td>
+    <td>Quantity</td>
+    <td>123</td>
+    <td>4303</td>
+    <td>4200</td>
+    <td>4100</td>
+    <td>15 %</td>
+    <td>15% Amt</td>
+    <td>47000</td>
   </tr>
   <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
+    <td></td>
+    <td>Steel Rod</td>
+    <td>54648 </td>
+    <td>Quantity</td>
+    <td>123</td>
+    <td>4303</td>
+    <td>4200</td>
+    <td>4100</td>
+    <td>15 %</td>
+    <td>15% Amt</td>
+    <td>47000</td>
   </tr>
   <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
+    <td></td>
+    <td>Steel Rod</td>
+    <td>54648 </td>
+    <td>Quantity</td>
+    <td>123</td>
+    <td>4303</td>
+    <td>4200</td>
+    <td>4100</td>
+    <td>15 %</td>
+    <td>15% Amt</td>
+    <td>47000</td>
   </tr>
   <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
+    <td></td>
+    <td>Steel Rod</td>
+    <td>54648 </td>
+    <td>Quantity</td>
+    <td>123</td>
+    <td>4303</td>
+    <td>4200</td>
+    <td>4100</td>
+    <td>15 %</td>
+    <td>15% Amt</td>
+    <td>47000</td>
   </tr>
   <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
+    <td></td>
+    <td>Steel Rod</td>
+    <td>54648 </td>
+    <td>Quantity</td>
+    <td>123</td>
+    <td>4303</td>
+    <td>4200</td>
+    <td>4100</td>
+    <td>15 %</td>
+    <td>15% Amt</td>
+    <td>47000</td>
   </tr>
   <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
+    <td></td>
+    <td>Steel Rod</td>
+    <td>54648 </td>
+    <td>Quantity</td>
+    <td>123</td>
+    <td>4303</td>
+    <td>4200</td>
+    <td>4100</td>
+    <td>15 %</td>
+    <td>15% Amt</td>
+    <td>47000</td>
   </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  </table>
 
-<table class="table-bordered table" id="customers">
-  <tr>
-  <th>All Transactions</th>
-  <th>148 (Transactions)</th>
-  <th>Type</th>
-  </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  <tr>
-  <td>2020-03-10</td>
-  <td>No Description</td>
-  <td>Credit</td>
-  </tr>
-  </table>
+  </table><br>
+<p>Bidding Details</p>
+  <table class="table-bordered " id="financBidding">
+    <tr>
+    <th>BID Ref No</th>
+    <th>Financier Name</th>
+    <th>Financier Offer AMT</th>
+    <th>CCY</th>
+    <th>Fx Rate If CCY Diff</th>
+    <th>Margin</th>
+    <th>Disc Rate</th>
+    <th>Disc AMT</th>
+    <th>Net AMT Payable After Disc</th>
+    <th>Net Amt In SME CCY</th>
+    <th>Due Date</th>
+    <th>Offer Exp Period</th>
+    <th>Accept  / Reject</th>
+   </tr>
+    <tr>
+      <td></td>
+      <td>Steel Rod</td>
+      <td>54648 </td>
+      <td>Quantity</td>
+      <td>123</td>
+      <td>4303</td>
+      <td>4200</td>
+      <td>4100</td>
+      <td>15 %</td>
+      <td>15% Amt</td>
+      <td>47000</td>
+      <td>47000</td>
+      <td><select>
+          <option>A</option>
+          <option>R</option>
+        </select>
+    </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Steel Rod</td>
+      <td>54648 </td>
+      <td>Quantity</td>
+      <td>123</td>
+      <td>4303</td>
+      <td>4200</td>
+      <td>4100</td>
+      <td>15 %</td>
+      <td>15% Amt</td>
+      <td>15% Amt</td>
+      <td>15% Amt</td>
+      <td><select>
+        <option>A</option>
+        <option>R</option>
+      </select>
+    </td>
+    </tr>
+    </table>
      </div>
      <div class="modal-footer">
         <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
