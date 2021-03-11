@@ -1,6 +1,24 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { ModalDialogService } from '../../service/modal-dialog.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { MatTableDataSource } from '@angular/material/table';
+const ELEMENT_DATA: any[] = [
+  {
+    Name: '',
+    Position: '',
+    Address: '',
+    TelephoneNo: '',
+    Email: ''
+  },
+  {
+    Name: '',
+    Position: '',
+    Address: '',
+    TelephoneNo: '',
+    Email: ''
+  },
+];
 @Component({
   selector: 'app-financier-bidding',
   templateUrl: './financier-bidding.component.html',
@@ -10,6 +28,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class FinancierBiddingComponent implements OnInit {
 
   displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate'];
+  tabledataSource = new MatTableDataSource(ELEMENT_DATA);
 
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','position1','name1'];
   dataSource = [
@@ -36,6 +55,8 @@ export class FinancierBiddingComponent implements OnInit {
   currentPage = 0;
   pageCount = 1;
   limit = 7;
+  modalRef: BsModalRef;
+
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
@@ -48,7 +69,7 @@ export class FinancierBiddingComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor(public router: Router) { }
+  constructor(public router: Router,private modalService: BsModalService) { }
  
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -85,7 +106,15 @@ export class FinancierBiddingComponent implements OnInit {
 
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
-  }
+    }
+
+
+    openModal(event, template) {
+      event.preventDefault();
+      this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    }
+
+  
 
   goHome(){
     this.router.navigateByUrl('/sme-dashboard');

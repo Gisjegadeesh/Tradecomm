@@ -101,7 +101,7 @@
           <th mat-header-cell *matHeaderCellDef> ICC Tradecomm Ref </th>
           <td mat-cell *matCellDef="let element"> 
             <mat-chip-list>
-                   <mat-chip color="primary" selected>{{element.refNo}} </mat-chip>
+                   <mat-chip color="primary" selected (click)="openModal($event,template)">{{element.refNo}} </mat-chip>
                </mat-chip-list>
            </td>
         </ng-container>
@@ -147,8 +147,110 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       
-         
+
+      
+
+
+
+
+    
+      
+
   </header>
+</div>
+
+<div>
+  <!-- <button type="button" class="btn btn-primary" >Open modal</button> -->
+
+  <ng-template #template>
+     <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+           <span aria-hidden="true">×</span>
+        </button>
+     </div>
+     <div class="modal-body">
+  
+<table class="table-bordered table" id="customers">
+  <tr>
+  <th>All Transactions</th>
+  <th>148 (Transactions)</th>
+  <th>Type</th>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  </table>
+
+<table class="table-bordered table" id="customers">
+  <tr>
+  <th>All Transactions</th>
+  <th>148 (Transactions)</th>
+  <th>Type</th>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  <tr>
+  <td>2020-03-10</td>
+  <td>No Description</td>
+  <td>Credit</td>
+  </tr>
+  </table>
+     </div>
+     <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+     </div>
+  </ng-template>
 </div>
 
 

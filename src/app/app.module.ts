@@ -41,6 +41,10 @@ import { ChartsModule } from 'ng2-charts';
 import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
+import {ModalDialogService} from './service/modal-dialog.service'
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalComponent } from './shared/modals';
+
 
 @NgModule({
   declarations: [
@@ -82,9 +86,10 @@ import { InvoiceRequestComponent } from './components/invoice-request/invoice-re
     AccountCardModule,
     UxgTableModule,
     InlineSVGModule.forRoot(),
-    MatChipsModule
+    MatChipsModule,
+    ModalModule.forRoot(),
   ],
-  providers: [CustomerService, SmeDashboardComponent,
+  providers: [CustomerService, SmeDashboardComponent,ModalDialogService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],
@@ -92,5 +97,6 @@ import { InvoiceRequestComponent } from './components/invoice-request/invoice-re
     schemas: [
       CUSTOM_ELEMENTS_SCHEMA
     ],
+    entryComponents:[ModalComponent]
 })
 export class AppModule { }
