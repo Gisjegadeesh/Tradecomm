@@ -20,7 +20,7 @@ body {
     margin: 0;
     height: 100%;
     width: 100%;
-    position: fixed
+    // position: fixed
   }
 
 // Overrides
@@ -31,14 +31,14 @@ body {
 
 .account-number {
     font-weight: 400 !important;
-    font-size: 25px !important;
+    font-size: 20px !important;
     text-align: center !important;
 }
 
-.mat-card {
-    min-height: 120px;
-    padding: 4px !important;
-}
+// .mat-card {
+//     min-height: 120px;
+//     padding: 4px !important;
+// }
 #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -62,11 +62,7 @@ body {
     color: white;
   }
   canvas.chartjs-render-monitor {
-    padding: 20px;
-    width: 800px !important;
-    height: 400px !important;
-    float: left;
-    position: relative;
+   
  
 }
 table#customers {
@@ -81,9 +77,71 @@ margin-left: 300px;
 }
 
 .chart.inActive{
-    margin-left: 300px;
+    // margin-left: 300px;
 }
 
 .tableView.inActive{
     margin-left: 300px;
+}
+.uxg-nav-header[_ngcontent-jrv-c203] {
+    height: 80px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mat-card {
+    min-height: 100px !important;
+    padding: 0px !important;
+}
+mat-card {
+   width: 20px;
+    //  width: calc(100% - -10px);
+    height: calc(100% - 2px);
+  }
+// Temp Css
+.uxg-h6, .uxg-typography h6
+{
+    margin: 0 !important;
+}
+.trans-table{
+    height: 224px;
+    overflow: auto;
+    width: 500px;
+    #customers td, #customers th{
+        padding: 5px;
+        font-size: 13px;
+    }
+    .table-bordered{
+        margin-bottom: 0;
+    }
+    .table-bordered th:last-child{
+        border: 0;
+    }
+    .table-bordered th:first-child{
+        border: 0;
+    }
+}
+.active{
+    .trans-table{
+        height: 284px;
+    }
+}
+.chart.inActive{
+    .card-body{
+        padding: .5rem 1rem;
+    }
+}
+.font-13{
+    font-size: 13px;
+    margin: 1px;
+}
+.mat-card-content .uxg-icon-category{
+    margin-top: 10px !important;
+    margin-left: 6px !important;
+}
+.mat-card-actions, .mat-card-subtitle, .mat-card-content{
+    margin-bottom: 6px !important;
+}
+.curs-pointer{
+    cursor: pointer;
 }

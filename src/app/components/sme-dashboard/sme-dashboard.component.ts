@@ -218,7 +218,7 @@ export class SmeDashboardComponent implements OnInit {
   currentPage = 0;
   pageCount = 1;
   limit = 7;
-  isOpen = ""
+  isOpen = "active"
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
