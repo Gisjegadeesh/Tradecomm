@@ -40,6 +40,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { ChartsModule } from 'ng2-charts';
 import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {MatChipsModule} from '@angular/material/chips';
     FinancierOnboardingComponent,
     FinancierDashboardComponent,
     SmeDashboardComponent,
-    FinancierBiddingComponent
+    FinancierBiddingComponent,
+    InvoiceRequestComponent
   ],
   imports: [
     BrowserModule,
