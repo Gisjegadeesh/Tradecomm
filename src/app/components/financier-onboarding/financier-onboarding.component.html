@@ -1,0 +1,541 @@
+<mat-toolbar class="uxg-toolbar uxg-toolbar-elevated mat-primary">
+  <div class="uxg-logo" dense></div>
+  <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
+    <li class="uxg-h3">FINANCIER ONBOARDING</li>
+  </ul>
+</mat-toolbar>
+
+<form (ngSubmit)="onSubmit()" #custForm="ngForm">
+  <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper>
+    <mat-step>
+
+      <ng-template matStepLabel>Financier OnBoarding</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <table style="width: 100%;">
+            <tbody>
+
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Financier Name Constitution</mat-label>
+                    <input matInput type="text" id="fName" name="fName" [(ngModel)]="customer.fName" required
+                      #fName="ngModel" />
+                    <mat-hint>Please Enter Financier Name Constitution</mat-hint>
+                  </mat-form-field>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Local Registration Number</mat-label>
+                    <input matInput type="text" id="regNum" name="regNum" [(ngModel)]="customer.regNum" required
+                      #regNum="ngModel" />
+                    <mat-hint>Please Enter Local Registration Number</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Tax Identification No</mat-label>
+                    <input matInput type="text" id="taxIdNum" name="taxIdNum" [(ngModel)]="customer.taxIdNum" required
+                      #taxIdNum="ngModel" />
+                    <mat-hint>Please Enter Tax Identification Number</mat-hint>
+                  </mat-form-field>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Registration Date</mat-label>
+                    <input matInput type="text" id="regDate" name="regDate" [(ngModel)]="customer.regDate" required
+                      #regDate="ngModel" />
+                    <mat-hint>Please Enter Registration Date</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>SCF Financing Experience Years</mat-label>
+                    <input matInput type="text" id="fExpYears" name="fExpYears" [(ngModel)]="customer.fExpYears"
+                      required #fExpYears="ngModel" />
+                    <mat-hint>Please Enter Financing Experience in Years</mat-hint>
+                  </mat-form-field>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Type of Activity</mat-label>
+                    <input matInput type="text" id="activity" name="activity" [(ngModel)]="customer.activity" required
+                      #activity="ngModel" />
+                    <mat-hint>Please Enter Type of Activity</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Principal Bank Account</mat-label>
+                    <input matInput type="text" />
+                    <mat-hint>Please Enter Principal Bank Account</mat-hint>
+                  </mat-form-field>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Principal Bank Branch</mat-label>
+                    <input matInput type="text" />
+                    <mat-hint>Please Enter Principal Bank Branch</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+
+              <tr class="form-group" data-always-visible="false">
+                <td class="T1" rowspan="1" colspan="1">
+                  <div class="card-form-container">
+                    <div>
+                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                        <mat-label>Annual SCF Turnover</mat-label>
+                        <input type="text" matInput value="" />
+                        <mat-hint>Please enter annual SCF turnover</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </td>
+                <td class="T1" rowspan="1" colspan="1">
+                  <div class="card-form-container">
+                    <div>
+                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                        <mat-label>Transaction Limit</mat-label>
+                        <input type="text" matInput value="" />
+                        <mat-hint>Please enter transaction limit</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+          <span class="fill-remaining-space"></span>
+
+          <button mat-flat-button color="primary">
+            <mat-icon>arrow_forward</mat-icon>
+            Next
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+    </mat-step>
+
+    <mat-step>
+
+      <ng-template matStepLabel>Financier Registered Head Quarters</ng-template>
+      <mat-card>
+
+        <form>
+          <mat-card-content>
+            <!-- <mat-card-title>
+              <h4 class="uxg-h4"></h4>
+            </mat-card-title> -->
+
+            <table style="width: 100%;">
+              <tbody>
+
+                <tr class="form-group" data-always-visible="false">
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Address Line 1</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter address line 1</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Country</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter your country</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="form-group" data-always-visible="false">
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Address Line 2</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter address line 2</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Telephone No</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter your telephone number</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="form-group" data-always-visible="false">
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Address Line 3</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter address line 3</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Fax No</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter your fax number</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="form-group" data-always-visible="false">
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Place / City</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter your place / city</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>Email / Domain</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter your email / domain</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="form-group" data-always-visible="false">
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>State / Region</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter your state / region</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="T1" rowspan="1" colspan="1">
+                    <div class="card-form-container">
+                      <div>
+                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                          <mat-label>SWIFT BIC</mat-label>
+                          <input type="text" matInput value="" />
+                          <mat-hint>Please enter SWIFT BIC</mat-hint>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <mat-card-actions>
+              <span class="fill-remaining-space"></span>
+              <button mat-stroked-button color="primary">
+                <mat-icon>arrow_back</mat-icon>
+                Back to Financiar Onboarding
+              </button>
+              <button mat-flat-button color="primary">
+                <mat-icon>arrow_forward</mat-icon>
+                Next
+              </button>
+            </mat-card-actions>
+          </mat-card-content>
+        </form>
+
+
+      </mat-card>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Financier's TradeComm Service Branch</ng-template>
+      <mat-card>
+        <!-- <mat-card-title>
+          <h4 class="uxg-h4"></h4>
+        </mat-card-title> -->
+
+        <table style="width: 100%;">
+          <tbody>
+
+
+            <tr class="form-group" data-always-visible="false">
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Address Line 1</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter address line 1</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Country</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter your country</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="form-group" data-always-visible="false">
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Address Line 2</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter address line 2</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Telephone No</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter your telephone number</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="form-group" data-always-visible="false">
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Address Line 3</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter address line 3</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Fax No</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter your fax number</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="form-group" data-always-visible="false">
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Place / City</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter your place / city</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Email / Domain</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter your email / domain</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="form-group" data-always-visible="false">
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>Local Payment Code</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter local payment code</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+              <td class="T1" rowspan="1" colspan="1">
+                <div class="card-form-container">
+                  <div>
+                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-label>SWIFT BIC</mat-label>
+                      <input type="text" matInput value="" />
+                      <mat-hint>Please enter SWIFT BIC</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+
+        <mat-card-actions>
+          <span class="fill-remaining-space"></span>
+          <button mat-stroked-button color="primary">
+            <mat-icon>arrow_back</mat-icon>
+            Back to Financiar Registered Head Quarters
+          </button>
+          <button mat-flat-button color="primary">
+            <mat-icon>arrow_forward</mat-icon>
+            Next
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>More Details</ng-template>
+      <mat-card>
+
+        <span class="uxg-h6" id=grid>Director / Partner Details</span>
+        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
+          <mat-text-column name="Name"></mat-text-column>
+          <mat-text-column name="Position"></mat-text-column>
+          <mat-text-column name="Address"></mat-text-column>
+          <mat-text-column name="TelephoneNo"></mat-text-column>
+          <mat-text-column name="Email"></mat-text-column>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <span class="uxg-h6" id=grid>Authorised Signatories</span>
+        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
+          <mat-text-column name="Name"></mat-text-column>
+          <mat-text-column name="Position"></mat-text-column>
+          <mat-text-column name="Address"></mat-text-column>
+          <mat-text-column name="TelephoneNo"></mat-text-column>
+          <mat-text-column name="Email"></mat-text-column>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <span class="uxg-h6" id=grid>Entity Administrator </span>
+        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
+          <mat-text-column name="Name"></mat-text-column>
+          <mat-text-column name="Position"></mat-text-column>
+          <mat-text-column name="Address"></mat-text-column>
+          <mat-text-column name="TelephoneNo"></mat-text-column>
+          <mat-text-column name="Email"></mat-text-column>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+      </mat-card>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+  <div class="submit">
+    <button mat-flat-button [disabled]="!custForm.form.valid" color="primary">
+      <mat-icon>arrow_right_alt</mat-icon>
+      Submit
+    </button>
+  </div>
+</form>
+
+
+
+<!-- <td class="T1" rowspan="1" colspan="1">
+  <div class="card-form-container">
+    <div>
+      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+        <mat-label>Primary Activity</mat-label>
+        <input type="text" matInput value="" />
+        <mat-hint>Please enter the primary activity</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</td> -->
+<!-- <td class="T1" rowspan="1" colspan="1">
+  <div class="card-form-container">
+    <div>
+      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+        <mat-label>Financing Currency</mat-label>
+        <input type="text" matInput value="" />
+        <mat-hint>Please enter financing currency</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</td> -->

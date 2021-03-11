@@ -1,0 +1,540 @@
+<mat-toolbar class="uxg-toolbar uxg-toolbar-elevated">
+    <button mat-icon-button class="uxg-toolbar-menu" (click)="[sidenav.toggle(),this.isOpenHandle(isOpen) ]">
+        <mat-icon>menu</mat-icon>
+    </button>
+    
+    <div class="uxg-logo" dense></div>
+    <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
+        <button mat-icon-button color="accent" class="uxg-breadcrumb-back">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+        <li class="uxg-h6">Seller Dashboard</li>
+        <li>Home</li>
+    </ul>
+    <span class="fill-remaining-space"></span>
+    <div class="uxg-toolbar-actions">
+        <button mat-icon-button color="neutral">
+            <mat-icon>search</mat-icon>
+        </button>
+            <button mat-icon-button color="neutral">
+        <mat-icon>notifications</mat-icon>
+        </button>
+            <button mat-icon-button color="neutral">
+        <mat-icon>help_outline</mat-icon>
+        </button>
+            <button mat-icon-button color="neutral">
+        <mat-icon>apps</mat-icon>
+        </button>
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menuHero">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <button mat-icon-button class="uxg-toolbar-icon-menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-menu #menuHero="matMenu" class="uxg-user-profile s">
+    <div class="uxg-menu-header">
+        <div class="uxg-avatar-hero-block">
+            <div class="uxg-avatar">U</div>
+            <h6 class="uxg-h6">User</h6>
+            <span class="uxg-caption"></span>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="uxg-menu-footer">
+        <button mat-flat-button color="primary" dense>
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
+        </button>
+        <button mat-button color="primary" dense>
+            View profile
+        </button>
+    </div>
+</mat-menu>
+<mat-sidenav #sidenav mode="over">
+    <div class="uxg-nav-header">
+        <mat-card class="uxg-card-product" extra-dense>
+            <span class="uxg-h5 uxg-card-product-name">PRO</span>
+        </mat-card>
+    </div>
+    <mat-nav-list class="uxg-nav-list">
+        <a mat-list-item class="uxg-list-item-selected">
+            <mat-icon mat-list-icon>home</mat-icon>
+            <p>Home</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <p matBadge="6" class="uxg-side-badge">Applications</p>
+            <mat-icon>chevron_right</mat-icon>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>notifications</mat-icon>
+            <p>Notifications</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>extension</mat-icon>
+            <p>Tools</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>settings</mat-icon>
+            <p>Settings</p>
+        </a>
+        <mat-divider></mat-divider>
+    </mat-nav-list>
+    <mat-nav-list class="uxg-link-list">
+        <a mat-list-item>
+            <mat-icon mat-list-icon>help</mat-icon>
+            <p>Help</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>power_settings_new</mat-icon>
+            <p>Sign out</p>
+        </a>
+    </mat-nav-list>
+</mat-sidenav>
+<div class="app-content {{isOpen}} ">
+    <header>
+        <div class="account-services-headline">
+            <ng-container>
+                <div class="global-balance">
+                    <h3 class="uxg-h3">S$ 765,067.98</h3>
+                    <p>Global Balance in S$</p>
+                    <p class="uxg-caption">Rate (1.0934566)</p>
+                    <mat-divider></mat-divider>
+                </div>
+            </ng-container>
+            <ng-template #loadingGlobalBalance>
+                <div style="z-index: 10">
+                    <uxg-skeleton-text style="width: 300px; height: 50px;" animated></uxg-skeleton-text>
+                    <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
+                </div>
+            </ng-template>
+
+            <div class="paginator" *ngIf="!mobileScreen">
+                <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+                <button mat-icon-button (click)="scrollRight()" [disabled]="end">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <ng-container>
+            <div #accountList class="accounts-list">
+                <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Financier Bidding" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Accepted Invoices" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Invoices Due Today" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Invoices Past Due" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+            </div>
+        </ng-container>
+
+        <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
+
+
+        
+           
+    </header>
+</div>
+  <div class="chart {{isOpen}}">
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card" >
+        <div class="card-body">
+          <h4 class="card-title">Line chart</h4>
+          <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div>
+    <div>
+        <p>Currency  Conversions</p>
+        <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+               Convert 
+              </ng-template>
+              <table id="customers">
+                <tr>
+                  <th>All Transactions</th>
+                  <th>148 (Transactions)</th>
+                  <th>Type</th>
+                </tr>
+                <tr>
+                  <td>2020-03-10</td>
+                  <td>No Description</td>
+                  <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+              </table>
+              <p>...</p>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon></mat-icon> Exchange Rate
+                </ng-template>
+                <table id="customers">
+                    <tr>
+                      <th>All Transactions</th>
+                      <th>148 (Transactions)</th>
+                      <th>Type</th>
+                    </tr>
+                    <tr>
+                      <td>2020-03-10</td>
+                      <td>No Description</td>
+                      <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                    <tr>
+                        <td>2020-03-10</td>
+                        <td>No Description</td>
+                        <td>Credit</td>
+                    </tr>
+                  </table>
+              </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon></mat-icon> Expenses
+              </ng-template>
+              <table id="customers">
+                <tr>
+                  <th>All Transactions</th>
+                  <th>148 (Transactions)</th>
+                  <th>Type</th>
+                </tr>
+                <tr>
+                  <td>2020-03-10</td>
+                  <td>No Description</td>
+                  <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+              </table>
+            </mat-tab>
+          </mat-tab-group>
+      </div>
+  </div>
+  <div class="tableView {{isOpen}}">
+    <p>Recent Transactions</p>
+    <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            View All
+          </ng-template>
+          <table id="customers">
+            <tr>
+              <th>All Transactions</th>
+              <th>148 (Transactions)</th>
+              <th>Type</th>
+            </tr>
+            <tr>
+              <td>2020-03-10</td>
+              <td>No Description</td>
+              <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+          </table>
+          <p>...</p>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon></mat-icon> Income
+            </ng-template>
+            <table id="customers">
+                <tr>
+                  <th>All Transactions</th>
+                  <th>148 (Transactions)</th>
+                  <th>Type</th>
+                </tr>
+                <tr>
+                  <td>2020-03-10</td>
+                  <td>No Description</td>
+                  <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+                <tr>
+                    <td>2020-03-10</td>
+                    <td>No Description</td>
+                    <td>Credit</td>
+                </tr>
+              </table>
+            <p>...</p>
+          </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon></mat-icon> Expenses
+          </ng-template>
+          <table id="customers">
+            <tr>
+              <th>All Transactions</th>
+              <th>148 (Transactions)</th>
+              <th>Type</th>
+            </tr>
+            <tr>
+              <td>2020-03-10</td>
+              <td>No Description</td>
+              <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+            <tr>
+                <td>2020-03-10</td>
+                <td>No Description</td>
+                <td>Credit</td>
+            </tr>
+          </table>
+          <p>...</p>
+        </mat-tab>
+      </mat-tab-group>
+  </div>
+  

@@ -1,0 +1,32 @@
+@import "@ffdc/uxg-angular-theme/lib/core/style/spacing";
+
+table {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+.submit {
+    text-align: center;
+    padding-bottom: $uxg-spacing-4;
+}
+
+mat-form-field {
+    align-self: stretch;
+    margin-bottom: $uxg-spacing-2;
+    margin-left: $uxg-spacing-3 * 6;
+    width: 400px;
+}
+
+#left{
+    float: left;
+    margin-left: 40px;
+}
+#right{
+    margin-left: 40px
+}
+#grid{
+    margin-left: 600px
+}
+
+.uxg-toolbar.mat-toolbar.mat-toolbar-single-row {
+    height: 80px;
+}
