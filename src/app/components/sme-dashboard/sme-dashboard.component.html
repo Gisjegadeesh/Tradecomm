@@ -2,7 +2,6 @@
     <button mat-icon-button class="uxg-toolbar-menu" (click)="[sidenav.toggle(),this.isOpenHandle(isOpen) ]">
         <mat-icon>menu</mat-icon>
     </button>
-    
     <div class="uxg-logo" dense></div>
     <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
         <button mat-icon-button color="accent" class="uxg-breadcrumb-back">
@@ -98,9 +97,9 @@
         <div class="account-services-headline">
             <ng-container>
                 <div class="global-balance">
-                    <h3 class="uxg-h3">S$ 765,067.98</h3>
-                    <p>Global Balance in S$</p>
-                    <p class="uxg-caption">Rate (1.0934566)</p>
+                    <h6 class="uxg-h6">S$ 765,067.98</h6>
+                    <p class="font-13">Global Balance in S$</p>
+                    <p class="uxg-caption font-13">Rate (1.0934566)</p>
                     <mat-divider></mat-divider>
                 </div>
             </ng-container>
@@ -110,7 +109,6 @@
                     <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
                 </div>
             </ng-template>
-
             <div class="paginator" *ngIf="!mobileScreen">
                 <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
                     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -120,421 +118,148 @@
                 </button>
             </div>
         </div>
-
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Financier Bidding" number="S$3,067.98" balance="" currency="" (click)="this.navigateFinancierBidding()"></uxg-account-card>
-                <uxg-account-card name="Accepted Invoices" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Invoices Due Today" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Invoices Past Due" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Financier Bidding" number="S$3,067.98"(click)="this.navigateFinancierBidding()" ></uxg-account-card>
+                <uxg-account-card name="Accepted Invoices" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card name="Invoices Due Today" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card name="Invoices Past Due" number="S$3,067.98" ></uxg-account-card>
             </div>
         </ng-container>
-
         <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
-
-
-        
-           
-    </header>
-</div>
-  <div class="chart {{isOpen}}">
-    <div class="col-lg-6 grid-margin stretch-card">
-      <div class="card" >
-        <div class="card-body">
-          <h4 class="card-title">Line chart</h4>
-          <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 p-0">
+                        <h6>Chart</h6>
+                        <ng-container>
+                            <div class="chart {{isOpen}}">
+                                <div class="col-lg-10 grid-margin stretch-card p-0">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" height="150"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>All Transactions</h6>
+                        <div class="trans-table">
+                        <table class="table-bordered table" id="customers">
+                            <tr>
+                              <th>All Transactions</th>
+                              <th>148 (Transactions)</th>
+                              <th>Type</th>
+                            </tr>
+                          <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    
-  </div>
-  <div>
-    <div>
-        <p>Currency  Conversions</p>
-        <mat-tab-group>
-            <mat-tab>
-              <ng-template mat-tab-label>
-               Convert 
-              </ng-template>
-              <table id="customers">
-                <tr>
-                  <th>All Transactions</th>
-                  <th>148 (Transactions)</th>
-                  <th>Type</th>
-                </tr>
-                <tr>
-                  <td>2020-03-10</td>
-                  <td>No Description</td>
-                  <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td> 
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-              </table>
-              <p>...</p>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                  <mat-icon></mat-icon> Exchange Rate
-                </ng-template>
-                <table id="customers">
-                    <tr>
-                      <th>All Transactions</th>
-                      <th>148 (Transactions)</th>
-                      <th>Type</th>
-                    </tr>
-                    <tr>
-                      <td>2020-03-10</td>
-                      <td>No Description</td>
-                      <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                    <tr>
-                        <td>2020-03-10</td>
-                        <td>No Description</td>
-                        <td>Credit</td>
-                    </tr>
-                  </table>
-              </mat-tab>
-            <mat-tab>
-              <ng-template mat-tab-label>
-                <mat-icon></mat-icon> Expenses
-              </ng-template>
-              <table id="customers">
-                <tr>
-                  <th>All Transactions</th>
-                  <th>148 (Transactions)</th>
-                  <th>Type</th>
-                </tr>
-                <tr>
-                  <td>2020-03-10</td>
-                  <td>No Description</td>
-                  <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-              </table>
-            </mat-tab>
-          </mat-tab-group>
-      </div>
-  </div>
-  <div class="tableView {{isOpen}}">
-    <p>Recent Transactions</p>
-    <mat-tab-group>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            View All
-          </ng-template>
-          <table id="customers">
-            <tr>
-              <th>All Transactions</th>
-              <th>148 (Transactions)</th>
-              <th>Type</th>
-            </tr>
-            <tr>
-              <td>2020-03-10</td>
-              <td>No Description</td>
-              <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-          </table>
-          <p>...</p>
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-              <mat-icon></mat-icon> Income
-            </ng-template>
-            <table id="customers">
-                <tr>
-                  <th>All Transactions</th>
-                  <th>148 (Transactions)</th>
-                  <th>Type</th>
-                </tr>
-                <tr>
-                  <td>2020-03-10</td>
-                  <td>No Description</td>
-                  <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-                <tr>
-                    <td>2020-03-10</td>
-                    <td>No Description</td>
-                    <td>Credit</td>
-                </tr>
-              </table>
-            <p>...</p>
-          </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon></mat-icon> Expenses
-          </ng-template>
-          <table id="customers">
-            <tr>
-              <th>All Transactions</th>
-              <th>148 (Transactions)</th>
-              <th>Type</th>
-            </tr>
-            <tr>
-              <td>2020-03-10</td>
-              <td>No Description</td>
-              <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-            <tr>
-                <td>2020-03-10</td>
-                <td>No Description</td>
-                <td>Credit</td>
-            </tr>
-          </table>
-          <p>...</p>
-        </mat-tab>
-      </mat-tab-group>
-  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 p-0">
+                        <h6>Chart</h6>
+                        <ng-container>
+                            <div class="chart {{isOpen}}">
+                                <div class="col-lg-10 grid-margin stretch-card p-0">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>All Transactions</h6>
+                        <div class="trans-table">
+                        <table class="table-bordered table" id="customers">
+                            <tr>
+                              <th>All Transactions</th>
+                              <th>148 (Transactions)</th>
+                              <th>Type</th>
+                            </tr>
+                           
+                           <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</div>
+
+  
+  
   

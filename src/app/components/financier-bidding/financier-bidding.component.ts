@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-financier-bidding',
@@ -47,7 +48,7 @@ export class FinancierBiddingComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor() { }
+  constructor(public router: Router) { }
  
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -84,8 +85,9 @@ export class FinancierBiddingComponent implements OnInit {
 
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
-    }
+  }
 
-  
-
+  goHome(){
+    this.router.navigateByUrl('/sme-dashboard');
+  }
 }
