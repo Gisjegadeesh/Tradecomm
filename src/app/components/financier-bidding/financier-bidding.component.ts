@@ -112,6 +112,7 @@ export class FinancierBiddingComponent implements OnInit {
     openModal(event, template) {
       event.preventDefault();
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+      
     }
 
   
