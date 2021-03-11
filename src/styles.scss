@@ -1,0 +1,89 @@
+@import '~@ffdc/uxg-angular-theme/all-theme';
+
+@import "~@ffdc/uxg-angular-theme/lib/core/core";
+@import "~@ffdc/uxg-angular-theme/lib/core/theming/all-theme";
+@import "~@ffdc/uxg-angular-theme/lib/core/typography/typography";
+@import "~@ffdc/uxg-angular-theme/theme-variables";
+
+@import "~@ffdc/uxg-angular-components/global-nav/global-nav.theme";
+@import "~@ffdc/uxg-angular-components/skeleton-text/skeleton-text.theme";
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed
+  }
+
+// Overrides
+.uxg-toolbar {
+    z-index: 15;
+    position: relative;
+}
+
+.account-number {
+    font-weight: 400 !important;
+    font-size: 25px !important;
+    text-align: center !important;
+}
+
+.mat-card {
+    min-height: 120px;
+    padding: 4px !important;
+}
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    // padding-top: 12px;
+    // padding-bottom: 12px;
+    text-align: left;
+    background-color: #7c49cb;
+    color: white;
+  }
+  canvas.chartjs-render-monitor {
+    padding: 20px;
+    width: 800px !important;
+    height: 400px !important;
+    float: left;
+    position: relative;
+ 
+}
+table#customers {
+    width: 500px;
+    position: relative;  
+}
+// Temp Css
+
+.app-content.inActive
+{
+margin-left: 300px;
+}
+
+.chart.inActive{
+    margin-left: 300px;
+}
+
+.tableView.inActive{
+    margin-left: 300px;
+}
