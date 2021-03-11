@@ -7,12 +7,16 @@ export class AuthenticationService {
 
   constructor() { }
 
+  // tslint:disable-next-line: typedef
   authenticate(username, password) {
-    if (username == "iccuser1" && password == "123456")
+    if (username === 'iccuser1' && password === '123456'){
       return true;
-    if (username == "smeuser1" && password == "123456")
+    }
+    if (username === 'smeuser1' && password === '123456'){
       return true;
-    else
+    }
+    else{
       return false;
+    }
   }
 }
