@@ -38,6 +38,8 @@ import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.
 
 import { InlineSVGModule } from 'ng-inline-svg';
 import { ChartsModule } from 'ng2-charts';
+import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { ChartsModule } from 'ng2-charts';
     SmeOnboardingComponent,
     FinancierOnboardingComponent,
     FinancierDashboardComponent,
-    SmeDashboardComponent
+    SmeDashboardComponent,
+    FinancierBiddingComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ import { ChartsModule } from 'ng2-charts';
     AccountCardModule,
     UxgTableModule,
     InlineSVGModule.forRoot(),
+    MatChipsModule
   ],
   providers: [CustomerService, SmeDashboardComponent,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

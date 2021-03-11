@@ -124,7 +124,7 @@
         <ng-container>
             <div #accountList class="accounts-list">
                 <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Financier Bidding" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Financier Bidding" number="S$3,067.98" balance="" currency="" (click)="this.navigateFinancierBidding()"></uxg-account-card>
                 <uxg-account-card name="Accepted Invoices" number="S$3,067.98" balance="" currency=""></uxg-account-card>
                 <uxg-account-card name="Invoices Due Today" number="S$3,067.98" balance="" currency=""></uxg-account-card>
                 <uxg-account-card name="Invoices Past Due" number="S$3,067.98" balance="" currency=""></uxg-account-card>
@@ -200,7 +200,7 @@
                 </tr>
                 <tr>
                     <td>2020-03-10</td>
-                    <td>No Description</td>
+                    <td>No Description</td> 
                     <td>Credit</td>
                 </tr>
                 <tr>

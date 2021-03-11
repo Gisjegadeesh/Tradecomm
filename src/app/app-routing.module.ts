@@ -7,6 +7,8 @@ import { SmeOnboardingComponent } from './components/sme-onboarding/sme-onboardi
 import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.component';
 import { FinancierOnboardingComponent } from './components/financier-onboarding/financier-onboarding.component';
 import { FinancierDashboardComponent } from './components/financier-dashboard/financier-dashboard.component';
+import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -15,7 +17,8 @@ const routes: Routes = [
   { path: 'sme-onboarding', component: SmeOnboardingComponent },
   { path: 'sme-dashboard', component: SmeDashboardComponent },
   { path: 'financier-onboarding', component: FinancierOnboardingComponent },
-  { path: 'financier-dashboard', component: FinancierDashboardComponent }
+  { path: 'financier-dashboard', component: FinancierDashboardComponent },
+  { path: 'financier-bidding', component: FinancierBiddingComponent }
 ];
 
 @NgModule({
