@@ -272,5 +272,6 @@ export class FinancierDashboardComponent implements OnInit {
     navigateFinanceBidding(){
       this.router.navigateByUrl('/finance-bidding');
     }
+    
 
 }

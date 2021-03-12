@@ -1,8 +1,7 @@
 <mat-toolbar class="uxg-toolbar uxg-toolbar-elevated">
-    <button mat-icon-button class="uxg-toolbar-menu" (click)="sidenav.toggle()">
+    <button mat-icon-button class="uxg-toolbar-menu" (click)="[sidenav.toggle(),this.isOpenHandle(isOpen) ]">
         <mat-icon>menu</mat-icon>
     </button>
-    
     <div class="uxg-logo" dense></div>
     <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
         <button mat-icon-button color="accent" class="uxg-breadcrumb-back">
@@ -33,7 +32,6 @@
         <mat-icon>more_vert</mat-icon>
     </button>
 </mat-toolbar>
-
 <mat-menu #menuHero="matMenu" class="uxg-user-profile s">
     <div class="uxg-menu-header">
         <div class="uxg-avatar-hero-block">
@@ -53,33 +51,55 @@
         </button>
     </div>
 </mat-menu>
-
-<mat-sidenav-container class="uxg-nav">
-	<mat-sidenav #sidenav mode="over">
-		<div class="uxg-nav-header">
-			<mat-card class="uxg-card-product" extra-dense>
-				<span class="uxg-h5 uxg-card-product-name">PRO</span>
-			</mat-card>
-		</div>
-		<mat-nav-list class="uxg-nav-list">
-			<a mat-list-item class="uxg-list-item-selected">
-				<mat-icon mat-list-icon>home</mat-icon>
-				<p>Home</p>
-			</a>
-			<mat-divider></mat-divider>
-		</mat-nav-list>
-	</mat-sidenav>
-</mat-sidenav-container>
-
-<div class="app-content">
-
+<mat-sidenav #sidenav mode="over">
+    <div class="uxg-nav-header">
+        <mat-card class="uxg-card-product" extra-dense>
+            <span class="uxg-h5 uxg-card-product-name">PRO</span>
+        </mat-card>
+    </div>
+    <mat-nav-list class="uxg-nav-list">
+        <a mat-list-item class="uxg-list-item-selected">
+            <mat-icon mat-list-icon>home</mat-icon>
+            <p>Home</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>dashboard</mat-icon>
+            <p matBadge="6" class="uxg-side-badge">Applications</p>
+            <mat-icon>chevron_right</mat-icon>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>notifications</mat-icon>
+            <p>Notifications</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>extension</mat-icon>
+            <p>Tools</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>settings</mat-icon>
+            <p>Settings</p>
+        </a>
+        <mat-divider></mat-divider>
+    </mat-nav-list>
+    <mat-nav-list class="uxg-link-list">
+        <a mat-list-item>
+            <mat-icon mat-list-icon>help</mat-icon>
+            <p>Help</p>
+        </a>
+        <a mat-list-item>
+            <mat-icon mat-list-icon>power_settings_new</mat-icon>
+            <p>Sign out</p>
+        </a>
+    </mat-nav-list>
+</mat-sidenav>
+<div class="app-content {{isOpen}} ">
     <header>
         <div class="account-services-headline">
             <ng-container>
                 <div class="global-balance">
-                    <h3 class="uxg-h3">S$ 765,067.98</h3>
-                    <p>Global Balance in S$</p>
-                    <p class="uxg-caption">Rate (1.0934566)</p>
+                    <h6 class="uxg-h6">S$ 765,067.98</h6>
+                    <p class="font-13">Global Balance in S$</p>
+                    <p class="uxg-caption font-13">Rate (1.0934566)</p>
                     <mat-divider></mat-divider>
                 </div>
             </ng-container>
@@ -89,7 +109,6 @@
                     <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
                 </div>
             </ng-template>
-
             <div class="paginator" *ngIf="!mobileScreen">
                 <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
                     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -102,14 +121,163 @@
 
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card class="curs-pointer" name="Open for Offer" number="S$3,067.98"(click)="this.navigateFinanceBidding()" ></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Open for Offer" number="S$3,067.98" (click)="this.navigateFinanceBidding()"></uxg-account-card>
                 <uxg-account-card name="Offer Expired" number="S$3,067.98" balance="" currency=""></uxg-account-card>
                 <uxg-account-card name="Bids to be accepted" number="S$3,067.98" balance="" currency=""></uxg-account-card>
                 <uxg-account-card name="Offer Rejected" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-            </div>
+             </div>
         </ng-container>
-
         <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
-    </header>
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 p-0">
+                        <h6>Chart</h6>
+                        <ng-container>
+                            <div class="chart {{isOpen}}">
+                                <div class="col-lg-10 grid-margin stretch-card p-0">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" height="150"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="trans-table">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h6> All Transactions</h6>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-outline">+ Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        <table class="table-bordered table" id="customers">
+                            <tr>
+                              <th>All Transactions</th>
+                              <th>148 (Transactions)</th>
+                              <th>Type</th>
+                            </tr>
+                          <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 p-0">
+                        <h6>Chart</h6>
+                        <ng-container>
+                            <div class="chart {{isOpen}}">
+                                <div class="col-lg-10 grid-margin stretch-card p-0">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="trans-table">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h6> All Transactions</h6>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-outline">+ Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        <table class="table-bordered table" id="customers">
+                            <tr>
+                              <th>All Transactions</th>
+                              <th>148 (Transactions)</th>
+                              <th>Type</th>
+                            </tr>
+                           
+                           <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                            <tr>
+                                <td>2020-03-10</td>
+                                <td>No Description</td>
+                                <td>Credit</td>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 </div>
+
+  
+  
+  

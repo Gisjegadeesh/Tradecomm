@@ -158,6 +158,7 @@ header {
     .wave {
         // top: -10%;
         top: -22%;
+        height: 100px;
     }
 
     .content {
@@ -225,6 +226,14 @@ mat-card-content[_ngcontent-njk-c181]
     grid-template-areas:
         "icon name name menu"
         "icon balance balance balance";
+}
+.btn-outline {
+    color: #7c49cb;
+    background-color: transparent; 
+    background-image: none;
+    border-color: #7c49cb;
+    padding: "";
+    margin-left: -11px;
 }
 
 

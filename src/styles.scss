@@ -92,59 +92,72 @@ margin-left: 300px;
 .mat-card {
     min-height: 100px !important;
     padding: 0px !important;
-    display: inline !important;
 }
 mat-card {
    width: 20px;
     //  width: calc(100% - -10px);
     height: calc(100% - 2px);
   }
-  
-  
-  .uxg-h6, .uxg-typography h6
-  {
-      margin: 0 !important;
+// Temp Css
+.uxg-h6, .uxg-typography h6
+{
+    margin: 0 !important;
+}
+.trans-table{
+    height: 224px;
+    overflow: auto;
+    width: 500px;
+    #customers td, #customers th{
+        padding: 5px;
+        font-size: 13px;
+    }
+    .table-bordered{
+        margin-bottom: 0;
+    }
+    .table-bordered th:last-child{
+        border: 0;
+    }
+    .table-bordered th:first-child{
+        border: 0;
+    }
+}
+.active{
+    .trans-table{
+        height: 284px;
+    }
+}
+.chart.inActive{
+    .card-body{
+        padding: .5rem 1rem;
+    }
+}
+.font-13{
+    font-size: 13px;
+    margin: 1px;
+}
+.mat-card-content .uxg-icon-category{
+    margin-top: 10px !important;
+    margin-left: 6px !important;
+}
+.mat-card-actions, .mat-card-subtitle, .mat-card-content{
+    margin-bottom: 6px !important;
+}
+.curs-pointer{
+    cursor: pointer;
+}
+.mat-card {
+    display: inline !important;
+}
+table#financBidding {
+    position: relative;  
+    width: 100%;
+}
+#financBidding th {
+    background-color: #7c49cb;
+    color: white;
   }
-  .trans-table{
-      height: 224px;
-      overflow: auto;
-      width: 500px;
-      #customers td, #customers th{
-          padding: 5px;
-          font-size: 13px;
-      }
-      .table-bordered{
-          margin-bottom: 0;
-      }
-      .table-bordered th:last-child{
-          border: 0;
-      }
-      .table-bordered th:first-child{
-          border: 0;
-      }
-  }
-  .active{
-      .trans-table{
-          height: 284px;
-      }
-  }
-  .chart.inActive{
-      .card-body{
-          padding: .5rem 1rem;
-      }
-  }
-  .font-13{
-      font-size: 13px;
-      margin: 1px;
-  }
-  .mat-card-content .uxg-icon-category{
-      margin-top: 10px !important;
-      margin-left: 6px !important;
-  }
-  .mat-card-actions, .mat-card-subtitle, .mat-card-content{
-      margin-bottom: 6px !important;
-  }
-  .curs-pointer{
-      cursor: pointer;
-  }
-   
+@media (min-width: 992px){
+.modal-lg {
+    max-width: 1200px;
+}
+}
