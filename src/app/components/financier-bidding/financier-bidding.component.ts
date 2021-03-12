@@ -119,9 +119,11 @@ export class FinancierBiddingComponent implements OnInit {
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
       
     }
-    handleToggle(){
-      this.modalDialogService.confirm("Confirm Delete","Do you really want to Accept ?","Ok","Cancel").subscribe(result =>{
-       })
+
+    handleToggle(e,status){
+      this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
+      })
+
   }
 
   

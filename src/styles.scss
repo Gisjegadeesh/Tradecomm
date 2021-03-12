@@ -194,6 +194,119 @@ table#financBidding {
         background-color: #7c49cb;
         border-color: #7c49cb;
     }
+
+
+
+    /***** SLIDER CSS UNBLOCK BLOCK CSS *****/
+.switchStatus {
+    margin: auto;
+    position: relative;
+    display: inline-block;
+    width: 77px;
+    height: 29px;
+    left: 0px;
+    }
+    
+    input[type=checkbox] {
+    display: none;
+    }
+    
+    input:checked+.slider {
+    background-color: #f16868;
+    }
+    
+    .slider.round {
+    border-radius: 34px;
+    }
+    
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #35b539d1;
+    transition: 0.4s;
+    }
+    
+    input:checked+.slider:before {
+    -webkit-transform: translateX(55px);
+    transform: translateX(55px);
+    }
+    
+    .slider.round:before {
+    border-radius: 50%;
+    margin: 1px;
+    }
+    
+    .sliderStatus:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 19px;
+    left: 2px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    }
+    
+    .slider:before {
+    position: absolute;
+    content: "";
+    left: 9px;
+    bottom: 6px;
+    height: 20px;
+    width: 19px;
+    background-color: white;
+    transition: 0.4s;
+    }
+    
+    .sliderStatus:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 19px;
+    left: 2px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    }
+    
+    input:checked+.slider .on {
+    display: block;
+    }
+    
+    .on {
+    display: none;
+    position: absolute;
+    color: white;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 37%;
+    font-size: 9px;
+    font-family: sans-serif;
+    font-weight: 700;
+    }
+    
+    input:checked+.slider .off {
+    display: none;
+    }
+    
+    .off {
+    color: white;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 60%;
+    font-size: 9px;
+    font-family: sans-serif;
+    font-weight: 700;
+    }
+    
+    /***** SLIDER CSS UNBLOCK BLOCK CSS *****/
    
 .model-btn-outline
  {
