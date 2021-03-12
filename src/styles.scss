@@ -161,3 +161,27 @@ table#financBidding {
     max-width: 1200px;
 }
 }
+
+
+.mat-card {
+    display: inline !important;
+    }
+    table#financBidding {
+    position: relative;
+    width: 100%;
+    }
+    #financBidding th {
+    background-color: #7c49cb;
+    color: white;
+    }
+    @media (min-width: 992px){
+    .modal-lg {
+    max-width: 1200px;
+    }
+    }
+    .modalBtn {
+        color: #fff;
+        background-color: #7c49cb;
+        border-color: #7c49cb;
+    }
+   
