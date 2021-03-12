@@ -9,6 +9,8 @@ import { FinancierOnboardingComponent } from './components/financier-onboarding/
 import { FinancierDashboardComponent } from './components/financier-dashboard/financier-dashboard.component';
 import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
+import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
+import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'financier-onboarding', component: FinancierOnboardingComponent },
   { path: 'financier-dashboard', component: FinancierDashboardComponent },
   { path: 'sme-bidding', component: FinancierBiddingComponent },
-  { path: 'invoice-request', component: InvoiceRequestComponent }
+  { path: 'finance-bidding', component: FinanceBiddingComponent },
+  { path: 'invoice-request', component: InvoiceRequestComponent },
+  { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent }
 ];
 
 @NgModule({

@@ -40,11 +40,12 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { ChartsModule } from 'ng2-charts';
 import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
 import {MatChipsModule} from '@angular/material/chips';
-import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
-import {ModalDialogService} from './service/modal-dialog.service'
+import {ModalDialogService} from './service/modal-dialog.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './shared/modals';
-
+import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
+import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
+import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,8 @@ import { ModalComponent } from './shared/modals';
     FinancierDashboardComponent,
     SmeDashboardComponent,
     FinancierBiddingComponent,
+    FinanceBiddingComponent,
+    InvoiceDetailsComponent,
     InvoiceRequestComponent
   ],
   imports: [
@@ -89,7 +92,7 @@ import { ModalComponent } from './shared/modals';
     MatChipsModule,
     ModalModule.forRoot(),
   ],
-  providers: [CustomerService, SmeDashboardComponent,ModalDialogService,
+  providers: [CustomerService, SmeDashboardComponent, ModalDialogService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],
@@ -97,6 +100,6 @@ import { ModalComponent } from './shared/modals';
     schemas: [
       CUSTOM_ELEMENTS_SCHEMA
     ],
-    entryComponents:[ModalComponent]
+    entryComponents: [ModalComponent]
 })
 export class AppModule { }
