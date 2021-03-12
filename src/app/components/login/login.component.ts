@@ -14,16 +14,18 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   hide = true;
 
-  constructor(private router: Router, private loginservice: AuthenticationService) { }
+  constructor(private router: Router, private authService: AuthenticationService) { }
   ngOnInit(): void {
   }
   // tslint:disable-next-line: typedef
   login() {
-    if (this.loginservice.authenticate(this.username, this.password)) {
+    if (this.authService.loginAsSme(this.username, this.password)) {
       this.router.navigate(['sme-dashboard']);
       this.invalidLogin = false;
-    } else
-    {
+    } else if (this.authService.loginAsFinancier(this.username, this.password)) {
+      this.router.navigate(['financier-dashboard']);
+      this.invalidLogin = false;
+    } else {
       this.invalidLogin = true;
     }
   }

@@ -11,6 +11,7 @@ import { FinancierBiddingComponent } from './components/financier-bidding/financ
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
 import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
+import { IccDashboardComponent} from './components/icc-dashboard/icc-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'sme-bidding', component: FinancierBiddingComponent },
   { path: 'finance-bidding', component: FinanceBiddingComponent },
   { path: 'invoice-request', component: InvoiceRequestComponent },
-  { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent }
+  { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent },
+  { path: 'icc-dashboard', component: IccDashboardComponent }
 ];
 
 @NgModule({

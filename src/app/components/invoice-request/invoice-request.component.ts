@@ -3,6 +3,42 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
+import {SelectionModel} from '@angular/cdk/collections';
+
+
+const
+ELEMENT_DATA: any[] = [
+ {
+   Name: 'INV64320',
+   Position: 'ISBGF5643',
+   DateOfInvoice: '11/3/2021',
+   Seller: 'SME1',
+   Buyer: 'BUYER1',
+   InvoiceAmount: '563489',
+   NOfCalls: 'Acive'
+ },
+ {
+   Name: 'INV64320',
+   Position: 'ISBGF5643',
+   DateOfInvoice: '11/3/2021',
+   Seller: 'SME1',
+   Buyer: 'BUYER1',
+   InvoiceAmount: '563489',
+   NOfCalls: 'Acive'
+ },
+ {
+   Name: 'INV64320',
+   Position: 'ISBGF5643',
+   DateOfInvoice: '11/3/2021',
+   Seller: 'SME1',
+   Buyer: 'BUYER1',
+   InvoiceAmount: '563489',
+   NOfCalls: 'Acive'
+ },
+ 
+ 
+ 
+];
 
 @Component({
   selector: 'app-invoice-request',
@@ -10,36 +46,10 @@ import { AuthenticationService } from '../../service/authentication/authenticati
   styleUrls: ['./invoice-request.component.scss']
 })
 export class InvoiceRequestComponent implements OnInit {
-  tcode: string;
-   ELEMENT_DATA: any[] = [
-    {
-      Name: 'INV64320',
-      Position: 'ISBGF5643',
-      DateOfInvoice: '11/3/2021',
-      Seller: 'SME1',
-      Buyer: 'BUYER1',
-      InvoiceAmount: '563489',
-      NOfCalls: 'Acive'
-    },
-    {
-      Name: 'INV64320',
-      Position: 'ISBGF5643',
-      DateOfInvoice: '11/3/2021',
-      Seller: 'SME1',
-      Buyer: 'BUYER1',
-      InvoiceAmount: '563489',
-      NOfCalls: 'Acive'
-    },
-    {
-      Name: 'INV64320',
-      Position: 'ISBGF5643',
-      DateOfInvoice: '11/3/2021',
-      Seller: 'SME1',
-      Buyer: 'BUYER1',
-      InvoiceAmount: '563489',
-      NOfCalls: 'Acive'
-    },
-  ];
+  tcode : string;
+
+ 
+  
 
   ELEMENT_DATA1: any[] = [
     {
@@ -69,17 +79,21 @@ export class InvoiceRequestComponent implements OnInit {
       InvoiceAmount: '',
       NOfCalls: ''
     },
-];
-title = 'New Invoice';
-hide = true;
-  addGoods = new MatTableDataSource(this.ELEMENT_DATA1);
-  displayedColumnsn: string[] = ['StatusCode', 'DateTime', 'IdNo', 'Quantity', 'Rate', 'Amount', 'DiscAmount',
-  'NetAmount', 'TaxRate', 'TaxAmount', 'NOfCalls'];
+    
+    
+    
+  ];
+  
 
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  
+  hide = true;
+  
+  addGoods=new MatTableDataSource(this.ELEMENT_DATA1); 
+  displayedColumnsn: string[] = ['StatusCode', 'DateTime', 'IdNo', 'Quantity','Rate','Amount','DiscAmount','NetAmount','TaxRate','TaxAmount', 'NOfCalls'];
 
-  displayedColumns: string[] = ['StatusCode', 'DateTime', 'DateOfInvoice', 'Seller', 'Buyer', 'InvoiceAmount', 'NOfCalls'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA); 
 
+  displayedColumns: string[] = ['select', 'StatusCode', 'DateTime', 'DateOfInvoice', 'Seller','Buyer','InvoiceAmount', 'NOfCalls'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
     // tslint:disable-next-line: typedef
   isOpen = ""
@@ -150,6 +164,28 @@ hide = true;
     this.authenticationService.logout()
     }
   // tslint:disable-next-line: typedef
+ 
+  selection = new SelectionModel(true, []);
+
+  
+   /** Whether the number of selected elements matches the total number of rows. */
+   isAllSelected() {
+     const numSelected = this.selection.selected.length;
+     const numRows = this.dataSource.data.length;
+     return numSelected === numRows;
+   }
+ 
+   /** Selects all rows if they are not all selected; otherwise clear selection. */
+   masterToggle() {
+     this.isAllSelected() ?
+         this.selection.clear() :
+         this.dataSource.data.forEach(row => this.selection.select(row));
+   }
+ 
+   logSelection() {
+     this.selection.selected.forEach(s => console.log(s.name));
+   }
   onSubmit() {}
+
   
 }

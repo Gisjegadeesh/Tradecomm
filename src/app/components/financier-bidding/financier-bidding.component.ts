@@ -30,14 +30,16 @@ const ELEMENT_DATA: any[] = [
 
 export class FinancierBiddingComponent implements OnInit {
 
-  displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate'];
+  displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount'];
   tabledataSource = new MatTableDataSource(ELEMENT_DATA);
 
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','position1','name1'];
   dataSource = [
 
-    { refNo: 'INV21009876', invoiceId: 'SGTR953', invoiceAmt : '54390 EUR', invDate : '01/03/2021', invDueDate : '01/06/2021'},
-    { refNo: 'INV21007864', invoiceId: 'AHYT786', invoiceAmt: '84576 USD',invDate : '26/02/2021',  invDueDate : '26/04/2021'},
+    { refNo: 'INV21009876', invoiceId: 'SGTR953', invoiceAmt : '54390 EUR', invDate : '01/03/2021', 
+    invDueDate : '01/06/2021', buyer : "Singapore Textiles", financiercount : "3"},
+    { refNo: 'INV21007864', invoiceId: 'AHYT786', invoiceAmt: '84576 USD',invDate : '26/02/2021', 
+     invDueDate : '26/04/2021', buyer : "Singapore Mart", financiercount : "10"},
    
 
       // {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'Dwayne Jhonson'},

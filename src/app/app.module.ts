@@ -42,6 +42,7 @@ import { FinanceBiddingComponent } from './components/finance-bidding/finance-bi
 import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { IccDashboardComponent } from './components/icc-dashboard/icc-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FinancierBiddingComponent,
     FinanceBiddingComponent,
     InvoiceDetailsComponent,
-    InvoiceRequestComponent
+    InvoiceRequestComponent,
+    IccDashboardComponent
   ],
   imports: [
     BrowserModule,

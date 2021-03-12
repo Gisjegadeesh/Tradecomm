@@ -95,8 +95,8 @@
 <div class="app-content {{isOpen}} ">
 <header>
   
-
-  <div id="upright">
+  
+  <div id="leftnav">
    <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper id=right>
      
     <mat-step>
@@ -239,10 +239,27 @@
               
             <span class="uxg-h6" id=grid>Invoice Details </span>
             <br>
-            <br>
-            
+            <br> 
+
+            <div class="mat-elevation-z8">
             <table mat-table matSort [dataSource]="dataSource" summary="table of APIs" style="width: 100%;">
-                 
+
+              <!-- Checkbox Column -->
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()" color="primary">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)" color="primary">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+            
               <ng-container matColumnDef="StatusCode">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" >Ref No </th>
                 
@@ -255,8 +272,11 @@
               <ng-container matColumnDef="DateTime">
                 <th mat-header-cell *matHeaderCellDef scope="column">Invoice No</th>
                 <td mat-cell *matCellDef="let element">{{ element.Position }}</td>
+               
               </ng-container>
-              
+
+               <mat-checkbox name="box"></mat-checkbox> 
+             
               <mat-text-column name="DateOfInvoice"></mat-text-column>
   
               <mat-text-column name="Seller"></mat-text-column>
@@ -269,13 +289,14 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Status </th>
                 <td mat-cell *matCellDef="let element">{{ element.NOfCalls }}</td>
               </ng-container>
-            
               <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                  (click)="selection.toggle(row)">
+              </tr>
             </table>
-            
           </div>
-           
+              </div>
+            <br><br>
             
         </mat-card-content>
         
@@ -303,6 +324,7 @@
                 
                 <table mat-table matSort [dataSource]="dataSource" summary="table of APIs" style="width: 100%;">
                      
+                  
                   <ng-container matColumnDef="StatusCode">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" >SL No </th>
                     
@@ -367,7 +389,3 @@
   </div>
   
   
-</header>
-</div>
-
-

@@ -120,14 +120,17 @@
         </div>
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Offer for Acceptance" number="S$3,067.98"(click)="this.navigateFinancierBidding()" ></uxg-account-card>
+                <uxg-account-card name="Invoices for Bidding" number="S$3,067.98" ></uxg-account-card>
                 <!-- <uxg-account-card class="curs-pointer" name="Invoice Creation" number="New"(click)="this.navigateInvoiceCreation()" ></uxg-account-card> -->
-                <uxg-account-card class="curs-pointer" name="Bidding" number="S$3,067.98"(click)="this.navigateFinancierBidding()" ></uxg-account-card>
                 <uxg-account-card name="Accepted Invoices" number="S$3,067.98" ></uxg-account-card>
                 <uxg-account-card name="Invoices Due Today" number="S$3,067.98" ></uxg-account-card>
                 <uxg-account-card name="Invoices Past Due" number="S$3,067.98" ></uxg-account-card>
             </div>
         </ng-container>
+        <div class="col-md-12" style="float:right">
+        <button type="button" style="float:right" class="btn btn-outline" (click)="this.navigateInvoiceCreation()">+ Funding Request</button>
+        </div>
         <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
     <div class="container-fluid">
         <div class="row">
@@ -152,48 +155,48 @@
                             <div class="">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <h6> All Transactions</h6>
+                                        <h6>Invoices Maturity</h6>
                                     </div>
                                     <div class="col-md-1">
-                                        <button type="button" class="btn btn-outline" (click)="this.navigateInvoiceCreation()">+ Add</button>
+                                        
                                     </div>
                                 </div>
                             </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
-                              <th>All Transactions</th>
-                              <th>148 (Transactions)</th>
-                              <th>Type</th>
+                              <th>Period</th>
+                              <th>No.</th>
+                              <th>Amount</th>
                             </tr>
                           <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>Upto 30 days</td>
+                                <td>12</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>31 to 45 days</td>
+                                <td>12</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>45 to 60 days</td>
+                                <td>12</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>61 to 75 days</td>
+                                <td>12</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>76 to 90 days</td>
+                                <td>12</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>Above 90 days</td>
+                                <td>12</td>
+                                <td>$3,067.98</td>
                             </tr>
                           </table>
                         </div>
@@ -225,50 +228,45 @@
                             <div class="">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <h6> All Transactions</h6>
+                                        <h6> Invoices Size</h6>
                                     </div>
                                     <div class="col-md-1">
-                                        <button type="button" class="btn btn-outline" (click)="this.navigateInvoiceCreation()">+ Add</button>
                                     </div>
                                 </div>
                             </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
-                              <th>All Transactions</th>
-                              <th>148 (Transactions)</th>
-                              <th>Type</th>
+                              <th>No of Invoices</th>
+                              <th>Month</th>
+                              <th>Amount</th>
                             </tr>
                            
                            <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>20001 to 40000</td>
+                                <td>March</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>40001 to 60000</td>
+                                <td>Febraury</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>60001 to 80000</td>
+                                <td>January</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>80001 to 100000</td>
+                                <td>December</td>
+                                <td>$3,067.98</td>
                             </tr>
                             <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
+                                <td>Above 100000</td>
+                                <td>November</td>
+                                <td>$3,067.98</td>
                             </tr>
-                            <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
-                            </tr>
+                            
                           </table>
                         </div>
                     </div>
