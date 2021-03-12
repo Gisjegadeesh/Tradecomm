@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { AuthenticationService } from '../../../service/authentication/authentication.service';
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
 interface Status {
@@ -65,7 +65,7 @@ export class InvoiceDetailsComponent implements OnInit {
     {value: 'R', viewValue: 'R'},
   ];
 
-  constructor(private authenticationService:AuthenticationService) { }
+  constructor(private authenticationService:AuthenticationService,private router :Router) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = [
@@ -155,5 +155,7 @@ export class InvoiceDetailsComponent implements OnInit {
   logout(){
     this.authenticationService.logout()
     }
-
+    goHome(){
+      this.router.navigateByUrl('/financier-dashboard');
+    }
 }

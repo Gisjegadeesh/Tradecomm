@@ -100,5 +100,8 @@ export class FinanceBiddingComponent implements OnInit {
   logout(){
   this.authenticationService.logout()
   }
+  goHome(){
+    this.router.navigateByUrl('/financier-dashboard');
+  }
 
 }

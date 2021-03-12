@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 @Component({
   selector: 'app-sme-dashboard',
@@ -232,7 +233,7 @@ export class SmeDashboardComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,public authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -277,6 +278,9 @@ export class SmeDashboardComponent implements OnInit {
     navigateInvoiceCreation(){
       this.router.navigateByUrl('/invoice-request');
     }
+    logout(){
+      this.authenticationService.logout()
+      }
 
 }
 

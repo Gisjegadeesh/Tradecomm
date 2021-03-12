@@ -7,8 +7,8 @@
         <button mat-icon-button color="accent" class="uxg-breadcrumb-back">
             <mat-icon>chevron_left</mat-icon>
           </button>
-        <li class="uxg-h6">SME Bidding</li>
-        <li class="curs-pointer">Home</li>
+        <li class="uxg-h6">Invoice Details</li>
+        <li class="curs-pointer"  (click)="goHome()">Home</li>
     </ul>
     <span class="fill-remaining-space"></span>
     <div class="uxg-toolbar-actions">
@@ -94,12 +94,12 @@
 </mat-sidenav>
 <div class="app-content {{isOpen}} ">
   <header>
-    <mat-toolbar class="uxg-toolbar uxg-toolbar-elevated mat-primary">
+    <!-- <mat-toolbar class="uxg-toolbar uxg-toolbar-elevated mat-primary">
         <div class="uxg-logo" dense></div>
         <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
             <li class="uxg-h3">Financier Bidding</li>
         </ul>
-    </mat-toolbar>
+    </mat-toolbar> -->
     
     <div class="data-section">
         <mat-card>
