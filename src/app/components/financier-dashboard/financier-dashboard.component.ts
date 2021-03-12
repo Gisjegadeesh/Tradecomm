@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 @Component({
   selector: 'app-financier-dashboard',
@@ -232,7 +233,7 @@ export class FinancierDashboardComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,public authenticationService: AuthenticationService) { }
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
@@ -272,6 +273,8 @@ export class FinancierDashboardComponent implements OnInit {
     navigateFinanceBidding(){
       this.router.navigateByUrl('/finance-bidding');
     }
-    
+    logout(){
+      this.authenticationService.logout()
+    }
 
 }

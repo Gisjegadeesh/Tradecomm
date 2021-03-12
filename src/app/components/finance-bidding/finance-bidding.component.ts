@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -22,7 +23,7 @@ const ELEMENT_DATA: any[] = [
 })
 export class FinanceBiddingComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public authenticationService:AuthenticationService) { }
 
   dataSource = new MatTableDataSource(ELEMENT_DATA); //data
   displayedColumns: string[] = [
@@ -95,6 +96,9 @@ export class FinanceBiddingComponent implements OnInit {
     }
     navigateFinanceBidding(){
       this.router.navigateByUrl('/finance-bidding');
-    }
+  }
+  logout(){
+  this.authenticationService.logout()
+  }
 
 }
