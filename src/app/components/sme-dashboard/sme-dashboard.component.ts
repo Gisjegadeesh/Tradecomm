@@ -274,6 +274,9 @@ export class SmeDashboardComponent implements OnInit {
     navigateFinancierBidding(){
       this.router.navigateByUrl('/sme-bidding');
     }
+    navigateInvoiceCreation(){
+      this.router.navigateByUrl('/invoice-request');
+    }
 
 }
 
