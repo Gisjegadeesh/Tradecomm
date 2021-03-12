@@ -9,11 +9,18 @@ export class AuthenticationService {
   constructor(private router:Router) { }
 
   // tslint:disable-next-line: typedef
-  authenticate(username, password) {
-    if (username === 'iccuser1' && password === '123456'){
+  loginAsSme(username: string, password: string) {
+    if (username === 'smeuser1' && password === '123456'){
       return true;
     }
-    if (username === 'smeuser1' && password === '123456'){
+    else{
+      return false;
+    }
+  }
+
+  // tslint:disable-next-line: typedef
+  loginAsFinancier(username: string, password: string) {
+    if (username === 'financieruser1' && password === '123456'){
       return true;
     }
     else{
