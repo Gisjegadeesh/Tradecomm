@@ -152,9 +152,19 @@ table#financBidding {
     position: relative;  
     width: 100%;
 }
+.container-fluid {
+    font-size: 14px;
+}
 #financBidding th {
+    font-size: 13px;
     background-color: #7c49cb;
     color: white;
+    font-weight: inherit;
+    padding: 4px;
+}
+#financBidding td {
+    padding: 0px;
+    font-size: 14px;
   }
 @media (min-width: 992px){
 .modal-lg {
@@ -185,3 +195,14 @@ table#financBidding {
         border-color: #7c49cb;
     }
    
+.model-btn-outline
+ {
+    color: #7c49cb;
+    background-color: transparent; 
+    background-image: none;
+    border-color: #7c49cb;
+}
+.tableCenter{
+    position: relative;
+    top: 100px;
+}

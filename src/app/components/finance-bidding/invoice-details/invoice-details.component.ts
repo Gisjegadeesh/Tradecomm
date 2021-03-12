@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AuthenticationService } from '../../../service/authentication/authentication.service';
 
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -64,7 +65,7 @@ export class InvoiceDetailsComponent implements OnInit {
     {value: 'R', viewValue: 'R'},
   ];
 
-  constructor() { }
+  constructor(private authenticationService:AuthenticationService) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = [
@@ -95,8 +96,64 @@ export class InvoiceDetailsComponent implements OnInit {
     'OffExpPrd',
     'Status'
   ];
-
+  mobileScreen = false;
+  end = false;
+  start = true;
+  currentPage = 0;
+  pageCount = 1;
+  limit = 7;
+  isOpen = '';
   ngOnInit(): void {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    }
   }
+  isOpenHandle(isTrue){
+    this.isOpen = isTrue == "inActive" ? "active" : "inActive"
+    }
+
+  @ViewChild('accountList', { read: ElementRef })
+  public accountList: ElementRef<any>;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    } else {
+      this.mobileScreen = false;
+    }
+  }
+
+  
+
+  public scrollRight(): void {
+    this.start = false;
+    const scrollWidth =
+      this.accountList.nativeElement.scrollWidth -
+      this.accountList.nativeElement.clientWidth;
+
+    if (scrollWidth === Math.round(this.accountList.nativeElement.scrollLeft)) {
+      this.end = true;
+    } else {
+      this.accountList.nativeElement.scrollTo({
+        left: this.accountList.nativeElement.scrollLeft + 150,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  public scrollLeft(): void {
+    this.end = false;
+    if (this.accountList.nativeElement.scrollLeft === 0) {
+      this.start = true;
+    }
+    this.accountList.nativeElement.scrollTo({
+      left: this.accountList.nativeElement.scrollLeft - 150,
+      behavior: 'smooth',
+    });
+  }
+  logout(){
+    this.authenticationService.logout()
+    }
 
 }

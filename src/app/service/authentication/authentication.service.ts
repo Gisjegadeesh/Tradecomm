@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   // tslint:disable-next-line: typedef
   authenticate(username, password) {
@@ -18,5 +19,8 @@ export class AuthenticationService {
     else{
       return false;
     }
+  }
+  logout(){
+    this.router.navigateByUrl('/sme-dashboard');
   }
 }

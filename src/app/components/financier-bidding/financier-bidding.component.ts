@@ -4,6 +4,7 @@ import { ModalDialogService } from '../../service/modal-dialog.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import {ThemePalette} from '@angular/material/core';
+import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -74,7 +75,7 @@ export class FinancierBiddingComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService) { }
+  constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService) { }
  
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -113,20 +114,14 @@ export class FinancierBiddingComponent implements OnInit {
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
     }
 
-
-    openModal(event, template) {
+  openModal(event, template) {
       event.preventDefault();
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
       
     }
-
     handleToggle(){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to Accept ?","Ok","Cancel").subscribe(result =>{
-        // if(result){
-          
-        // }
-      })
-
+       })
   }
 
   
@@ -134,4 +129,7 @@ export class FinancierBiddingComponent implements OnInit {
   goHome(){
     this.router.navigateByUrl('/sme-dashboard');
   }
+  logout(){
+    this.authenticationService.logout()
+    }
 }
