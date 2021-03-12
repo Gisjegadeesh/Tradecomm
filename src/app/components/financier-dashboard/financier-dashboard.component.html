@@ -102,11 +102,10 @@
 
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Financier Bidding" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Accepted Invoices" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Invoices Due Today" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Invoices Past Due" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Open for Offer" number="S$3,067.98"(click)="this.navigateFinanceBidding()" ></uxg-account-card>
+                <uxg-account-card name="Offer Expired" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Bids to be accepted" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card name="Offer Rejected" number="S$3,067.98" balance="" currency=""></uxg-account-card>
             </div>
         </ng-container>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-financier-dashboard',
@@ -231,8 +232,7 @@ export class FinancierDashboardComponent implements OnInit {
     }
   }
 
-  constructor() { }
-
+  constructor(public router: Router) { }
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
@@ -268,6 +268,9 @@ export class FinancierDashboardComponent implements OnInit {
 
   isOpenHandle(isTrue){
     this.isOpen = isTrue === 'inActive' ? 'active' : 'inActive';
+    }
+    navigateFinanceBidding(){
+      this.router.navigateByUrl('/finance-bidding');
     }
 
 }
