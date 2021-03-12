@@ -8,16 +8,17 @@ export class ModalDialogService {
 
 config = {
 keyboard: false,
+backdrop: true,
 ignoreBackdropClick: true
 };
 constructor(private modalService: BsModalService) { }
 
-public confirm(
-title: string,
-message: string,
-btnOkText: string = 'OK',
-btnCancelText: string): Observable<Object> {
-const modalRef = this.modalService.show(ModalComponent, this.config);
+public confirm(title: string,message: string,btnOkText: string = 'OK',btnCancelText: string): Observable<Object> {
+const modalRef = this.modalService.show(ModalComponent, {
+    keyboard: false,
+    backdrop: true,
+    ignoreBackdropClick: true
+    });
 // console.log(modalRef, 'modal result');
 modalRef.content.title = title;
 modalRef.content.message = message;

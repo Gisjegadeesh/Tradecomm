@@ -146,16 +146,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      
-
-      
-
-
-
-
-    
-      
-
+  
   </header>
 </div>
 
@@ -371,10 +362,12 @@
       <td>15% Amt</td>
       <td>47000</td>
       <td>47000</td>
-      <td><select>
+      <td>
+          <!-- <select>
           <option>A</option>
           <option>R</option>
-        </select>
+        </select> -->
+        <mat-slide-toggle  (click)="this.handleToggle()" class="example-margin" [color]="color" [checked]="checked"></mat-slide-toggle>
     </td>
     </tr>
     <tr>
@@ -390,14 +383,13 @@
       <td>15% Amt</td>
       <td>15% Amt</td>
       <td>15% Amt</td>
-      <td><select>
-        <option>A</option>
-        <option>R</option>
-      </select>
+      <td>
+        <mat-slide-toggle  (click)="this.handleToggle()" class="example-margin" [color]="color" [checked]="ischecked"></mat-slide-toggle>
     </td>
     </tr>
     </table>
      </div>
+
      <div class="modal-footer">
         <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
      </div>

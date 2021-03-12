@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ModalDialogService } from '../../service/modal-dialog.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
+import {ThemePalette} from '@angular/material/core';
+
 const ELEMENT_DATA: any[] = [
   {
     Name: '',
@@ -56,6 +58,9 @@ export class FinancierBiddingComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   modalRef: BsModalRef;
+  color: ThemePalette = 'warn';
+  ischecked = "true"
+
 
 
   @ViewChild('accountList', { read: ElementRef })
@@ -69,7 +74,7 @@ export class FinancierBiddingComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor(public router: Router,private modalService: BsModalService) { }
+  constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService) { }
  
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -114,6 +119,15 @@ export class FinancierBiddingComponent implements OnInit {
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
       
     }
+
+    handleToggle(){
+      this.modalDialogService.confirm("Confirm Delete","Do you really want to Accept ?","Ok","Cancel").subscribe(result =>{
+        // if(result){
+          
+        // }
+      })
+
+  }
 
   
 
