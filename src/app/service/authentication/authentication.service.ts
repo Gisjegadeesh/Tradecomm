@@ -21,6 +21,6 @@ export class AuthenticationService {
     }
   }
   logout(){
-    this.router.navigateByUrl('/sme-dashboard');
+    this.router.navigateByUrl('/');
   }
 }
