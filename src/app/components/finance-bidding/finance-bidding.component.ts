@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -22,7 +22,7 @@ const ELEMENT_DATA: any[] = [
 })
 export class FinanceBiddingComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   dataSource = new MatTableDataSource(ELEMENT_DATA); //data
   displayedColumns: string[] = [
@@ -36,7 +36,65 @@ export class FinanceBiddingComponent implements OnInit {
     'InvAmt'
   ];
 
-  ngOnInit(): void {
+  ngOnInit() {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    }
   }
+  mobileScreen = false;
+  end = false;
+  start = true;
+  currentPage = 0;
+  pageCount = 1;
+  limit = 7;
+  isOpen = '';
+
+  @ViewChild('accountList', { read: ElementRef })
+  public accountList: ElementRef<any>;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    } else {
+      this.mobileScreen = false;
+    }
+  }
+
+  
+
+  public scrollRight(): void {
+    this.start = false;
+    const scrollWidth =
+      this.accountList.nativeElement.scrollWidth -
+      this.accountList.nativeElement.clientWidth;
+
+    if (scrollWidth === Math.round(this.accountList.nativeElement.scrollLeft)) {
+      this.end = true;
+    } else {
+      this.accountList.nativeElement.scrollTo({
+        left: this.accountList.nativeElement.scrollLeft + 150,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  public scrollLeft(): void {
+    this.end = false;
+    if (this.accountList.nativeElement.scrollLeft === 0) {
+      this.start = true;
+    }
+    this.accountList.nativeElement.scrollTo({
+      left: this.accountList.nativeElement.scrollLeft - 150,
+      behavior: 'smooth',
+    });
+  }
+
+  isOpenHandle(isTrue){
+    this.isOpen = isTrue === 'inActive' ? 'active' : 'inActive';
+    }
+    navigateFinanceBidding(){
+      this.router.navigateByUrl('/finance-bidding');
+    }
 
 }

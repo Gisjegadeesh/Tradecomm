@@ -121,7 +121,8 @@
         <ng-container>
             <div #accountList class="accounts-list">
                 <uxg-account-card name="Invoice Acceptance" number="S$3,067.98" ></uxg-account-card>
-                <uxg-account-card class="curs-pointer" name="Invoice Creation" number="New"(click)="this.navigateInvoiceCreation()" ></uxg-account-card>
+                <!-- <uxg-account-card class="curs-pointer" name="Invoice Creation" number="New"(click)="this.navigateInvoiceCreation()" ></uxg-account-card> -->
+                <uxg-account-card class="curs-pointer" name="Bidding" number="S$3,067.98"(click)="this.navigateFinancierBidding()" ></uxg-account-card>
                 <uxg-account-card name="Accepted Invoices" number="S$3,067.98" ></uxg-account-card>
                 <uxg-account-card name="Invoices Due Today" number="S$3,067.98" ></uxg-account-card>
                 <uxg-account-card name="Invoices Past Due" number="S$3,067.98" ></uxg-account-card>
@@ -147,8 +148,17 @@
                             </ng-container>
                     </div>
                     <div class="col-md-6">
-                        <h6>All Transactions</h6>
                         <div class="trans-table">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h6> All Transactions</h6>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-outline" (click)="this.navigateInvoiceCreation()">+ Add</button>
+                                    </div>
+                                </div>
+                            </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
                               <th>All Transactions</th>
@@ -211,8 +221,17 @@
                             </ng-container>
                     </div>
                     <div class="col-md-6">
-                        <h6>All Transactions</h6>
                         <div class="trans-table">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h6> All Transactions</h6>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-outline" (click)="this.navigateInvoiceCreation()">+ Add</button>
+                                    </div>
+                                </div>
+                            </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
                               <th>All Transactions</th>
