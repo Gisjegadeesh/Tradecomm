@@ -1,0 +1,45 @@
+@import "@ffdc/uxg-angular-theme/lib/core/style/spacing";
+
+table {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4;
+    padding-bottom: $uxg-spacing-4;
+}
+
+.buttons {
+    text-align: center;
+    padding-bottom: $uxg-spacing-4;
+    button + button{
+        margin-left: $uxg-spacing-2 * 4;
+    }
+}
+
+
+
+mat-form-field {
+    align-self: stretch;
+    margin-bottom: $uxg-spacing-2;
+    margin-left: $uxg-spacing-3 * 6;
+    width: 400px;
+}
+
+.uxg-toolbar.mat-toolbar.mat-toolbar-single-row {
+    height: 60px;
+}
+
+.data-section {
+    // width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4;
+}
+
+.table-section {
+    // width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4;
+}
