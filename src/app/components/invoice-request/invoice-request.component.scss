@@ -1,75 +1,23 @@
-  
-  @import "@ffdc/uxg-angular-theme/lib/core/style/spacing";
-.btnSubmit {
-    
-    border-radius: 1.5rem;
-    margin-right:100px
+@import "@ffdc/uxg-angular-theme/lib/core/style/spacing";
+@import "@ffdc/uxg-angular-theme/lib/core/style/spacing";
+
+table {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-  
-  #upleft { 
-    // width:450px; 
-    // height: 30000 px; 
-    // margin-left: 100 px
-    
- }
- #upright { 
-    // width:300px; 
-    // height:5000px; 
-    // background-color: #EAEAEA;
-    // float:left
-    
- }
-   
- 
-
-
-
-// .custom{
-//     min-height: 100vh;
-// }
-
-// #leftnav{
-//     margin-left: -20000000px
-// }
-
-// #left{
-//     float: left;
-//     margin-right: 400px;
-// }
-// #right{
-   
-//     margin-left: 200px
-// }
-// #grid{
-//     margin-left: 1000 px
-// }
-// .mytext {
-//     width: 300px;
-//     height: 15 px;
-// }
-
-/* .logo img{
-    width: 120px;
+.uxg-toolbar.mat-toolbar.mat-toolbar-single-row {
     height: 60px;
-} */
+}
 
-.etc-login-form {
-    color: #919191;
-    padding: 10px 20px;
-  }
-  .etc-login-form p {
-    margin-bottom: 5spx;
-    margin-right: 5spx;
-  }
-
-  .alignment{
-      width: 100%;
-  }
-  .encrypted{
-      width: 100;
-  }
-
+.table-section {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4 * 2;
+    
+}
 
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
@@ -305,8 +253,49 @@ mat-card-content[_ngcontent-njk-c181]
     padding: "";
     margin-left: -11px;
 }
+table {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4;
+    padding-bottom: $uxg-spacing-4;
+}
+
+.buttons {
+    text-align: center;
+    padding-bottom: $uxg-spacing-4;
+    button + button{
+        margin-left: $uxg-spacing-2 * 4;
+    }
+}
 
 
 
+mat-form-field {
+    align-self: stretch;
+    margin-bottom: $uxg-spacing-2;
+    margin-left: $uxg-spacing-3 * 6;
+    width: 400px;
+}
 
-  
+.uxg-toolbar.mat-toolbar.mat-toolbar-single-row {
+    height: 60px;
+}
+
+.data-section {
+    // width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4;
+}
+
+.table-section {
+    // width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $uxg-spacing-4;
+}
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }

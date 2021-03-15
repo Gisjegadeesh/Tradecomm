@@ -156,12 +156,11 @@
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
-                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Registration Date</mat-label>
-                    <input matInput type="text" id="regDate" name="regDate" [(ngModel)]="customer.regDate" required
-                      #regDate="ngModel" />
-                    <mat-hint>Please Enter Registration Date</mat-hint>
-                  </mat-form-field>
+                    <input matInput  [matDatepicker]="pickers"/>
+                     <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+                    <mat-datepicker #pickers></mat-datepicker> 
+                </mat-form-field>
                 </td>
               </tr>
 

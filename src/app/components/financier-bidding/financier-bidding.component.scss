@@ -225,7 +225,9 @@ mat-card-content[_ngcontent-njk-c181]
         "icon name name menu"
         "icon balance balance balance";
 }
-
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
 .modal-lg {
     max-width: 559px !important;
 }

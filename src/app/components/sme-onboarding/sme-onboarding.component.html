@@ -40,12 +40,12 @@
                 <td class="T1" rowspan="1" colspan="1">
                   <div class="card-form-container">
                     <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+                      <mat-form-field dense>
                         <mat-label>Registration Date</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Registration Date</mat-hint>
-                      </mat-form-field>
+                        <input matInput  [matDatepicker]="pickers"/>
+                         <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+                        <mat-datepicker #pickers></mat-datepicker> 
+                    </mat-form-field>
                     </div>
                   </div>
                 </td>
