@@ -260,7 +260,7 @@
                 </tr>
                 <tr class="form-group" data-always-visible="false">
                   <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
+                    <!-- <div class="card-form-container">
                       <div>
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
@@ -268,7 +268,14 @@
                           <input matInput type="text" name="country" [(ngModel)]="country" required />
                         </mat-form-field>
                       </div>
-                    </div>
+                    </div> -->
+
+                    <ng-multiselect-dropdown
+                    name=""
+                    [settings]="dropdownSettings"
+                    [data]="cities"
+                >
+                </ng-multiselect-dropdown>
                   </td>
                   <td class="T1" rowspan="1" colspan="1">
                     <div class="card-form-container">

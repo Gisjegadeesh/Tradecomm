@@ -43,6 +43,8 @@ import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-de
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { IccDashboardComponent } from './components/icc-dashboard/icc-dashboard.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { IccDashboardComponent } from './components/icc-dashboard/icc-dashboard.
     InlineSVGModule.forRoot(),
     MatChipsModule,
     ModalModule.forRoot(),
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AngularMultiSelectModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

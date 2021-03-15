@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import { AuthenticationService } from '../../service/authentication/authentication.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
+
+interface ICity{
+  item_id: number;
+  item_text: string;
+}
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,7 +22,48 @@ export class SignupComponent implements OnInit {
   
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  
+  name = "Angular";
+  cities: Array<ICity> = [];
+  selectedItems: Array<ICity> = [];
+  dropdownSettings: IDropdownSettings = {};
+
+  ngOnInit() {
+    this.cities = [
+      { item_id: 1, item_text: "India" },
+      { item_id: 2, item_text: "Australia" },
+{ item_id: 3, item_text: "America" },
+{ item_id: 4, item_text: "Singapore" }
+      
+    ];
+    this.selectedItems = [
+      { item_id: 4, item_text: "Pune" },
+      { item_id: 6, item_text: "Navsari" }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      defaultOpen: false,
+      idField: "item_id",
+      textField: "item_text",
+      selectAllText: "Select All",
+      unSelectAllText: "UnSelect All",
+      itemsShowLimit: 3
+    };
+   
+  }
+  onItemSelect(item: any) {
+    console.log('onItemSelect', item);
+  }
+  onItemDeSelect(item: any) {
+    console.log('onItem DeSelect', item);
+  }
+
+  onSelectAll(items: any) {
+    console.log('onSelectAll', items);
+  }
+
+  onDropDownClose() {
+    console.log('dropdown closed');
   }
 
   signup() {

@@ -1,9 +1,117 @@
-<mat-toolbar class="uxg-toolbar uxg-toolbar-elevated mat-primary">
+<mat-toolbar class="uxg-toolbar uxg-toolbar-elevated">
+  <button mat-icon-button class="uxg-toolbar-menu" (click)="[sidenav.toggle(),this.isOpenHandle(isOpen) ]">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <div class="uxg-logo" dense></div>
+  <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
+      <button mat-icon-button color="accent" class="uxg-breadcrumb-back">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      <li class="uxg-h6">Financier Onboarding</li>
+      <li>Home</li>
+  </ul>
+  <span class="fill-remaining-space"></span>
+  <div class="uxg-toolbar-actions">
+      <button mat-icon-button color="neutral">
+          <mat-icon>search</mat-icon>
+      </button>
+          <button mat-icon-button color="neutral">
+      <mat-icon>notifications</mat-icon>
+      </button>
+          <button mat-icon-button color="neutral">
+      <mat-icon>help_outline</mat-icon>
+      </button>
+          <button mat-icon-button color="neutral">
+      <mat-icon>apps</mat-icon>
+      </button>
+  </div>
+  <button mat-icon-button [matMenuTriggerFor]="menuHero">
+      <mat-icon>account_circle</mat-icon>
+  </button>
+  <button mat-icon-button class="uxg-toolbar-icon-menu">
+      <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu #menuHero="matMenu" class="uxg-user-profile s">
+  <div class="uxg-menu-header">
+      <div class="uxg-avatar-hero-block">
+          <div class="uxg-avatar">U</div>
+          <h6 class="uxg-h6">User</h6>
+          <span class="uxg-caption"></span>
+      </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="uxg-menu-footer">
+      <button mat-flat-button color="primary" dense (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+      </button>
+      <button mat-button color="primary" dense>
+          View profile
+      </button>
+  </div>
+</mat-menu>
+<mat-sidenav #sidenav mode="over">
+  <div class="uxg-nav-header">
+      <mat-card class="uxg-card-product" extra-dense>
+          <span class="uxg-h5 uxg-card-product-name">PRO</span>
+      </mat-card>
+  </div>
+  <mat-nav-list class="uxg-nav-list">
+      <a mat-list-item class="uxg-list-item-selected">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <p>Home</p>
+      </a>
+      <a mat-list-item>
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <p matBadge="6" class="uxg-side-badge">Applications</p>
+          <mat-icon>chevron_right</mat-icon>
+      </a>
+      <a mat-list-item>
+          <mat-icon mat-list-icon>notifications</mat-icon>
+          <p>Notifications</p>
+      </a>
+      <a mat-list-item>
+          <mat-icon mat-list-icon>extension</mat-icon>
+          <p>Tools</p>
+      </a>
+      <a mat-list-item>
+          <mat-icon mat-list-icon>settings</mat-icon>
+          <p>Settings</p>
+      </a>
+      <mat-divider></mat-divider>
+  </mat-nav-list>
+  <mat-nav-list class="uxg-link-list">
+      <a mat-list-item>
+          <mat-icon mat-list-icon>help</mat-icon>
+          <p>Help</p>
+      </a>
+      <a mat-list-item>
+          <mat-icon mat-list-icon>power_settings_new</mat-icon>
+          <p>Sign out</p>
+      </a>
+  </mat-nav-list>
+</mat-sidenav>
+
+
+
+
+
+
+
+
+<div class="app-content {{isOpen}} ">
+  <header>
+
+
+
+
+<!-- <mat-toolbar class="uxg-toolbar uxg-toolbar-elevated mat-primary">
   <div class="uxg-logo" dense></div>
   <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
     <li class="uxg-h3">FINANCIER ONBOARDING</li>
   </ul>
-</mat-toolbar>
+</mat-toolbar> -->
 
 <form (ngSubmit)="onSubmit()" #custForm="ngForm">
   <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper>
@@ -166,15 +274,28 @@
                       </div>
                     </div>
                   </td>
-                  <td class="T1" rowspan="1" colspan="1">
+                  <td  class="T1" rowspan="1" colspan="1">
                     <div class="card-form-container">
                       <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                        <!-- <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Country</mat-label>
                           <input type="text" matInput value="" />
                           <mat-hint>Please enter your country</mat-hint>
-                        </mat-form-field>
+                        </mat-form-field> -->
+
+                        <!-- <ng-multiselect-dropdown name="city" [placeholder]="'Select City'" 
+                        [data]="cities" [settings]="dropdownSettings"
+                        (onDropDownClose)="onDropDownClose()" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                      </ng-multiselect-dropdown> -->
+                      
+                      <ng-multiselect-dropdown
+                      name=""
+                      [settings]="dropdownSettings"
+                      [data]="cities"
+                  >
+                  </ng-multiselect-dropdown>
+
                       </div>
                     </div>
                   </td>
@@ -330,12 +451,18 @@
               <td class="T1" rowspan="1" colspan="1">
                 <div class="card-form-container">
                   <div>
-                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                    <!-- <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Country</mat-label>
                       <input type="text" matInput value="" />
                       <mat-hint>Please enter your country</mat-hint>
-                    </mat-form-field>
+                    </mat-form-field> -->
+                    <ng-multiselect-dropdown
+                      name=""
+                      [settings]="dropdownSettings"
+                      [data]="cities"
+                  >
+                  </ng-multiselect-dropdown>
                   </div>
                 </div>
               </td>
@@ -512,6 +639,9 @@
     </button>
   </div>
 </form>
+
+</header>
+</div>
 
 
 
