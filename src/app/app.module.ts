@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -77,6 +79,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     MatCardModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     MatMenuModule,
     MatDividerModule,
     MatTableModule,
