@@ -299,3 +299,11 @@ mat-form-field {
 ::ng-deep .cdk-overlay-container {
     z-index: 1200 !important;
   }
+
+  table.mat-table.cdk-table.invoice-table{
+    width: 90%;
+}
+
+table.mat-table.cdk-table.invoice-table-bidding{
+    width: 70%;
+}
