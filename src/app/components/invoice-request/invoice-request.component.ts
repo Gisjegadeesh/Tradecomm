@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import {SelectionModel} from '@angular/cdk/collections';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { InvoiceRequestServices } from './invoice-service';
 
 
 const ELEMENT_DATA: any[] = [
@@ -52,14 +54,48 @@ const DATA_TWO: any[] = [
   }
 ];
 
+
+const RATE = ['', '', '', '', '', '', '',
+ ];
+const NAMES = ['', '', '', '', '', '',];
+export interface UserData {
+  StatusCode: String;
+  DateTime: String;
+  //IdNo: String;
+  //Quantity: String;
+  Rate: String;
+  // Amount: any;
+  // DiscAmount: any;
+  // NetAmount: any;
+  // TaxRate: any;
+  // TaxAmount:any;
+  // NOfCalls: any;
+}
+
+
+export interface invoiceData{
+  id: String;
+  RefNo: String;
+  invoiceId : String;
+  invoiceDate : String ;
+  Buyer : String;
+  InvoiceAmount : String;
+  
+  }
+  
+
+  const INVOICE_ARRAY:invoiceData[]=[];
+
 @Component({
   selector: 'app-invoice-request',
   templateUrl: './invoice-request.component.html',
   styleUrls: ['./invoice-request.component.scss']
 })
+
 export class InvoiceRequestComponent implements OnInit {
+  invoiceForm: FormGroup;
   tcode : string;
-  
+  quizQuestionsForm = [];
   invoicedata : invoiceData = {
     id :"",
     RefNo :"",
@@ -114,20 +150,22 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor(public router: Router,private authenticationService: AuthenticationService) {
+  
+  constructor(public router: Router,private authenticationService: AuthenticationService,private invoiceRequestServices: InvoiceRequestServices,private fb: FormBuilder,
+    ) {
+      
     const users: UserData[] = [];
       for (let i = 1; i <=0; i++) { 
         users.push(this.createNewUser(i)); 
       }
       this.dataSourceTwo = new MatTableDataSource(users);
   }
- 
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+    this.invoiceFormBuild()
   }
-
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -190,7 +228,41 @@ export class InvoiceRequestComponent implements OnInit {
    logSelection() {
      this.selection.selected.forEach(s => console.log(s.name));
    }
-  onSubmit() {}
+ 	onSubmitInvoiceForm() {
+     console.log('this.dataSourceTwo',this.invoiceForm);
+		try {
+			if (this.invoiceForm.status === "INVALID")
+				throw { "mes": "Please fill mendatory  fields" }
+        this.addRow();
+		  	let formdata = {
+				// 'inVoiceTo': this.inVoiceTo,
+			 };
+       let goodDatas = [
+        { 'ID': 12,
+        'DescGoods':"2221323",
+        'IdNo':12323,
+        'DateOfInvoice':12,
+        'Quantity':1,
+        'Rate':100,
+        'Amt':1220,
+        'DiscAmt':23,
+        'NetAmtPay':122,
+        'TaxRate':123,
+        'TaxAmount':393,
+        'Total':393 },
+        ]
+       let params = {
+        "invoiceDatas": this.invoiceForm.value,
+        "goodsDatas":  goodDatas,
+        }
+      this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
+        if (resp && resp.status == 200) {
+         }
+      }, error => {
+      })
+		} catch (err) {
+		}
+	}
 
   addNew(){
     INVOICE_ARRAY.push(this.invoicedata)
@@ -221,48 +293,28 @@ export class InvoiceRequestComponent implements OnInit {
     //  Quantity: Math.round(Math.random() * 100).toString(),
       Rate: RATE[Math.round(Math.random() * (RATE.length - 1))]
     };
+    
   }
+  invoiceFormBuild() {
+  	this.invoiceForm = this.fb.group({
+			buyerName: ['', Validators.required],
+			invoiceDueDate: ['', Validators.required],
+			invoiceId: ['', Validators.required],
+			buyerAddress: ['', Validators.required],
+			blRoadwayBillNo: ['', Validators.required],
+			invoiceAmount: ['', Validators.required],
+			invoiceDate: ['', Validators.required],
+			dateOfDispatch:  ['', Validators.required],
+		});
+    }
+    // Add Question Box
+    addQuestionForm() {
+      let obj = {
+        "quesId": "",
+        "quesName": "",
+        "quesDesc": "",
+      };
+      this.quizQuestionsForm.push(obj);
+    }
 }
-
-const RATE = ['', '', '', '', '', '', '',
- ];
-const NAMES = ['', '', '', '', '', '',];
-export interface UserData {
-  StatusCode: String;
-  DateTime: String;
-  //IdNo: String;
-  //Quantity: String;
-  Rate: String;
-  // Amount: any;
-  // DiscAmount: any;
-  // NetAmount: any;
-  // TaxRate: any;
-  // TaxAmount:any;
-  // NOfCalls: any;
-}
-
-export interface UserData {
-  StatusCode: String;
-  DateTime: String;
-  //IdNo: String;
-  //Quantity: String;
-  Rate: String;
-  // Amount: any;
-  // DiscAmount: any;
-  // NetAmount: any;
-  // TaxRate: any;
-  // TaxAmount:any;
-  // NOfCalls: any;
-}
-
-export interface invoiceData{
-  id: String;
-  RefNo: String;
-  invoiceId : String;
-  invoiceDate : String ;
-  Buyer : String;
-  InvoiceAmount : String;
-  
-  }
-  
-  const INVOICE_ARRAY:invoiceData[]=[];
+ 

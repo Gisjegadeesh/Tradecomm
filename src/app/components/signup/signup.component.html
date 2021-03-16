@@ -17,13 +17,12 @@
         <input matInput name="country" [(ngModel)]="country" required>
         <mat-hint>Please enter your country</mat-hint>
       </mat-form-field> -->
-
       
       <ng-multiselect-dropdown class="sign-select"
                       name=""
                       [settings]="dropdownSettings"
                       [data]="cities"
-                      (onSelect)="onItemSelect($event)"
+                      (onSelect)="onItemSelect($event)" 
                   >
                   </ng-multiselect-dropdown>
       
