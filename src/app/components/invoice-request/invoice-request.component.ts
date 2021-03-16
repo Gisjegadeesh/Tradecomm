@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import {SelectionModel} from '@angular/cdk/collections';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder,FormArray } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
 
 
@@ -233,7 +233,7 @@ export class InvoiceRequestComponent implements OnInit {
 		try {
 			if (this.invoiceForm.status === "INVALID")
 				throw { "mes": "Please fill mendatory  fields" }
-        this.addRow();
+      
 		  	let formdata = {
 				// 'inVoiceTo': this.inVoiceTo,
 			 };
@@ -305,6 +305,7 @@ export class InvoiceRequestComponent implements OnInit {
 			invoiceAmount: ['', Validators.required],
 			invoiceDate: ['', Validators.required],
 			dateOfDispatch:  ['', Validators.required],
+      
 		});
     }
     // Add Question Box
