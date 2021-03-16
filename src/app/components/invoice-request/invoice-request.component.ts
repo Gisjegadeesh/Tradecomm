@@ -4,12 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import {SelectionModel} from '@angular/cdk/collections';
-// import { Invoice } from '../../model/invoice/invoice.model';
-// import { InvoiceService } from '../../service/invoice/invoice.service';
 
 
-const
-ELEMENT_DATA: any[] = [
+const ELEMENT_DATA: any[] = [
  {
    Name: 'INV64320',
    Position: 'ISBGF5643',
@@ -17,7 +14,7 @@ ELEMENT_DATA: any[] = [
    Seller: 'SME1',
    Buyer: 'BUYER1',
    InvoiceAmount: '563489',
-   NOfCalls: 'Acive'
+   NOfCalls: 'Active'
  },
  {
    Name: 'INV64320',
@@ -26,7 +23,7 @@ ELEMENT_DATA: any[] = [
    Seller: 'SME1',
    Buyer: 'BUYER1',
    InvoiceAmount: '563489',
-   NOfCalls: 'Acive'
+   NOfCalls: 'Active'
  },
  {
    Name: 'INV64320',
@@ -35,11 +32,24 @@ ELEMENT_DATA: any[] = [
    Seller: 'SME1',
    Buyer: 'BUYER1',
    InvoiceAmount: '563489',
-   NOfCalls: 'Acive'
+   NOfCalls: 'Active'
  },
- 
- 
- 
+];
+
+const DATA_TWO: any[] = [
+  {
+    BidID: 'BID03456',
+    FinOffAmt: 102700,
+    Ccy: 'SGD',
+    FxRateDiff: '1.35',
+    Margin: 10,
+    DiscRate: 3,
+    DiscAmt: 760,
+    NetAmtPay: 101940,
+    DueDate: '90D/10Mar21',
+    OffExpPrd: '4 PM',
+    Status: 'A'
+  }
 ];
 
 @Component({
@@ -49,51 +59,38 @@ ELEMENT_DATA: any[] = [
 })
 export class InvoiceRequestComponent implements OnInit {
   tcode : string;
-  // Invoice: Invoice;
- 
   
-
-  ELEMENT_DATA1: any[] = [
-    {
-      Name: '',
-      Position: '',
-      DateOfInvoice: '',
-      Seller: '',
-      Buyer: '',
-      InvoiceAmount: '',
-      NOfCalls: ''
-    },
-    {
-      Name: '',
-      Position: '',
-      DateOfInvoice: '',
-      Seller: '',
-      Buyer: '',
-      InvoiceAmount: '',
-      NOfCalls: ''
-    },
-    {
-      Name: '',
-      Position: '',
-      DateOfInvoice: '',
-      Seller: '',
-      Buyer: '',
-      InvoiceAmount: '',
-      NOfCalls: ''
-    },
-    
-    
-    
-  ];
-  
-
+  invoicedata : invoiceData = {
+    id :"",
+    RefNo :"",
+    invoiceId :"",
+    invoiceDate : "",
+    Buyer :"",
+    InvoiceAmount :""
+  };
   
   hide = true;
-  
-  addGoods=new MatTableDataSource(this.ELEMENT_DATA1); 
-  displayedColumnsn: string[] = ['StatusCode', 'DateTime', 'IdNo', 'Quantity','Rate','Amount','DiscAmount','NetAmount','TaxRate','TaxAmount', 'NOfCalls'];
 
-  dataSource = new MatTableDataSource(ELEMENT_DATA); 
+  dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
+  displayedColumnsTwo: string[] = [
+    'ID',
+    'DescGoods',
+    'IdNo',
+    'DateOfInvoice',
+    'Quantity',
+    'Rate',
+    'Amt',
+    'DiscAmt',
+    'NetAmtPay',
+    'TaxRate',
+    'TaxAmount',
+    'Total',
+      ];
+  
+  // addGoods=new MatTableDataSource(this.ELEMENT_DATA1); 
+  // displayedColumnsn: string[] = ['StatusCode', 'DateTime', 'IdNo', 'Quantity','Rate','Amount','DiscAmount','NetAmount','TaxRate','TaxAmount', 'NOfCalls'];
+
+  dataSource = new MatTableDataSource(INVOICE_ARRAY); 
 
   displayedColumns: string[] = ['select', 'StatusCode', 'DateTime', 'DateOfInvoice', 'Seller','Buyer','InvoiceAmount', 'NOfCalls'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -118,7 +115,12 @@ export class InvoiceRequestComponent implements OnInit {
     }
   }
   constructor(public router: Router,private authenticationService: AuthenticationService) {
-   }
+    const users: UserData[] = [];
+      for (let i = 1; i <=0; i++) { 
+        users.push(this.createNewUser(i)); 
+      }
+      this.dataSourceTwo = new MatTableDataSource(users);
+  }
  
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -188,12 +190,79 @@ export class InvoiceRequestComponent implements OnInit {
    logSelection() {
      this.selection.selected.forEach(s => console.log(s.name));
    }
-  
-  // onSubmit() {
-  //   this.InvoiceService.save(this.Invoice).subscribe(result => this.gotoPage());
-  // }
+  onSubmit() {}
 
-  gotoPage() {
-    this.router.navigate(['/login']);
+  addNew(){
+    INVOICE_ARRAY.push(this.invoicedata)
+    this.dataSource = new MatTableDataSource(INVOICE_ARRAY);
+    this.invoicedata = {
+     id :"",
+     RefNo :"",
+     invoiceId :"",
+     invoiceDate : "",
+     Buyer :"",
+     InvoiceAmount :""
+   }
+ }
+
+  addRow() {
+    this.dataSourceTwo.data.push(this.createNewUser(this.dataSourceTwo.data.length-5));
+    this.dataSourceTwo.filter = "";
+    
+  }
+  createNewUser(id: number): UserData {
+    const DateTime =
+        NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '';
+
+    return {
+      StatusCode: "",
+      DateTime: DateTime,
+    //  Quantity: Math.round(Math.random() * 100).toString(),
+      Rate: RATE[Math.round(Math.random() * (RATE.length - 1))]
+    };
   }
 }
+
+const RATE = ['', '', '', '', '', '', '',
+ ];
+const NAMES = ['', '', '', '', '', '',];
+export interface UserData {
+  StatusCode: String;
+  DateTime: String;
+  //IdNo: String;
+  //Quantity: String;
+  Rate: String;
+  // Amount: any;
+  // DiscAmount: any;
+  // NetAmount: any;
+  // TaxRate: any;
+  // TaxAmount:any;
+  // NOfCalls: any;
+}
+
+export interface UserData {
+  StatusCode: String;
+  DateTime: String;
+  //IdNo: String;
+  //Quantity: String;
+  Rate: String;
+  // Amount: any;
+  // DiscAmount: any;
+  // NetAmount: any;
+  // TaxRate: any;
+  // TaxAmount:any;
+  // NOfCalls: any;
+}
+
+export interface invoiceData{
+  id: String;
+  RefNo: String;
+  invoiceId : String;
+  invoiceDate : String ;
+  Buyer : String;
+  InvoiceAmount : String;
+  
+  }
+  
+  const INVOICE_ARRAY:invoiceData[]=[];
