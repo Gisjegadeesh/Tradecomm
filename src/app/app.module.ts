@@ -40,6 +40,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {ModalDialogService} from './service/modal-dialog.service';
 import {ApiService} from './service/api.service';
 import {InvoiceRequestServices} from '../app/components/invoice-request/invoice-service';
+import {FinanceRequestServices} from '../app/components/finance-bidding/finance-service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './shared/modals';
 import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
@@ -99,9 +100,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ModalModule.forRoot(),
     MatSlideToggleModule,
     AngularMultiSelectModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
+    FinanceRequestServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

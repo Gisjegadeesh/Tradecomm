@@ -21,7 +21,7 @@ export class ApiService {
 	) {
 		headers = headers.set("Content-Type", "application/json");
 		headers = headers.set("type", "web");
-        this.baseUrl =  "test.com/"
+        this.baseUrl =  environment.api_url
 		this.setToken();
 	}
 	private formatErrors(error: any) {

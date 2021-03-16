@@ -2,8 +2,15 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
+//Local Path Link
+let BASE_PATH = "http://192.168.1.20:5005/v1.0/"
+let IMAGE_PATH = "http://192.168.1.20:5005/"
+
 export const environment = {
-  production: false
+  production: false,
+  api_url: `${BASE_PATH}`,
+  image_url:`${IMAGE_PATH}`
 };
 
 /*

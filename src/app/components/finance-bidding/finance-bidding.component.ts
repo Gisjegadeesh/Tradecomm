@@ -1,7 +1,10 @@
-import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, ViewChild,Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
+import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component'
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import {FinanceRequestServices} from './finance-service'
 
 const ELEMENT_DATA: any[] = [
   {
@@ -22,8 +25,10 @@ const ELEMENT_DATA: any[] = [
   styleUrls: ['./finance-bidding.component.scss']
 })
 export class FinanceBiddingComponent implements OnInit {
+  @Input() InvoiceDetailsComponent: InvoiceDetailsComponent;
 
-  constructor(public router: Router, public authenticationService:AuthenticationService) { }
+  constructor(public router: Router, public authenticationService:AuthenticationService,
+    private modalService: BsModalService,private FinanceRequestServices : FinanceRequestServices) { }
 
   dataSource = new MatTableDataSource(ELEMENT_DATA); //data
   displayedColumns: string[] = [
@@ -36,11 +41,18 @@ export class FinanceBiddingComponent implements OnInit {
     'InvDate',
     'InvAmt'
   ];
+  modalRef: BsModalRef;
+
 
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+
+    this.FinanceRequestServices.getFinancierBidding({}).subscribe(resp => {
+      
+    })
+
   }
   mobileScreen = false;
   end = false;
@@ -102,6 +114,12 @@ export class FinanceBiddingComponent implements OnInit {
   }
   goHome(){
     this.router.navigateByUrl('/financier-dashboard');
+  }
+
+  openModal(event, template) {
+    event.preventDefault();
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    
   }
 
 }
