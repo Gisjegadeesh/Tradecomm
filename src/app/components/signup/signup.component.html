@@ -23,6 +23,7 @@
                       name=""
                       [settings]="dropdownSettings"
                       [data]="cities"
+                      (onSelect)="onItemSelect($event)"
                   >
                   </ng-multiselect-dropdown>
       
@@ -34,7 +35,7 @@
       </mat-form-field>
       
       <button mat-flat-button color="primary">
-        <mat-icon>arrow_right_alt</mat-icon>
+        <mat-icon (click)="signup()">arrow_right_alt</mat-icon>
         Sign Up
       </button>
     </form>

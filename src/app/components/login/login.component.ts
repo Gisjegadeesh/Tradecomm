@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
     } else if (this.authService.loginAsFinancier(this.username, this.password)) {
       this.router.navigate(['financier-dashboard']);
       this.invalidLogin = false;
+    }  else if (this.authService.loginAsICCUser(this.username, this.password)) {
+      this.router.navigate(['icc-dashboard']);
+      this.invalidLogin = false;
     } else {
       this.invalidLogin = true;
     }
