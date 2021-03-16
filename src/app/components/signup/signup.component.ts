@@ -26,7 +26,9 @@ export class SignupComponent implements OnInit {
   name = "Angular";
   cities: Array<ICity> = [];
   selectedItems: Array<ICity> = [];
-  dropdownSettings: IDropdownSettings = {};
+  dropdownSettings: IDropdownSettings = {
+    allowSearchFilter: true
+  };
 
   ngOnInit() {
     this.cities = [

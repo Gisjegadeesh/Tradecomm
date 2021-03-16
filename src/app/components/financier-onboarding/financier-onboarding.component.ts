@@ -50,7 +50,8 @@ export class FinancierOnboardingComponent implements OnInit {
   name = "Angular";
   cities: Array<ICity> = [];
   selectedItems: Array<ICity> = [];
-  dropdownSettings: IDropdownSettings = {};
+  dropdownSettings: IDropdownSettings = {
+  };
 
   ngOnInit() {
     this.cities = [
@@ -71,7 +72,9 @@ export class FinancierOnboardingComponent implements OnInit {
       textField: "item_text",
       selectAllText: "Select All",
       unSelectAllText: "UnSelect All",
-      itemsShowLimit: 3
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+
     };
    
   }
