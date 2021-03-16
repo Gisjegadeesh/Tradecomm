@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular
 import { AuthenticationService } from '../../../service/authentication/authentication.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import { ModalDialogService } from '../../../service/modal-dialog.service';
 
 interface Status {
   value: string;
@@ -65,7 +66,7 @@ export class InvoiceDetailsComponent implements OnInit {
     {value: 'R', viewValue: 'R'},
   ];
 
-  constructor(private authenticationService:AuthenticationService,private router :Router) { }
+  constructor(private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = [
@@ -158,4 +159,10 @@ export class InvoiceDetailsComponent implements OnInit {
     goHome(){
       this.router.navigateByUrl('/financier-dashboard');
     }
+
+    handleToggle(e,status){
+      this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
+      })
+
+  }
 }
