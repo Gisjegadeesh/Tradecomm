@@ -104,12 +104,13 @@
   <div class="data-section">
     <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper id=right>
       <mat-step>
+        <ng-template matStepLabel>New Invoice Entry</ng-template>
       <mat-card>
         <mat-card-title>
           <!-- <h4 class="uxg-h4">Details</h4> -->
         </mat-card-title>
           <mat-card-content>
-              <div class="uxg-h4" style="text-align: center">New Invoice Entry</div>
+              <!-- <div class="uxg-h4" style="text-align: center">New Invoice Entry</div> -->
               <table>
                   <tbody>
                       <tr>
@@ -263,14 +264,28 @@
                           </table>
                         </div>
             </div>
+            <mat-card-actions>
+              <span class="fill-remaining-space"></span>
+             
+  
+              <button mat-flat-button color="primary" class="btnSubmit"  >
+                Submit
+              </button>
+              
+              <button mat-flat-button color="primary" class="btnSubmit"  >
+                Authorize
+              </button>
+            </mat-card-actions>
             </mat-card-content>
             </mat-card>
+            
             </mat-step>
+            
             <mat-step >
               <ng-template matStepLabel>Add Goods</ng-template>
               <mat-card>
                 
-                <form>
+                <form >
                   <mat-card-content>
                   
                     <div id="container">

@@ -1,15 +1,102 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 @Component({
-  selector: 'app-icc-dashboard',
-  templateUrl: './icc-dashboard.component.html',
-  styleUrls: ['./icc-dashboard.component.scss']
+  selector: "app-icc-dashboard",
+  templateUrl: "./icc-dashboard.component.html",
+  styleUrls: ["./icc-dashboard.component.scss"],
 })
 export class IccDashboardComponent implements OnInit {
+  mobileScreen = false;
+  end = false;
+  start = true;
+  currentPage = 0;
+  pageCount = 1;
+  limit = 7;
+  isOpen = "active";
 
-  constructor() { }
+  @ViewChild("accountList", { read: ElementRef })
+  public accountList: ElementRef<any>;
 
-  ngOnInit(): void {
+  @HostListener("window:resize", ["$event"])
+  onResize() {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    } else {
+      this.mobileScreen = false;
+    }
   }
 
+  constructor(public router: Router,private authenticationService: AuthenticationService) { }
+
+  ngOnInit() {
+    if (window.innerWidth < 415) {
+      this.mobileScreen = true;
+    }
+  }
+
+  public scrollRight(): void {
+    this.start = false;
+    const scrollWidth =
+      this.accountList.nativeElement.scrollWidth -
+      this.accountList.nativeElement.clientWidth;
+
+    if (scrollWidth === Math.round(this.accountList.nativeElement.scrollLeft)) {
+      this.end = true;
+    } else {
+      this.accountList.nativeElement.scrollTo({
+        left: this.accountList.nativeElement.scrollLeft + 150,
+        behavior: "smooth",
+      });
+    }
+  }
+
+  public scrollLeft(): void {
+    this.end = false;
+    if (this.accountList.nativeElement.scrollLeft === 0) {
+      this.start = true;
+    }
+    this.accountList.nativeElement.scrollTo({
+      left: this.accountList.nativeElement.scrollLeft - 150,
+      behavior: "smooth",
+    });
+  }
+
+  isOpenHandle(isTrue) {
+    this.isOpen = isTrue == "inActive" ? "active" : "inActive";
+  }
+
+  chartType = "line";
+  chartOptions = {
+    responsive: true,
+  };
+  chartData = [
+    { data: [350, 600, 260, 700, 650, 416, 400, 300, 556, 500, 600, 580], label: "Funding Requested" },
+    { data: [500, 410, 450, 600, 550, 680, 720, 380, 350, 450, 650, 700], label: "Actual Funding" },
+    { data: [120, 200, 700], label: "Repayment" },
+  ];
+  chartLabels = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  chartColors = [
+    {
+      backgroundColor: "rgba(204, 51, 0, .3)",
+      borderColor: "rgba(204, 51, 0, .7)",
+    },
+    {
+      backgroundColor: "rgba(0, 137, 132, .3)",
+      borderColor: "rgba(0, 10, 130, .7)",
+    },
+    {
+      backgroundColor: "rgba(0, 128, 43, .3)",
+      borderColor: "rgba(0, 128, 43, .7)",
+    }
+  ];
+  
+  logout(){
+    this.authenticationService.logout()
+    }
+    navigateFinancierOnboard(){
+      this.router.navigateByUrl('/financier-onboarding');
+    }
+    
 }

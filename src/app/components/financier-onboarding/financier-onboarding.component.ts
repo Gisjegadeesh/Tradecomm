@@ -106,5 +106,8 @@ export class FinancierOnboardingComponent implements OnInit {
     logout(){
       this.authenticationService.logout()
     }
+    goHome(){
+      this.router.navigateByUrl('/icc-dashboard');
+    }
 
 }

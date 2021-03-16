@@ -30,4 +30,12 @@ export class AuthenticationService {
   logout(){
     this.router.navigateByUrl('/');
   }
+  loginAsICCUser(username: string, password: string) {
+    if (username === 'iccuser1' && password === '123456'){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

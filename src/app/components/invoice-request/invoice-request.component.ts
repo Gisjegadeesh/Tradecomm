@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import {SelectionModel} from '@angular/cdk/collections';
+// import { Invoice } from '../../model/invoice/invoice.model';
+// import { InvoiceService } from '../../service/invoice/invoice.service';
 
 
 const
@@ -47,7 +49,7 @@ ELEMENT_DATA: any[] = [
 })
 export class InvoiceRequestComponent implements OnInit {
   tcode : string;
-
+  // Invoice: Invoice;
  
   
 
@@ -115,7 +117,8 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor(public router: Router,private authenticationService: AuthenticationService) { }
+  constructor(public router: Router,private authenticationService: AuthenticationService) {
+   }
  
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -185,7 +188,12 @@ export class InvoiceRequestComponent implements OnInit {
    logSelection() {
      this.selection.selected.forEach(s => console.log(s.name));
    }
-  onSubmit() {}
-
   
+  // onSubmit() {
+  //   this.InvoiceService.save(this.Invoice).subscribe(result => this.gotoPage());
+  // }
+
+  gotoPage() {
+    this.router.navigate(['/login']);
+  }
 }

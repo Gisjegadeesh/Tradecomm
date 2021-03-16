@@ -179,6 +179,80 @@
         </button>
      </div>
      <div class="modal-body">
+         <!-- Table 2 -->
+        <div style="overflow-x:auto;">
+            <table mat-table [dataSource]="dataSourceTwo">
+        
+                <ng-container matColumnDef="BidID">
+                    <th mat-header-cell *matHeaderCellDef scope="column">BID ID</th>
+                    <td mat-cell *matCellDef="let element">{{ element.BidID }}</td>
+                </ng-container>
+        
+                <ng-container matColumnDef="FinOffAmt">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Finance Offer Amt</th>
+                    <td mat-cell *matCellDef="let element">{{ element.FinOffAmt }}</td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Ccy">
+                    <th mat-header-cell *matHeaderCellDef scope="column">CCY</th>
+                    <td mat-cell *matCellDef="let element">{{ element.Ccy }}</td>
+                </ng-container>
+        
+                <ng-container matColumnDef="FxRateDiff">
+                    <th mat-header-cell *matHeaderCellDef scope="column">FX Rate if CCY Diff</th>
+                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.FxRateDiff }}" /></td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Margin">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Margin</th>
+                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.Margin }}" /></td>
+                </ng-container>
+        
+                <ng-container matColumnDef="DiscRate">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Disc Rate</th>
+                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DiscRate }}" /></td>
+                </ng-container>
+        
+                <ng-container matColumnDef="DiscAmt">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Disc Amt</th>
+                    <td mat-cell *matCellDef="let element">{{ element.DiscAmt }}</td>
+                </ng-container>
+        
+                <ng-container matColumnDef="NetAmtPay">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Net Amt Payable After Disc</th>
+                    <td mat-cell *matCellDef="let element">{{ element.NetAmtPay }}</td>
+                </ng-container>
+        
+                <ng-container matColumnDef="DueDate">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Due Date</th>
+                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DueDate }}" /></td>
+                </ng-container>
+        
+                <ng-container matColumnDef="OffExpPrd">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Offer Exp Period</th>
+                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.OffExpPrd }}" /></td>
+                </ng-container>
+        
+                <ng-container matColumnDef="Status">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Status(InProg/Sub/Auth)</th>
+                    <td mat-cell *matCellDef="let element">
+            <label class="switchStatus">
+            <input class="ng-tns-c8-3 ng-untouched ng-pristine ng-valid" name="block" type="checkbox" 
+            (change)="handleToggle($event,'status')">
+            <span class="sliderStatus slider round">
+            <span class="on">REJECT</span>
+            <span class="off">ACCEPT</span>
+            </span>
+            </label>
+        </td>
+    
+                </ng-container>
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
+            </table>
+        </div>
+            <!-- Table 2-->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
@@ -357,80 +431,7 @@
         </table>
         <!-- Table 1-->
 
-        <!-- Table 2 -->
-        <div style="overflow-x:auto;">
-        <table mat-table [dataSource]="dataSourceTwo">
-    
-            <ng-container matColumnDef="BidID">
-                <th mat-header-cell *matHeaderCellDef scope="column">BID ID</th>
-                <td mat-cell *matCellDef="let element">{{ element.BidID }}</td>
-            </ng-container>
-    
-            <ng-container matColumnDef="FinOffAmt">
-                <th mat-header-cell *matHeaderCellDef scope="column">Finance Offer Amt</th>
-                <td mat-cell *matCellDef="let element">{{ element.FinOffAmt }}</td>
-            </ng-container>
-    
-            <ng-container matColumnDef="Ccy">
-                <th mat-header-cell *matHeaderCellDef scope="column">CCY</th>
-                <td mat-cell *matCellDef="let element">{{ element.Ccy }}</td>
-            </ng-container>
-    
-            <ng-container matColumnDef="FxRateDiff">
-                <th mat-header-cell *matHeaderCellDef scope="column">FX Rate if CCY Diff</th>
-                <td mat-cell *matCellDef="let element"><input matInput value="{{ element.FxRateDiff }}" /></td>
-            </ng-container>
-    
-            <ng-container matColumnDef="Margin">
-                <th mat-header-cell *matHeaderCellDef scope="column">Margin</th>
-                <td mat-cell *matCellDef="let element"><input matInput value="{{ element.Margin }}" /></td>
-            </ng-container>
-    
-            <ng-container matColumnDef="DiscRate">
-                <th mat-header-cell *matHeaderCellDef scope="column">Disc Rate</th>
-                <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DiscRate }}" /></td>
-            </ng-container>
-    
-            <ng-container matColumnDef="DiscAmt">
-                <th mat-header-cell *matHeaderCellDef scope="column">Disc Amt</th>
-                <td mat-cell *matCellDef="let element">{{ element.DiscAmt }}</td>
-            </ng-container>
-    
-            <ng-container matColumnDef="NetAmtPay">
-                <th mat-header-cell *matHeaderCellDef scope="column">Net Amt Payable After Disc</th>
-                <td mat-cell *matCellDef="let element">{{ element.NetAmtPay }}</td>
-            </ng-container>
-    
-            <ng-container matColumnDef="DueDate">
-                <th mat-header-cell *matHeaderCellDef scope="column">Due Date</th>
-                <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DueDate }}" /></td>
-            </ng-container>
-    
-            <ng-container matColumnDef="OffExpPrd">
-                <th mat-header-cell *matHeaderCellDef scope="column">Offer Exp Period</th>
-                <td mat-cell *matCellDef="let element"><input matInput value="{{ element.OffExpPrd }}" /></td>
-            </ng-container>
-    
-            <ng-container matColumnDef="Status">
-                <th mat-header-cell *matHeaderCellDef scope="column">Status(InProg/Sub/Auth)</th>
-                <td mat-cell *matCellDef="let element">
-        <label class="switchStatus">
-        <input class="ng-tns-c8-3 ng-untouched ng-pristine ng-valid" name="block" type="checkbox" 
-        (change)="handleToggle($event,'status')">
-        <span class="sliderStatus slider round">
-        <span class="on">REJECT</span>
-        <span class="off">ACCEPT</span>
-        </span>
-        </label>
-    </td>
-
-            </ng-container>
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
-        </table>
-    </div>
-        <!-- Table 2-->
+        
      </div>
      <div class="modal-footer">
         <button type="button" class="btn model-btn-outline">Submit</button>

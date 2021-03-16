@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
   country: string;
   uen: string;
   invalidLogin = false
-  
+  selectedItem 
   constructor(private router: Router) { }
 
   
@@ -41,17 +41,19 @@ export class SignupComponent implements OnInit {
       { item_id: 6, item_text: "Navsari" }
     ];
     this.dropdownSettings = {
-      singleSelection: false,
+      singleSelection: true,
       defaultOpen: false,
       idField: "item_id",
       textField: "item_text",
       selectAllText: "Select All",
       unSelectAllText: "UnSelect All",
-      itemsShowLimit: 3
+      itemsShowLimit: 10,
+      allowSearchFilter: true
     };
    
   }
   onItemSelect(item: any) {
+    this.selectedItem = item.item_id
     console.log('onItemSelect', item);
   }
   onItemDeSelect(item: any) {
@@ -67,12 +69,22 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    if (this.country.valueOf() !== '' || this.uen.valueOf() !== '') {
+    // if (this.country.valueOf() !== '' || this.uen.valueOf() !== '') {
+    //   this.router.navigate(['sme-onboarding'])
+    //   this.invalidLogin = false
+    // } else
+    //   this.invalidLogin = false
+    
+    if (this.uen.valueOf() !== '' || this.selectedItem != "" ) {
       this.router.navigate(['sme-onboarding'])
       this.invalidLogin = false
     } else
-      this.invalidLogin = true
+     { this.invalidLogin = true }
+  
   }
+
+  
+  
 
   // onSubmit() {
   //   this.router.navigate(['sme-onboarding']);
