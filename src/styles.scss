@@ -71,10 +71,10 @@ table#customers {
 }
 // Temp Css
 
-.app-content.inActive
-{
-margin-left: 300px;
-}
+// .app-content.inActive
+// {
+// margin-left: 300px;
+// }
 
 .chart.inActive{
     // margin-left: 300px;
@@ -355,3 +355,43 @@ table.mat-table.cdk-table {
     margin-bottom: 1rem;
 }
 // 15/10/2021 Temp Css
+
+.main-container{
+    bottom: 0;
+    left: 0;
+    overflow-x: auto;
+    padding: 2rem;
+    position: absolute;
+    right: 0;
+    top: 33px;
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    &.active{
+        width: calc(100% - 200px);
+        margin-left: 200px;
+    }
+    &.inActive{
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+mat-sidenav.mat-drawer.mat-sidenav.ng-trigger.ng-trigger-transform.mat-drawer-over.mat-drawer-opened{
+    .mat-list-base{
+        width: 200px;
+    }
+}
+
+// mat-sidenav.mat-drawer.mat-sidenav.ng-trigger.ng-trigger-transform.mat-drawer-over{
+//     .mat-list-base{
+//         width: 60px;
+//     }
+// }
+button.mat-focus-indicator.uxg-toolbar-menu.mat-icon-button.mat-button-base{
+    position: absolute;
+    top: 6px;
+    z-index: 21;
+    left: -3px;
+}
+header{
+    margin-left: 0;
+}

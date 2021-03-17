@@ -54,13 +54,13 @@ export class FinanceBiddingComponent implements OnInit {
     })
 
   }
-  mobileScreen = false;
+  mobileScreen = false; 
   end = false;
   start = true;
   currentPage = 0;
   pageCount = 1;
   limit = 7;
-  isOpen = '';
+  isOpen = 'inActive';
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;

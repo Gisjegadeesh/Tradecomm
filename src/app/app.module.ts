@@ -50,6 +50,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { IccDashboardComponent } from './components/icc-dashboard/icc-dashboard.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FinanceBiddingComponent,
     InvoiceDetailsComponent,
     InvoiceRequestComponent,
-    IccDashboardComponent
+    IccDashboardComponent,
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
