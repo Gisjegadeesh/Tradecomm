@@ -6,6 +6,8 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { SelectionModel } from '@angular/cdk/collections';
 import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
+import { DatePipe } from '@angular/common';
+
 const ELEMENT_DATA: any[] = [
   {
     Name: 'INV64320',
@@ -76,6 +78,7 @@ export class InvoiceRequestComponent implements OnInit {
   invoiceForm: FormGroup;
   tcode: string;
   invoiceID: any;
+  InvoiceFdate:any
   invoicedata: invoiceData = {
     id: "1",
     RefNo: "",
@@ -131,7 +134,7 @@ export class InvoiceRequestComponent implements OnInit {
     }
   }
   constructor(public router: Router, private authenticationService: AuthenticationService, private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
-  ) {
+    private datePipe: DatePipe) {
     this.invoiceFormBuild()
     this.dataSourceTwo = new MatTableDataSource();
   }
@@ -221,8 +224,11 @@ export class InvoiceRequestComponent implements OnInit {
     console.log("invoiceIds", invoiceIds);
   }
   updateInvoice(invoiceIds) {
+    let invIdparams = {
+      "invoiceIds": invoiceIds,
+    }
     alert("Selected Inovices has been Authorized !");
-    this.invoiceRequestServices.authoriseInvoice(invoiceIds).subscribe(resp => {
+    this.invoiceRequestServices.authoriseInvoice(invIdparams).subscribe(resp => {
       this.getInvDetailsLists();
     }, error => {
     })
@@ -241,6 +247,8 @@ export class InvoiceRequestComponent implements OnInit {
       }
       this.invoiceFormBuild();
       this.dataSourceTwo.data = [];
+      this.invoiceID = "";
+      this.InvoiceFdate = ""
       for (const key in this.invoiceForm.controls) {
         this.invoiceForm.get(key).clearValidators();
         this.invoiceForm.get(key).updateValueAndValidity();
@@ -274,7 +282,7 @@ export class InvoiceRequestComponent implements OnInit {
       ID: this.invoiceID,
       descGoods: [""],
       idNo: [""],
-      dateOfInvoice: [""],
+      dateOfInvoice:this.datePipe.transform(this.InvoiceFdate,"dd/MM/yyyy"),
       quantity: [""],
       rate: [""],
       amt: [""],
@@ -306,6 +314,9 @@ export class InvoiceRequestComponent implements OnInit {
   updateInvoiceId(event) {
     this.invoiceID = event.target.value;
     this.invoiceForm.value.data.findIndex((obj => obj.ID == 1));
+  }
+  updateInvoicedate(event){
+    this.InvoiceFdate = event.target.value;
   }
 }
 
