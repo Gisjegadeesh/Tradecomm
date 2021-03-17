@@ -3,37 +3,37 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
-import {SelectionModel} from '@angular/cdk/collections';
-import { Validators, FormGroup, FormBuilder,FormArray } from '@angular/forms';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
 const ELEMENT_DATA: any[] = [
- {
-   Name: 'INV64320',
-   Position: 'ISBGF5643',
-   DateOfInvoice: '11/3/2021',
-   Seller: 'SME1',
-   Buyer: 'BUYER1',
-   InvoiceAmount: '563489',
-   NOfCalls: 'Active'
- },
- {
-   Name: 'INV64320',
-   Position: 'ISBGF5643',
-   DateOfInvoice: '11/3/2021',
-   Seller: 'SME1',
-   Buyer: 'BUYER1',
-   InvoiceAmount: '563489',
-   NOfCalls: 'Active'
- },
- {
-   Name: 'INV64320',
-   Position: 'ISBGF5643',
-   DateOfInvoice: '11/3/2021',
-   Seller: 'SME1',
-   Buyer: 'BUYER1',
-   InvoiceAmount: '563489',
-   NOfCalls: 'Active'
- },
+  {
+    Name: 'INV64320',
+    Position: 'ISBGF5643',
+    DateOfInvoice: '11/3/2021',
+    Seller: 'SME1',
+    Buyer: 'BUYER1',
+    InvoiceAmount: '563489',
+    Status: 'Active'
+  },
+  {
+    Name: 'INV64320',
+    Position: 'ISBGF5643',
+    DateOfInvoice: '11/3/2021',
+    Seller: 'SME1',
+    Buyer: 'BUYER1',
+    InvoiceAmount: '563489',
+    Status: 'Active'
+  },
+  {
+    Name: 'INV64320',
+    Position: 'ISBGF5643',
+    DateOfInvoice: '11/3/2021',
+    Seller: 'SME1',
+    Buyer: 'BUYER1',
+    InvoiceAmount: '563489',
+    Status: 'Active'
+  },
 ];
 
 // const DATA_TWO: any[] = [
@@ -55,16 +55,16 @@ const ELEMENT_DATA: any[] = [
 //  ];
 // const NAMES = ['', '', '', '', '', '',];
 
-export interface invoiceData{
+export interface invoiceData {
   id: String;
   RefNo: String;
-  invoiceId : String;
-  invoiceDate : String ;
-  Buyer : String;
-  InvoiceAmount : String;
-  
+  invoiceId: String;
+  invoiceDate: String;
+  buyerName: String;
+  InvoiceAmount: String;
+
 }
-const INVOICE_ARRAY:invoiceData[]=[];
+const INVOICE_ARRAY: invoiceData[] = [];
 
 @Component({
   selector: 'app-invoice-request',
@@ -74,17 +74,17 @@ const INVOICE_ARRAY:invoiceData[]=[];
 
 export class InvoiceRequestComponent implements OnInit {
   invoiceForm: FormGroup;
-  tcode : string;
-  invoiceID:any;
-  invoicedata : invoiceData = {
-    id :"1",
-    RefNo :"",
-    invoiceId :"",
-    invoiceDate : "",
-    Buyer :"",
-    InvoiceAmount :""
+  tcode: string;
+  invoiceID: any;
+  invoicedata: invoiceData = {
+    id: "1",
+    RefNo: "",
+    invoiceId: "",
+    invoiceDate: "",
+    buyerName: "",
+    InvoiceAmount: ""
   };
-  
+
   hide = true;
   dataSourceTwo = new MatTableDataSource(); //data
   // dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
@@ -101,16 +101,16 @@ export class InvoiceRequestComponent implements OnInit {
     'TaxRate',
     'TaxAmount',
     'Total',
-      ];
-  
+  ];
+
   // addGoods=new MatTableDataSource(this.ELEMENT_DATA1); 
-  // displayedColumnsn: string[] = ['StatusCode', 'DateTime', 'IdNo', 'Quantity','Rate','Amount','DiscAmount','NetAmount','TaxRate','TaxAmount', 'NOfCalls'];
+  // displayedColumnsn: string[] = ['StatusCode', 'DateTime', 'IdNo', 'Quantity','Rate','Amount','DiscAmount','NetAmount','TaxRate','TaxAmount', 'Status'];
 
-  dataSource = new MatTableDataSource(INVOICE_ARRAY); 
+  dataSource = new MatTableDataSource(INVOICE_ARRAY);
 
-  displayedColumns: string[] = ['select', 'StatusCode', 'DateTime', 'DateOfInvoice', 'Seller','Buyer','InvoiceAmount', 'NOfCalls'];
+  displayedColumns: string[] = ['select', 'DateTime', 'DateOfInvoice', 'Seller', 'buyerName', 'InvoiceAmount', 'Status'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-    // tslint:disable-next-line: typedef
+  // tslint:disable-next-line: typedef
   isOpen = ""
   mobileScreen = false;
   end = false;
@@ -118,7 +118,7 @@ export class InvoiceRequestComponent implements OnInit {
   currentPage = 0;
   pageCount = 1;
   limit = 7;
-  formArray:any;
+  formArray: any;
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -130,15 +130,30 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  constructor(public router: Router,private authenticationService: AuthenticationService,private invoiceRequestServices: InvoiceRequestServices,private fb: FormBuilder,
-    ) {
-      this.invoiceFormBuild()
-      this.dataSourceTwo = new MatTableDataSource();
+  constructor(public router: Router, private authenticationService: AuthenticationService, private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
+  ) {
+    this.invoiceFormBuild()
+    this.dataSourceTwo = new MatTableDataSource();
   }
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+    this.getInvDetailsLists()
+  }
+  getInvDetailsLists() {
+    let tempInvArray;
+    this.invoiceRequestServices.getInvDetailsLists().subscribe(resp => {
+      // resp.forEach(element => {
+      //   if (element.status == "I") {
+      //     tempInvArray.push(element)
+      //     // resp.splice(resp.indexOf(element),1)
+      //   }
+      // });
+      const INVOICE_ARRAY: invoiceData[] = resp;
+      this.dataSource = new MatTableDataSource(INVOICE_ARRAY);
+    }, error => {
+    })
   }
   public scrollRight(): void {
     this.start = false;
@@ -167,45 +182,51 @@ export class InvoiceRequestComponent implements OnInit {
     });
   }
 
-  isOpenHandle(isTrue){
+  isOpenHandle(isTrue) {
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
-   }
+  }
 
   openModal(event, template) {
-      event.preventDefault();
+    event.preventDefault();
   }
-  goHome(){
+  goHome() {
     this.router.navigateByUrl('/sme-dashboard');
   }
-  logout(){
+  logout() {
     this.authenticationService.logout()
-    }
+  }
   // tslint:disable-next-line: typedef
- 
+
   selection = new SelectionModel(true, []);
 
-   /** Whether the number of selected elements matches the total number of rows. */
-   isAllSelected() {
-     const numSelected = this.selection.selected.length;
-     const numRows = this.dataSource.data.length;
-     return numSelected === numRows;
-   }
- 
-   /** Selects all rows if they are not all selected; otherwise clear selection. */
-   masterToggle() {
-     this.isAllSelected() ?
-    this.selection.clear() :
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
-      this.selection.selected.forEach(s => console.log(s.name));
-   }
- 
-   logSelection() {
+    this.selection.selected.forEach(s => console.log(s.name));
+  }
+  authoriseInvoice() {
     let invoiceIds = []
-     this.selection.selected.forEach(s => 
+    this.selection.selected.forEach(s =>
       invoiceIds.push(s.id)
-      );
-      console.log("invoiceIds",invoiceIds);
-   }
+    );
+    this.updateInvoice(invoiceIds)
+    console.log("invoiceIds", invoiceIds);
+  }
+  updateInvoice(invoiceIds) {
+    alert("Selected Inovices has been Authorized !");
+    this.invoiceRequestServices.authoriseInvoice(invoiceIds).subscribe(resp => {
+      this.getInvDetailsLists();
+    }, error => {
+    })
+  }
   onSubmitInvoiceForm() {
     try {
       // for (const key in this.invoiceForm.controls) {
@@ -214,62 +235,58 @@ export class InvoiceRequestComponent implements OnInit {
       //   }
       if (this.invoiceForm.status === "INVALID")
         throw { "mes": "Please fill mendatory  fields" }
-        let params = {
+      let params = {
         "invoiceDetails": this.invoiceForm.value,
-        "goodsDetails":  this.invoiceForm.value.data,
-        }
-        this.invoiceFormBuild();
-        this.dataSourceTwo.data =  [];
-        for (const key in this.invoiceForm.controls) {
-          this.invoiceForm.get(key).clearValidators();
-          this.invoiceForm.get(key).updateValueAndValidity();
-        }
-        this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
-        if(resp && resp.status == 200) {
-         
-        }
+        "goodsDetails": this.invoiceForm.value.data,
+      }
+      this.invoiceFormBuild();
+      this.dataSourceTwo.data = [];
+      for (const key in this.invoiceForm.controls) {
+        this.invoiceForm.get(key).clearValidators();
+        this.invoiceForm.get(key).updateValueAndValidity();
+      }
+      this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
+        this.getInvDetailsLists();
       }, error => {
       })
     } catch (err) {
     }
   }
-  addNew(){ 
-    INVOICE_ARRAY.push(this.invoicedata)
-    this.dataSource = new MatTableDataSource(INVOICE_ARRAY);
-    this.invoicedata = {
-     id :"1",
-     RefNo :"ref",
-     invoiceId :"inv",
-     invoiceDate : "123123",
-     Buyer :"123213",
-     InvoiceAmount :"123213"
-   }
- }
- get dateFormArray():FormArray {
-
-  return this.invoiceForm.get('data') as FormArray;
-}
+  //   addNew(){ 
+  //     INVOICE_ARRAY.push(this.invoicedata)
+  //     this.dataSource = new MatTableDataSource(INVOICE_ARRAY);
+  //     this.invoicedata = {
+  //      id :"1",
+  //      RefNo :"ref",
+  //      invoiceId :"inv",
+  //      invoiceDate : "123123",
+  //      buyerName :"123213",
+  //      InvoiceAmount :"123213"
+  //    }
+  //  }
+  get dateFormArray(): FormArray {
+    return this.invoiceForm.get('data') as FormArray;
+  }
   addRow() {
-    console.log(this.invoiceForm,"adasdasd")
+    console.log(this.invoiceForm, "adasdasd")
     this.dataSourceTwo.filter = "";
     const row = this.fb.group({
       ID: this.invoiceID,
-      descGoods:[""],
-      idNo : [""],
-      dateOfInvoice:[""],
-      quantity:[""],
-      rate:[""],
-      amt:[""],
-      discAmt:[""], 
-      netAmtPay:[""],
-      taxRate:[""],
-      taxAmount:[""],
-      total:[""],
+      descGoods: [""],
+      idNo: [""],
+      dateOfInvoice: [""],
+      quantity: [""],
+      rate: [""],
+      amt: [""],
+      discAmt: [""],
+      netAmtPay: [""],
+      taxRate: [""],
+      taxAmount: [""],
+      total: [""],
       goodsId: "GD101",
     })
     this.dateFormArray.push(row);
-    this.dataSourceTwo.data =  this.dateFormArray.controls;
-   
+    this.dataSourceTwo.data = this.dateFormArray.controls;
   }
   invoiceFormBuild() {
     this.invoiceForm = this.fb.group({
@@ -280,15 +297,15 @@ export class InvoiceRequestComponent implements OnInit {
       billNo: ['', Validators.required],
       invAmt: ['', Validators.required],
       invDate: ['', Validators.required],
-      dispDate:  ['', Validators.required],
+      dispDate: ['', Validators.required],
       smeId: "SME0256",
       invCcy: "SGD",
       data: this.fb.array([])
     });
   }
-  updateInvoiceId(event){
-  this.invoiceID=event.target.value;
-  this.invoiceForm.value.data.findIndex((obj => obj.ID == 1));
-   }
+  updateInvoiceId(event) {
+    this.invoiceID = event.target.value;
+    this.invoiceForm.value.data.findIndex((obj => obj.ID == 1));
+  }
 }
- 
+

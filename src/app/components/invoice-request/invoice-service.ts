@@ -9,4 +9,11 @@ export class InvoiceRequestServices {
   invoiceRequestSave(body: any) {
     return this.apiService.post('invoice-request', body);
   }
+  getInvDetailsLists(){
+    return this.apiService.get('invoice-request/initiated-invoices');
+  }
+  authoriseInvoice(body: any) {
+    return this.apiService.post('invoice-request', body);
+  }
+  
 }
