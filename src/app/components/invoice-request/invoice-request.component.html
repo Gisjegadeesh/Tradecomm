@@ -162,7 +162,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Invoice Date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="invDate" />
+                    <input matInput [matDatepicker]="picker" formControlName="invDate" (dateInput)="updateInvoicedate($event)">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -228,7 +228,7 @@
                       <input matInput 
                       formControlName="dateOfInvoice" 
                       placeholder="Date of Invoice" 
-                      required>
+                      readonly>
                     </td>
                   </ng-container>
 

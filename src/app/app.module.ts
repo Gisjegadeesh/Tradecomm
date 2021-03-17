@@ -52,7 +52,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -108,7 +108,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
-    FinanceRequestServices,
+    FinanceRequestServices,DatePipe,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],
