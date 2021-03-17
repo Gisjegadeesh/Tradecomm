@@ -121,7 +121,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Invoice Due Date</mat-label>
-                    <input matInput [matDatepicker]="pickers" formControlName="invoiceDueDate" />
+                    <input matInput [matDatepicker]="pickers" formControlName="invDueDate" />
                     <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
                     <mat-datepicker #pickers></mat-datepicker>
                   </mat-form-field>
@@ -131,14 +131,14 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Invoice ID</mat-label>
-                    <input type="text" matInput value="" formControlName="invoiceId" />
+                    <input type="text" matInput value="" formControlName="invId" (keyup)="updateInvoiceId($event)"/>
                     <!-- <mat-hint>Please enter Invoice ID</mat-hint> -->
                   </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Buyer Address</mat-label>
-                    <input type="text" matInput value="" formControlName="buyerAddress" />
+                    <input type="text" matInput value="" formControlName="buyerAddr" />
                     <!-- <mat-hint>Please enter Buyer Address </mat-hint> -->
                   </mat-form-field>
                 </td>
@@ -146,7 +146,7 @@
                   <mat-form-field dense>
                     <!-- <mat-icon dense color="primary" matPrefix>person_outline</mat-icon> -->
                     <mat-label>BL/Roadway Bill No</mat-label>
-                    <input type="text" matInput value="" formControlName="blRoadwayBillNo" />
+                    <input type="text" matInput value="" formControlName="billNo" />
                     <!-- <mat-hint>Please enter the BL/Roadway Bill No</mat-hint> -->
                   </mat-form-field>
                 </td>
@@ -155,14 +155,14 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Invoice Amount</mat-label>
-                    <input type="text" matInput value="" formControlName="invoiceAmount"/>
+                    <input type="text" matInput value="" formControlName="invAmt"/>
                     <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                   </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Invoice Date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="invoiceDate" />
+                    <input matInput [matDatepicker]="picker" formControlName="invDate" />
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -170,7 +170,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Date of Dispatch</mat-label>
-                    <input matInput [matDatepicker]="picker1" formControlName="dateOfDispatch" />
+                    <input matInput [matDatepicker]="picker1" formControlName="dispDate" />
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
@@ -192,74 +192,128 @@
             <div id="container">
               <span class="uxg-h6" id=grid>Goods Details </span>
               <div class="mat-elevation-z8">
-               <form [formGroup]="invoiceForm">
-                 <table mat-table [dataSource]="dataSourceTwo" style="width: 100%;">
-                  <ng-container matColumnDef="ID">
+                <form [formGroup]="invoiceForm">
+                 <table mat-table [dataSource]="dataSourceTwo" style="width: 100%;" formArrayName="data">
+                  <ng-container matColumnDef="ID" >
                     <th mat-header-cell *matHeaderCellDef scope="column">ID</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.ID }}" /></td>
+                      <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="ID" 
+                      placeholder="ID" 
+                      readonly>
+                    </td>
                   </ng-container>
-
                   <ng-container matColumnDef="DescGoods">
                     <th mat-header-cell *matHeaderCellDef scope="column">Description of Goods</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DescGoods }}" /></td>
+                      <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="descGoods" 
+                      placeholder="Description of Goods" 
+                      required>
+                    </td>
                   </ng-container>
-
                   <ng-container matColumnDef="IdNo">
                     <th mat-header-cell *matHeaderCellDef scope="column">ID No</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.IdNo }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="idNo" 
+                      placeholder="ID No" 
+                      required>
+                    </td>
                   </ng-container>
 
                   <ng-container matColumnDef="DateOfInvoice">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Date of Invoice</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DateOfInvoice }}" />
+                    <th mat-header-cell *matHeaderCellDef scope="column">Date Of Invoice</th>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="dateOfInvoice" 
+                      placeholder="Date of Invoice" 
+                      required>
                     </td>
                   </ng-container>
 
                   <ng-container matColumnDef="Quantity">
                     <th mat-header-cell *matHeaderCellDef scope="column">Quantity</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.Quantity }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="quantity" 
+                      placeholder="Quantity" 
+                      required>
+                    </td>
                   </ng-container>
 
                   <ng-container matColumnDef="Rate">
                     <th mat-header-cell *matHeaderCellDef scope="column">Rate</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.Rate }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="rate" 
+                      placeholder="Rate" 
+                      required>
+                    </td>
                   </ng-container>
                   <ng-container matColumnDef="Amt">
                     <th mat-header-cell *matHeaderCellDef scope="column">Amount</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.Amt }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="amt" 
+                      placeholder="Amount" 
+                      required>
+                    </td>
                   </ng-container>
 
                   <ng-container matColumnDef="DiscAmt">
                     <th mat-header-cell *matHeaderCellDef scope="column">Disc Amount</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DiscAmt }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="discAmt" 
+                      placeholder="Disc Amount" 
+                      required>
+                    </td>
                   </ng-container>
 
                   <ng-container matColumnDef="NetAmtPay">
                     <th mat-header-cell *matHeaderCellDef scope="column">Net Amount</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.NetAmtPay }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="netAmtPay" 
+                      placeholder="Net Amount" 
+                      required>
+                    </td>
                   </ng-container>
 
                   <ng-container matColumnDef="TaxRate">
                     <th mat-header-cell *matHeaderCellDef scope="column">Tax Rate</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.TaxRate }}" /></td>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="taxRate" 
+                      placeholder="Tax Rate" 
+                      required>
+                    </td>
                   </ng-container>
 
                   <ng-container matColumnDef="TaxAmount">
-                    <th mat-header-cell *matHeaderCellDef scope="column">TaxAmount</th>
-                    <td mat-cell *matCellDef="let element">
-                      <input matInput value="{{ element.TaxAmount }}" />
+                    <th mat-header-cell *matHeaderCellDef scope="column">Tax Amount</th>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="taxAmount" 
+                      placeholder="Tax Amount" 
+                      required>
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Total">
                     <th mat-header-cell *matHeaderCellDef scope="column">Total</th>
-                    <td mat-cell *matCellDef="let element">
-                      <input matInput value="{{ element.Total }}" />
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <input matInput 
+                      formControlName="total" 
+                      placeholder="Total" 
+                      required>
                     </td>
                   </ng-container>
                   <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
-                </table>
-              </form> 
+              
+              </table>
+            </form>
               </div>
             </div>
             <mat-card-actions class="ebtn">
@@ -274,11 +328,9 @@
     </form>
 
       <div id="container">
-
         <span class="uxg-h6" id=grid>Invoice Details </span>
         <div class="mat-elevation-z8">
           <table mat-table matSort [dataSource]="dataSource" summary="table of APIs" style="width: 100%;">
-
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
               <th mat-header-cell *matHeaderCellDef>
@@ -296,26 +348,17 @@
 
             <ng-container matColumnDef="StatusCode">
               <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Ref No </th>
-
-              <td mat-cell *matCellDef="let element">{{ element.Name }}</td>
+              <td mat-cell *matCellDef="let element">12123</td>
             </ng-container>
-
             <ng-container matColumnDef="DateTime">
               <th mat-header-cell *matHeaderCellDef scope="column">Invoice No</th>
-              <td mat-cell *matCellDef="let element">{{ element.Position }}</td>
-
+              <td mat-cell *matCellDef="let element">213213</td>
             </ng-container>
-
             <mat-checkbox name="box"></mat-checkbox>
-
             <mat-text-column name="DateOfInvoice"></mat-text-column>
-
             <mat-text-column name="Seller"></mat-text-column>
-
             <mat-text-column name="Buyer"></mat-text-column>
-
             <mat-text-column name="InvoiceAmount"></mat-text-column>
-
             <ng-container matColumnDef="NOfCalls">
               <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Status </th>
               <td mat-cell *matCellDef="let element">{{ element.NOfCalls }}</td>
@@ -334,7 +377,7 @@
         <button mat-flat-button color="primary">
           Pend
         </button>
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary"  (click)="logSelection()">
           Authorise
         </button>
       </mat-card-actions>

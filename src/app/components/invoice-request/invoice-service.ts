@@ -7,6 +7,6 @@ export class InvoiceRequestServices {
   public baseUrl: string;
   constructor(private apiService: ApiService) { this.baseUrl = "http://mock.com"; }
   invoiceRequestSave(body: any) {
-    return this.apiService.post('invoiceRequestSave', body);
+    return this.apiService.post('invoice-request', body);
   }
 }
