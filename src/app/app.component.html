@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+
+<app-navbar *ngIf="showNavbar"></app-navbar>
+<app-sidebar *ngIf="showSidebar" (isOpenSidebar)="emitIsOpen($event)"></app-sidebar>
+
+<div class="main-container {{isOpen}}" >
+    <router-outlet></router-outlet>
+</div>
