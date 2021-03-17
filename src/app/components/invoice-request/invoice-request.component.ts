@@ -6,8 +6,6 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import {SelectionModel} from '@angular/cdk/collections';
 import { Validators, FormGroup, FormBuilder,FormArray } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
-
-
 const ELEMENT_DATA: any[] = [
  {
    Name: 'INV64320',
@@ -38,40 +36,24 @@ const ELEMENT_DATA: any[] = [
  },
 ];
 
-const DATA_TWO: any[] = [
-  {
-    BidID: 'BID03456',
-    FinOffAmt: 102700,
-    Ccy: 'SGD',
-    FxRateDiff: '1.35',
-    Margin: 10,
-    DiscRate: 3,
-    DiscAmt: 760,
-    NetAmtPay: 101940,
-    DueDate: '90D/10Mar21',
-    OffExpPrd: '4 PM',
-    Status: 'A'
-  }
-];
-
-
-const RATE = ['', '', '', '', '', '', '',
- ];
-const NAMES = ['', '', '', '', '', '',];
-export interface UserData {
-  StatusCode: String;
-  DateTime: String;
-  //IdNo: String;
-  //Quantity: String;
-  Rate: String;
-  // Amount: any;
-  // DiscAmount: any;
-  // NetAmount: any;
-  // TaxRate: any;
-  // TaxAmount:any;
-  // NOfCalls: any;
-}
-
+// const DATA_TWO: any[] = [
+//   {
+//     BidID: 'BID03456',
+//     FinOffAmt: 102700,
+//     Ccy: 'SGD',
+//     FxRateDiff: '1.35',
+//     Margin: 10,
+//     DiscRate: 3,
+//     DiscAmt: 760,
+//     NetAmtPay: 101940,
+//     DueDate: '90D/10Mar21',
+//     OffExpPrd: '4 PM',
+//     Status: 'A'
+//   }
+// ];
+// const RATE = ['', '', '', '', '', '', '',
+//  ];
+// const NAMES = ['', '', '', '', '', '',];
 
 export interface invoiceData{
   id: String;
@@ -81,10 +63,8 @@ export interface invoiceData{
   Buyer : String;
   InvoiceAmount : String;
   
-  }
-  
-
-  const INVOICE_ARRAY:invoiceData[]=[];
+}
+const INVOICE_ARRAY:invoiceData[]=[];
 
 @Component({
   selector: 'app-invoice-request',
@@ -95,9 +75,9 @@ export interface invoiceData{
 export class InvoiceRequestComponent implements OnInit {
   invoiceForm: FormGroup;
   tcode : string;
-  quizQuestionsForm = [];
+  invoiceID:any;
   invoicedata : invoiceData = {
-    id :"",
+    id :"1",
     RefNo :"",
     invoiceId :"",
     invoiceDate : "",
@@ -106,8 +86,8 @@ export class InvoiceRequestComponent implements OnInit {
   };
   
   hide = true;
-
-  dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
+  dataSourceTwo = new MatTableDataSource(); //data
+  // dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
   displayedColumnsTwo: string[] = [
     'ID',
     'DescGoods',
@@ -138,7 +118,7 @@ export class InvoiceRequestComponent implements OnInit {
   currentPage = 0;
   pageCount = 1;
   limit = 7;
-
+  formArray:any;
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -150,21 +130,15 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-  
   constructor(public router: Router,private authenticationService: AuthenticationService,private invoiceRequestServices: InvoiceRequestServices,private fb: FormBuilder,
     ) {
-      
-    const users: UserData[] = [];
-      for (let i = 1; i <=0; i++) { 
-        users.push(this.createNewUser(i)); 
-      }
-      this.dataSourceTwo = new MatTableDataSource(users);
+      this.invoiceFormBuild()
+      this.dataSourceTwo = new MatTableDataSource();
   }
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.invoiceFormBuild()
   }
   public scrollRight(): void {
     this.start = false;
@@ -195,7 +169,7 @@ export class InvoiceRequestComponent implements OnInit {
 
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
-    }
+   }
 
   openModal(event, template) {
       event.preventDefault();
@@ -210,7 +184,6 @@ export class InvoiceRequestComponent implements OnInit {
  
   selection = new SelectionModel(true, []);
 
-  
    /** Whether the number of selected elements matches the total number of rows. */
    isAllSelected() {
      const numSelected = this.selection.selected.length;
@@ -221,101 +194,101 @@ export class InvoiceRequestComponent implements OnInit {
    /** Selects all rows if they are not all selected; otherwise clear selection. */
    masterToggle() {
      this.isAllSelected() ?
-         this.selection.clear() :
-         this.dataSource.data.forEach(row => this.selection.select(row));
+    this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.selection.selected.forEach(s => console.log(s.name));
    }
  
    logSelection() {
-     this.selection.selected.forEach(s => console.log(s.name));
+    let invoiceIds = []
+     this.selection.selected.forEach(s => 
+      invoiceIds.push(s.id)
+      );
+      console.log("invoiceIds",invoiceIds);
    }
- 	onSubmitInvoiceForm() {
-     console.log('this.dataSourceTwo',this.invoiceForm);
-		try {
-			if (this.invoiceForm.status === "INVALID")
-				throw { "mes": "Please fill mendatory  fields" }
-      
-		  	let formdata = {
-				// 'inVoiceTo': this.inVoiceTo,
-			 };
-       let goodDatas = [
-        { 'ID': 12,
-        'DescGoods':"2221323",
-        'IdNo':12323,
-        'DateOfInvoice':12,
-        'Quantity':1,
-        'Rate':100,
-        'Amt':1220,
-        'DiscAmt':23,
-        'NetAmtPay':122,
-        'TaxRate':123,
-        'TaxAmount':393,
-        'Total':393 },
-        ]
-       let params = {
-        "invoiceDatas": this.invoiceForm.value,
-        "goodsDatas":  goodDatas,
+  onSubmitInvoiceForm() {
+    try {
+      // for (const key in this.invoiceForm.controls) {
+      //   this.invoiceForm.get(key).setValidators(Validators.required);
+      //   this.invoiceForm.get(key).updateValueAndValidity();
+      //   }
+      if (this.invoiceForm.status === "INVALID")
+        throw { "mes": "Please fill mendatory  fields" }
+        let params = {
+        "invoiceDetails": this.invoiceForm.value,
+        "goodsDetails":  this.invoiceForm.value.data,
         }
-      this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
-        if (resp && resp.status == 200) {
-         }
+        this.invoiceFormBuild();
+        this.dataSourceTwo.data =  [];
+        for (const key in this.invoiceForm.controls) {
+          this.invoiceForm.get(key).clearValidators();
+          this.invoiceForm.get(key).updateValueAndValidity();
+        }
+        this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
+        if(resp && resp.status == 200) {
+         
+        }
       }, error => {
       })
-		} catch (err) {
-		}
-	}
-
-  addNew(){
+    } catch (err) {
+    }
+  }
+  addNew(){ 
     INVOICE_ARRAY.push(this.invoicedata)
     this.dataSource = new MatTableDataSource(INVOICE_ARRAY);
     this.invoicedata = {
-     id :"",
-     RefNo :"",
-     invoiceId :"",
-     invoiceDate : "",
-     Buyer :"",
-     InvoiceAmount :""
+     id :"1",
+     RefNo :"ref",
+     invoiceId :"inv",
+     invoiceDate : "123123",
+     Buyer :"123213",
+     InvoiceAmount :"123213"
    }
  }
+ get dateFormArray():FormArray {
 
+  return this.invoiceForm.get('data') as FormArray;
+}
   addRow() {
-    this.dataSourceTwo.data.push(this.createNewUser(this.dataSourceTwo.data.length-5));
+    console.log(this.invoiceForm,"adasdasd")
     this.dataSourceTwo.filter = "";
-    
-  }
-  createNewUser(id: number): UserData {
-    const DateTime =
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-        NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '';
-
-    return {
-      StatusCode: "",
-      DateTime: DateTime,
-    //  Quantity: Math.round(Math.random() * 100).toString(),
-      Rate: RATE[Math.round(Math.random() * (RATE.length - 1))]
-    };
-    
+    const row = this.fb.group({
+      ID: this.invoiceID,
+      descGoods:[""],
+      idNo : [""],
+      dateOfInvoice:[""],
+      quantity:[""],
+      rate:[""],
+      amt:[""],
+      discAmt:[""], 
+      netAmtPay:[""],
+      taxRate:[""],
+      taxAmount:[""],
+      total:[""],
+      goodsId: "GD101",
+    })
+    this.dateFormArray.push(row);
+    this.dataSourceTwo.data =  this.dateFormArray.controls;
+   
   }
   invoiceFormBuild() {
-  	this.invoiceForm = this.fb.group({
-			buyerName: ['', Validators.required],
-			invoiceDueDate: ['', Validators.required],
-			invoiceId: ['', Validators.required],
-			buyerAddress: ['', Validators.required],
-			blRoadwayBillNo: ['', Validators.required],
-			invoiceAmount: ['', Validators.required],
-			invoiceDate: ['', Validators.required],
-			dateOfDispatch:  ['', Validators.required],
-      
-		});
-    }
-    // Add Question Box
-    addQuestionForm() {
-      let obj = {
-        "quesId": "",
-        "quesName": "",
-        "quesDesc": "",
-      };
-      this.quizQuestionsForm.push(obj);
-    }
+    this.invoiceForm = this.fb.group({
+      buyerName: ['', Validators.required],
+      invDueDate: ['', Validators.required],
+      invId: ['', Validators.required],
+      buyerAddr: ['', Validators.required],
+      billNo: ['', Validators.required],
+      invAmt: ['', Validators.required],
+      invDate: ['', Validators.required],
+      dispDate:  ['', Validators.required],
+      smeId: "SME0256",
+      invCcy: "SGD",
+      data: this.fb.array([])
+    });
+  }
+  updateInvoiceId(event){
+  this.invoiceID=event.target.value;
+  this.invoiceForm.value.data.findIndex((obj => obj.ID == 1));
+   }
 }
  
