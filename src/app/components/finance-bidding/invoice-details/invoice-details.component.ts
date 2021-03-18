@@ -227,6 +227,7 @@ export class InvoiceDetailsComponent implements OnInit {
       //   this.invoiceForm.get(key).updateValueAndValidity();
       // }
       this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
+        this.buildfinBidform();
         // this.getInvDetailsLists();
       }, error => {
       })

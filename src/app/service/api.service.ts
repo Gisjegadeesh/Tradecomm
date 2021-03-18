@@ -78,7 +78,7 @@ export class ApiService {
 
 	post(path: string, body: any): Observable<any> {
 		return this.http
-			.post(`${this.baseUrl}${path}`, body, { headers: headers })
+			.post(`${path}`, body, { headers: headers })
 			.pipe(
 				map((res: Response) => {
 					return res;
