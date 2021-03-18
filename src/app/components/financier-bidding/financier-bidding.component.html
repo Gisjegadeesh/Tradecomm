@@ -93,351 +93,352 @@
     </mat-nav-list>
 </mat-sidenav> -->
 <div class="app-content {{isOpen}} ">
-  <header>
-      <br>
-      <h5>Financier Offers to be Accepted</h5>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="position: relative;top: 100px;">
-        <ng-container matColumnDef="refNo">
-          <th mat-header-cell *matHeaderCellDef> ICC Tradecomm Ref </th>
-          <td mat-cell *matCellDef="let element"> 
-            <mat-chip-list>
-                   <mat-chip color="primary" selected (click)="openModal($event,template)">{{element.refNo}} </mat-chip>
-               </mat-chip-list>
-           </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="invoiceId">
-          <th mat-header-cell *matHeaderCellDef> Invoice ID </th>
-          <td mat-cell *matCellDef="let element"> 
-            <mat-chip-list>
-                   <mat-chip>{{element.invoiceId}} </mat-chip>
-               </mat-chip-list>
-           </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="invoiceAmt">
-          <th mat-header-cell *matHeaderCellDef> Invoice Amount </th>
-          <td mat-cell *matCellDef="let element"> 
-             <mat-chip-list>
-                    <mat-chip>{{element.invoiceAmt}} </mat-chip>
-                </mat-chip-list>
-            </td>
-        </ng-container>
-      
-      
-        <ng-container matColumnDef="invDate">
-          <th mat-header-cell *matHeaderCellDef> Inv Date  </th>
-          <td mat-cell *matCellDef="let element"> 
-             <mat-chip-list>
-                    <mat-chip>{{element.invDate}} </mat-chip>
-                </mat-chip-list>
-            </td>
-        </ng-container>
-      
-        <ng-container matColumnDef="invDueDate">
-          <th mat-header-cell *matHeaderCellDef> Inv Due date </th>
-          <td mat-cell *matCellDef="let element"> 
-             <mat-chip-list>
-                    <mat-chip>{{element.invDueDate}} </mat-chip>
-                </mat-chip-list>
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="buyer">
-            <th mat-header-cell *matHeaderCellDef> Buyer Name </th>
+    <header>
+        <br>
+        <h5>Financier Offers to be Accepted</h5>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="position: relative;top: 100px;">
+          <ng-container matColumnDef="refNo">
+            <th mat-header-cell *matHeaderCellDef> ICC Tradecomm Ref </th>
+            <td mat-cell *matCellDef="let element"> 
+              <mat-chip-list>
+                     <mat-chip color="primary" selected (click)="openModal($event,template)">{{element.refNo}} </mat-chip>
+                 </mat-chip-list>
+             </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="invoiceId">
+            <th mat-header-cell *matHeaderCellDef> Invoice ID </th>
+            <td mat-cell *matCellDef="let element"> 
+              <mat-chip-list>
+                     <mat-chip>{{element.invoiceId}} </mat-chip>
+                 </mat-chip-list>
+             </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="invoiceAmt">
+            <th mat-header-cell *matHeaderCellDef> Invoice Amount </th>
             <td mat-cell *matCellDef="let element"> 
                <mat-chip-list>
-                      <mat-chip>{{element.buyer}} </mat-chip>
+                      <mat-chip>{{element.invoiceAmt}} </mat-chip>
                   </mat-chip-list>
               </td>
           </ng-container>
-
-          <ng-container matColumnDef="financiercount">
-            <th mat-header-cell *matHeaderCellDef> Count of Financiers </th>
+        
+        
+          <ng-container matColumnDef="invDate">
+            <th mat-header-cell *matHeaderCellDef> Inv Date  </th>
             <td mat-cell *matCellDef="let element"> 
                <mat-chip-list>
-                      <mat-chip>{{element.financiercount}} </mat-chip>
+                      <mat-chip>{{element.invDate}} </mat-chip>
                   </mat-chip-list>
               </td>
           </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+        
+          <ng-container matColumnDef="invDueDate">
+            <th mat-header-cell *matHeaderCellDef> Inv Due date </th>
+            <td mat-cell *matCellDef="let element"> 
+               <mat-chip-list>
+                      <mat-chip>{{element.invDueDate}} </mat-chip>
+                  </mat-chip-list>
+              </td>
+          </ng-container>
   
-  </header>
-</div>
-
-<div>
-  <!-- <button type="button" class="btn btn-primary" >Open modal</button> -->
- 
-  <ng-template #template>
-     <div class="modal-header">
-        <h4 class="modal-title pull-left">Finance Bidding</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-           <span aria-hidden="true">×</span>
-        </button>
-     </div>
-     <div class="modal-body">
-         <!-- Table 2 -->
-        <div style="overflow-x:auto;">
-            <table mat-table [dataSource]="dataSourceTwo">
-        
-                <ng-container matColumnDef="BidID">
-                    <th mat-header-cell *matHeaderCellDef scope="column">BID ID</th>
-                    <td mat-cell *matCellDef="let element">{{ element.BidID }}</td>
-                </ng-container>
-        
-                <ng-container matColumnDef="FinOffAmt">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Finance Offer Amt</th>
-                    <td mat-cell *matCellDef="let element">{{ element.FinOffAmt }}</td>
-                </ng-container>
-        
-                <ng-container matColumnDef="Ccy">
-                    <th mat-header-cell *matHeaderCellDef scope="column">CCY</th>
-                    <td mat-cell *matCellDef="let element">{{ element.Ccy }}</td>
-                </ng-container>
-        
-                <ng-container matColumnDef="FxRateDiff">
-                    <th mat-header-cell *matHeaderCellDef scope="column">FX Rate if CCY Diff</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.FxRateDiff }}" /></td>
-                </ng-container>
-        
-                <ng-container matColumnDef="Margin">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Margin</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.Margin }}" /></td>
-                </ng-container>
-        
-                <ng-container matColumnDef="DiscRate">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Disc Rate</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DiscRate }}" /></td>
-                </ng-container>
-        
-                <ng-container matColumnDef="DiscAmt">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Disc Amt</th>
-                    <td mat-cell *matCellDef="let element">{{ element.DiscAmt }}</td>
-                </ng-container>
-        
-                <ng-container matColumnDef="NetAmtPay">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Net Amt Payable After Disc</th>
-                    <td mat-cell *matCellDef="let element">{{ element.NetAmtPay }}</td>
-                </ng-container>
-        
-                <ng-container matColumnDef="DueDate">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Due Date</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.DueDate }}" /></td>
-                </ng-container>
-        
-                <ng-container matColumnDef="OffExpPrd">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Offer Exp Period</th>
-                    <td mat-cell *matCellDef="let element"><input matInput value="{{ element.OffExpPrd }}" /></td>
-                </ng-container>
-        
-                <ng-container matColumnDef="Status">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Status(InProg/Sub/Auth)</th>
-                    <td mat-cell *matCellDef="let element">
-            <label class="switchStatus">
-            <input class="ng-tns-c8-3 ng-untouched ng-pristine ng-valid" name="block" type="checkbox" 
-            (change)="handleToggle($event,'status')">
-            <span class="sliderStatus slider round">
-            <span class="on">REJECT</span>
-            <span class="off">ACCEPT</span>
-            </span>
-            </label>
-        </td>
-    
-                </ng-container>
-        
-                <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
-            </table>
-        </div>
-            <!-- Table 2-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">
-                                Invoice Reference 
-                            </label>
-                            <mat-form-field>
-                                <mat-icon matPrefix>person</mat-icon>
-                                <mat-label>Invoice Reference</mat-label>
-                                <input matInput name="invoiceReference" [(ngModel)]="invoiceReference" required>
-                                <mat-hint>Please enter your username</mat-hint>
-                            </mat-form-field>                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">
-                                Invoice ID
-                            </label>
-                            <mat-form-field>
-                                <mat-icon matPrefix>person</mat-icon>
-                                <mat-label>Invoice ID</mat-label>
-                                <input matInput name="invoiceId" [(ngModel)]="invoiceId" required>
-                                <mat-hint>Please enter your username</mat-hint>
-                            </mat-form-field>   
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">
-                                Buyer Name
-                            </label>
-                            <mat-form-field>
-                                <mat-icon matPrefix>person</mat-icon>
-                                <mat-label>Invoice Reference</mat-label>
-                                <input matInput name="buyerName" [(ngModel)]="buyerName" required>
-                                <mat-hint>Please enter your username</mat-hint>
-                            </mat-form-field>   
-                        </div>
-                       
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">
-                              Invoice Date
-                            </label>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Invoice Date</mat-label>
-                                <input matInput [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field> 
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">
-                               Invoice Due Date
-                            </label>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Invoice Due Date</mat-label>
-                                <input matInput [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
-                            </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">
-                                Amount
-                            </label>
-                            <mat-form-field>
-                                <mat-icon matPrefix>person</mat-icon>
-                                <mat-label>Invoice Reference</mat-label>
-                                <input matInput name="buyerName" [(ngModel)]="amount" required>
-                                <mat-hint>Amount</mat-hint>
-                            </mat-form-field>                          </div>
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">
-                              Invoice Date
-                            </label>
-                            <mat-form-field appearance="fill">
-                                <mat-label> Invoice Date</mat-label>
-                                <input matInput [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">
-                               Invoice Due Date
-                            </label>
-                            <mat-form-field appearance="fill">
-                                <mat-label>  Invoice Due Date</mat-label>
-                                <input matInput [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>                          </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">
-                                Amount
-                            </label>
-                            <mat-form-field>
-                                <mat-icon matPrefix>person</mat-icon>
-                                <mat-label>Invoice Reference</mat-label>
-                                <input matInput name="buyerName" [(ngModel)]="amount" required>
-                                <mat-hint>Amount</mat-hint>
-                            </mat-form-field>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                </div>
-            </div>
-        </div>
-        <!-- Table 1-->
-        <table mat-table [dataSource]="dataSourceOne">
-            <ng-container matColumnDef="SNo">
-                <th mat-header-cell *matHeaderCellDef scope="column">Sl.No</th>
-                <td mat-cell *matCellDef="let element">{{ element.SNo }}</td>
+          <ng-container matColumnDef="buyer">
+              <th mat-header-cell *matHeaderCellDef> Buyer Name </th>
+              <td mat-cell *matCellDef="let element"> 
+                 <mat-chip-list>
+                        <mat-chip>{{element.buyer}} </mat-chip>
+                    </mat-chip-list>
+                </td>
             </ng-container>
-
-            <ng-container matColumnDef="DescGoods">
-                <th mat-header-cell *matHeaderCellDef scope="column">Desc of Goods</th>
-                <td mat-cell *matCellDef="let element">{{ element.DescGoods }}</td>
+  
+            <ng-container matColumnDef="financiercount">
+              <th mat-header-cell *matHeaderCellDef> Count of Financiers </th>
+              <td mat-cell *matCellDef="let element"> 
+                 <mat-chip-list>
+                        <mat-chip>{{element.financiercount}} </mat-chip>
+                    </mat-chip-list>
+                </td>
             </ng-container>
-
-            <ng-container matColumnDef="IdNo">
-                <th mat-header-cell *matHeaderCellDef scope="column">ID No</th>
-                <td mat-cell *matCellDef="let element">{{ element.IdNo }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="Qty">
-                <th mat-header-cell *matHeaderCellDef scope="column">Quantity</th>
-                <td mat-cell *matCellDef="let element">{{ element.Qty }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="Rate">
-                <th mat-header-cell *matHeaderCellDef scope="column">Rate</th>
-                <td mat-cell *matCellDef="let element">{{ element.Rate }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="Amt">
-                <th mat-header-cell *matHeaderCellDef scope="column">Amt</th>
-                <td mat-cell *matCellDef="let element">{{ element.Amt }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="DiscAmt">
-                <th mat-header-cell *matHeaderCellDef scope="column">Disc Amt</th>
-                <td mat-cell *matCellDef="let element">{{ element.DiscAmt }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="NetAmt">
-                <th mat-header-cell *matHeaderCellDef scope="column">Net Amt</th>
-                <td mat-cell *matCellDef="let element">{{ element.NetAmt }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="TaxRate">
-                <th mat-header-cell *matHeaderCellDef scope="column">Tax Rate</th>
-                <td mat-cell *matCellDef="let element">{{ element.TaxRate }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="TaxAmt">
-                <th mat-header-cell *matHeaderCellDef scope="column">Tax Amt</th>
-                <td mat-cell *matCellDef="let element">{{ element.TaxAmt }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="Total">
-                <th mat-header-cell *matHeaderCellDef scope="column">Total</th>
-                <td mat-cell *matCellDef="let element">{{ element.Total }}</td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <!-- Table 1-->
-
-        
-     </div>
-     <div class="modal-footer">
-        <button type="button" class="btn model-btn-outline">Submit</button>
-        <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
-     </div>
-  </ng-template>
-</div>
-
-
+    
+    </header>
+  </div>
+  
+  <div>
+    <!-- <button type="button" class="btn btn-primary" >Open modal</button> -->
+   
+    <ng-template #template>
+       <div class="modal-header">
+          <h4 class="modal-title pull-left">Finance Bidding</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+             <span aria-hidden="true">×</span>
+          </button>
+       </div>
+       <div class="modal-body">
+           <!-- Table 2 -->
+          <div style="overflow-x:auto;">
+              <table mat-table [dataSource]="dataSourceTwo">
+          
+                  <ng-container matColumnDef="BidID">
+                      <th mat-header-cell *matHeaderCellDef scope="column">BID ID</th>
+                      <td mat-cell *matCellDef="let financier">{{ financier.id }}</td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="FinOffAmt">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Finance Offer Amt</th>
+                      <td mat-cell *matCellDef="let financier">{{ financier.financierAmount }}</td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="Ccy">
+                      <th mat-header-cell *matHeaderCellDef scope="column">CCY</th>
+                      <td mat-cell *matCellDef="let financier">{{ financier.financierCurrency }}</td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="FxRateDiff">
+                      <th mat-header-cell *matHeaderCellDef scope="column">FX Rate if CCY Diff</th>
+                      <td mat-cell *matCellDef="let financier"><input matInput value="{{ financier.financierAmount }}" /></td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="Margin">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Margin</th>
+                      <td mat-cell *matCellDef="let financier"><input matInput value="{{ financier.margin }}" /></td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="DiscRate">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Disc Rate</th>
+                      <td mat-cell *matCellDef="let financier"><input matInput value="{{ financier.discRate }}" /></td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="DiscAmt">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Disc Amt</th>
+                      <td mat-cell *matCellDef="let financier">{{ financier.discAmount }}</td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="NetAmtPay">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Net Amt Payable After Disc</th>
+                      <td mat-cell *matCellDef="let financier">{{ financier.netAmount }}</td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="DueDate">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Due Date</th>
+                      <td mat-cell *matCellDef="let financier"><input matInput value="{{ financier.dueDate }}" /></td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="OffExpPrd">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Offer Exp Period</th>
+                      <td mat-cell *matCellDef="let financier"><input matInput value="{{ financier.expiryPeriod }}" /></td>
+                  </ng-container>
+          
+                  <ng-container matColumnDef="Status">
+                      <th mat-header-cell *matHeaderCellDef scope="column">Status(InProg/Sub/Auth)</th>
+                      <td mat-cell *matCellDef="let element">
+              <label class="switchStatus">
+              <input class="ng-tns-c8-3 ng-untouched ng-pristine ng-valid" name="block" type="checkbox" 
+              (change)="handleToggle($event,'status')">
+              <span class="sliderStatus slider round">
+              <span class="on">REJECT</span>
+              <span class="off">ACCEPT</span>
+              </span>
+              </label>
+          </td>
+      
+                  </ng-container>
+          
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
+              </table>
+          </div>
+              <!-- Table 2-->
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-4">
+                      <form role="form">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">
+                                  Invoice Reference 
+                              </label>
+                              <mat-form-field>
+                                  <mat-icon matPrefix>person</mat-icon>
+                                  <mat-label>Invoice Reference</mat-label>
+                                  <input matInput name="invoiceReference" [(ngModel)]="invoiceReference" required>
+                                  <mat-hint>Please enter your username</mat-hint>
+                              </mat-form-field>                        </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">
+                                  Invoice ID
+                              </label>
+                              <mat-form-field>
+                                  <mat-icon matPrefix>person</mat-icon>
+                                  <mat-label>Invoice ID</mat-label>
+                                  <input matInput name="invoiceId" [(ngModel)]="invoiceId" required>
+                                  <mat-hint>Please enter your username</mat-hint>
+                              </mat-form-field>   
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">
+                                  Buyer Name
+                              </label>
+                              <mat-form-field>
+                                  <mat-icon matPrefix>person</mat-icon>
+                                  <mat-label>Invoice Reference</mat-label>
+                                  <input matInput name="buyerName" [(ngModel)]="buyerName" required>
+                                  <mat-hint>Please enter your username</mat-hint>
+                              </mat-form-field>   
+                          </div>
+                         
+                      </form>
+                  </div>
+                  <div class="col-md-4">
+                      <form role="form">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">
+                                Invoice Date
+                              </label>
+                              <mat-form-field appearance="fill">
+                                  <mat-label>Invoice Date</mat-label>
+                                  <input matInput [matDatepicker]="picker">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field> 
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">
+                                 Invoice Due Date
+                              </label>
+                              <mat-form-field appearance="fill">
+                                  <mat-label>Invoice Due Date</mat-label>
+                                  <input matInput [matDatepicker]="picker">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+                              </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">
+                                  Amount
+                              </label>
+                              <mat-form-field>
+                                  <mat-icon matPrefix>person</mat-icon>
+                                  <mat-label>Invoice Reference</mat-label>
+                                  <input matInput name="buyerName" [(ngModel)]="amount" required>
+                                  <mat-hint>Amount</mat-hint>
+                              </mat-form-field>                          </div>
+                      </form>
+                  </div>
+                  <div class="col-md-4">
+                      <form role="form">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">
+                                Invoice Date
+                              </label>
+                              <mat-form-field appearance="fill">
+                                  <mat-label> Invoice Date</mat-label>
+                                  <input matInput [matDatepicker]="picker">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>                        </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">
+                                 Invoice Due Date
+                              </label>
+                              <mat-form-field appearance="fill">
+                                  <mat-label>  Invoice Due Date</mat-label>
+                                  <input matInput [matDatepicker]="picker">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">
+                                  Amount
+                              </label>
+                              <mat-form-field>
+                                  <mat-icon matPrefix>person</mat-icon>
+                                  <mat-label>Invoice Reference</mat-label>
+                                  <input matInput name="buyerName" [(ngModel)]="amount" required>
+                                  <mat-hint>Amount</mat-hint>
+                              </mat-form-field>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                  </div>
+              </div>
+          </div>
+          <!-- Table 1-->
+          <table mat-table [dataSource]="dataSourceOne">
+              <ng-container matColumnDef="SNo">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Sl.No</th>
+                  <td mat-cell *matCellDef="let element">{{ element.SNo }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="DescGoods">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Desc of Goods</th>
+                  <td mat-cell *matCellDef="let element">{{ element.DescGoods }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="IdNo">
+                  <th mat-header-cell *matHeaderCellDef scope="column">ID No</th>
+                  <td mat-cell *matCellDef="let element">{{ element.IdNo }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="Qty">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Quantity</th>
+                  <td mat-cell *matCellDef="let element">{{ element.Qty }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="Rate">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Rate</th>
+                  <td mat-cell *matCellDef="let element">{{ element.Rate }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="Amt">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Amt</th>
+                  <td mat-cell *matCellDef="let element">{{ element.Amt }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="DiscAmt">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Disc Amt</th>
+                  <td mat-cell *matCellDef="let element">{{ element.DiscAmt }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="NetAmt">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Net Amt</th>
+                  <td mat-cell *matCellDef="let element">{{ element.NetAmt }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="TaxRate">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Tax Rate</th>
+                  <td mat-cell *matCellDef="let element">{{ element.TaxRate }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="TaxAmt">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Tax Amt</th>
+                  <td mat-cell *matCellDef="let element">{{ element.TaxAmt }}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="Total">
+                  <th mat-header-cell *matHeaderCellDef scope="column">Total</th>
+                  <td mat-cell *matCellDef="let element">{{ element.Total }}</td>
+              </ng-container>
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
+          </table>
+          <!-- Table 1-->
+  
+          
+       </div>
+       <div class="modal-footer">
+          <button type="button" class="btn model-btn-outline">Submit</button>
+          <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+       </div>
+    </ng-template>
+  </div>
+  
+  
+  

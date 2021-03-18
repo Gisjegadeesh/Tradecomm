@@ -4,8 +4,8 @@
 
 
 //Local Path Link
-let BASE_PATH = "http://192.168.1.20:5005/v1.0/"
-let IMAGE_PATH = "http://192.168.1.20:5005/"
+let BASE_PATH = "http://localhost:8080/"
+let IMAGE_PATH = "http://localhost:8080/"
 
 export const environment = {
   production: false,

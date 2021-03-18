@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class InvoiceRequestServices {
   public baseUrl: string;
-  constructor(private apiService: ApiService) { this.baseUrl = "http://mock.com"; }
+  constructor(private apiService: ApiService) { this.baseUrl = "http://2aefcdf3e17f.ngrok.io/ "; }
   invoiceRequestSave(body: any) {
     return this.apiService.post('invoice-request', body);
   }
@@ -13,7 +13,7 @@ export class InvoiceRequestServices {
     return this.apiService.get('invoice-request/initiated-invoices');
   }
   authoriseInvoice(body: any) {
-    return this.apiService.post('invoice-request', body);
+    return this.apiService.post('invoice-request/approve-invoices', body);
   }
   
 }

@@ -53,6 +53,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import {DatePipe} from '@angular/common';
+import { FinancierService } from './service/financier/financier.service';
+import { FinanceBiddingService } from './service/finance_bidding/finance-bidding.service';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,7 @@ import {DatePipe} from '@angular/common';
     NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
-    FinanceRequestServices,DatePipe,
+    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],
