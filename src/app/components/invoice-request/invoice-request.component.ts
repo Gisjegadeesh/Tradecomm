@@ -94,7 +94,7 @@ export class InvoiceRequestComponent implements OnInit {
   displayedColumnsTwo: string[] = [
     'ID',
     'DescGoods',
-    'IdNo',
+    // 'IdNo',
     'DateOfInvoice',
     'Quantity',
     'Rate',
@@ -243,8 +243,9 @@ export class InvoiceRequestComponent implements OnInit {
         throw { "mes": "Please fill mendatory  fields" }
       let params = {
         "invoiceDetails": this.invoiceForm.value,
-        "goodsDetails": this.invoiceForm.value.data,
+        // "goodsDetails": this.invoiceForm.value.data,
       }
+      console.log(params,"params");
       this.invoiceFormBuild();
       this.dataSourceTwo.data = [];
       this.invoiceID = "";
@@ -273,7 +274,7 @@ export class InvoiceRequestComponent implements OnInit {
   //    }
   //  }
   get dateFormArray(): FormArray {
-    return this.invoiceForm.get('data') as FormArray;
+    return this.invoiceForm.get('goodsDetails') as FormArray;
   }
   addRow() {
     console.log(this.invoiceForm, "adasdasd")
@@ -281,7 +282,7 @@ export class InvoiceRequestComponent implements OnInit {
     const row = this.fb.group({
       ID: this.invoiceID,
       descGoods: [""],
-      idNo: [""],
+      // idNo: [""],
       dateOfInvoice:this.datePipe.transform(this.InvoiceFdate,"dd/MM/yyyy"),
       quantity: [""],
       rate: [""],
@@ -308,12 +309,12 @@ export class InvoiceRequestComponent implements OnInit {
       dispDate: ['', Validators.required],
       smeId: "SME0256",
       invCcy: "SGD",
-      data: this.fb.array([])
+      goodsDetails: this.fb.array([])
     });
   }
   updateInvoiceId(event) {
     this.invoiceID = event.target.value;
-    this.invoiceForm.value.data.findIndex((obj => obj.ID == 1));
+    this.invoiceForm.value.goodsDetails.findIndex((obj => obj.ID == 1));
   }
   updateInvoicedate(event){
     this.InvoiceFdate = event.target.value;
