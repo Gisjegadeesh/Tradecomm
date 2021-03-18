@@ -15,5 +15,8 @@ export class InvoiceRequestServices {
   authoriseInvoice(body: any) {
     return this.apiService.post('invoice-request/approve-invoices', body);
   }
+  finbidSave(body: any) {
+    return this.apiService.post('bidding-details', body);
+  }
   
 }
