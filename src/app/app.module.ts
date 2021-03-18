@@ -55,6 +55,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import {DatePipe} from '@angular/common';
 import { FinancierService } from './service/financier/financier.service';
 import { FinanceBiddingService } from './service/finance_bidding/finance-bidding.service';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { FinanceBiddingService } from './service/finance_bidding/finance-bidding
     MatSlideToggleModule,
     AngularMultiSelectModule,
     NgMultiSelectDropDownModule.forRoot(),
+    MatExpansionModule
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,

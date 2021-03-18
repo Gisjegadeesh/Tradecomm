@@ -78,6 +78,15 @@ const DATA_TWO: any[] = [
     Status: 'A'
   }
 ];
+const DATA_INV_DETAILS: any[] = [
+  {
+    InvoiceDate: "13/12/2025",
+    InvoiceID: 'SGD01',
+    Buyer: "Jega",
+    Amount: 300,
+    Seller:'jega'
+  }
+];
 @Component({
   selector: 'app-financier-bidding',
   templateUrl: './financier-bidding.component.html',
@@ -133,9 +142,13 @@ export class FinancierBiddingComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
+  panelOpenState = false;
+  bidpanelOpenState = false;
+
   constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService) { }
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
+  dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
 
   displayedColumnsOne: string[] = [
     'SNo',
@@ -162,6 +175,13 @@ export class FinancierBiddingComponent implements OnInit {
     'DueDate',
     'OffExpPrd',
     'Status'
+  ];
+  displayedInvDetailsColumns: string[] = [
+    'InvoiceID',
+    'InvoiceDate',
+    'Seller',
+    'Buyer',
+    'Amount',
   ];
   ngOnInit() {
     if (window.innerWidth < 415) {

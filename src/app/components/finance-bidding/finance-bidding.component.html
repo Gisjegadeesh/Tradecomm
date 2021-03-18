@@ -100,6 +100,8 @@
       <br>
       <div class="table-section">
         <div class="uxg-h4" style="text-align: center">Bidding by Financiers</div>
+        <p (click)="openModal($event,template)">234</p>
+
         <table mat-table [dataSource]="dataSource">
   
           <ng-container matColumnDef="IccTraComRef">
@@ -171,7 +173,7 @@
             </mat-chip-list>
              </td>
           </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA">jega</tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>   
         
@@ -186,23 +188,18 @@
         <div class="modal-body">          
            <div class="container-fluid">
                <div class="row">
-                    <app-invoice-details></app-invoice-details>
+                    <app-invoice-details style="
+                    width: 100%;
+                "></app-invoice-details>
                </div>            
            </div>
-   
-   
-           
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
            <button type="button" class="btn model-btn-outline">Authorize</button>
            <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
-        </div>
+        </div> -->
      </ng-template>
-  
       </div>
-  
-  
-    
   </header>
   </div>
   

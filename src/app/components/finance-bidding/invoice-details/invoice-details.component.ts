@@ -3,6 +3,8 @@ import { AuthenticationService } from '../../../service/authentication/authentic
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalDialogService } from '../../../service/modal-dialog.service';
+import { Validators, FormGroup ,FormBuilder} from '@angular/forms';
+import {InvoiceRequestServices} from '../../invoice-request/invoice-service';
 
 interface Status {
   value: string;
@@ -53,6 +55,19 @@ const DATA_TWO: any[] = [
     Status: 'A'
   }
 ];
+const displayInvDatas: any[] = [
+  {
+    invRefNumber: 'BID03456',
+    invId: 102700,
+    invDate: '10/12/2020',
+    invDueDate: '10/12/2020',
+    invAmt: 1000,
+    buyerName: "Test Buyer",
+    sellerName: "Test Seller",
+    buyerRating: 10,
+    sellerRating: '6.1'
+  }
+];
 
 @Component({
   selector: 'app-invoice-details',
@@ -60,13 +75,14 @@ const DATA_TWO: any[] = [
   styleUrls: ['./invoice-details.component.scss']
 })
 export class InvoiceDetailsComponent implements OnInit {
+  finBidform: FormGroup;
 
   status: Status[] = [
     {value: 'A', viewValue: 'A'},
     {value: 'R', viewValue: 'R'},
   ];
 
-  constructor(private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService) { }
+  constructor(private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = [
@@ -82,7 +98,6 @@ export class InvoiceDetailsComponent implements OnInit {
     'TaxAmt',
     'Total'
   ];
-
   dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
   displayedColumnsTwo: string[] = [
     'BidID',
@@ -97,6 +112,19 @@ export class InvoiceDetailsComponent implements OnInit {
     'OffExpPrd',
     'Status'
   ];
+  displayInvDatas = new MatTableDataSource(displayInvDatas); //data
+
+  displayedInvoiceFormsColumns: string[] = [
+    'invRefNumber',
+    'invId',
+    'invDate',
+    'invDueDate',
+    'invAmt',
+    'buyerName',
+    'sellerName',
+    'buyerRating',
+    'sellerRating'
+  ];
   mobileScreen = false;
   end = false;
   start = true;
@@ -105,10 +133,26 @@ export class InvoiceDetailsComponent implements OnInit {
   limit = 7;
   isOpen = '';
   ngOnInit(): void {
+    this.buildfinBidform()
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
   }
+  buildfinBidform(){
+    this.finBidform = this.fb.group({
+      financeOfferAmt: ['', Validators.required],
+      ccy: ['', Validators.required],
+      fxRate: ['', Validators.required],
+      margin: ['', Validators.required],
+      discRate: ['', Validators.required],
+      discAmt: ['', Validators.required],
+      netAmtDisc: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      offerExpPeriod: ['', Validators.required],
+      
+    })
+  }
+
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
     }
@@ -164,5 +208,30 @@ export class InvoiceDetailsComponent implements OnInit {
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
       })
 
+  }
+  onSubmitBidForm() {
+    try {
+      // for (const key in this.invoiceForm.controls) {
+      //   this.invoiceForm.get(key).setValidators(Validators.required);
+      //   this.invoiceForm.get(key).updateValueAndValidity();
+      //   }
+      if (this.finBidform.status === "INVALID")
+        throw { "mes": "Please fill mendatory  fields" }
+      let params = this.finBidform.value
+      // this.invoiceFormBuild();
+      // this.dataSourceTwo.data = [];
+      // this.invoiceID = "";
+      // this.InvoiceFdate = ""
+      // for (const key in this.invoiceForm.controls) {
+      //   this.invoiceForm.get(key).clearValidators();
+      //   this.invoiceForm.get(key).updateValueAndValidity();
+      // }
+      this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
+        // this.getInvDetailsLists();
+      }, error => {
+      })
+    } 
+    catch (err) {
+    }
   }
 }
