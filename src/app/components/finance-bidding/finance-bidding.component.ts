@@ -5,6 +5,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import {InvoiceDetailsComponent} from './invoice-details/invoice-details.component'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {FinanceRequestServices} from './finance-service'
+import {FinanceBiddingService} from '../../service/finance_bidding/finance-bidding.service';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -19,6 +20,8 @@ const ELEMENT_DATA: any[] = [
   }
 ];
 
+ 
+
 @Component({
   selector: 'app-finance-bidding',
   templateUrl: './finance-bidding.component.html',
@@ -26,14 +29,14 @@ const ELEMENT_DATA: any[] = [
 })
 export class FinanceBiddingComponent implements OnInit {
   @Input() InvoiceDetailsComponent: InvoiceDetailsComponent;
-
+  ELEMENT_DATA1: any[] ;
   constructor(public router: Router, public authenticationService:AuthenticationService,
-    private modalService: BsModalService,private FinanceRequestServices : FinanceRequestServices) { }
+    private modalService: BsModalService,private FinanceRequestServices : FinanceRequestServices,private FinanceBiddingService:FinanceBiddingService) { }
 
-  dataSource = new MatTableDataSource(ELEMENT_DATA); //data
+  dataSource ;//data
   displayedColumns: string[] = [
     'IccTraComRef',
-    'InvId',
+    // 'InvId',
     'SellerName',
     'BuyerName',
     'SellerRating',
@@ -49,18 +52,24 @@ export class FinanceBiddingComponent implements OnInit {
       this.mobileScreen = true;
     }
 
-    this.FinanceRequestServices.getFinancierBidding({}).subscribe(resp => {
+    this.FinanceBiddingService.getInvoiceDetails().subscribe(resp => {
       
+      console.log(resp);
+      this.dataSource = new MatTableDataSource(resp);
+     
+     
     })
 
+    
+
   }
-  mobileScreen = false; 
+  mobileScreen = false;
   end = false;
   start = true;
   currentPage = 0;
   pageCount = 1;
   limit = 7;
-  isOpen = 'inActive';
+  isOpen = '';
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
