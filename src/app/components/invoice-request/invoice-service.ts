@@ -16,7 +16,7 @@ export class InvoiceRequestServices {
     return this.apiService.post('invoice-request/approve-invoices', body);
   }
   finbidSave(body: any) {
-    return this.apiService.post('bidding-details', body);
+    return this.apiService.post(environment.serviePath_1+'bidding-details', body);
   }
   
 }
