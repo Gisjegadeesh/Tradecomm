@@ -8,15 +8,12 @@ export class SmeFinancierForBiddingServices {
   constructor(private apiService: ApiService) { this.baseUrl = "http://2aefcdf3e17f.ngrok.io/ "; }
   
   getFinanceForBiddingLists(){
-    return this.apiService.get('invoice-request/initiatedInvoices');
+    return this.apiService.get('invoice-request/allInvoicesBySmeId/'+localStorage.getItem("userId"));
   }
-
-  getInvoiceRequestLists(obj){
-
-
+  getInvoiceRequestLists(id){
     // let stringifyObj = JSON.stringify( { invoiceDetails : { id : 1} })
     // debugger;
-    return this.apiService.get('invoice-request/get-all',obj);
+    return this.apiService.get('invoice-request/getInvoiceData/'+id);
   }
   
 }
