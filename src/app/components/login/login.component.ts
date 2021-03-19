@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   login() {
+     localStorage.setItem("userId",this.username);
     if (this.authService.loginAsSme(this.username, this.password)) {
       this.router.navigate(['sme-dashboard']);
       this.invalidLogin = false;

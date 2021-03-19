@@ -3,7 +3,7 @@
         <!-- <div class="uxg-h4" style="text-align: center">BIDDING</div> -->
         <!-- Inovice Details -->
         <mat-accordion>
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel>
             </mat-expansion-panel>
             <mat-expansion-panel [expanded]="true" (opened)="bidpanelOpenState = true" (closed)="bidpanelOpenState = false">
                 <mat-expansion-panel-header>
@@ -116,7 +116,7 @@
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
-                    <mat-label>Margin </mat-label>
+                    <mat-label>Funding Percentage </mat-label>
                     <input type="text" matInput value="" formControlName="margin" />
                     <!-- <mat-hint>Please enter Buyer Address </mat-hint> -->
                   </mat-form-field>

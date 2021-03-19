@@ -305,9 +305,9 @@ export class InvoiceRequestComponent implements OnInit {
       buyerAddr: ['', Validators.required],
       billNo: ['', Validators.required],
       invAmt: ['', Validators.required],
-      invDate: ['', Validators.required],
+      invDate: ['', Validators.required], 
       dispDate: ['', Validators.required],
-      smeId: "SME0256",
+      smeId: localStorage.getItem("userId"),
       invCcy: "SGD",
       goodsDetails: this.fb.array([])
     });

@@ -8,9 +8,9 @@ import { ApiService } from "../../service/api.service";
 export class FinancierService {
 
   private custUrl='http://localhost:8081/api/v1/bidding/';
-  private baseUrl='http://localhost:8080/';
+  private baseUrl='http://4bc8d153eb2d.ngrok.io/';
   constructor(private http: HttpClient,private apiService: ApiService) {
-    this.baseUrl = " http://localhost:8080/";
+    this.baseUrl = "http://4bc8d153eb2d.ngrok.io/";
    }
   
   getUser(): Observable<Financier[]> {

@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   // tslint:disable-next-line: typedef
   loginAsSme(username: string, password: string) {
-    if (username === 'smeuser1' && password === '123456'){
+    if (username.includes("SME") && password === '123456'){
       return true;
     }
     else{
@@ -20,7 +20,7 @@ export class AuthenticationService {
 
   // tslint:disable-next-line: typedef
   loginAsFinancier(username: string, password: string) {
-    if (username === 'financieruser1' && password === '123456'){
+    if (username.includes("FINANCE") && password === '123456'){
       return true;
     }
     else{
@@ -28,10 +28,11 @@ export class AuthenticationService {
     }
   }
   logout(){
+    localStorage.removeItem("userId");
     this.router.navigateByUrl('/');
   }
   loginAsICCUser(username: string, password: string) {
-    if (username === 'iccuser1' && password === '123456'){
+    if (username.includes("ICC") && password === '123456'){
       return true;
     }
     else{

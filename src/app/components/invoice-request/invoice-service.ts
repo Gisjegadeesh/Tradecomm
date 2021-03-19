@@ -7,7 +7,7 @@ export class InvoiceRequestServices {
   public baseUrl: string;
   constructor(private apiService: ApiService) { this.baseUrl = "http://localhost:8080/ "; }
   getInvDetailsLists(){
-    return this.apiService.get('invoice-request/initiatedInvoices');
+    return this.apiService.get('invoice-request/initiatedInvoicesBySmeId/'+localStorage.getItem("userId"));
   }
 
   getInvDetailsLists_ForFinanceBidding(id){
