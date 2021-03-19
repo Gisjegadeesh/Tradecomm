@@ -1,17 +1,17 @@
 export class Financier {
-    id :number;
-    bidRefNo : String;
-    financierName : String;
-    financierAmount : String;
-    financierCurrency : String;
-    fxRate : String;
-    margin : String;
-    discRate : String;
-    discAmount : String;
-    netAmountDisc : String;
-    netAmount : String;
-    dueDate : String;
-    expiryPeriod : String;
-    status : String;
-
-}
+ 
+    id :String;
+    financeOfferAmt :String;
+    ccy:String;
+    fxRate:String;
+    margin:String;
+    discRate:String;
+    discAmt :String;
+    netAmtDisc:String;
+    dueDate:String;
+    offerExpPeriod:String;
+    status:String;
+    
+    
+    }
+    

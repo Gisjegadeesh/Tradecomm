@@ -9,7 +9,12 @@ import { environment } from '../../../environments/environment';
 export class FinanceBiddingService {
 
   public baseUrl: string;
-  constructor(private apiService: ApiService) { this.baseUrl = "http://710d850294bb.ngrok.io/"; }
+  constructor(private apiService: ApiService) { this.baseUrl = "http://localhost:8080/"; }
+  // private custUrl='http://da7cf0f44fc2.ngrok.io/api/v1/bidding/';
+  // private baseUrl='http://localhost:8080/';
+  // constructor(private http: HttpClient,private apiService: ApiService) {
+  //   this.baseUrl = " http://localhost:8080/";
+  //  }
   getInvoiceDetails() {
     return this.apiService.get('invoice-request/initiated-invoices');
   }

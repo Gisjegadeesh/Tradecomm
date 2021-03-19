@@ -5,6 +5,10 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import {ThemePalette} from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
+import { Financier } from '../../model/financier-bidding/financier';
+import { FinancierService } from '../../service/financier/financier.service';
+import { Observable } from 'rxjs';
+import {DataSource} from '@angular/cdk/collections';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -99,25 +103,7 @@ export class FinancierBiddingComponent implements OnInit {
   tabledataSource = new MatTableDataSource(ELEMENT_DATA);
 
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','position1','name1'];
-  dataSource = [
-
-    { refNo: 'INV21009876', invoiceId: 'SGTR953', invoiceAmt : '54390 EUR', invDate : '01/03/2021', 
-    invDueDate : '01/06/2021', buyer : "Singapore Textiles", financiercount : "3"},
-    { refNo: 'INV21007864', invoiceId: 'AHYT786', invoiceAmt: '84576 USD',invDate : '26/02/2021', 
-     invDueDate : '26/04/2021', buyer : "Singapore Mart", financiercount : "10"},
-   
-
-      // {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'Dwayne Jhonson'},
-      // {position: 2, name: 'Helium', weight: 4.0026, symbol: ['Kevin peterson', 'Brett Lee']},
-      // {position: 3, name: 'Lithium', weight: 6.941, symbol: ['Sachin Tendulakar', 'Yuvraj Sing']},
-    //   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: ['Be']},
-    //   {position: 5, name: 'Boron', weight: 10.811, symbol: ['B']},
-    //   {position: 6, name: 'Carbon', weight: 12.0107, symbol: ['C']},
-    //   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: ['N']},
-    //   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: ['O']},
-    //   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: ['F']},
-    //   {position: 10, name: 'Neon', weight: 20.1797, symbol: ['Ne']},
-   ];
+  dataSource ;
     isOpen = ""
     mobileScreen = false;
   end = false;
@@ -145,9 +131,10 @@ export class FinancierBiddingComponent implements OnInit {
   panelOpenState = false;
   bidpanelOpenState = false;
 
-  constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService) { }
+  constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
+    ,private financierService: FinancierService) { }
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
-  dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
+  dataSourceTwo = new UserDataSource(this.financierService); //data
   dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
 
   displayedColumnsOne: string[] = [
@@ -187,6 +174,14 @@ export class FinancierBiddingComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+    this.financierService.getInvoiceDetails().subscribe(resp => {
+      
+      console.log(resp);
+      this.dataSource = new MatTableDataSource(resp);
+     
+     
+    })
+
   }
 
   public scrollRight(): void {
@@ -240,4 +235,16 @@ export class FinancierBiddingComponent implements OnInit {
   logout(){
     this.authenticationService.logout()
     }
+}
+
+export class UserDataSource extends DataSource<any> {
+  constructor(private financierService: FinancierService) {
+    super();
+    
+  }
+  connect(): Observable<Financier[]> {
+    return this.financierService.getUser();
+   
+  }
+  disconnect() {}
 }
