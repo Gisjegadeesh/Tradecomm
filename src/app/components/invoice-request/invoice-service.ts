@@ -20,7 +20,7 @@ export class InvoiceRequestServices {
   }
   
   authoriseInvoice(body: any) {
-    return this.apiService.post(environment.api_url+'invoice-request/approve-invoices', body);
+    return this.apiService.put(environment.serviePath_1+'invoice-request/updateInvoiceStatus/'+body,'' );
   }
   finbidSave(body: any) {
     return this.apiService.post(environment.serviePath_1+'bidding-details', body);
