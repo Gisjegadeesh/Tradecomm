@@ -56,6 +56,10 @@ import {DatePipe} from '@angular/common';
 import { FinancierService } from './service/financier/financier.service';
 import { FinanceBiddingService } from './service/finance_bidding/finance-bidding.service';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SmeFinanceforBiddingComponent } from './components/sme-financefor-bidding/sme-financefor-bidding.component';
+
+import { SmeFinancierForBiddingServices } from './components/sme-financefor-bidding/sme-financefor-bidding-service';
+
 
 @NgModule({
   declarations: [
@@ -72,7 +76,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     InvoiceRequestComponent,
     IccDashboardComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SmeFinanceforBiddingComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +117,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
-    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,
+    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

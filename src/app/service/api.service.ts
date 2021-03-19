@@ -40,6 +40,24 @@ export class ApiService {
 		);
 	}
 
+	// get(path: any, params: HttpParams = new HttpParams()): Observable<any> {
+	// 	let params1 = `{
+	// 		"invoiceDetails": {
+	// 			"id": 1
+	// 		}
+	// 	}`
+	// 	 let params2 = new HttpParams().set("requestData", encodeURIComponent(params1));
+	// 	this.setToken();
+	// 	return this.http.get(`${this.baseUrl}${path}`, {params: params2, headers: headers }).pipe(
+	// 		map((res: Response) => {
+	// 			return res;
+	// 		}),
+	// 		catchError(this.formatErrors.bind(this))
+	// 	);
+	// }
+
+
+
 	put(path: string, body: any): Observable<any> {
 		this.setToken();
 		return this.http

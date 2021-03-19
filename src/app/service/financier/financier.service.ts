@@ -18,6 +18,6 @@ export class FinancierService {
   }
   
   getInvoiceDetails() {
-    return this.apiService.get('invoice-request/initiated-invoices');
+    return this.apiService.get('invoice-request/initiatedInvoices');
   }
 }

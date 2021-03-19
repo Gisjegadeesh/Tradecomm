@@ -12,20 +12,22 @@ import { InvoiceRequestComponent } from './components/invoice-request/invoice-re
 import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
 import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
 import { IccDashboardComponent} from './components/icc-dashboard/icc-dashboard.component';
+import {SmeFinanceforBiddingComponent} from './components/sme-financefor-bidding/sme-financefor-bidding.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'sme-onboarding', component: SmeOnboardingComponent },
-  { path: 'sme-dashboard', component: SmeDashboardComponent },
-  { path: 'financier-onboarding', component: FinancierOnboardingComponent },
-  { path: 'financier-dashboard', component: FinancierDashboardComponent },
-  { path: 'sme-bidding', component: FinancierBiddingComponent },
-  { path: 'finance-bidding', component: FinanceBiddingComponent },
-  { path: 'invoice-request', component: InvoiceRequestComponent },
-  { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent },
-  { path: 'icc-dashboard', component: IccDashboardComponent }
+  { path: 'sme-onboarding', component: SmeOnboardingComponent,  data : {"HeaderName" : "Sme Onboarding"} },
+  { path: 'sme-dashboard', component: SmeDashboardComponent,  data : {"HeaderName" : "Seller Dashboard"}  },
+  { path: 'financier-onboarding', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding"}},
+  { path: 'financier-dashboard', component: FinancierDashboardComponent ,  data : {"HeaderName" : "Financier Dashboard"}},
+  { path: 'sme-bidding', component: FinancierBiddingComponent ,  data : {"HeaderName" : "SME Bidding"}},
+  { path: 'finance-bidding', component: FinanceBiddingComponent, data : {"HeaderName" : "Financier Bidding"} },
+  { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Invoice Entry"}},
+  { path: 'sme-finance-for-bidding', component: SmeFinanceforBiddingComponent , data : {"HeaderName" : "Finance For Bidding"}},
+  { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details"}},
+  { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}}
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@
 //Local Path Link 
 let serviePath_1 = "http://localhost:8081/api/v1/"
 let serviePath_2 = "http://localhost:8081/api/v1/"
-let BASE_PATH = "http://localhost:8080/"
+let BASE_PATH = "http://667667ca3f04.ngrok.io/"
 let IMAGE_PATH = "http://localhost:8080/"
 
 

@@ -129,7 +129,6 @@ export class FinancierBiddingComponent implements OnInit {
     }
   }
   panelOpenState = false;
-  bidpanelOpenState = false;
 
   constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
     ,private financierService: FinancierService) { }

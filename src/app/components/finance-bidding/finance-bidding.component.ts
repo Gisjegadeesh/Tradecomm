@@ -35,15 +35,22 @@ export class FinanceBiddingComponent implements OnInit {
 
   dataSource ;//data
   displayedColumns: string[] = [
-    'IccTraComRef',
-    // 'InvId',
-    'SellerName',
-    'BuyerName',
-    'SellerRating',
-    'BuyerRating',
-    'InvDate',
-    'InvAmt'
+    'billNo',
+    'invId',
+    // 'invoiceId',
+    'invAmt',
+    'buyerName',
+    'invDate',
+    // 'invAmt'
+    // 'SellerRating',
+    // 'BuyerRating',
+    // 'InvDate',
+    // 'InvAmt'
   ];
+
+  // displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount'];
+  // dataSource = new MatTableDataSource(ELEMENT_DATA);
+
   modalRef: BsModalRef;
 
 
@@ -70,6 +77,8 @@ export class FinanceBiddingComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   isOpen = '';
+  bidpanelOpenState = false;
+
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;

@@ -7,7 +7,7 @@ export class InvoiceRequestServices {
   public baseUrl: string;
   constructor(private apiService: ApiService) { this.baseUrl = "http://localhost:8080/ "; }
   getInvDetailsLists(){
-    return this.apiService.get('invoice-request/initiated-invoices');
+    return this.apiService.get('invoice-request/getInvoiceData/1');
   }
   invoiceRequestSave(body: any) {
     return this.apiService.post(environment.api_url+'invoice-request', body);

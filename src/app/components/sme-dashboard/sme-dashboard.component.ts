@@ -275,9 +275,15 @@ export class SmeDashboardComponent implements OnInit {
     navigateFinancierBidding(){
       this.router.navigateByUrl('/sme-bidding');
     }
+
+    navigateFinancieForBidding(){
+      this.router.navigateByUrl('/sme-finance-for-bidding');
+    }
+
     navigateInvoiceCreation(){
       this.router.navigateByUrl('/invoice-request');
     }
+
     logout(){
       this.authenticationService.logout()
       }
