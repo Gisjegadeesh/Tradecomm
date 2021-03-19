@@ -16,6 +16,6 @@ export class FinanceBiddingService {
   //   this.baseUrl = " http://localhost:8080/";
   //  }
   getInvoiceDetails() {
-    return this.apiService.get('invoice-request/initiatedInvoices');
+    return this.apiService.get('invoice-request/approvedInvoices');
   }
 }

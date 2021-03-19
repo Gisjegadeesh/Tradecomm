@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, ViewChild,Input } from '@angular/core';
 import { AuthenticationService } from '../../../service/authentication/authentication.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
@@ -69,6 +69,7 @@ const displayInvDatas: any[] = [
   }
 ];
 
+
 @Component({
   selector: 'app-invoice-details',
   templateUrl: './invoice-details.component.html',
@@ -85,7 +86,8 @@ export class InvoiceDetailsComponent implements OnInit {
   constructor(private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
-  displayedColumnsOne: string[] = [
+  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+  displayedColumnsOne1: string[] = [
     'SNo',
     'DescGoods',
     'IdNo',
@@ -115,15 +117,22 @@ export class InvoiceDetailsComponent implements OnInit {
   displayInvDatas = new MatTableDataSource(displayInvDatas); //data
 
   displayedInvoiceFormsColumns: string[] = [
-    'invRefNumber',
+    // 'invRefNumber',
+    // 'invId',
+    // 'invDate',
+    // 'invDueDate',
+    // 'invAmt',
+    // 'buyerName',
+    // 'sellerName',
+    // 'buyerRating',
+    // 'sellerRating'
+    'billNo',
     'invId',
     'invDate',
     'invDueDate',
     'invAmt',
     'buyerName',
-    'sellerName',
-    'buyerRating',
-    'sellerRating'
+    'smeId', 
   ];
   mobileScreen = false;
   end = false;
@@ -133,13 +142,47 @@ export class InvoiceDetailsComponent implements OnInit {
   limit = 7;
   isOpen = '';
   bidpanelOpenState = false;
+  @Input() id: "";
+
+  invoiceDetails = {
+    billNo : String,
+          invId : String,
+          invDate : String,
+          invDueDate : String,
+          invAmt : String,
+          buyerName : String,
+          smeId : String,  
+  }
+
 
 
   ngOnInit(): void {
+    console.log(this.id)
     this.buildfinBidform()
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+
+    this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
+      if(resp){
+        this.displayInvDatas = new MatTableDataSource([
+         {
+          billNo : resp.billNo,
+          invId : resp.invId,
+          invDate : resp.invDate,
+          invDueDate : resp.invDueDate,
+          invAmt : resp.invAmt,
+          buyerName : resp.buyerName,
+          smeId : resp.smeId,          
+        }
+
+      ])
+      this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
+      }
+     
+    })
+
+    
   }
   buildfinBidform(){
     this.finBidform = this.fb.group({
@@ -150,9 +193,9 @@ export class InvoiceDetailsComponent implements OnInit {
       discRate: ['', Validators.required],
       discAmt: ['', Validators.required],
       netAmtDisc: ['', Validators.required],
-      dueDate: ['', Validators.required],
+      // dueDate: ['', Validators.required],
       offerExpPeriod: ['', Validators.required],
-      
+      smeId: localStorage.getItem("userId"),      
     })
   }
 

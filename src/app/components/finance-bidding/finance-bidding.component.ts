@@ -35,7 +35,7 @@ export class FinanceBiddingComponent implements OnInit {
 
   dataSource ;//data
   displayedColumns: string[] = [
-    'billNo',
+    // 'billNo',
     'invId',
     // 'invoiceId',
     'invAmt',
@@ -78,6 +78,7 @@ export class FinanceBiddingComponent implements OnInit {
   limit = 7;
   isOpen = '';
   bidpanelOpenState = false;
+  id = ""
 
 
   @ViewChild('accountList', { read: ElementRef })
@@ -134,10 +135,10 @@ export class FinanceBiddingComponent implements OnInit {
     this.router.navigateByUrl('/financier-dashboard');
   }
 
-  openModal(event, template) {
+  openModal(event, template,id) {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
-    
+    this.id = id
   }
 
 }
