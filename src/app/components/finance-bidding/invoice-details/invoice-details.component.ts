@@ -132,6 +132,9 @@ export class InvoiceDetailsComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   isOpen = '';
+  bidpanelOpenState = false;
+
+
   ngOnInit(): void {
     this.buildfinBidform()
     if (window.innerWidth < 415) {

@@ -5,10 +5,10 @@
     </button> -->
     <div class="uxg-logo" dense></div>
     <ul class="uxg-breadcrumb uxg-breadcrumb-responsive">
-        <button mat-icon-button color="accent" class="uxg-breadcrumb-back">
+        <button mat-icon-button color="accent" class="uxg-breadcrumb-back" (click)="backNavigation()">
             <mat-icon>chevron_left</mat-icon>
           </button>
-        <li class="uxg-h6">Finacier Bidding</li>
+        <li class="uxg-h6">{{currentHeaderName}}</li>
         <li class="curs-pointer" (click)="goHome()">Home</li>
     </ul>
     <span class="fill-remaining-space"></span>

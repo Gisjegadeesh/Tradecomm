@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router,NavigationEnd, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -9,9 +10,17 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public router: Router, public authenticationService:AuthenticationService) { }
+  currentHeaderName = ""
+  constructor(public router: Router, public authenticationService:AuthenticationService,private _location: Location) { }
 
   ngOnInit(): void {
+    const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
+    this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+  }
+
+  ngDoCheck(){
+    const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
+    this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
   }
 
   goHome(){
@@ -22,4 +31,7 @@ export class NavbarComponent implements OnInit {
     this.authenticationService.logout()
     }
 
+    backNavigation() {
+      this._location.back();
+    }
 }

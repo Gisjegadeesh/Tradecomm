@@ -1,7 +1,17 @@
 
     <div class="table-section">
-        <div class="uxg-h4" style="text-align: center">BIDDING</div>
+        <!-- <div class="uxg-h4" style="text-align: center">BIDDING</div> -->
         <!-- Inovice Details -->
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="true" (opened)="bidpanelOpenState = true" (closed)="bidpanelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="font-weight:500;color: #a899e4;">
+                        Bid Details
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
         <div class="container-fluid">
             <div class="row">
                 <table class="invoice-table" mat-table [dataSource]="displayInvDatas">
@@ -56,11 +66,24 @@
                 </table>
             </div>            
         </div>
+
+    </mat-expansion-panel>
+</mat-accordion>
         
         <!-- Invoice Details -->
         
     </div>
     
+    <!-- <mat-accordion>
+        <mat-expansion-panel hideToggle>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true" (opened)="bidpanelOpenState = true" (closed)="bidpanelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title style="font-weight:500;color: #a899e4;">
+                    Bid Details
+                </mat-panel-title>
+            </mat-expansion-panel-header> -->
+
     <div class="data-section">
         <form [formGroup]="finBidform" (ngSubmit)="onSubmitBidForm()">
             <table>
@@ -147,6 +170,18 @@
             <button type="button" class="btn model-btn-outline" (click)="onSubmitBidForm()">Authorize</button>
          </div>
         </form>
+
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="true" (opened)="bidpanelOpenState = true" (closed)="bidpanelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="font-weight:500;color: #a899e4;">
+                        Bid Details
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+
         <mat-card>
             <mat-card-content>
                 <!-- <div class="uxg-h4" style="text-align: center">Invoice Details</div> -->
@@ -214,7 +249,13 @@
                   
             </mat-card-content>
         </mat-card>
+
+    </mat-expansion-panel>
+</mat-accordion>
     </div>
+
+<!-- </mat-expansion-panel>
+</mat-accordion> -->
     
     
     

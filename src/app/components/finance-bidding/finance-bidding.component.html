@@ -98,50 +98,54 @@
 <div class="app-content {{isOpen}}">
   <header>
       <br>
+
+      <!-- <button (click)="openModal($event,template)">click here</button> -->
       <div class="table-section">
         <div class="uxg-h4" style="text-align: center">Bidding by Financiers</div>
         <p (click)="openModal($event,template)"></p>
 
+      
+
         <table mat-table [dataSource]="dataSource">
   
-          <ng-container matColumnDef="IccTraComRef">
+          <ng-container matColumnDef="billNo">
             <th mat-header-cell *matHeaderCellDef>ICC Tradecomm Ref</th>          
             <td mat-cell *matCellDef="let element"> 
               <mat-chip-list>                
-                     <mat-chip color="primary" (click)="openModal($event,template)" selected>{{element.IccTraComRef}}</mat-chip>
+                     <mat-chip color="primary" (click)="openModal($event,template)" selected>{{element.billNo}}</mat-chip>
                  </mat-chip-list>
              </td>
           </ng-container>
   
-          <ng-container matColumnDef="InvId">
+          <ng-container matColumnDef="invId">
             <th mat-header-cell *matHeaderCellDef scope="column">Invoice ID</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
-                <mat-chip>{{ element.InvId }} </mat-chip>
+                <mat-chip>{{ element.invId }} </mat-chip>
             </mat-chip-list>
               
             </td>
           </ng-container>
   
-          <ng-container matColumnDef="SellerName">
-            <th mat-header-cell *matHeaderCellDef scope="column">Seller Name</th>
+          <ng-container matColumnDef="invAmt">
+            <th mat-header-cell *matHeaderCellDef scope="column">Invoice Amount</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
-                <mat-chip> {{ element.SellerName }} </mat-chip>
+                <mat-chip> {{ element.invAmt }} </mat-chip>
             </mat-chip-list>
              </td>
           </ng-container>
   
   
-          <ng-container matColumnDef="BuyerName">
+          <ng-container matColumnDef="buyerName">
             <th mat-header-cell *matHeaderCellDef scope="column">Buyer Name</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
-                <mat-chip> {{ element.BuyerName }} </mat-chip>
+                <mat-chip> {{ element.buyerName }} </mat-chip>
             </mat-chip-list>
               </td>
           </ng-container>
-          <ng-container matColumnDef="SellerRating">
+          <!-- <ng-container matColumnDef="SellerRating">
             <th mat-header-cell *matHeaderCellDef scope="column">Seller Rating</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
@@ -156,26 +160,28 @@
                 <mat-chip> {{ element.BuyerRating }} </mat-chip>
             </mat-chip-list>
               </td>
-          </ng-container>
-          <ng-container matColumnDef="InvDate">
+          </ng-container> -->
+          <ng-container matColumnDef="invDate">
             <th mat-header-cell *matHeaderCellDef scope="column">Invoice Date</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
-                <mat-chip> {{ element.InvDate }} </mat-chip>
+                <mat-chip> {{ element.invDate }} </mat-chip>
             </mat-chip-list>
               </td>
           </ng-container>
-          <ng-container matColumnDef="InvAmt">
+          <!-- <ng-container matColumnDef="invAmt">
             <th mat-header-cell *matHeaderCellDef scope="column">Invoice Amount</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
-                <mat-chip>  {{ element.InvAmt }} </mat-chip>
+                <mat-chip>  {{ element.invAmt }} </mat-chip>
             </mat-chip-list>
              </td>
-          </ng-container>
+          </ng-container> -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA">jega</tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>   
+        </table>  
+        
+    
         
           <!-- <app-invoice-details></app-invoice-details> -->
       <ng-template #template>
@@ -190,7 +196,7 @@
                <div class="row">
                     <app-invoice-details style="
                     width: 100%;
-                "></app-invoice-details>
+                "  ></app-invoice-details>
                </div>            
            </div>
         </div>
