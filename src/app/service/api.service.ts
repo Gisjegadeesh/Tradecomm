@@ -61,7 +61,7 @@ export class ApiService {
 	put(path: string, body: any): Observable<any> {
 		this.setToken();
 		return this.http
-			.put(`${this.baseUrl}${path}`, (body), { headers: headers })
+			.put(`${path}`, (body), { headers: headers })
 			.pipe(
 				map((res: Response) => {
 					return res;

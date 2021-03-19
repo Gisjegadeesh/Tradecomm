@@ -80,7 +80,7 @@ export class InvoiceRequestComponent implements OnInit {
   invoiceID: any;
   InvoiceFdate:any
   invoicedata: invoiceData = {
-    id: "1",
+    id: "",
     RefNo: "",
     invoiceId: "",
     invoiceDate: "",
@@ -228,7 +228,7 @@ export class InvoiceRequestComponent implements OnInit {
       "invoiceIds": invoiceIds,
     }
     alert("Selected Inovices has been Authorized !");
-    this.invoiceRequestServices.authoriseInvoice(invIdparams).subscribe(resp => {
+    this.invoiceRequestServices.authoriseInvoice(invoiceIds.toString()).subscribe(resp => {
       this.getInvDetailsLists();
     }, error => {
     })
