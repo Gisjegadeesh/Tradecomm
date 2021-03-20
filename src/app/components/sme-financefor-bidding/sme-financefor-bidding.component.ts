@@ -43,55 +43,14 @@ export interface goodsDetails {
 const GOODS_DATA: goodsDetails[] = [];
 
 
-export interface invoiceDetails {
-  'invId': String,
-  'invDate': String,
-  'buyerName': String,
-  'invAmt': String,
-  'status': String
-  // descGoods: String;
-  // idNo : String;
-  // dateOfInvoice: String;
-  // quantity: String;
-  // rate : String;
-  // amt: String;
-  // discAmt : String;
-  // netAmtPay : String;
-  // taxRate : String;
-  // taxAmount : String;
-  // total : String;
-
-
-}
+export interface invoiceDetails {'invId': String,'invDate': String,'buyerName': String,'invAmt': String,'status': String}
 const INVOICE_DATA: invoiceDetails[] = [];
 
-// const DATA_ONE: any[] = [
-//   {
-//     DescGoods: 'Steel Rod',
-//     IdNo: 'a456',
-//     Qty: '100t',
-//     Rate: '678.0',
-//     Amt: 67800,
-//     DiscAmt: '-',
-//     NetAmt: 67800,
-//     TaxRate: 2
-//   }
-// ];
-// const DATA_TWO: any[] = [
-//   {
-//     BidID: 'BID03456',
-//     FinOffAmt: 102700,
-//     Ccy: 'SGD',
-//     FxRateDiff: '1.35',
-//     Margin: 10,
-//     DiscRate: 3,
-//     DiscAmt: 760,
-//     NetAmtPay: 101940,
-//     DueDate: '90D/10Mar21',
-//     OffExpPrd: '4 PM',
-//     Status: 'A',
-//   }
-// ];
+
+export interface biddingDetails {
+  'financeOfferAmt' : String, 'ccy' : String, 'fxRate' : String, 'margin' : String, 'netAmtDisc' : String,'discAmt' : String,'discRate' : String,'offerExpPeriod' : String}
+const BIDDING_DATA: biddingDetails[] = [];
+
 @Component({
   selector: 'app-sme-financefor-bidding',
   templateUrl: './sme-financefor-bidding.component.html',
@@ -110,22 +69,11 @@ export class SmeFinanceforBiddingComponent implements OnInit {
 
 
   dataSourceTwo = new MatTableDataSource(INVOICE_DATA); //data
-  displayedColumnsTwo: string[] = ['invId', 'invDate', 'buyerName', 'invAmt', 'status'
-    // 'BidID',
-    // 'FinOffAmt',
-    // 'Ccy',
-    // 'FxRateDiff',
-    // 'Margin',
-    // 'DiscRate',
-    // 'DiscAmt',
-    // 'NetAmtPay',
-    // 'DueDate',
-    // 'OffExpPrd',
-    // 'Status'
+  displayedColumnsTwo: string[] = ['invId', 'invDate', 'buyerName', 'invAmt', 'status'];
 
+  dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
+  displayedColumnsThree: string[] = ['financeOfferAmt', 'ccy', 'fxRate', 'margin', 'netAmtDisc','discAmt','discRate','offerExpPeriod'];
 
-
-  ];
 
   isOpen = ""
   mobileScreen = false;
@@ -210,31 +158,11 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
   }
 
-  openModal(event, template, id) {
+  openModal(event, template, data) {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
-    this.dataSourceOne = new MatTableDataSource([
-      {
-        descGoods: '1',
-        idNo: '1',
-        dateOfInvoice: '1',
-        quantity: '1',
-        rate: '1',
-        amt: '1',
-        discAmt: '1',
-        netAmtPay: '1',
-        taxRate: '1',
-        taxAmount: '1',
-        total: '1'
-      }
-    ]);
-    //  dataSourceTwo = new MatTableDataSource(INVOICE_DATA); //data
-    //  displayedColumnsTwo: string[] = ['invId','invDate','buyerName','invAmt','status'
-
-    let invoiceDetails = {
-      "id": id
-    }
-    this.SmeFinancierForBiddingServices.getInvoiceRequestLists(id).subscribe(resp => {
+   
+    this.SmeFinancierForBiddingServices.getInvoiceRequestLists(data.id).subscribe(resp => {
       let status = "";
       if (resp.status == "I") {
         status = "Initiated"
@@ -252,10 +180,17 @@ export class SmeFinanceforBiddingComponent implements OnInit {
         { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status }
       ]);
 
-      const ELEMENT_DATA: financeForBiddingData[] = resp;
-      // this.dataSource = new MatTableDataSource(resp);
       this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
       
+    })
+
+    // this.dataSourceThree = new MatTableDataSource([
+    //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
+
+    this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
+      if(resp){
+        this.dataSourceThree = new MatTableDataSource(resp);
+      }
     })
   }
 

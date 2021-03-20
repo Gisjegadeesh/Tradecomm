@@ -92,12 +92,12 @@ const DATA_INV_DETAILS: any[] = [
   }
 ];
 @Component({
-  selector: 'app-financier-bidding',
-  templateUrl: './financier-bidding.component.html',
-  styleUrls: ['./financier-bidding.component.scss']
+  selector: 'app-sme-bidding',
+  templateUrl: './sme-bidding.component.html',
+  styleUrls: ['./sme-bidding.component.scss']  
 })
 
-export class FinancierBiddingComponent implements OnInit {
+export class SmeBiddingComponent implements OnInit {
 
   displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount'];
   tabledataSource = new MatTableDataSource(ELEMENT_DATA);

@@ -1,6 +1,21 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+//Local Path Link
+
+// //General Service
+// let BASE_PATH = "http://95ed440fe873.ngrok.io/";
+
+// // Invoice Service Url
+// let serviePath_1 ="http://2a088c457b03.ngrok.io/";
+
+// // Biddind Service Url
+// let serviePath_2 ="http://2a088c457b03.ngrok.io/";
+
+// //Dashboard Service Url
+// let dboardServPath1 ="http://f61c6d5fdccc.ngrok.io/";
+// let dboardServPath2 ="http://f61c6d5fdccc.ngrok.io/";
+// let dboardServPath3 ="http://f61c6d5fdccc.ngrok.io/";
 
 //Local Path Link 
 
@@ -35,10 +50,10 @@ export const environment = {
 };
 
 /*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+* For easier debugging in development mode, you can import the following file
+* to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+*
+* This import should be commented out in production mode because it will have a negative impact
+* on performance if an error is thrown.
+*/
+// import 'zone.js/dist/zone-error'; // Included with Angular CLI.
