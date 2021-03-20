@@ -35,7 +35,7 @@ import { FinancierDashboardComponent } from './components/financier-dashboard/fi
 import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.component';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { ChartsModule } from 'ng2-charts';
-import { FinancierBiddingComponent } from './components/financier-bidding/financier-bidding.component';
+import { SmeBiddingComponent } from './components/sme-bidding/sme-bidding.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {ModalDialogService} from './service/modal-dialog.service';
 import {ApiService} from './service/api.service';
@@ -74,7 +74,7 @@ import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-s
     FinancierOnboardingComponent,
     FinancierDashboardComponent,
     SmeDashboardComponent,
-    FinancierBiddingComponent,
+    SmeBiddingComponent,
     FinanceBiddingComponent,
     InvoiceDetailsComponent,
     InvoiceRequestComponent,
