@@ -181,7 +181,9 @@
           </table>
           <mat-card-actions class="ebtn">
             <span class="fill-remaining-space"></span>
-            <button mat-flat-button color="primary" (click)=addRow() id=grid>
+            <button mat-flat-button color="primary" (click)=addRow() id=grid  #tooltip="matTooltip"
+            matTooltip="{{fundingTooltip.addGoods}}"
+            [matTooltipPosition]="tooltipPosition">
               Add Goods
             </button>
           </mat-card-actions>
@@ -195,7 +197,9 @@
                 <form [formGroup]="invoiceForm">
                  <table mat-table [dataSource]="dataSourceTwo" style="width: 100%;" formArrayName="goodsDetails">
                   <ng-container matColumnDef="ID" >
-                    <th mat-header-cell *matHeaderCellDef scope="column">ID</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.id}}"
+                    [matTooltipPosition]="tooltipPosition">ID</th>
                       <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="ID" 
@@ -204,7 +208,9 @@
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="DescGoods">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Description of Goods</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.desc}}"
+                    [matTooltipPosition]="tooltipPosition">Description of Goods</th>
                       <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="descGoods" 
@@ -223,7 +229,9 @@
                   </ng-container> -->
 
                   <ng-container matColumnDef="DateOfInvoice">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Date Of Invoice</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.invoiceDate}}"
+                    [matTooltipPosition]="tooltipPosition">Date Of Invoice</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="dateOfInvoice" 
@@ -233,7 +241,9 @@
                   </ng-container>
 
                   <ng-container matColumnDef="Quantity">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Quantity</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.quantity}}"
+                    [matTooltipPosition]="tooltipPosition">Quantity</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="quantity" 
@@ -243,7 +253,9 @@
                   </ng-container>
 
                   <ng-container matColumnDef="Rate">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Rate</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.rate}}"
+                    [matTooltipPosition]="tooltipPosition">Rate</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="rate" 
@@ -252,7 +264,9 @@
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Amt">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Amount</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.amount}}"
+                    [matTooltipPosition]="tooltipPosition">Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="amt" 
@@ -262,7 +276,9 @@
                   </ng-container>
 
                   <ng-container matColumnDef="DiscAmt">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Disc Amount</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.discAmount}}"
+                    [matTooltipPosition]="tooltipPosition">Disc Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="discAmt" 
@@ -272,7 +288,9 @@
                   </ng-container>
 
                   <ng-container matColumnDef="NetAmtPay">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Net Amount</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.netAmount}}"
+                    [matTooltipPosition]="tooltipPosition">Net Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="netAmtPay" 
@@ -282,7 +300,9 @@
                   </ng-container>
 
                   <ng-container matColumnDef="TaxRate">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Tax Rate</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.taxRate}}"
+                    [matTooltipPosition]="tooltipPosition">Tax Rate</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="taxRate" 
@@ -292,7 +312,9 @@
                   </ng-container>
 
                   <ng-container matColumnDef="TaxAmount">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Tax Amount</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.taxAmount}}"
+                    [matTooltipPosition]="tooltipPosition">Tax Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="taxAmount" 
@@ -301,7 +323,9 @@
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Total">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Total</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.total}}"
+                    [matTooltipPosition]="tooltipPosition">Total</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="total" 
@@ -318,7 +342,9 @@
             </div>
             <mat-card-actions class="ebtn">
               <span class="fill-remaining-space"></span>
-              <button mat-flat-button color="primary"id=grid>
+              <button mat-flat-button color="primary"id=grid #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.saveGoods}}"
+              [matTooltipPosition]="tooltipPosition">
                 Save
               </button>
             </mat-card-actions>
@@ -334,7 +360,8 @@
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
               <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
+                <mat-checkbox (change)="$event ? masterToggle() : null" #tooltip="matTooltip"
+                matTooltip="{{fundingTooltip.select}}" [matTooltipPosition]="tooltipPosition"
                   [checked]="selection.hasValue() && isAllSelected()"
                   [indeterminate]="selection.hasValue() && !isAllSelected()" color="primary">
                 </mat-checkbox>
@@ -351,28 +378,35 @@
               <td mat-cell *matCellDef="let element">{{element.invId}}</td>
             </ng-container> -->
             <ng-container matColumnDef="DateTime">
-              <th mat-header-cell *matHeaderCellDef scope="column">Invoice No</th>
+              <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.invoiceNumber}}"
+              [matTooltipPosition]="tooltipPosition">Invoice No</th>
               <td mat-cell *matCellDef="let element">{{element.invId}}</td>
             </ng-container>
             <mat-checkbox name="box"></mat-checkbox>
             <ng-container matColumnDef="DateOfInvoice">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Invoice Date</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.invoiceCreateDate}}" [matTooltipPosition]="tooltipPosition">Invoice Date</th>
               <td mat-cell *matCellDef="let element">{{element.invDate  | date: 'dd/MM/yyyy'}}</td>
             </ng-container>
             <ng-container matColumnDef="Seller">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Seller</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.seller}}" [matTooltipPosition]="tooltipPosition">Seller</th>
               <td mat-cell *matCellDef="let element">{{element.smeId}}</td>
             </ng-container>
             <ng-container matColumnDef="buyerName">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Buyer</th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.buyer}}" [matTooltipPosition]="tooltipPosition">Buyer</th>
               <td mat-cell *matCellDef="let element">{{element.buyerName}}</td>
             </ng-container>
             <ng-container matColumnDef="InvoiceAmount">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Invoice Amount </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.invoiceAmount}}" [matTooltipPosition]="tooltipPosition">Invoice Amount </th>
               <td mat-cell *matCellDef="let element">{{ element.invAmt }}</td>
             </ng-container>
             <ng-container matColumnDef="Status">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column">Status </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
+              matTooltip="{{fundingTooltip.status}}" [matTooltipPosition]="tooltipPosition">Status </th>
               <td mat-cell *matCellDef="let element" style="color: green;">
                <mat-icon>exit_to_app</mat-icon><span style="float: left;">&nbsp;Initiated</span></td>
             </ng-container>
@@ -384,13 +418,16 @@
       </div>
       <mat-card-actions class="ebtn">
         <span class="fill-remaining-space"></span>
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary" #tooltip="matTooltip"
+        matTooltip="{{fundingTooltip.submit}}" [matTooltipPosition]="tooltipPosition">
           Submit
         </button>
-        <button mat-flat-button color="primary">
+        <button mat-flat-button color="primary" #tooltip="matTooltip"
+        matTooltip="{{fundingTooltip.pendingInvoice}}" [matTooltipPosition]="tooltipPosition">
           Pend
         </button>
-        <button mat-flat-button color="primary" (click)="authoriseInvoice()">
+        <button mat-flat-button color="primary" (click)="authoriseInvoice()" #tooltip="matTooltip"
+        matTooltip="{{fundingTooltip.invoiceAuthorise}}" [matTooltipPosition]="tooltipPosition">
           Authorise
         </button>
       </mat-card-actions>

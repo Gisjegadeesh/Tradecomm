@@ -5,7 +5,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
-import { SmeFinancierForBiddingServices } from './sme-financefor-bidding-service'
+import { SmeFinancierForBiddingServices } from './sme-financefor-bidding-service';
+import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 // const ELEMENT_DATA: any[] = [
 //   {
 //     Name: '',
@@ -86,7 +87,8 @@ export class SmeFinanceforBiddingComponent implements OnInit {
   color: ThemePalette = 'warn';
   ischecked = "true"
   bidpanelOpenState = false;
-
+  biddingTooltip = BIDDINGCONSTANTS;
+  
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 

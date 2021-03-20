@@ -7,6 +7,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
 import { DatePipe } from '@angular/common';
+import { FUNDINGREQUESTCONSTANTS } from '../../shared/constants/constants';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -122,6 +123,7 @@ export class InvoiceRequestComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   formArray: any;
+  tooltipPosition= "below";
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -133,6 +135,7 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
+  fundingTooltip = FUNDINGREQUESTCONSTANTS;
   constructor(public router: Router, private authenticationService: AuthenticationService, private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
     private datePipe: DatePipe) {
     this.invoiceFormBuild()

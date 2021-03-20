@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, HostListener, ViewChild } from "@angular
 import { Router } from "@angular/router";
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { IccDashboardServices } from './icc-dashboard-services'
+import {ICCDASHBOARDCONSTANTS} from '../../shared/constants/constants'
 @Component({
   selector: "app-icc-dashboard",
   templateUrl: "./icc-dashboard.component.html",
@@ -27,6 +28,7 @@ export class IccDashboardComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
+  dashboardTooltip=ICCDASHBOARDCONSTANTS
 
   constructor(public router: Router,private authenticationService: AuthenticationService,private iccDashboardServices: IccDashboardServices ) { }
 

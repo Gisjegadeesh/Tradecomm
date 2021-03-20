@@ -63,6 +63,7 @@ import { FinancierDashboardServices } from './components/financier-dashboard/fin
 import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-services';
 
 
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -118,7 +119,8 @@ import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-s
     MatSlideToggleModule,
     AngularMultiSelectModule,
     NgMultiSelectDropDownModule.forRoot(),
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,FinancierDashboardServices,IccDashboardServices,
