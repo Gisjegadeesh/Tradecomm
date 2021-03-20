@@ -3,18 +3,35 @@
 // The list of file replacements can be found in `angular.json`.
 
 //Local Path Link 
-let serviePath_1 ="http://051362752e3a.ngrok.io/";
-let serviePath_2 ="http://051362752e3a.ngrok.io/";
-let BASE_PATH = "http://051362752e3a.ngrok.io/";
-let IMAGE_PATH = "http://localhost:8080/";
 
+//General Service
+let BASE_PATH = "http://95ed440fe873.ngrok.io/";
+
+// Invoice Service Url
+let serviePath_1 ="http://95ed440fe873.ngrok.io/";
+
+// Biddind Service Url
+let serviePath_2 ="http://2a088c457b03.ngrok.io/";
+
+//Dashboard  Service Url
+let dboardServerPath1 ="http://dboardServPath1/";
+let dboardServerPath2 ="http://dboardServPath2/";
+let dboardServerPath3 ="http://dboardServPath3/";
+let dboardServerPath4 ="http://dboardServPath4/";
+let dboardServerPath5 ="http://dboardServPath5/";
+let dboardServerPath6 ="http://dboardServPath6/";
 
 export const environment = {
   production: false,
   api_url: `${BASE_PATH}`,
   serviePath_1: `${serviePath_1}`,
   serviePath_2: `${serviePath_2}`,
-  image_url:`${IMAGE_PATH}`
+  dboardServerPath1: `${dboardServerPath1}`,
+  dboardServerPath2: `${dboardServerPath2}`,
+  dboardServerPath3: `${dboardServerPath3}`,
+  dboardServerPath4: `${dboardServerPath4}`,
+  dboardServerPath5: `${dboardServerPath5}`,
+  dboardServerPath6: `${dboardServerPath6}`,
 };
 
 /*

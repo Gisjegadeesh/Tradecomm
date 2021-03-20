@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
+import { SmeDashboardServices } from './sme-dashboard-service';
+
 
 @Component({
   selector: 'app-sme-dashboard',
@@ -233,12 +235,17 @@ export class SmeDashboardComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router,public authenticationService: AuthenticationService) { }
+  constructor(public router: Router,public authenticationService: AuthenticationService, public smeDashboardServices: SmeDashboardServices ) { }
 
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+    this.getFinBidRecvd();
+    this.getFinForBid();
+    this.getAcceptdFin();
+    this.getFinDueTdy();
+    this.getFinPastDue();
   }
 
   public scrollRight(): void {
@@ -287,6 +294,26 @@ export class SmeDashboardComponent implements OnInit {
     logout(){
       this.authenticationService.logout()
       }
+    getFinBidRecvd(){
+      this.smeDashboardServices.getFinBidRecvd().subscribe(resp => {
+    })
+    }
+    getFinForBid(){
+      this.smeDashboardServices.getFinForBid().subscribe(resp => {
+    })
+    }
+    getAcceptdFin(){
+      this.smeDashboardServices.getAcceptdFin().subscribe(resp => {
+    })
+    }
+    getFinDueTdy(){
+      this.smeDashboardServices.getFinDueTdy().subscribe(resp => {
+    })
+    }
+    getFinPastDue(){
+      this.smeDashboardServices.getFinPastDue().subscribe(resp => {
+    })
+    }
 
 }
 
