@@ -57,8 +57,12 @@ import { FinancierService } from './service/financier/financier.service';
 import { FinanceBiddingService } from './service/finance_bidding/finance-bidding.service';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SmeFinanceforBiddingComponent } from './components/sme-financefor-bidding/sme-financefor-bidding.component';
-
 import { SmeFinancierForBiddingServices } from './components/sme-financefor-bidding/sme-financefor-bidding-service';
+import { SmeDashboardServices } from './components/sme-dashboard/sme-dashboard-service';
+import { FinancierDashboardServices } from './components/financier-dashboard/financier-dashboard-services';
+import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-services';
+
+
 
 
 @NgModule({
@@ -117,7 +121,7 @@ import { SmeFinancierForBiddingServices } from './components/sme-financefor-bidd
     MatExpansionModule
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
-    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,
+    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,FinancierDashboardServices,IccDashboardServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

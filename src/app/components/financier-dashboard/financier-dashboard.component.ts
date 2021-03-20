@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
+import { FinancierDashboardServices } from './financier-dashboard-services';
+
 
 @Component({
   selector: 'app-financier-dashboard',
@@ -233,11 +235,12 @@ export class FinancierDashboardComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router,public authenticationService: AuthenticationService) { }
+  constructor(public router: Router,public authenticationService: AuthenticationService,public financierDashboardServices: FinancierDashboardServices) { }
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+    this.getfinDashDetails();
   }
 
   public scrollRight(): void {
@@ -275,6 +278,12 @@ export class FinancierDashboardComponent implements OnInit {
     }
     logout(){
       this.authenticationService.logout()
+    }
+    getfinDashDetails(){
+      this.financierDashboardServices.getfinDashDetails().subscribe(resp => {
+        // const ELEMENT_DATA: financeForBiddingData[] = resp;
+        // this.dataSource = new MatTableDataSource(resp);
+      })
     }
 
 }

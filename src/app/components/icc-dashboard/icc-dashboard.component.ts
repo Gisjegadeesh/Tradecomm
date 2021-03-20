@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthenticationService } from '../../service/authentication/authentication.service';
-
+import { IccDashboardServices } from './icc-dashboard-services'
 @Component({
   selector: "app-icc-dashboard",
   templateUrl: "./icc-dashboard.component.html",
@@ -28,12 +28,13 @@ export class IccDashboardComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router,private authenticationService: AuthenticationService) { }
+  constructor(public router: Router,private authenticationService: AuthenticationService,private iccDashboardServices: IccDashboardServices ) { }
 
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
+    this.getIccDashDetails()
   }
 
   public scrollRight(): void {
@@ -97,6 +98,12 @@ export class IccDashboardComponent implements OnInit {
     }
     navigateFinancierOnboard(){
       this.router.navigateByUrl('/financier-onboarding');
+    }
+    getIccDashDetails(){
+      this.iccDashboardServices.getIccDashDetails().subscribe(resp => {
+        // const ELEMENT_DATA: financeForBiddingData[] = resp;
+        // this.dataSource = new MatTableDataSource(resp);
+      })
     }
     
 }

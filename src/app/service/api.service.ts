@@ -39,6 +39,15 @@ export class ApiService {
 			catchError(this.formatErrors.bind(this))
 		);
 	}
+	dashBoardsServiceget(path: any, params: HttpParams = new HttpParams()): Observable<any> {
+		this.setToken();
+		return this.http.get(`${path}`, { params, headers: headers }).pipe(
+			map((res: Response) => {
+				return res;
+			}),
+			catchError(this.formatErrors.bind(this))
+		);
+	}
 
 	// get(path: any, params: HttpParams = new HttpParams()): Observable<any> {
 	// 	let params1 = `{
