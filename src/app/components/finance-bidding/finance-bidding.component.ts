@@ -6,6 +6,7 @@ import {InvoiceDetailsComponent} from './invoice-details/invoice-details.compone
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {FinanceRequestServices} from './finance-service'
 import {FinanceBiddingService} from '../../service/finance_bidding/finance-bidding.service';
+import { FINANCIERDASHBOARDCONSTANTS} from '../../shared/constants/constants';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -52,7 +53,7 @@ export class FinanceBiddingComponent implements OnInit {
   // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   modalRef: BsModalRef;
-
+  
 
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -83,7 +84,8 @@ export class FinanceBiddingComponent implements OnInit {
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
-
+  dashboardTooltip=FINANCIERDASHBOARDCONSTANTS;
+  
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {

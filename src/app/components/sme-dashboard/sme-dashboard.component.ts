@@ -2,8 +2,8 @@ import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { SmeDashboardServices } from './sme-dashboard-service';
-
-
+import { DASHBOARDCONSTANTS } from '../../shared/constants/constants';
+import { COMMONCONSTANTS } from '../../shared/constants/constants';
 @Component({
   selector: 'app-sme-dashboard',
   templateUrl: './sme-dashboard.component.html',
@@ -222,10 +222,12 @@ export class SmeDashboardComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   isOpen = "active"
-
+  tooltipPosition="below"
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
+  dashboardTooltips=DASHBOARDCONSTANTS;
+  commonTooltips=COMMONCONSTANTS;
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {

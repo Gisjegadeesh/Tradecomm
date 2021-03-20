@@ -9,6 +9,7 @@ import { Financier } from '../../model/financier-bidding/financier';
 import { FinancierService } from '../../service/financier/financier.service';
 import { Observable } from 'rxjs';
 import {DataSource} from '@angular/cdk/collections';
+import { SMEDASHBOARDCONSTANTS } from '../../shared/constants/constants';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -129,7 +130,8 @@ export class SmeBiddingComponent implements OnInit {
     }
   }
   panelOpenState = false;
-
+  financierTooltip=SMEDASHBOARDCONSTANTS;
+  
   constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
     ,private financierService: FinancierService) { }
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data

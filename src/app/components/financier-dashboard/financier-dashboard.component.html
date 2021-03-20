@@ -121,10 +121,14 @@
 
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card class="curs-pointer" name="Open for Offer" number="S$3,067.98" (click)="this.navigateFinanceBidding()"></uxg-account-card>
-                <uxg-account-card name="Offer Expired" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Bids to be accepted" number="S$3,067.98" balance="" currency=""></uxg-account-card>
-                <uxg-account-card name="Offer Rejected" number="S$3,067.98" balance="" currency=""></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Open for Offer" number="S$3,067.98" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltip.offerDetails}}" [matTooltipPosition]="'below'" (click)="this.navigateFinanceBidding()"></uxg-account-card>
+                <uxg-account-card name="Offer Expired" number="S$3,067.98" balance="" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltip.expiredDetails}}" [matTooltipPosition]="'below'" currency=""></uxg-account-card>
+                <uxg-account-card name="Bids to be accepted" number="S$3,067.98" balance="" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltip.acceptedDetails}}" [matTooltipPosition]="'below'" currency=""></uxg-account-card>
+                <uxg-account-card name="Offer Rejected" number="S$3,067.98" balance="" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltip.rejectedDetails}}" [matTooltipPosition]="'below'" currency=""></uxg-account-card>
              </div>
         </ng-container>
         <div class="col-md-12" style="float:right;min-height: 50px;">
@@ -163,9 +167,12 @@
                             </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
-                                <th>Period</th>
-                                <th>No.</th>
-                                <th>Amount</th>
+                                <th  #tooltip="matTooltip"
+                                matTooltip="{{dashboardTooltip.financePeriod}}" [matTooltipPosition]="'below'">Period</th>
+                                <th  #tooltip="matTooltip"
+                                matTooltip="{{dashboardTooltip.financeNumber}}" [matTooltipPosition]="'below'">No.</th>
+                                <th  #tooltip="matTooltip"
+                                matTooltip="{{dashboardTooltip.financeAmount}}" [matTooltipPosition]="'below'">Amount</th>
                             </tr>
                             <tr>
                                 <td>Upto 30 days</td>
@@ -236,9 +243,12 @@
                             </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
-                              <th>All Finance Transactions</th>
-                              <th>148 (Transactions)</th>
-                              <th>Type</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltip.transactions}}" [matTooltipPosition]="'below'">All Finance Transactions</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltip.transactions}}" [matTooltipPosition]="'below'">148 (Transactions)</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltip.type}}" [matTooltipPosition]="'below'">Type</th>
                             </tr>
                            
                            <tr>

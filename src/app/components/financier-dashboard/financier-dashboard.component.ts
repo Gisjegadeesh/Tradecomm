@@ -2,8 +2,7 @@ import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { FinancierDashboardServices } from './financier-dashboard-services';
-
-
+import { FINANCEDASHBOARDCONSTANTS } from '../../shared/constants/constants'
 @Component({
   selector: 'app-financier-dashboard',
   templateUrl: './financier-dashboard.component.html',
@@ -225,6 +224,7 @@ export class FinancierDashboardComponent implements OnInit {
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
+  dashboardTooltip=FINANCEDASHBOARDCONSTANTS;
 
   @HostListener('window:resize', ['$event'])
   onResize() {

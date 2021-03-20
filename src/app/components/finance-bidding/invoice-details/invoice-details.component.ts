@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalDialogService } from '../../../service/modal-dialog.service';
 import { Validators, FormGroup ,FormBuilder} from '@angular/forms';
 import {InvoiceRequestServices} from '../../invoice-request/invoice-service';
+import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
 
 interface Status {
   value: string;
@@ -82,7 +83,7 @@ export class InvoiceDetailsComponent implements OnInit {
     {value: 'A', viewValue: 'A'},
     {value: 'R', viewValue: 'R'},
   ];
-
+  detailsTooltip=INVOICEDETAILSCONSTANTS
   constructor(private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data

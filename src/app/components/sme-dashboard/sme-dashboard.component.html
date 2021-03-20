@@ -101,7 +101,7 @@
                 <div class="global-balance">
                     <h6 class="uxg-h6">S$ 765,067.98</h6>
                     <p class="font-13">Global Balance in S$</p>
-                    <p class="uxg-caption font-13">Rate (1.0934566)</p>
+                    <p class="uxg-caption font-13" >Rate (1.0934566)</p>
                     <mat-divider></mat-divider>
                 </div>
             </ng-container>
@@ -112,7 +112,7 @@
                 </div>
             </ng-template>
             <div class="paginator" *ngIf="!mobileScreen">
-                <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
+                <button mat-icon-button (click)="scrollLeft()"  [disabled]="start">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
                 <button mat-icon-button (click)="scrollRight()" [disabled]="end">
@@ -122,16 +122,28 @@
         </div>
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card class="curs-pointer" name="Financier Bid Receive" number="S$3,067.98" (click)="this.navigateFinancierBidding()" ></uxg-account-card>
-                <uxg-account-card name="Finance for Bidding" number="S$3,067.98" (click)="this.navigateFinancieForBidding()"></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Financier Bid Receive"  #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltips.financeBidReceive}}"
+                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" (click)="this.navigateFinancierBidding()" ></uxg-account-card>
+                <uxg-account-card name="Finance for Bidding" number="S$3,067.98" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltips.bidDetails}}"
+                [matTooltipPosition]="tooltipPosition" (click)="this.navigateFinancieForBidding()"></uxg-account-card>
                 <!-- <uxg-account-card class="curs-pointer" name="Invoice Creation" number="New"(click)="this.navigateInvoiceCreation()" ></uxg-account-card> -->
-                <uxg-account-card name="Accepted Finance" number="S$3,067.98" ></uxg-account-card>
-                <uxg-account-card name="Finance Due Today" number="S$3,067.98" ></uxg-account-card>
-                <uxg-account-card name="Finance Past Due" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card name="Accepted Finance" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltips.acceptedDetails}}"
+                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card name="Finance Due Today" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltips.todayDue}}"
+                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" ></uxg-account-card>
+                <uxg-account-card name="Finance Past Due" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltips.pastDue}}"
+                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" ></uxg-account-card>
             </div>
         </ng-container>
         <div class="col-md-12" style="float:right">
-        <button type="button" style="float:right" class="btn btn-outline" (click)="this.navigateInvoiceCreation()">+ Funding Request</button>
+        <button type="button" style="float:right" class="btn btn-outline"  #tooltip="matTooltip"
+        matTooltip="{{dashboardTooltips.fundingRequest}}"
+        [matTooltipPosition]="tooltipPosition"  (click)="this.navigateInvoiceCreation()">+ Funding Request</button>
         </div>
         <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
     <div class="container-fluid">
@@ -166,9 +178,15 @@
                             </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
-                              <th>Period</th>
-                              <th>No.</th>
-                              <th>Amount</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltips.financePeriod}}"
+                              [matTooltipPosition]="tooltipPosition">Period</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltips.financeNumber}}"
+                              [matTooltipPosition]="tooltipPosition">No.</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltips.financeAmount}}"
+                              [matTooltipPosition]="tooltipPosition">Amount</th>
                             </tr>
                           <tr>
                                 <td>Upto 30 days</td>
@@ -238,9 +256,15 @@
                             </div>
                         <table class="table-bordered table" id="customers">
                             <tr>
-                              <th>No of Invoices</th>
-                              <th>Month</th>
-                              <th>Amount</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltips.financeNo}}"
+                              [matTooltipPosition]="tooltipPosition">No of Invoices</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltips.financeMonth}}"
+                              [matTooltipPosition]="tooltipPosition">Month</th>
+                              <th #tooltip="matTooltip"
+                              matTooltip="{{dashboardTooltips.financePeriodAmount}}"
+                              [matTooltipPosition]="tooltipPosition">Amount</th>
                             </tr>
                            
                            <tr>
