@@ -11,6 +11,8 @@ import {Location} from '@angular/common';
 export class NavbarComponent implements OnInit {
   currentHeaderName = "";
   userName
+  homePath = "";
+
   constructor(public router: Router, public authenticationService:AuthenticationService,private _location: Location) { }
   ngOnInit(): void {
     this.userName = localStorage.getItem("userId")
@@ -20,9 +22,10 @@ export class NavbarComponent implements OnInit {
   ngDoCheck(){
     const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    this.homePath = result && result[0] && result[0].data && result[0].data.homePath
   }
   goHome(){
-    this.router.navigateByUrl('/financier-dashboard');
+    this.router.navigateByUrl(this.homePath);
   }
 
   logout(){
