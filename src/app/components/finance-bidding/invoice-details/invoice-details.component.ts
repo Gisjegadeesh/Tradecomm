@@ -220,7 +220,6 @@ export class InvoiceDetailsComponent implements OnInit {
   buildfinBidform(){
     this.finBidform = this.fb.group({
       financeOfferAmt: ['', Validators.required],
-      ccy: ['', Validators.required],
       fxRate: ['', Validators.required],
       margin: ['', Validators.required],
       discRate: ['', Validators.required],
@@ -229,11 +228,8 @@ export class InvoiceDetailsComponent implements OnInit {
       // dueDate: ['', Validators.required],
       offerExpPeriod: ['', Validators.required],
       RepaymentDate:['', Validators.required],
-      DiscAmtInvCCY:['', Validators.required],
-      NetAmtpayableBaseCCY:['', Validators.required],
       NetAmtpayableInvCCY:['', Validators.required],
       AnnualYieldBasis:['', Validators.required],
-      OfferExpperiod:['', Validators.required],
       OffExpdatetime:['', Validators.required],
       fin: localStorage.getItem("userId"),
       invoiceId : this.id
