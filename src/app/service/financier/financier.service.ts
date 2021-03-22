@@ -7,10 +7,10 @@ import { ApiService } from "../../service/api.service";
 @Injectable()
 export class FinancierService {
 
-  private custUrl='http://localhost:8081/api/v1/bidding/';
-  private baseUrl='http://4bc8d153eb2d.ngrok.io/';
+  private custUrl='http://localhost:8081/api/v1/bidding-details/getBiddingDetails/1';
+  private baseUrl='http://localhost:8080/';
   constructor(private http: HttpClient,private apiService: ApiService) {
-    this.baseUrl = "http://4bc8d153eb2d.ngrok.io/";
+    this.baseUrl = "http://localhost:8080/";
    }
   
   getUser(): Observable<Financier[]> {
@@ -18,6 +18,11 @@ export class FinancierService {
   }
   
   getInvoiceDetails() {
-    return this.apiService.get('invoice-request/initiatedInvoices');
+    return this.apiService.get('invoice-request/approvedInvoices');
+  }
+
+  getInvoiceAndGoodsDetails(){
+    return this.apiService.get('invoice-request/approvedInvoices');
+
   }
 }
