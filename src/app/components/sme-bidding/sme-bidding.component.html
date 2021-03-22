@@ -102,7 +102,7 @@
               matTooltip="{{financierTooltip.tradecommRef}}" [matTooltipPosition]="'below'"> ICC Tradecomm Ref </th>
               <td mat-cell *matCellDef="let element"> 
                 <mat-chip-list>
-                       <mat-chip color="primary" selected (click)="openModal($event,template)">{{element.invId}} </mat-chip>
+                       <mat-chip color="primary" selected (click)="openModal($event,template,element.id)"  >{{element.id}} </mat-chip>
                    </mat-chip-list>
                </td>
             </ng-container>
@@ -112,7 +112,7 @@
               matTooltip="{{financierTooltip.invoiceId}}" [matTooltipPosition]="'below'"> Invoice ID </th>
               <td mat-cell *matCellDef="let element"> 
                 <mat-chip-list>
-                       <mat-chip>{{element.invoiceId}} </mat-chip>
+                       <mat-chip>{{element.invId}} </mat-chip>
                    </mat-chip-list>
                </td>
             </ng-container>
@@ -163,7 +163,7 @@
                 matTooltip="{{financierTooltip.financierCount}}" [matTooltipPosition]="'below'"> Count of Financiers </th>
                 <td mat-cell *matCellDef="let element"> 
                    <mat-chip-list>
-                          <mat-chip>{{element.financiercount}} </mat-chip>
+                          <mat-chip>2 </mat-chip>
                       </mat-chip-list>
                   </td>
               </ng-container>
@@ -254,7 +254,7 @@
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                                 matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Offer Exp Period</th>
                                 <td mat-cell *matCellDef="let financier"><input matInput
-                                        value="{{ financier.expiryPeriod }}" />
+                                        value="{{ financier.offerExpPeriod }}" />
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="Status">
@@ -522,6 +522,10 @@
                             <td mat-cell *matCellDef="let element">{{ element.Total }}</td>
                         </ng-container>
 
+                        <ng-container matColumnDef="TotalCurrency">
+                            <th mat-header-cell *matHeaderCellDef scope="column">Total Currency</th>
+                            <td mat-cell *matCellDef="let element">{{ element.totalCcy }}</td>
+                        </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
                     </table>

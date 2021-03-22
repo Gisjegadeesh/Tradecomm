@@ -134,22 +134,23 @@ export class SmeBiddingComponent implements OnInit {
   
   constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
     ,private financierService: FinancierService) { }
-  dataSourceOne = new MatTableDataSource(DATA_ONE); //data
+  //dataSourceOne = new MatTableDataSource(DATA_ONE); //data
+  dataSourceOne;
   dataSourceTwo = new UserDataSource(this.financierService); //data
-  dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
+  dataSourceInvoiceDetails ;
 
   displayedColumnsOne: string[] = [
     'SNo',
     'DescGoods',
     'IdNo',
     'Qty',
-    'Rate',
     'Amt',
-    'DiscAmt',
-    'NetAmt',
+    'Currency',
     'TaxRate',
     'TaxAmt',
-    'Total'
+    'TaxCurrency',
+    'Total',
+    'TotalCurrency'
   ];
   displayedColumnsTwo: string[] = [
     'BidID',
@@ -171,18 +172,28 @@ export class SmeBiddingComponent implements OnInit {
     'Buyer',
     'Amount',
   ];
+  
+  goods_array : object [];
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
     this.financierService.getInvoiceDetails().subscribe(resp => {
       
-      console.log(resp);
+     
       this.dataSource = new MatTableDataSource(resp);
      
-     
     })
+    //dataSourceInvoiceDetails
 
+    this.financierService.getInvoiceAndGoodsDetails().subscribe(resp =>{
+      console.log('inside-->'+resp['goodsDetails']);
+      //let res = resp[0];//goodsDetails
+      //this.goods_array=resp['goodsDetails'];
+      //console.log(this.goods_array[0]['goodsId']);  resp[0].goodsDetails
+      this.dataSourceOne = new MatTableDataSource(resp[0].goodsDetails);
+      this.dataSourceInvoiceDetails=new MatTableDataSource(resp);
+    })
   }
 
   public scrollRight(): void {
@@ -216,7 +227,8 @@ export class SmeBiddingComponent implements OnInit {
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
     }
 
-  openModal(event, template) {
+  openModal(event, template,id) {
+      //this.id=id;
       event.preventDefault();
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
       
