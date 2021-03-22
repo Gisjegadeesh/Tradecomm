@@ -448,3 +448,19 @@ header{
     -webkit-font-smoothing: antialiased;
   }
   //Matirl
+  .uxg-logo, .uxg-logo[dense] {
+    // background-position: 103px 17px; 
+    width: 100px;
+    background-size: 100px 30px;
+    background-repeat: no-repeat;
+  background-image:  url('./assets/img/icctradelogo.png');
+} 
+@media only screen and (min-width: 960px){
+.uxg-toolbar.mat-toolbar .uxg-logo[dense], .uxg-toolbar.mat-toolbar .uxg-breadcrumb {
+    margin-left: 55px;
+}
+}
+.log-logo{
+    width: 62%;
+    margin-bottom: 26px;
+}

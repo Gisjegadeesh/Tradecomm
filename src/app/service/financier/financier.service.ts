@@ -22,7 +22,8 @@ export class FinancierService {
   }
 
   getInvoiceAndGoodsDetails(){
-    return this.apiService.get('invoice-request/approvedInvoices');
+    // return this.apiService.get('invoice-request/approvedInvoices');
 
+    return this.apiService.get('invoice-request/approvedInvoicesBySmeId/'+localStorage.getItem("userId"));
   }
 }

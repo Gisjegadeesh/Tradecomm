@@ -6,6 +6,6 @@ import { environment } from '../../../environments/environment';
 export class FinancierDashboardServices {
   constructor(private apiService: ApiService) { }
   getfinDashDetails(){
-    return this.apiService.dashBoardsServiceget('https://jsonplaceholder.typicode.com/posts',);
+    return this.apiService.generalServiceget('https://jsonplaceholder.typicode.com/posts',);
   }
 }
