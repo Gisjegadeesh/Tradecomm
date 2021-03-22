@@ -148,16 +148,36 @@
                     <mat-label>BL/Roadway Bill No</mat-label>
                     <input type="text" matInput value="" formControlName="billNo" />
                     <!-- <mat-hint>Please enter the BL/Roadway Bill No</mat-hint> -->
+                    <mat-icon class="info_icon" matSuffix  #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.billInfo}}"
+                    [matTooltipPosition]="'below'">info</mat-icon>
                   </mat-form-field>
                 </td>
               </tr>
               <tr>
-                <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
+                <td rowspan="1" colspan="1" class="row col-md-12">
+                  <!-- <span class="col-md-6 invoice_amt_field">
+                  <mat-form-field dense class=" field1">
                     <mat-label>Invoice Amount</mat-label>
                     <input type="text" matInput value="" formControlName="invAmt"/>
-                    <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
+                    <mat-hint>Please enter the Invoice Amount</mat-hint>
                   </mat-form-field>
+                </span>
+                <span class="col-md-6  multiselect-dropdown" >
+                  <ng-multiselect-dropdown
+                      [placeholder]="'Currency'"
+                      [settings]="dropdownSettings"
+                      [data]="currencyDropdownList"
+                      formControlName="currency"
+                      (onSelect)="onItemSelect($event)"
+                      class="invoice_amt_field" >
+                  </ng-multiselect-dropdown>
+                </span> -->
+                <mat-form-field dense >
+                  <mat-label>Invoice Amount</mat-label>
+                  <input type="text" matInput value="" formControlName="invAmt"/>
+                  <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
+                </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>

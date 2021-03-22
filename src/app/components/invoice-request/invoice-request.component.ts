@@ -8,6 +8,7 @@ import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
 import { DatePipe } from '@angular/common';
 import { FUNDINGREQUESTCONSTANTS } from '../../shared/constants/constants';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -136,6 +137,26 @@ export class InvoiceRequestComponent implements OnInit {
     }
   }
   fundingTooltip = FUNDINGREQUESTCONSTANTS;
+  currencyDropdownList = [
+    {
+      item_id:'INR',item_text:'INR'
+    },
+    {
+      item_id:'AUD',item_text:'AUD'
+    },
+    {
+      item_id:'USD',item_text:'USD'
+    },
+    {
+      item_id:'SGD',item_text:'SGD'
+    }
+  ];
+  dropdownSettings :IDropdownSettings = {
+  singleSelection: true,
+    idField: 'item_id',
+    textField: 'item_text',
+    allowSearchFilter: true  
+  }
   constructor(public router: Router, private authenticationService: AuthenticationService, private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
     private datePipe: DatePipe) {
     this.invoiceFormBuild()
@@ -146,7 +167,7 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.getInvDetailsLists()
-  }
+}
   getInvDetailsLists() {
     let tempInvArray;
     this.invoiceRequestServices.getInvDetailsLists().subscribe(resp => {
@@ -312,7 +333,8 @@ export class InvoiceRequestComponent implements OnInit {
       dispDate: ['', Validators.required],
       smeId: localStorage.getItem("userId"),
       invCcy: "SGD",
-      goodsDetails: this.fb.array([])
+      goodsDetails: this.fb.array([]),
+      currency:[[],Validators.required]
     });
   }
   updateInvoiceId(event) {
@@ -321,6 +343,9 @@ export class InvoiceRequestComponent implements OnInit {
   }
   updateInvoicedate(event){
     this.InvoiceFdate = event.target.value;
+  }
+  onItemSelect(event){
+
   }
 }
 

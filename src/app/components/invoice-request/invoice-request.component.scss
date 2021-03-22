@@ -300,3 +300,22 @@ mat-form-field {
     display: flex;
     justify-content: flex-end;
 }
+
+.info_icon{
+    cursor: pointer;
+}
+
+.invoice_amt_field{
+    & .field1{
+        width: 195px;
+        left: -14px;
+    }
+    & .field2{
+        width: 198px;
+    }
+}
+.multiselect-dropdown{
+    position: absolute;
+    width: 233px;
+    left:6px;
+ }

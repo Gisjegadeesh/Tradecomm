@@ -14,7 +14,7 @@ export const FUNDINGREQUESTCONSTANTS={
     'netAmount':'Net Amount',
     'taxRate':'Tax Rate for Particular Good',
     'taxAmount':'Tax Amount for Particular Good',
-    'discAmount':'Disc Amount',
+    'discAmount':'Discount Amount',
     'total':'Total',
     'id':'Particular Good Id(Unique)',
     'desc':'Description of Goods',
@@ -22,7 +22,8 @@ export const FUNDINGREQUESTCONSTANTS={
     'saveGoods':'Save a Goods',
     'submit':'Submit',
     'invoiceAuthorise':'Authorise a Selected Invoices',
-    'pendingInvoice':'Pending a Selected Invoices'
+    'pendingInvoice':'Pending a Selected Invoices',
+    'billInfo':'BL(Landing Bill ) / Roadway Bill for Specific Good'
 }
 
 // DASHBOARD PAGE TOOLTIPS
@@ -61,9 +62,9 @@ export const SMEDASHBOARDCONSTANTS={
     'ccy':'CCY',
     'fxRate':'FX Rate if CCY Different',
     'margin':'Margin',
-    'discAmount':'Disc Amount',
-    'discRate':'Disc Rate',
-    'netAmount':'Net Amount Payable After Disc',
+    'discAmount':'Discount Amount',
+    'discRate':'Discount Rate',
+    'netAmount':'Net Amount Payable After Discount',
     'dueDate':'Due Date',
     'expPeriod':'Offer Expire Period',
     'Status':'Status of Bid',
@@ -107,9 +108,9 @@ export const BIDDINGCONSTANTS={
     'total':'Total',
     'close':'Close',
     'offerExpPeriod':'Offer Expire Period',
-    'discRate':'Disc Rate',
-    'discAmount':'Disc Amount',
-    'netDiscAmount':'Net Disc Amount',
+    'discRate':'Discount Rate',
+    'discAmount':'Discount Amount',
+    'netDiscAmount':'Net Discount Amount',
     'fundPercentage':'Funding Percentage',
     'fxRate':'FX Rate',
     'ccy':'CCY',

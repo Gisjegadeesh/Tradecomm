@@ -12,11 +12,11 @@ export class CustomerService {
   private custUrl: string;
 
   constructor(private http: HttpClient) {
-    this.custUrl = 'http://localhost:8080/financier-onboarding';
+    this.custUrl = 'https://ea307f9fea46.ngrok.io/finonb/post';
   }
 
-  public save(customer: Customer) {
-    return this.http.post<Customer>(this.custUrl, customer);
+  public save(customer) {
+    return this.http.post(this.custUrl, customer);
   }
   
 }
