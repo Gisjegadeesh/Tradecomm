@@ -157,7 +157,8 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Registration Date</mat-label>
-                    <input matInput  [matDatepicker]="pickers"/>
+                    <input matInput  [matDatepicker]="pickers" id="regDate" name="regDate" [(ngModel)]="customer.regDate" 
+                    #regDate="ngModel" />
                      <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
                     <mat-datepicker #pickers></mat-datepicker> 
                 </mat-form-field>
@@ -178,7 +179,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Type of Activity</mat-label>
-                    <input matInput type="text" id="activity" name="activity" [(ngModel)]="customer.activity" required
+                    <input matInput type="text" id="activity" name="activity" [(ngModel)]="customer.activity" 
                       #activity="ngModel" />
                     <mat-hint>Please Enter Type of Activity</mat-hint>
                   </mat-form-field>
@@ -190,7 +191,8 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Principal Bank Account</mat-label>
-                    <input matInput type="text" />
+                    <input matInput type="text"  id="prnBankAcc" name="prnBankAcc" [(ngModel)]="customer.prnBankAcc" 
+                    #prnBankAcc="ngModel"/>
                     <mat-hint>Please Enter Principal Bank Account</mat-hint>
                   </mat-form-field>
                 </td>
@@ -198,7 +200,8 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Principal Bank Branch</mat-label>
-                    <input matInput type="text" />
+                    <input matInput type="text"   id="prnBankBrnh" name="prnBankBrnh" [(ngModel)]="customer.prnBankBrnh" 
+                    #prnBankBrnh="ngModel"/>
                     <mat-hint>Please Enter Principal Bank Branch</mat-hint>
                   </mat-form-field>
                 </td>
@@ -211,7 +214,8 @@
                       <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                         <mat-label>Annual SCF Turnover</mat-label>
-                        <input type="text" matInput value="" />
+                        <input type="text" matInput   id="anlScfTrnOver" name="anlScfTrnOver" [(ngModel)]="customer.anlScfTrnOver" 
+                        #anlScfTrnOver="ngModel"/>
                         <mat-hint>Please enter annual SCF turnover</mat-hint>
                       </mat-form-field>
                     </div>
@@ -223,7 +227,8 @@
                       <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                         <mat-label>Transaction Limit</mat-label>
-                        <input type="text" matInput value="" />
+                        <input type="text" matInput id="transLimit" name="transLimit" [(ngModel)]="customer.transLimit" 
+                        #transLimit="ngModel" />
                         <mat-hint>Please enter transaction limit</mat-hint>
                       </mat-form-field>
                     </div>
@@ -237,7 +242,7 @@
         <mat-card-actions>
           <span class="fill-remaining-space"></span>
 
-          <button mat-flat-button color="primary">
+          <button type="button" matStepperNext mat-flat-button color="primary">
             <mat-icon>arrow_forward</mat-icon>
             Next
           </button>
@@ -267,7 +272,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Address Line 1</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput  id="headAddrLine1" name="headAddrLine1" [(ngModel)]="customer.headAddrLine1" 
+                          #headAddrLine1="ngModel" />
                           <mat-hint>Please enter address line 1</mat-hint>
                         </mat-form-field>
                       </div>
@@ -289,12 +295,20 @@
                       </ng-multiselect-dropdown> -->
                       
                       <ng-multiselect-dropdown
-                      name=""
+                      [(ngModel)]="selectedItems"
                       [settings]="dropdownSettings"
                       [data]="cities"
+                      (onSelect)="onItemSelect($event)"
                   >
                   </ng-multiselect-dropdown>
-
+                  <!-- <mat-form-field appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <mat-select [(ngModel)]="customer.headCountry" >
+                      <mat-option *ngFor="let city of cities" >
+                        {{city.item_text}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
                       </div>
                     </div>
                   </td>
@@ -306,7 +320,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Address Line 2</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput  id="headAddrLine2" name="headAddrLine2" [(ngModel)]="customer.headAddrLine2" 
+                          #headAddrLine2="ngModel" />
                           <mat-hint>Please enter address line 2</mat-hint>
                         </mat-form-field>
                       </div>
@@ -318,7 +333,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Telephone No</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput  id="headtelephoneNumber" name="headtelephoneNumber" [(ngModel)]="customer.headtelephoneNumber" 
+                          #headtelephoneNumber="ngModel" />
                           <mat-hint>Please enter your telephone number</mat-hint>
                         </mat-form-field>
                       </div>
@@ -332,7 +348,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Address Line 3</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput id="headAddrLine3" name="headAddrLine3" [(ngModel)]="customer.headAddrLine3" 
+                          #headaddrLine3="ngModel" />
                           <mat-hint>Please enter address line 3</mat-hint>
                         </mat-form-field>
                       </div>
@@ -344,7 +361,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Fax No</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput id="headfaxNo" name="headfaxNo" [(ngModel)]="customer.headfaxNo" 
+                          #headfaxNo="ngModel" />
                           <mat-hint>Please enter your fax number</mat-hint>
                         </mat-form-field>
                       </div>
@@ -358,7 +376,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Place / City</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput id="headcity" name="headcity" [(ngModel)]="customer.headcity" 
+                          #headcity="ngModel" />
                           <mat-hint>Please enter your place / city</mat-hint>
                         </mat-form-field>
                       </div>
@@ -370,7 +389,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Email / Domain</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput id="heademail" name="heademail" [(ngModel)]="customer.heademail" 
+                          #heademail="ngModel"/>
                           <mat-hint>Please enter your email / domain</mat-hint>
                         </mat-form-field>
                       </div>
@@ -384,7 +404,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>State / Region</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput id="headstate" name="headstate" [(ngModel)]="customer.headstate" 
+                          #headstate="ngModel" />
                           <mat-hint>Please enter your state / region</mat-hint>
                         </mat-form-field>
                       </div>
@@ -396,7 +417,8 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>SWIFT BIC</mat-label>
-                          <input type="text" matInput value="" />
+                          <input type="text" matInput id="headswiftBic" name="headswiftBic" [(ngModel)]="customer.headswiftBic" 
+                          #headswiftBic="ngModel" />
                           <mat-hint>Please enter SWIFT BIC</mat-hint>
                         </mat-form-field>
                       </div>
@@ -407,11 +429,11 @@
             </table>
             <mat-card-actions>
               <span class="fill-remaining-space"></span>
-              <button mat-stroked-button color="primary">
+              <button type="button" mat-stroked-button color="primary" matStepperPrevious>
                 <mat-icon>arrow_back</mat-icon>
                 Back to Financiar Onboarding
               </button>
-              <button mat-flat-button color="primary">
+              <button mat-flat-button color="primary" type="button" matStepperNext>
                 <mat-icon>arrow_forward</mat-icon>
                 Next
               </button>
@@ -441,7 +463,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Address Line 1</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servAddrLine1" name="servAddrLine1" [(ngModel)]="customer.servAddrLine1" 
+                      #servAddrLine1="ngModel" />
                       <mat-hint>Please enter address line 1</mat-hint>
                     </mat-form-field>
                   </div>
@@ -473,7 +496,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Address Line 2</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servAddrLine2" name="servAddrLine2" [(ngModel)]="customer.servAddrLine2" 
+                      #servAddrLine2="ngModel" />
                       <mat-hint>Please enter address line 2</mat-hint>
                     </mat-form-field>
                   </div>
@@ -485,7 +509,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Telephone No</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servtelephoneNumber" name="servtelephoneNumber" [(ngModel)]="customer.servtelephoneNumber" 
+                      #servtelephoneNumber="ngModel" />
                       <mat-hint>Please enter your telephone number</mat-hint>
                     </mat-form-field>
                   </div>
@@ -499,7 +524,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Address Line 3</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servAddrLine3" name="servAddrLine3" [(ngModel)]="customer.servAddrLine3" 
+                      #servAddrLine3="ngModel" />
                       <mat-hint>Please enter address line 3</mat-hint>
                     </mat-form-field>
                   </div>
@@ -511,7 +537,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Fax No</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servfaxNo" name="servfaxNo" [(ngModel)]="customer.servfaxNo" 
+                      #servfaxNo="ngModel" />
                       <mat-hint>Please enter your fax number</mat-hint>
                     </mat-form-field>
                   </div>
@@ -525,7 +552,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Place / City</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servcity" name="servcity" [(ngModel)]="customer.servcity" 
+                      #servcity="ngModel" />
                       <mat-hint>Please enter your place / city</mat-hint>
                     </mat-form-field>
                   </div>
@@ -537,7 +565,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Email / Domain</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servemail" name="servemail" [(ngModel)]="customer.servemail" 
+                      #servemail="ngModel" />
                       <mat-hint>Please enter your email / domain</mat-hint>
                     </mat-form-field>
                   </div>
@@ -551,7 +580,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Local Payment Code</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput  id="paymentCode" name="paymentCode" [(ngModel)]="customer.paymentCode" 
+                      #paymentCode="ngModel" />
                       <mat-hint>Please enter local payment code</mat-hint>
                     </mat-form-field>
                   </div>
@@ -563,7 +593,8 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>SWIFT BIC</mat-label>
-                      <input type="text" matInput value="" />
+                      <input type="text" matInput id="servswiftBic" name="servswiftBic" [(ngModel)]="customer.servswiftBic" 
+                      #servswiftBic="ngModel" />
                       <mat-hint>Please enter SWIFT BIC</mat-hint>
                     </mat-form-field>
                   </div>
@@ -577,11 +608,11 @@
 
         <mat-card-actions>
           <span class="fill-remaining-space"></span>
-          <button mat-stroked-button color="primary">
+          <button mat-stroked-button color="primary" type="button" matStepperPrevious>
             <mat-icon>arrow_back</mat-icon>
             Back to Financiar Registered Head Quarters
           </button>
-          <button mat-flat-button color="primary">
+          <button mat-flat-button color="primary" matStepperNext>
             <mat-icon>arrow_forward</mat-icon>
             Next
           </button>

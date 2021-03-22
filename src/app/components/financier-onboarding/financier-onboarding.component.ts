@@ -6,6 +6,7 @@ import { CustomerService } from '../../service/customer/customer.service';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { DatePipe } from '@angular/common';
 
 
 const ELEMENT_DATA: any[] = [
@@ -39,7 +40,7 @@ export class FinancierOnboardingComponent implements OnInit {
   customer: Customer;
   isOpen = '';
 
-  constructor(private route: ActivatedRoute, private router: Router, 
+  constructor(private route: ActivatedRoute, private router: Router, private datePipe: DatePipe,
     private customerService: CustomerService,public authenticationService: AuthenticationService) {
     this.customer = new Customer();
   }
@@ -61,10 +62,7 @@ export class FinancierOnboardingComponent implements OnInit {
       { item_id: 4, item_text: "Singapore" }
       
     ];
-    this.selectedItems = [
-      { item_id: 4, item_text: "Pune" },
-      { item_id: 6, item_text: "Navsari" }
-    ];
+    this.selectedItems = [];
     this.dropdownSettings = {
       singleSelection: false,
       defaultOpen: false,
@@ -79,10 +77,10 @@ export class FinancierOnboardingComponent implements OnInit {
    
   }
   onItemSelect(item: any) {
-    console.log('onItemSelect', item);
+    this.selectedItems.push(item)
   }
   onItemDeSelect(item: any) {
-    console.log('onItem DeSelect', item);
+    this.selectedItems.push(item)
   }
 
   onSelectAll(items: any) {
@@ -95,7 +93,49 @@ export class FinancierOnboardingComponent implements OnInit {
 
 
   onSubmit() {
-    this.customerService.save(this.customer).subscribe(result => this.gotoPage());
+    let addrlst=[]
+    let headAddr={
+      'addressLine1':this.customer.headAddrLine1,
+        'addressLine2':this.customer.headAddrLine2,
+        'addressLine3':this.customer.headAddrLine3,
+        'city':this.customer.headcity,
+        'state':this.customer.headstate,
+        // 'country':this.customer
+        'telephoneNumber':this.customer.headtelephoneNumber,
+        'email':this.customer.heademail,
+        'faxNo':this.customer.headfaxNo,
+        'swiftBic':this.customer.headswiftBic
+    }
+    let serviceAddr={
+      'addressLine1':this.customer.servAddrLine1,
+      'addressLine2':this.customer.servAddrLine2,
+      'addressLine3':this.customer.servAddrLine3,
+      'city':this.customer.servcity,
+      'state':this.customer.servstate,
+      // 'country':this.customer
+      'telephoneNumber':this.customer.servtelephoneNumber,
+      'email':this.customer.servemail,
+      'faxNo':this.customer.servfaxNo,
+      'swiftBic':this.customer.servswiftBic
+    }
+    // Object.values(headAddr).length && addrlst.push(headAddr)
+    // Object.values(serviceAddr).length && addrlst.push(serviceAddr)
+    addrlst.push(headAddr)
+    addrlst.push(serviceAddr)
+    let params={
+      'corporateCode':this.customer.regNum,
+      'financierNameConstitution':this.customer.fName,
+      'taxIdentificationNumber':this.customer.taxIdNum,
+      'expYear':this.customer.fExpYears,
+      'registerDate':this.datePipe.transform(this.customer.regDate,"dd/MM/yyyy"),
+      'activity':this.customer.activity,
+      'principalBankAccount':this.customer.prnBankAcc,
+      'principalBankBranch':this.customer.prnBankBrnh,
+      'annualSCFTurnOver':this.customer.anlScfTrnOver,
+      'transactionLimit':this.customer.transLimit,
+      'addrlst':addrlst
+    }
+    this.customerService.save(params).subscribe(result => this.gotoPage());
   }
 
   gotoPage() {
