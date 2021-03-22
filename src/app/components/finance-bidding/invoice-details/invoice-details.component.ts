@@ -6,6 +6,9 @@ import { ModalDialogService } from '../../../service/modal-dialog.service';
 import { Validators, FormGroup ,FormBuilder} from '@angular/forms';
 import {InvoiceRequestServices} from '../../invoice-request/invoice-service';
 import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
+import { MatSort } from '@angular/material/sort';
+
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 interface Status {
   value: string;
@@ -78,13 +81,15 @@ const displayInvDatas: any[] = [
 })
 export class InvoiceDetailsComponent implements OnInit {
   finBidform: FormGroup;
+  modalRef: BsModalRef;
 
   status: Status[] = [
     {value: 'A', viewValue: 'A'},
     {value: 'R', viewValue: 'R'},
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
-  constructor(private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
+  
+  constructor(private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
@@ -103,18 +108,41 @@ export class InvoiceDetailsComponent implements OnInit {
   ];
   dataSourceTwo = new MatTableDataSource(DATA_TWO); //data
   displayedColumnsTwo: string[] = [
-    'BidID',
-    'FinOffAmt',
-    'Ccy',
-    'FxRateDiff',
-    'Margin',
-    'DiscRate',
-    'DiscAmt',
-    'NetAmtPay',
-    'DueDate',
-    'OffExpPrd',
-    'Status'
+    'Funding CCY',
+    'FX rate Base CCY',
+    'Base CCY Amount',
+    'Fundable percentage',
+    'Funding Amount / Repay Amount (Base CCY)',
+    'Funding Amount / Repay Amount (Inv CCY)',
+    'Repayment Date'
   ];
+  displayedInvoiceTwo: string[] = [
+    'Inv Discount  Rate',
+    'Disc Amt (Base CCY)',
+    'Disc Amt (Inv CCY)',
+    'Net Amt payable (Base CCY)',
+    'Net Amt payable (Inv CCY)',
+    'Annual Yield (Basis a360)',
+    'Offer Exp period',
+    'Off Exp date /time'
+  ];
+  launchBidPopup :string[] = [
+    'Funding CCY',
+    'Base CCY Amount',
+    'Fundable percentage',
+    'Funding Amount / Repay Amount (Base CCY)',
+    'Repayment Date'
+  ]
+  launchBid_Popup:any
+  launchBidTableTwo_Popup:any
+  launchBidTableTwoPopup :string[] = [
+    'Inv Discount Rate',
+    'Disc Amt (Base CCY)',
+    'Net Amt payable (Base CCY)',
+    'Annual Yield (Basis a360)',
+    'Offer Exp period',
+    'Off Exp date /time'
+  ]
   displayInvDatas = new MatTableDataSource(displayInvDatas); //data
 
   displayedInvoiceFormsColumns: string[] = [
@@ -143,22 +171,24 @@ export class InvoiceDetailsComponent implements OnInit {
   limit = 7;
   isOpen = '';
   bidpanelOpenState = false;
-  @Input() id: "";
+  // @Input() id: "";
+  id:any
 
-  invoiceDetails = {
-    billNo : String,
-          invId : String,
-          invDate : String,
-          invDueDate : String,
-          invAmt : String,
-          buyerName : String,
-          smeId : String,  
-  }
+  // invoiceDetails = {
+  //   billNo : String,
+  //         invId : String,
+  //         invDate : String,
+  //         invDueDate : String,
+  //         invAmt : String,
+  //         buyerName : String,
+  //         smeId : String,  
+  // }
+  invoiceDetails:any
 
 
 
   ngOnInit(): void {
-    console.log(this.id)
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
     this.buildfinBidform()
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
@@ -166,6 +196,8 @@ export class InvoiceDetailsComponent implements OnInit {
 
     this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
       if(resp){
+
+        this.invoiceDetails = resp
         this.displayInvDatas = new MatTableDataSource([
          {
           billNo : resp.billNo,
@@ -196,7 +228,14 @@ export class InvoiceDetailsComponent implements OnInit {
       netAmtDisc: ['', Validators.required],
       // dueDate: ['', Validators.required],
       offerExpPeriod: ['', Validators.required],
-      finId: localStorage.getItem("userId"),
+      RepaymentDate:['', Validators.required],
+      DiscAmtInvCCY:['', Validators.required],
+      NetAmtpayableBaseCCY:['', Validators.required],
+      NetAmtpayableInvCCY:['', Validators.required],
+      AnnualYieldBasis:['', Validators.required],
+      OfferExpperiod:['', Validators.required],
+      OffExpdatetime:['', Validators.required],
+      fin: localStorage.getItem("userId"),
       invoiceId : this.id
     })
   }
@@ -257,28 +296,41 @@ export class InvoiceDetailsComponent implements OnInit {
       })
 
   }
+  openModal(event, template) {
+    event.preventDefault();
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+  }
+ 
   onSubmitBidForm() {
     try {
       // for (const key in this.invoiceForm.controls) {
       //   this.invoiceForm.get(key).setValidators(Validators.required);
       //   this.invoiceForm.get(key).updateValueAndValidity();
       //   }
-      if (this.finBidform.status === "INVALID")
-        throw { "mes": "Please fill mendatory  fields" }
-      let params = this.finBidform.value
-      // this.invoiceFormBuild();
-      // this.dataSourceTwo.data = [];
-      // this.invoiceID = "";
-      // this.InvoiceFdate = ""
-      // for (const key in this.invoiceForm.controls) {
-      //   this.invoiceForm.get(key).clearValidators();
-      //   this.invoiceForm.get(key).updateValueAndValidity();
-      // }
-      this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
-        this.buildfinBidform();
-        // this.getInvDetailsLists();
-      }, error => {
-      })
+
+      let array = []
+      array.push(this.finBidform.value)
+      this.launchBid_Popup = new MatTableDataSource(array);
+      console.log(this.finBidform.value)
+      console.log(this.finBidform,"this.finBidform")
+      if (this.finBidform.status === "INVALID"){
+        alert("Please fill Mandatory fields")
+      }else{
+        let params = this.finBidform.value
+        // this.invoiceFormBuild();
+        // this.dataSourceTwo.data = [];
+        // this.invoiceID = "";
+        // this.InvoiceFdate = ""
+        // for (const key in this.invoiceForm.controls) {
+        //   this.invoiceForm.get(key).clearValidators();
+        //   this.invoiceForm.get(key).updateValueAndValidity();
+        // }
+        this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
+          this.buildfinBidform();
+          // this.getInvDetailsLists();
+        }, error => {
+        })
+      }
     } 
     catch (err) {
     }

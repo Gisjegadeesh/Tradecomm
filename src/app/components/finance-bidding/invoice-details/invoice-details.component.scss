@@ -23,8 +23,8 @@ $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
 
 header {
     // margin: -$margin (-$margin) $uxg-spacing-0;
-    margin: -32px 30px 0;
-    padding: $margin;
+    // margin: -32px 30px 0;
+    // padding: $margin;
     position: relative;
     height: 45%;
     width: 100%;
@@ -258,24 +258,20 @@ table {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: $uxg-spacing-4;
+    margin-top: $uxg-spacing-2;
     padding-bottom: $uxg-spacing-4;
 }
 
-.buttons {
-    text-align: center;
-    padding-bottom: $uxg-spacing-4;
-    button + button{
-        margin-left: $uxg-spacing-2 * 4;
-    }
-}
 
+button + button{
+    margin-left: $uxg-spacing-3;
+}
 
 
 mat-form-field {
     align-self: stretch;
     margin-bottom: $uxg-spacing-2;
-    margin-left: $uxg-spacing-3 * 6;
+    // margin-left: $uxg-spacing-3 * 6;
     width: 400px;
 }
 
@@ -287,7 +283,7 @@ mat-form-field {
     // width: 90%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: $uxg-spacing-4;
+    margin-top: $uxg-spacing-5;
 }
 
 .table-section {
@@ -298,12 +294,9 @@ mat-form-field {
 }
 ::ng-deep .cdk-overlay-container {
     z-index: 1200 !important;
-  }
-
-  table.mat-table.cdk-table.invoice-table{
-    width: 100%;
 }
 
-table.mat-table.cdk-table.invoice-table-bidding{
-    width: 70%;
+.ebtn {
+    display: flex;
+    justify-content: flex-end;
 }

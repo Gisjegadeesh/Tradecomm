@@ -137,6 +137,9 @@ export class FinanceBiddingComponent implements OnInit {
     this.router.navigateByUrl('/financier-dashboard');
   }
 
+  navigateInvoiceDetails(id){
+    this.router.navigateByUrl('/finance-bidding/'+id);
+  }
   openModal(event, template,id) {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});

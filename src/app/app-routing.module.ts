@@ -30,7 +30,8 @@ const routes: Routes = [
   { path: 'financier-dashboard', component: FinancierDashboardComponent ,  data : {"HeaderName" : "Financier Dashboard","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding', component: FinanceBiddingComponent, data : {"HeaderName" : "Financier Bidding","homePath" : "/financier-dashboard"} },
   { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Invoice Entry","homePath" : "/financier-dashboard"}},
-  { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details" ,"homePath" : "/financier-dashboard"}},
+  { path: 'finance-bidding/:id', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details"}},
+  // { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details" ,"homePath" : "/financier-dashboard"}},
   { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}}
 ];
 
