@@ -226,12 +226,15 @@ export class InvoiceDetailsComponent implements OnInit {
       discAmt: ['', Validators.required],
       netAmtDisc: ['', Validators.required],
       // dueDate: ['', Validators.required],
-      offerExpPeriod: ['', Validators.required],
       RepaymentDate:['', Validators.required],
+      offerExpPeriod: ['', Validators.required],
+      fin: localStorage.getItem("userId"),
+      discINAmt:['', Validators.required],
+      netAmtINDisc:['', Validators.required],
       NetAmtpayableInvCCY:['', Validators.required],
       AnnualYieldBasis:['', Validators.required],
       OffExpdatetime:['', Validators.required],
-      fin: localStorage.getItem("userId"),
+      offerExpINPeriod:['', Validators.required],
       invoiceId : this.id
     })
   }
