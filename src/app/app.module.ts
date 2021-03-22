@@ -61,7 +61,8 @@ import { SmeFinancierForBiddingServices } from './components/sme-financefor-bidd
 import { SmeDashboardServices } from './components/sme-dashboard/sme-dashboard-service';
 import { FinancierDashboardServices } from './components/financier-dashboard/financier-dashboard-services';
 import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-services';
-
+import { AcceptedFinanceComponent } from './components/accepted-finance/accepted-finance.component';
+import {AcceptedFinanceServices} from './components/accepted-finance/accepted-finance-service'
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 
@@ -82,7 +83,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     IccDashboardComponent,
     NavbarComponent,
     SidebarComponent,
-    SmeFinanceforBiddingComponent
+    SmeFinanceforBiddingComponent,
+    AcceptedFinanceComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +125,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTooltipModule
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
-    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,FinancierDashboardServices,IccDashboardServices,
+    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
+    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

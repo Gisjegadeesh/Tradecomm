@@ -1,3 +1,21 @@
+// import { Component, OnInit } from '@angular/core';
+
+// @Component({
+//   selector: 'app-accepted-finance',
+//   templateUrl: './accepted-finance.component.html',
+//   styleUrls: ['./accepted-finance.component.scss']
+// })
+// export class AcceptedFinanceComponent implements OnInit {
+
+//   constructor() { }
+
+//   ngOnInit(): void {
+//   }
+
+// }
+
+
+
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ModalDialogService } from '../../service/modal-dialog.service';
@@ -5,8 +23,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
-import { SmeFinancierForBiddingServices } from './sme-financefor-bidding-service';
-import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
+import { AcceptedFinanceServices } from './accepted-finance-service'
 // const ELEMENT_DATA: any[] = [
 //   {
 //     Name: '',
@@ -51,14 +68,21 @@ const INVOICE_DATA: invoiceDetails[] = [];
 export interface biddingDetails {
   'financeOfferAmt' : String, 'ccy' : String, 'fxRate' : String, 'margin' : String, 'netAmtDisc' : String,'discAmt' : String,'discRate' : String,'offerExpPeriod' : String}
 const BIDDING_DATA: biddingDetails[] = [];
-     
-@Component({
-  selector: 'app-sme-financefor-bidding',
-  templateUrl: './sme-financefor-bidding.component.html',
-  styleUrls: ['./sme-financefor-bidding.component.scss']
-})
 
-export class SmeFinanceforBiddingComponent implements OnInit {
+// @Component({
+//   selector: 'app-sme-financefor-bidding',
+//   templateUrl: './sme-financefor-bidding.component.html',
+//   styleUrls: ['./sme-financefor-bidding.component.scss']
+// })
+
+// export class SmeFinanceforBiddingComponent implements OnInit {
+
+  @Component({
+  selector: 'app-accepted-finance',
+  templateUrl: './accepted-finance.component.html',
+  styleUrls: ['./accepted-finance.component.scss']
+})
+export class AcceptedFinanceComponent implements OnInit {
 
   displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -73,7 +97,8 @@ export class SmeFinanceforBiddingComponent implements OnInit {
   displayedColumnsTwo: string[] = ['invId', 'invDate', 'buyerName', 'invAmt', 'status'];
 
   dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
-  displayedColumnsThree: string[] = ['financeOfferAmt', 'ccy', 'fxRate', 'margin', 'netAmtDisc','discAmt','discRate','offerExpPeriod'];
+  displayedColumnsThree: string[] = ['financierRef', 'financier', 'invoiceAmt',  'marginPercent',   'financierAmt',   'discRate', 'discAmt',  'netAmtDisc',    'fundedAmt', 'fxRate', 'dateOfFunding', 'tenorDays', 
+    'dueDate', 'paymentDate', 'relInvRef',  'relBidRef'];
 
 
   isOpen = ""
@@ -87,8 +112,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
   color: ThemePalette = 'warn';
   ischecked = "true"
   bidpanelOpenState = false;
-  biddingTooltip = BIDDINGCONSTANTS;
-  
+
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -101,7 +125,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     }
   }
   constructor(public router: Router, private modalService: BsModalService, private modalDialogService: ModalDialogService,
-    private authenticationService: AuthenticationService, private SmeFinancierForBiddingServices: SmeFinancierForBiddingServices) { }
+    private authenticationService: AuthenticationService, private AcceptedFinanceServices: AcceptedFinanceServices) { }
 
 
   ngOnInit() {
@@ -122,10 +146,15 @@ export class SmeFinanceforBiddingComponent implements OnInit {
       status: "I"
     }]);
 
-    this.SmeFinancierForBiddingServices.getFinanceForBiddingLists().subscribe(resp => {
+    this.AcceptedFinanceServices.getFinanceForBiddingLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
     })
+
+
+   
+
+    
 
   }
 
@@ -164,7 +193,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
    
-    this.SmeFinancierForBiddingServices.getInvoiceRequestLists(data.id).subscribe(resp => {
+    this.AcceptedFinanceServices.getInvoiceRequestLists(data.id).subscribe(resp => {
       let status = "";
       if (resp.status == "I") {
         status = "Initiated"
@@ -186,14 +215,15 @@ export class SmeFinanceforBiddingComponent implements OnInit {
       
     })
 
-    // this.dataSourceThree = new MatTableDataSource([
-    //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
-
-    this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
+    this.AcceptedFinanceServices.getAcceptedFinanceDetails(data.invId).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }
     })
+
+
+    // this.dataSourceThree = new MatTableDataSource([{'financeOfferAmt' : 'test', 'ccy' : 'test', 'fxRate' : 'test', 'margin' : 'test', 'netAmtDisc' : 'test','discAmt' : 'test','discRate' : 'test','offerExpPeriod' : 'test','offerExpPeriod1' : 'test','offerExpPeriod2' : 'test','offerExpPeriod3' : 'test','offerExpPeriod4' : 'test','offerExpPeriod5' : 'test','offerExpPeriod6' : 'test','offerExpPeriod7' : 'test','offerExpPeriod8' : 'test','offerExpPeriod9' : 'test','offerExpPeriod10' : 'test'}])
+
   }
 
   handleToggle(e, status) {
@@ -209,4 +239,5 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     this.authenticationService.logout()
   }
 }
+
 

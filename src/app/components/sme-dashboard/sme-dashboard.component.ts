@@ -293,6 +293,10 @@ export class SmeDashboardComponent implements OnInit {
       this.router.navigateByUrl('/invoice-request');
     }
 
+    navigateAcceptedFinance(){
+      this.router.navigateByUrl('/accepted-finance');
+    }
+
     logout(){
       this.authenticationService.logout()
       }
