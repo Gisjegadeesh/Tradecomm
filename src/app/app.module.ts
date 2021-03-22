@@ -63,6 +63,8 @@ import { FinancierDashboardServices } from './components/financier-dashboard/fin
 import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-services';
 import { AcceptedFinanceComponent } from './components/accepted-finance/accepted-finance.component';
 import {AcceptedFinanceServices} from './components/accepted-finance/accepted-finance-service'
+import { SmeBiddingServices } from './components/sme-bidding/sme-bidding-services';
+
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 
@@ -126,7 +128,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
-    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,
+    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

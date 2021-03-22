@@ -6,18 +6,18 @@ import { environment } from '../../../environments/environment';
 export class SmeDashboardServices {
   constructor(private apiService: ApiService) { }
   getFinBidRecvd(){
-    return this.apiService.dashBoardsServiceget(environment.dboardServerPath1+'getFinBidRecvd');
+    return this.apiService.generalServiceget(environment.dboardServerPath1+'getFinBidRecvd');
   }
   getFinForBid(){
-    return this.apiService.dashBoardsServiceget(environment.dboardServerPath2+'getFinForBid');
+    return this.apiService.generalServiceget(environment.getSumOfOpenFinBidding+'invoice-request/getSumOfOpenFinBidding/'+localStorage.getItem("userId"));
   }
   getAcceptdFin(){
-    return this.apiService.dashBoardsServiceget(environment.dboardServerPath3+'getAcceptdFin');
+    return this.apiService.generalServiceget(environment.dboardServerPath3+'getAcceptdFin');
   }
   getFinDueTdy(){
-    return this.apiService.dashBoardsServiceget(environment.dboardServerPath4+'getFinDueTdy');
+    return this.apiService.generalServiceget(environment.dboardServerPath4+'getFinDueTdy');
   }
   getFinPastDue(){
-    return this.apiService.dashBoardsServiceget(environment.dboardServerPath5+'getFinPastDue');
+    return this.apiService.generalServiceget(environment.dboardServerPath5+'getFinPastDue');
   }
 }

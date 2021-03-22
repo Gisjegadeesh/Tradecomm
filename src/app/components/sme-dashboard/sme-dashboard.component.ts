@@ -228,6 +228,7 @@ export class SmeDashboardComponent implements OnInit {
 
   dashboardTooltips=DASHBOARDCONSTANTS;
   commonTooltips=COMMONCONSTANTS;
+  getSumOfOpenFinBidding;
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {
@@ -306,6 +307,7 @@ export class SmeDashboardComponent implements OnInit {
     }
     getFinForBid(){
       this.smeDashboardServices.getFinForBid().subscribe(resp => {
+        this.getSumOfOpenFinBidding = resp;
     })
     }
     getAcceptdFin(){

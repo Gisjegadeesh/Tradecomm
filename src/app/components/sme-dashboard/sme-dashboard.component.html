@@ -124,20 +124,20 @@
             <div #accountList class="accounts-list">
                 <uxg-account-card class="curs-pointer" name="Financier Bid Receive"  #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.financeBidReceive}}"
-                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" (click)="this.navigateFinancierBidding()" ></uxg-account-card>
-                <uxg-account-card class="curs-pointer" name="Finance for Bidding" number="S$3,067.98" #tooltip="matTooltip"
+                [matTooltipPosition]="tooltipPosition" number="SGD 0" (click)="this.navigateFinancierBidding()" ></uxg-account-card>
+                <uxg-account-card name="Finance for Bidding" number="{{getSumOfOpenFinBidding?.invCcy}} {{getSumOfOpenFinBidding?.invTotalAmt? getSumOfOpenFinBidding?.invTotalAmt : 'SGD 0'}}" #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.bidDetails}}"
                 [matTooltipPosition]="tooltipPosition" (click)="this.navigateFinancieForBidding()"></uxg-account-card>
                 <!-- <uxg-account-card class="curs-pointer" name="Invoice Creation" number="New"(click)="this.navigateInvoiceCreation()" ></uxg-account-card> -->
                 <uxg-account-card class="curs-pointer" name="Accepted Finance" #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.acceptedDetails}}"
-                [matTooltipPosition]="tooltipPosition" (click)="this.navigateAcceptedFinance()" number="S$3,067.98" ></uxg-account-card>
+                [matTooltipPosition]="tooltipPosition" (click)="this.navigateAcceptedFinance()" number="SGD 0" ></uxg-account-card>
                 <uxg-account-card class="curs-pointer" name="Finance Due Today" #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.todayDue}}"
-                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" ></uxg-account-card>
+                [matTooltipPosition]="tooltipPosition" number="SGD 0" ></uxg-account-card>
                 <uxg-account-card class="curs-pointer" name="Finance Past Due" #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.pastDue}}"
-                [matTooltipPosition]="tooltipPosition" number="S$3,067.98" ></uxg-account-card>
+                [matTooltipPosition]="tooltipPosition" number="SGD 0" ></uxg-account-card>
             </div>
         </ng-container>
         <div class="col-md-12" style="float:right">

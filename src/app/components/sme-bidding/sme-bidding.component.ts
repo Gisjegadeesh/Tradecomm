@@ -10,6 +10,8 @@ import { FinancierService } from '../../service/financier/financier.service';
 import { Observable } from 'rxjs';
 import {DataSource} from '@angular/cdk/collections';
 import { SMEDASHBOARDCONSTANTS } from '../../shared/constants/constants';
+import { SmeBiddingServices } from './sme-bidding-services';
+import {INVOICEDETAILSCONSTANTS} from '../../shared/constants/constants';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -115,9 +117,8 @@ export class SmeBiddingComponent implements OnInit {
   modalRef: BsModalRef;
   color: ThemePalette = 'warn';
   ischecked = "true"
-
-
-
+  detailsTooltip=INVOICEDETAILSCONSTANTS
+  bidDetails
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -133,25 +134,13 @@ export class SmeBiddingComponent implements OnInit {
   financierTooltip=SMEDASHBOARDCONSTANTS;
   
   constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
-    ,private financierService: FinancierService) { }
-  //dataSourceOne = new MatTableDataSource(DATA_ONE); //data
-  dataSourceOne;
-  dataSourceTwo = new UserDataSource(this.financierService); //data
-  dataSourceInvoiceDetails ;
+    ,private financierService: FinancierService,private smeBiddingServices : SmeBiddingServices) { }
+  dataSourceOne = new MatTableDataSource(DATA_ONE); //data
+  dataSourceTwo; //data
+  dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
 
-  displayedColumnsOne: string[] = [
-    'SNo',
-    'DescGoods',
-    'IdNo',
-    'Qty',
-    'Amt',
-    'Currency',
-    'TaxRate',
-    'TaxAmt',
-    'TaxCurrency',
-    'Total',
-    'TotalCurrency'
-  ];
+  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+
   displayedColumnsTwo: string[] = [
     'BidID',
     'FinOffAmt',
@@ -168,7 +157,7 @@ export class SmeBiddingComponent implements OnInit {
   displayedInvDetailsColumns: string[] = [
     'InvoiceID',
     'InvoiceDate',
-    'Seller',
+    'smeId',
     'Buyer',
     'Amount',
   ];
@@ -179,20 +168,8 @@ export class SmeBiddingComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.financierService.getInvoiceDetails().subscribe(resp => {
-      
-     
+      console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
-     
-    })
-    //dataSourceInvoiceDetails
-
-    this.financierService.getInvoiceAndGoodsDetails().subscribe(resp =>{
-      console.log('inside-->'+resp['goodsDetails']);
-      //let res = resp[0];//goodsDetails
-      //this.goods_array=resp['goodsDetails'];
-      //console.log(this.goods_array[0]['goodsId']);  resp[0].goodsDetails
-      this.dataSourceOne = new MatTableDataSource(resp[0].goodsDetails);
-      this.dataSourceInvoiceDetails=new MatTableDataSource(resp);
     })
   }
 
@@ -227,21 +204,35 @@ export class SmeBiddingComponent implements OnInit {
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
     }
 
-  openModal(event, template,id) {
-      //this.id=id;
+  openModal(event, template,element) {
       event.preventDefault();
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
-      
+      this.smeBiddingServices.getBiddingDetails(element.invId).subscribe(resp => {
+       this.dataSourceTwo = new MatTableDataSource(resp);
+       this.bidDetails = resp;
+      }) 
+      this.smeBiddingServices.getInvoiceGoodsDetails(element.id).subscribe(resp => {
+        this.dataSourceOne = new MatTableDataSource(resp.goodsDetails)
+        this.dataSourceInvoiceDetails = new MatTableDataSource([
+          { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status ,'smeId' : resp.smeId}
+        ]);
+       })
+     
+      // this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
+      //   if(resp){
+      //     this.dataSourceThree = new MatTableDataSource(resp);
+      //   }
+      // })
     }
-
+    saveFinBid(){
+      var element = this.bidDetails;
+      this.smeBiddingServices.saveFinBid(element).subscribe(resp => {
+    })
+    }
     handleToggle(e,status){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
-      })
-
+    })
   }
-
-  
-
   goHome(){
     this.router.navigateByUrl('/sme-dashboard');
   }
