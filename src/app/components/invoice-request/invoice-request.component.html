@@ -113,49 +113,12 @@
                 </td> -->
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
-                    <mat-label>Buyer Name</mat-label>
-                    <input type="text" matInput value="" formControlName="buyerName"/>
-                    <!-- <mat-hint>Please enter Buyer Name</mat-hint> -->
-                  </mat-form-field>
-                </td>
-                <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
-                    <mat-label>Invoice Due Date</mat-label>
-                    <input matInput [matDatepicker]="pickers" formControlName="invDueDate" />
-                    <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
-                    <mat-datepicker #pickers></mat-datepicker>
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
-                    <mat-label>Invoice ID</mat-label>
-                    <input type="text" matInput value="" formControlName="invId" (keyup)="updateInvoiceId($event)"/>
+                    <mat-label>Funding Request ID</mat-label>
+                    <input type="text" matInput formControlName="invId" (keyup)="updateInvoiceId($event)"/>
                     <!-- <mat-hint>Please enter Invoice ID</mat-hint> -->
                   </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
-                    <mat-label>Buyer Address</mat-label>
-                    <input type="text" matInput value="" formControlName="buyerAddr" />
-                    <!-- <mat-hint>Please enter Buyer Address </mat-hint> -->
-                  </mat-form-field>
-                </td>
-                <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
-                    <!-- <mat-icon dense color="primary" matPrefix>person_outline</mat-icon> -->
-                    <mat-label>BL/Roadway Bill No</mat-label>
-                    <input type="text" matInput value="" formControlName="billNo" />
-                    <!-- <mat-hint>Please enter the BL/Roadway Bill No</mat-hint> -->
-                    <mat-icon class="info_icon" matSuffix  #tooltip="matTooltip"
-                    matTooltip="{{fundingTooltip.billInfo}}"
-                    [matTooltipPosition]="'below'">info</mat-icon>
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td rowspan="1" colspan="1" class="row col-md-12">
                   <!-- <span class="col-md-6 invoice_amt_field">
                   <mat-form-field dense class=" field1">
                     <mat-label>Invoice Amount</mat-label>
@@ -174,17 +137,57 @@
                   </ng-multiselect-dropdown>
                 </span> -->
                 <mat-form-field dense >
-                  <mat-label>Invoice Amount</mat-label>
+                  <mat-label>Funding Request Amount</mat-label>
                   <input type="text" matInput value="" formControlName="invAmt"/>
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
-                    <mat-label>Invoice Date</mat-label>
+                    <mat-label>Buyer Name</mat-label>
+                    <input type="text" matInput value="" formControlName="buyerName"/>
+                    <!-- <mat-hint>Please enter Buyer Name</mat-hint> -->
+                  </mat-form-field>
+                </td>
+               
+              </tr>
+              <tr>
+                  
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-label>Funding Request Date</mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="invDate" (dateInput)="updateInvoicedate($event)">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-label>Funding Request Due Date</mat-label>
+                    <input matInput [matDatepicker]="pickers" formControlName="invDueDate" />
+                    <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+                    <mat-datepicker #pickers></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <mat-label>Buyer Address</mat-label>
+                    <input type="text" matInput value="" formControlName="buyerAddr" />
+                    <!-- <mat-hint>Please enter Buyer Address </mat-hint> -->
+                  </mat-form-field>
+                </td>
+                
+              </tr>
+              <tr>
+                <td rowspan="1" colspan="1">
+                  <mat-form-field dense>
+                    <!-- <mat-icon dense color="primary" matPrefix>person_outline</mat-icon> -->
+                    <mat-label>BL/Roadway Bill No</mat-label>
+                    <input type="text" matInput value="" formControlName="billNo" />
+                    <!-- <mat-hint>Please enter the BL/Roadway Bill No</mat-hint> -->
+                    <mat-icon class="info_icon" matSuffix  #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.billInfo}}"
+                    [matTooltipPosition]="'below'">info</mat-icon>
                   </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
@@ -199,14 +202,14 @@
            
             </tbody>
           </table>
-          <mat-card-actions class="ebtn">
+          <!-- <mat-card-actions class="ebtn">
             <span class="fill-remaining-space"></span>
             <button mat-flat-button color="primary" (click)=addRow() id=grid  #tooltip="matTooltip"
             matTooltip="{{fundingTooltip.addGoods}}"
             [matTooltipPosition]="tooltipPosition">
-              Add Goods
+              Add Goods 
             </button>
-          </mat-card-actions>
+          </mat-card-actions> -->
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -219,12 +222,14 @@
                   <ng-container matColumnDef="ID" >
                     <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.id}}"
-                    [matTooltipPosition]="tooltipPosition">ID</th>
+                    [matTooltipPosition]="tooltipPosition"> ID</th>
                       <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="ID" 
                       placeholder="ID" 
-                      readonly>
+                      readonly
+                      value="{{invoiceID}}"
+                      >
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="DescGoods">
@@ -248,7 +253,7 @@
                     </td>
                   </ng-container> -->
 
-                  <ng-container matColumnDef="DateOfInvoice">
+                  <!-- <ng-container matColumnDef="DateOfInvoice">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.invoiceDate}}"
                     [matTooltipPosition]="tooltipPosition">Date Of Invoice</th>
@@ -258,17 +263,18 @@
                       placeholder="Date of Invoice" 
                       readonly>
                     </td>
-                  </ng-container>
+                  </ng-container> -->
 
                   <ng-container matColumnDef="Quantity">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.quantity}}"
                     [matTooltipPosition]="tooltipPosition">Quantity</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
-                      <input matInput 
+                   
+                     <input matInput 
                       formControlName="quantity" 
                       placeholder="Quantity" 
-                      required>
+                      required (keyup)="changeRowgrid(index)">
                     </td>
                   </ng-container>
 
@@ -280,7 +286,7 @@
                       <input matInput 
                       formControlName="rate" 
                       placeholder="Rate" 
-                      required>
+                      required (keyup)="changeRowgrid(index)">
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Amt">
@@ -291,7 +297,8 @@
                       <input matInput 
                       formControlName="amt" 
                       placeholder="Amount" 
-                      required>
+                      value="{{element.amt}}"
+                      required readonly>
                     </td>
                   </ng-container>
 
@@ -303,7 +310,7 @@
                       <input matInput 
                       formControlName="discAmt" 
                       placeholder="Disc Amount" 
-                      required>
+                       required (keyup)="changeRowgrid(index)">
                     </td>
                   </ng-container>
 
@@ -315,7 +322,7 @@
                       <input matInput 
                       formControlName="netAmtPay" 
                       placeholder="Net Amount" 
-                      required>
+                      required readonly>
                     </td>
                   </ng-container>
 
@@ -327,7 +334,8 @@
                       <input matInput 
                       formControlName="taxRate" 
                       placeholder="Tax Rate" 
-                      required>
+                      required  (keyup)="changeRowgrid(index)"
+                      >
                     </td>
                   </ng-container>
 
@@ -339,18 +347,22 @@
                       <input matInput 
                       formControlName="taxAmount" 
                       placeholder="Tax Amount" 
-                      required>
+                      required readonly>
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Total">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.total}}"
-                    [matTooltipPosition]="tooltipPosition">Total</th>
+                    [matTooltipPosition]="tooltipPosition">Total <span class="add-good-plusbtn" mat-flat-button color="primary" (click)=addRow() id=grid  #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.addGoods}}"
+                    [matTooltipPosition]="tooltipPosition">
+                    +
+                  </span> </th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       formControlName="total" 
                       placeholder="Total" 
-                      required>
+                      required readonly>
                     </td>
                   </ng-container>
                   <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
@@ -365,7 +377,7 @@
               <button mat-flat-button color="primary"id=grid #tooltip="matTooltip"
               matTooltip="{{fundingTooltip.saveGoods}}"
               [matTooltipPosition]="tooltipPosition">
-                Save
+                Add Invoice
               </button>
             </mat-card-actions>
           </mat-card-content>
@@ -439,13 +451,13 @@
       <mat-card-actions class="ebtn">
         <span class="fill-remaining-space"></span>
         <button mat-flat-button color="primary" #tooltip="matTooltip"
-        matTooltip="{{fundingTooltip.submit}}" [matTooltipPosition]="tooltipPosition">
+        matTooltip="{{fundingTooltip.submit}}" [matTooltipPosition]="tooltipPosition" disabled>
           Submit
         </button>
-        <button mat-flat-button color="primary" #tooltip="matTooltip"
+        <!-- <button mat-flat-button color="primary" #tooltip="matTooltip"
         matTooltip="{{fundingTooltip.pendingInvoice}}" [matTooltipPosition]="tooltipPosition">
           Pend
-        </button>
+        </button> -->
         <button mat-flat-button color="primary" (click)="authoriseInvoice()" #tooltip="matTooltip"
         matTooltip="{{fundingTooltip.invoiceAuthorise}}" [matTooltipPosition]="tooltipPosition">
           Authorise

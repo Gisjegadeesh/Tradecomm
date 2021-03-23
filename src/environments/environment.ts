@@ -20,13 +20,13 @@
 //Local Path Link 
 
 //General Service
-let BASE_PATH = "http://localhost:8080/";
+let BASE_PATH = "http://111b7aef83ed.ngrok.io/";
 
 // Invoice Service Url 8080
-let serviePath_1 = "http://localhost:8080/";
+let serviePath_1 = "http://111b7aef83ed.ngrok.io/";
 
 // Bidding Service Url 8081
-let serviePath_2 = "http://localhost:8081/";
+let serviePath_2 = "http://111b7aef83ed.ngrok.io/";
 
 //Dashboard  Service Url
 let dboardServerPath1 = "http://dboardServPath1/";
