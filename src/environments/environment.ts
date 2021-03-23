@@ -23,10 +23,10 @@
 let BASE_PATH = "http://111b7aef83ed.ngrok.io/";
 
 // Invoice Service Url 8080
-let serviePath_1 = "http://111b7aef83ed.ngrok.io/";
+let serviePath_1 = "http://e0e5381bff36.ngrok.io/";
 
 // Bidding Service Url 8081
-let serviePath_2 = "http://111b7aef83ed.ngrok.io/";
+let serviePath_2 = "http://1c937486ae4a.ngrok.io/";
 
 //Dashboard  Service Url
 let dboardServerPath1 = "http://dboardServPath1/";
