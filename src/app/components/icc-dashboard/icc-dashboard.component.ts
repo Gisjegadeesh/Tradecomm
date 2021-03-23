@@ -3,6 +3,16 @@ import { Router } from "@angular/router";
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { IccDashboardServices } from './icc-dashboard-services'
 import {ICCDASHBOARDCONSTANTS} from '../../shared/constants/constants'
+
+export interface FinancierDatas {
+  financierId: string;
+  financierName: string;
+  regNumber: number;
+  action: string;
+}
+let FINANACIERLIST: FinancierDatas[] = [
+  // {financierId: 1, financierName: 'Jack', regNumber: 1.0079, action: 'edit'},
+]
 @Component({
   selector: "app-icc-dashboard",
   templateUrl: "./icc-dashboard.component.html",
@@ -16,7 +26,8 @@ export class IccDashboardComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   isOpen = "active";
-
+  displayedColumns: string[] = ['financierId', 'financierName', 'regNumber', 'action'];
+  dataSource = [];
   @ViewChild("accountList", { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -29,7 +40,7 @@ export class IccDashboardComponent implements OnInit {
     }
   }
   dashboardTooltip=ICCDASHBOARDCONSTANTS
-
+  financierListDatas=[]
   constructor(public router: Router,private authenticationService: AuthenticationService,private iccDashboardServices: IccDashboardServices ) { }
 
   ngOnInit() {
@@ -37,8 +48,26 @@ export class IccDashboardComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.getIccDashDetails()
+    this.getFinancierDetails()
+    this.dataSource=[]
   }
-
+  getFinancierDetails(){
+    this.iccDashboardServices.getFinancierList().subscribe(resp=>{
+      if(resp){
+        FINANACIERLIST = []      
+        resp.length && resp.map((item=>{
+            let obj={
+              "financierId":'FIN' + item.namedPKKey,
+              "financierName":item.financierNameConstitution,
+              "regNumber":item.locregno,
+              "action":'edit'
+            }
+            FINANACIERLIST.push(obj)
+            this.dataSource=FINANACIERLIST
+          }))
+      }
+    })
+  }
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -107,5 +136,12 @@ export class IccDashboardComponent implements OnInit {
         // this.dataSource = new MatTableDataSource(resp);
       })
     }
-    
+    editFinancier(id,type){
+      if(type == 'edit'){
+        this.router.navigateByUrl('/financier-onboarding/edit/' + id)
+      }
+      else{
+        this.router.navigateByUrl('/financier-onboarding/view/' + id)
+      }
+    }
 }

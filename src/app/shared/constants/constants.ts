@@ -152,7 +152,13 @@ export const ICCDASHBOARDCONSTANTS={
     'offerAcceptance':'Accepted Offer Details',
     'financedToday':'Financed Today',
     'financedMaster':'Financed Master',
-    'invoiceMaster':'Invoice Master Details'
+    'invoiceMaster':'Invoice Master Details',
+    'financierOnboard':'Create/ Onboard a Financier',
+    'financierView':'View a Particular Financier Details',
+    'financierEdit':'Edit a Particular Financier Details',
+    'financierId':'Financier Id (Unique)',
+    'financierName':'Financier Name',
+    'regNo':'Local Registration Number'
 }
 
 // INVOICE DETAILS PAGE TOOLTIPS

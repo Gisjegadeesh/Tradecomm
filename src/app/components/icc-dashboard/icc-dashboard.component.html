@@ -158,10 +158,60 @@
                 </mat-tab>
                 <mat-tab label="Financier Maintenence">
                   <div class="links">
-                    <a routerLink="#" (click)="this.navigateFinancierOnboard()" >Onboarding</a>
-                    <a routerLink="#">Edit</a>
-                    <a routerLink="#">View</a>
+                    <button mat-button type="button"  #tooltip="matTooltip" mat-stroked-button color="primary"
+                    matTooltip="{{dashboardTooltip.financierOnboard}}" [matTooltipPosition]="'below'" (click)="this.navigateFinancierOnboard()" >Onboarding</button>
+                    <!-- <a routerLink="#">Edit</a>
+                    <a routerLink="#">View</a> -->
                   </div>
+                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="financierId">
+                      <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
+                      matTooltip="{{dashboardTooltip.financierId}}" [matTooltipPosition]="'below'"> Financier Id </th>
+                      <td mat-cell *matCellDef="let element"> {{element.financierId}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="financierName">
+                      <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
+                      matTooltip="{{dashboardTooltip.financierName}}" [matTooltipPosition]="'below'"> Financier Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.financierName}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="regNumber">
+                      <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
+                      matTooltip="{{dashboardTooltip.regNo}}" [matTooltipPosition]="'below'"> Register No </th>
+                      <td mat-cell *matCellDef="let element"> {{element.regNumber}} </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef> Action </th>
+                      <td mat-cell *matCellDef="let element"> 
+                        <!-- <button mat-button type="button" (click)="editFinancier(element.financierId,'edit')">
+                          <mat-icon aria-hidden="false" aria-label="Example home icon">mode_edit</mat-icon>
+                        </button>
+                        <button mat-button type="button" (click)="editFinancier(element.financierId,'view')">
+                          <mat-icon aria-hidden="false" aria-label="Example home icon">remove_red_eye</mat-icon>
+                        </button> -->
+                        <a href="javascript:void(0)" (click)="editFinancier(element.financierId,'edit')" #tooltip="matTooltip"
+                        matTooltip="{{dashboardTooltip.financierEdit}}" [matTooltipPosition]="'below'">Edit</a>&nbsp;
+                        <a href="javascript:void(0)" (click)="editFinancier(element.financierId,'view')" #tooltip="matTooltip"
+                        matTooltip="{{dashboardTooltip.financierView}}" [matTooltipPosition]="'below'">View</a>
+                         </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+                  
                 </mat-tab>
                 <mat-tab label="SME Maintenence">
                   <div class="links">

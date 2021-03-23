@@ -97,7 +97,7 @@
 <div class="app-content {{isOpen}} ">
   <header>
     <div class="data-section">
-      <form [formGroup]="invoiceForm" (ngSubmit)="onSubmitInvoiceForm()">
+      <form [formGroup]="invoiceForm" autocomplete="off" (ngSubmit)="onSubmitInvoiceForm()">
       <mat-card>
         <mat-card-content>
           <table>
@@ -138,7 +138,7 @@
                 </span> -->
                 <mat-form-field dense >
                   <mat-label>Funding Request Amount</mat-label>
-                  <input type="text" matInput value="" formControlName="invAmt"/>
+                  <input type="text" matInput value="" autocomplete="on" formControlName="invAmt"/>
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
                 </td>

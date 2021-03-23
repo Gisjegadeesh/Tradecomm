@@ -8,4 +8,8 @@ export class IccDashboardServices  {
   getIccDashDetails(){
     return this.apiService.generalServiceget('https://jsonplaceholder.typicode.com/posts',);
   }
+  getFinancierList(){
+    let params=environment.financierServicePath+'finonb/getall'
+    return this.apiService.generalServiceget(params)
+  }
 }

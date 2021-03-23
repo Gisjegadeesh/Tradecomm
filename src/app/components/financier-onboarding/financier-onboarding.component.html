@@ -113,7 +113,7 @@
   </ul>
 </mat-toolbar> -->
 
-<form (ngSubmit)="onSubmit()" #custForm="ngForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="financierForm">
   <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper>
     <mat-step>
 
@@ -123,13 +123,24 @@
           <table style="width: 100%;">
             <tbody>
 
+              <!-- <tr *ngIf="financierId">
+                <td rowspan="1" colspan="1" *ngIf="financierId">
+                  <mat-form-field dense>
+                    <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
+                    <mat-label>Financier Name Constitution</mat-label>
+                    <input matInput type="text" formControlName="fName" required
+                       />
+                    <mat-hint>Please Enter Financier Name Constitution</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr> -->
               <tr>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Financier Name Constitution</mat-label>
-                    <input matInput type="text" id="fName" name="fName" [(ngModel)]="customer.fName" required
-                      #fName="ngModel" />
+                    <input matInput type="text" formControlName="fName" [readonly]="isView"  required 
+                       />
                     <mat-hint>Please Enter Financier Name Constitution</mat-hint>
                   </mat-form-field>
                 </td>
@@ -137,8 +148,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Local Registration Number</mat-label>
-                    <input matInput type="text" id="regNum" name="regNum" [(ngModel)]="customer.regNum" required
-                      #regNum="ngModel" />
+                    <input matInput type="number" formControlName="regNum" [readonly]="isView" required/>
                     <mat-hint>Please Enter Local Registration Number</mat-hint>
                   </mat-form-field>
                 </td>
@@ -149,16 +159,14 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Tax Identification No</mat-label>
-                    <input matInput type="text" id="taxIdNum" name="taxIdNum" [(ngModel)]="customer.taxIdNum" required
-                      #taxIdNum="ngModel" />
+                    <input matInput type="text" formControlName="taxIdNum" [readonly]="isView" required />
                     <mat-hint>Please Enter Tax Identification Number</mat-hint>
                   </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Registration Date</mat-label>
-                    <input matInput  [matDatepicker]="pickers" id="regDate" name="regDate" [(ngModel)]="customer.regDate" 
-                    #regDate="ngModel" />
+                    <input matInput formControlName="regDate"  [matDatepicker]="pickers" [readonly]="isView"  />
                      <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
                     <mat-datepicker #pickers></mat-datepicker> 
                 </mat-form-field>
@@ -170,8 +178,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>SCF Financing Experience Years</mat-label>
-                    <input matInput type="text" id="fExpYears" name="fExpYears" [(ngModel)]="customer.fExpYears"
-                      required #fExpYears="ngModel" />
+                    <input matInput type="number" formControlName="fExpYears" required [readonly]="isView" />
                     <mat-hint>Please Enter Financing Experience in Years</mat-hint>
                   </mat-form-field>
                 </td>
@@ -179,8 +186,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Type of Activity</mat-label>
-                    <input matInput type="text" id="activity" name="activity" [(ngModel)]="customer.activity" 
-                      #activity="ngModel" />
+                    <input matInput type="text" formControlName="activity" [readonly]="isView"  />
                     <mat-hint>Please Enter Type of Activity</mat-hint>
                   </mat-form-field>
                 </td>
@@ -191,8 +197,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Principal Bank Account</mat-label>
-                    <input matInput type="text"  id="prnBankAcc" name="prnBankAcc" [(ngModel)]="customer.prnBankAcc" 
-                    #prnBankAcc="ngModel"/>
+                    <input matInput type="text" formControlName="prnBankAcc" [readonly]="isView"/>
                     <mat-hint>Please Enter Principal Bank Account</mat-hint>
                   </mat-form-field>
                 </td>
@@ -200,8 +205,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Principal Bank Branch</mat-label>
-                    <input matInput type="text"   id="prnBankBrnh" name="prnBankBrnh" [(ngModel)]="customer.prnBankBrnh" 
-                    #prnBankBrnh="ngModel"/>
+                    <input matInput type="text" formControlName="prnBankBrnh" [readonly]="isView"/>
                     <mat-hint>Please Enter Principal Bank Branch</mat-hint>
                   </mat-form-field>
                 </td>
@@ -214,8 +218,7 @@
                       <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                         <mat-label>Annual SCF Turnover</mat-label>
-                        <input type="text" matInput   id="anlScfTrnOver" name="anlScfTrnOver" [(ngModel)]="customer.anlScfTrnOver" 
-                        #anlScfTrnOver="ngModel"/>
+                        <input type="text" matInput formControlName="anlScfTrnOver" [readonly]="isView"/>
                         <mat-hint>Please enter annual SCF turnover</mat-hint>
                       </mat-form-field>
                     </div>
@@ -227,15 +230,23 @@
                       <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                         <mat-label>Transaction Limit</mat-label>
-                        <input type="text" matInput id="transLimit" name="transLimit" [(ngModel)]="customer.transLimit" 
-                        #transLimit="ngModel" />
+                        <input type="text" matInput  formControlName="transLimit" [readonly]="isView" />
                         <mat-hint>Please enter transaction limit</mat-hint>
                       </mat-form-field>
                     </div>
                   </div>
                 </td>
               </tr>
-
+               <tr *ngIf="financierId">
+                <td rowspan="1" colspan="1" *ngIf="financierId">
+                  <mat-form-field dense>
+                    <mat-label>Financier Id</mat-label>
+                    <input matInput type="text" value="{{'FIN' + financierId}}"  readonly
+                       />
+                    <!-- <mat-hint>Please Enter Financier Name Constitution</mat-hint> -->
+                  </mat-form-field>
+                </td>
+              </tr>
             </tbody>
           </table>
         </mat-card-content>
@@ -256,7 +267,6 @@
       <ng-template matStepLabel>Financier Registered Head Quarters</ng-template>
       <mat-card>
 
-        <form>
           <mat-card-content>
             <!-- <mat-card-title>
               <h4 class="uxg-h4"></h4>
@@ -272,8 +282,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Address Line 1</mat-label>
-                          <input type="text" matInput  id="headAddrLine1" name="headAddrLine1" [(ngModel)]="customer.headAddrLine1" 
-                          #headAddrLine1="ngModel" />
+                          <input type="text" matInput  formControlName="headAddrLine1" [readonly]="isView"/>
                           <mat-hint>Please enter address line 1</mat-hint>
                         </mat-form-field>
                       </div>
@@ -281,7 +290,7 @@
                   </td>
                   <td  class="T1" rowspan="1" colspan="1">
                     <div class="card-form-container">
-                      <div>
+                      <div class="multiselect-dropdown-dsgn">
                         <!-- <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Country</mat-label>
@@ -294,13 +303,15 @@
                         (onDropDownClose)="onDropDownClose()" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
                       </ng-multiselect-dropdown> -->
                       
-                      <ng-multiselect-dropdown
-                      [(ngModel)]="selectedItems"
+                      <!-- <ng-multiselect-dropdown
+                      formControlName="headcountry"
                       [settings]="dropdownSettings"
                       [data]="cities"
                       (onSelect)="onItemSelect($event)"
                   >
-                  </ng-multiselect-dropdown>
+                  </ng-multiselect-dropdown> -->
+                  <angular2-multiselect [data]="cities" formControlName="headcountry" 
+    [settings]="dropdownSettings" ></angular2-multiselect>
                   <!-- <mat-form-field appearance="fill">
                     <mat-label>Country</mat-label>
                     <mat-select [(ngModel)]="customer.headCountry" >
@@ -320,8 +331,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Address Line 2</mat-label>
-                          <input type="text" matInput  id="headAddrLine2" name="headAddrLine2" [(ngModel)]="customer.headAddrLine2" 
-                          #headAddrLine2="ngModel" />
+                          <input type="text" matInput formControlName="headAddrLine2" [readonly]="isView" />
                           <mat-hint>Please enter address line 2</mat-hint>
                         </mat-form-field>
                       </div>
@@ -333,8 +343,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Telephone No</mat-label>
-                          <input type="text" matInput  id="headtelephoneNumber" name="headtelephoneNumber" [(ngModel)]="customer.headtelephoneNumber" 
-                          #headtelephoneNumber="ngModel" />
+                          <input type="text" matInput formControlName="headtelephoneNumber" [readonly]="isView" />
                           <mat-hint>Please enter your telephone number</mat-hint>
                         </mat-form-field>
                       </div>
@@ -348,8 +357,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Address Line 3</mat-label>
-                          <input type="text" matInput id="headAddrLine3" name="headAddrLine3" [(ngModel)]="customer.headAddrLine3" 
-                          #headaddrLine3="ngModel" />
+                          <input type="text" matInput formControlName="headAddrLine3" [readonly]="isView" />
                           <mat-hint>Please enter address line 3</mat-hint>
                         </mat-form-field>
                       </div>
@@ -361,8 +369,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Fax No</mat-label>
-                          <input type="text" matInput id="headfaxNo" name="headfaxNo" [(ngModel)]="customer.headfaxNo" 
-                          #headfaxNo="ngModel" />
+                          <input type="text" matInput formControlName="headfaxNo" [readonly]="isView"/>
                           <mat-hint>Please enter your fax number</mat-hint>
                         </mat-form-field>
                       </div>
@@ -376,8 +383,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Place / City</mat-label>
-                          <input type="text" matInput id="headcity" name="headcity" [(ngModel)]="customer.headcity" 
-                          #headcity="ngModel" />
+                          <input type="text" matInput formControlName="headcity" [readonly]="isView" />
                           <mat-hint>Please enter your place / city</mat-hint>
                         </mat-form-field>
                       </div>
@@ -389,8 +395,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Email / Domain</mat-label>
-                          <input type="text" matInput id="heademail" name="heademail" [(ngModel)]="customer.heademail" 
-                          #heademail="ngModel"/>
+                          <input type="text" matInput formControlName="heademail" [readonly]="isView"/>
                           <mat-hint>Please enter your email / domain</mat-hint>
                         </mat-form-field>
                       </div>
@@ -404,8 +409,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>State / Region</mat-label>
-                          <input type="text" matInput id="headstate" name="headstate" [(ngModel)]="customer.headstate" 
-                          #headstate="ngModel" />
+                          <input type="text" matInput formControlName="headstate"  [readonly]="isView"/>
                           <mat-hint>Please enter your state / region</mat-hint>
                         </mat-form-field>
                       </div>
@@ -417,8 +421,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>SWIFT BIC</mat-label>
-                          <input type="text" matInput id="headswiftBic" name="headswiftBic" [(ngModel)]="customer.headswiftBic" 
-                          #headswiftBic="ngModel" />
+                          <input type="text" matInput formControlName="headswiftBic" [readonly]="isView"/>
                           <mat-hint>Please enter SWIFT BIC</mat-hint>
                         </mat-form-field>
                       </div>
@@ -439,7 +442,6 @@
               </button>
             </mat-card-actions>
           </mat-card-content>
-        </form>
 
 
       </mat-card>
@@ -463,8 +465,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Address Line 1</mat-label>
-                      <input type="text" matInput id="servAddrLine1" name="servAddrLine1" [(ngModel)]="customer.servAddrLine1" 
-                      #servAddrLine1="ngModel" />
+                      <input type="text" matInput formControlName="servAddrLine1"  [readonly]="isView"/>
                       <mat-hint>Please enter address line 1</mat-hint>
                     </mat-form-field>
                   </div>
@@ -472,19 +473,23 @@
               </td>
               <td class="T1" rowspan="1" colspan="1">
                 <div class="card-form-container">
-                  <div>
+                  <div class="multiselect-dropdown-dsgn">
                     <!-- <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Country</mat-label>
                       <input type="text" matInput value="" />
                       <mat-hint>Please enter your country</mat-hint>
                     </mat-form-field> -->
-                    <ng-multiselect-dropdown
-                      name=""
+                    <!-- <ng-multiselect-dropdown
+                    formControlName="servCountry"
                       [settings]="dropdownSettings"
                       [data]="cities"
+                      
                   >
-                  </ng-multiselect-dropdown>
+                  </ng-multiselect-dropdown> -->
+
+                  <angular2-multiselect [data]="cities" formControlName="servCountry" 
+    [settings]="dropdownSettings" ></angular2-multiselect>
                   </div>
                 </div>
               </td>
@@ -496,8 +501,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Address Line 2</mat-label>
-                      <input type="text" matInput id="servAddrLine2" name="servAddrLine2" [(ngModel)]="customer.servAddrLine2" 
-                      #servAddrLine2="ngModel" />
+                      <input type="text" matInput formControlName="servAddrLine2" [readonly]="isView"/>
                       <mat-hint>Please enter address line 2</mat-hint>
                     </mat-form-field>
                   </div>
@@ -509,8 +513,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Telephone No</mat-label>
-                      <input type="text" matInput id="servtelephoneNumber" name="servtelephoneNumber" [(ngModel)]="customer.servtelephoneNumber" 
-                      #servtelephoneNumber="ngModel" />
+                      <input type="text" matInput formControlName="servtelephoneNumber" [readonly]="isView" />
                       <mat-hint>Please enter your telephone number</mat-hint>
                     </mat-form-field>
                   </div>
@@ -524,8 +527,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Address Line 3</mat-label>
-                      <input type="text" matInput id="servAddrLine3" name="servAddrLine3" [(ngModel)]="customer.servAddrLine3" 
-                      #servAddrLine3="ngModel" />
+                      <input type="text" matInput formControlName="servAddrLine3" [readonly]="isView" />
                       <mat-hint>Please enter address line 3</mat-hint>
                     </mat-form-field>
                   </div>
@@ -537,8 +539,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Fax No</mat-label>
-                      <input type="text" matInput id="servfaxNo" name="servfaxNo" [(ngModel)]="customer.servfaxNo" 
-                      #servfaxNo="ngModel" />
+                      <input type="text" matInput formControlName="servfaxNo" [readonly]="isView" />
                       <mat-hint>Please enter your fax number</mat-hint>
                     </mat-form-field>
                   </div>
@@ -552,8 +553,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Place / City</mat-label>
-                      <input type="text" matInput id="servcity" name="servcity" [(ngModel)]="customer.servcity" 
-                      #servcity="ngModel" />
+                      <input type="text" matInput formControlName="servcity" [readonly]="isView"/>
                       <mat-hint>Please enter your place / city</mat-hint>
                     </mat-form-field>
                   </div>
@@ -565,8 +565,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Email / Domain</mat-label>
-                      <input type="text" matInput id="servemail" name="servemail" [(ngModel)]="customer.servemail" 
-                      #servemail="ngModel" />
+                      <input type="text" matInput formControlName="servemail" [readonly]="isView" />
                       <mat-hint>Please enter your email / domain</mat-hint>
                     </mat-form-field>
                   </div>
@@ -580,8 +579,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Local Payment Code</mat-label>
-                      <input type="text" matInput  id="paymentCode" name="paymentCode" [(ngModel)]="customer.paymentCode" 
-                      #paymentCode="ngModel" />
+                      <input type="text" matInput formControlName="paymentCode" [readonly]="isView"/>
                       <mat-hint>Please enter local payment code</mat-hint>
                     </mat-form-field>
                   </div>
@@ -593,8 +591,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>SWIFT BIC</mat-label>
-                      <input type="text" matInput id="servswiftBic" name="servswiftBic" [(ngModel)]="customer.servswiftBic" 
-                      #servswiftBic="ngModel" />
+                      <input type="text" matInput formControlName="servswiftBic" [readonly]="isView" />
                       <mat-hint>Please enter SWIFT BIC</mat-hint>
                     </mat-form-field>
                   </div>
@@ -612,7 +609,7 @@
             <mat-icon>arrow_back</mat-icon>
             Back to Financiar Registered Head Quarters
           </button>
-          <button mat-flat-button color="primary" matStepperNext>
+          <button mat-flat-button type="button" color="primary" matStepperNext>
             <mat-icon>arrow_forward</mat-icon>
             Next
           </button>
@@ -626,44 +623,170 @@
       <mat-card>
 
         <span class="uxg-h6" id=grid>Director / Partner Details</span>
-        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
-          <mat-text-column name="Name"></mat-text-column>
-          <mat-text-column name="Position"></mat-text-column>
-          <mat-text-column name="Address"></mat-text-column>
-          <mat-text-column name="TelephoneNo"></mat-text-column>
-          <mat-text-column name="Email"></mat-text-column>
+        <table mat-table [dataSource]="dataSource1" style="width: 90%;" id=right formArrayName="partnerDetails">
+          <ng-container matColumnDef="Name" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >NAME</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="name" 
+              placeholder="Name" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Position" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >POSITION</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="position" 
+              placeholder="Position" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Address" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >Address</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="address" 
+              placeholder="Address" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="TelephoneNo" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >TELEPHONE NO</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="phoneNo" 
+              placeholder="Telephone No" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Email" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >EMAIL</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="email" 
+              placeholder="Email" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
         <span class="uxg-h6" id=grid>Authorised Signatories</span>
-        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
-          <mat-text-column name="Name"></mat-text-column>
-          <mat-text-column name="Position"></mat-text-column>
-          <mat-text-column name="Address"></mat-text-column>
-          <mat-text-column name="TelephoneNo"></mat-text-column>
-          <mat-text-column name="Email"></mat-text-column>
+        <table mat-table [dataSource]="dataSource2" style="width: 90%;" id=right formArrayName="authSign">
+          <ng-container matColumnDef="Name" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >NAME</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="name" 
+              placeholder="Name" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Position" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >POSITION</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="position" 
+              placeholder="Position" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Address" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >Address</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="address" 
+              placeholder="Address" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="TelephoneNo" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >TELEPHONE NO</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="phoneNo" 
+              placeholder="Telephone No" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Email" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >EMAIL</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="email" 
+              placeholder="Email" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
 
         <span class="uxg-h6" id=grid>Entity Administrator </span>
-        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
-          <mat-text-column name="Name"></mat-text-column>
-          <mat-text-column name="Position"></mat-text-column>
-          <mat-text-column name="Address"></mat-text-column>
-          <mat-text-column name="TelephoneNo"></mat-text-column>
-          <mat-text-column name="Email"></mat-text-column>
+        <table mat-table [dataSource]="dataSource3" style="width: 90%;" id=right formArrayName="entityAdmin">
+          <ng-container matColumnDef="Name" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >NAME</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="name" 
+              placeholder="Name" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Position" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >POSITION</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="position" 
+              placeholder="Position" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Address" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >Address</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="address" 
+              placeholder="Address" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="TelephoneNo" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >TELEPHONE NO</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="phoneNo" 
+              placeholder="Telephone No" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="Email" >
+            <th mat-header-cell *matHeaderCellDef scope="column"  >EMAIL</th>
+              <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+              <input matInput 
+              formControlName="email" 
+              placeholder="Email" [readonly]="isView"
+              >
+            </td>
+          </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-
+        <mat-card-actions>
+          <span class="fill-remaining-space"></span>
+          <button mat-stroked-button color="primary" type="button" matStepperPrevious>
+            <mat-icon>arrow_back</mat-icon>
+            Back to Financiar TradeComm Service Branch
+          </button>
+        </mat-card-actions>
       </mat-card>
     </mat-step>
 
   </mat-horizontal-stepper>
   <div class="submit">
-    <button mat-flat-button [disabled]="!custForm.form.valid" color="primary">
+    <button mat-flat-button [disabled]="!check" color="primary">
       <mat-icon>arrow_right_alt</mat-icon>
       Submit
     </button>
