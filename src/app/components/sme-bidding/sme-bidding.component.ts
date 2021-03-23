@@ -142,16 +142,21 @@ export class SmeBiddingComponent implements OnInit {
   displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
 
   displayedColumnsTwo: string[] = [
-    'BidID',
-    'FinOffAmt',
-    'Ccy',
-    'FxRateDiff',
-    'Margin',
-    'DiscRate',
-    'DiscAmt',
-    'NetAmtPay',
-    'DueDate',
-    'OffExpPrd',
+    // 'Funding CCY',
+    'FX rate Base CCY',
+    'Base CCY Amount',
+    'Fundable percentage',
+    'Funding Amount',
+    // 'Funding Amount / Repay Amount (Inv CCY)',
+    'Repayment Date',
+    // 'Inv Discount  Rate',
+    // 'Disc Amt (Base CCY)',
+    // 'Disc Amt (Inv CCY)',
+    'Annual Yield (Basis a360)',
+    'Net Amt payable (Base CCY)',
+    // 'Net Amt payable (Inv CCY)',
+    // 'Offer Exp period',
+    'Off Exp date /time',
     'Status'
   ];
   displayedInvDetailsColumns: string[] = [
@@ -208,6 +213,7 @@ export class SmeBiddingComponent implements OnInit {
       event.preventDefault();
       this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
       this.smeBiddingServices.getBiddingDetails(element.invId).subscribe(resp => {
+        console.log(resp,"resp")
        this.dataSourceTwo = new MatTableDataSource(resp);
        this.bidDetails = resp;
       }) 
@@ -225,16 +231,15 @@ export class SmeBiddingComponent implements OnInit {
       // })
     }
     saveFinBid(){
-      var element = this.bidDetails;
-      // var newArr = element.map(function(val, index){
-        this.bidDetails.map(function(val, index){
-      element['sme'] = "123";
-      // printing element
-      // console.log("key : ",index, "value : ",val*val);
+      this.bidDetails[0]['smeId'] = localStorage.getItem("userId")
+      this.bidDetails[0]['status'] = 'Active'
+      console.log(this.bidDetails[0],"this.bidDetails[0]")
+      var element = this.bidDetails[0];
+      this.smeBiddingServices.saveFinBid(element).subscribe(resp => {
+        console.log(resp,"resp")
+        this.modalRef.hide()
+        this.router.navigateByUrl('/sme-bidding');
       })
-      console.log(this.bidDetails,"newArr");
-      this.smeBiddingServices.saveFinBid(this.bidDetails).subscribe(resp => {
-    })
     }
     handleToggle(e,status){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       

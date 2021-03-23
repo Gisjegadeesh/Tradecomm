@@ -16,6 +16,6 @@ export class SmeBiddingServices {
     return this.apiService.generalServiceget(environment.serviePath_1+'invoice-request/getInvoiceData/'+invId);
   }
   saveFinBid(body: any) {
-    return this.apiService.post(environment.api_url+'financing-details/addFinancingBidDetails', body);
+    return this.apiService.post(environment.serviePath_2+'api/v1/financing-details/addFinancingBidDetails', body);
   }
 }

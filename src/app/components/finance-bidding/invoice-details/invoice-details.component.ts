@@ -219,23 +219,25 @@ export class InvoiceDetailsComponent implements OnInit {
   }
   buildfinBidform(){
     this.finBidform = this.fb.group({
-      financeOfferAmt: ['', Validators.required],
+      fundingCcy: ['', Validators.required],
       fxRate: ['', Validators.required],
-      margin: ['', Validators.required],
-      discRate: ['', Validators.required],
-      discAmt: ['', Validators.required],
-      netAmtDisc: ['', Validators.required],
-      // dueDate: ['', Validators.required],
-      RepaymentDate:['', Validators.required],
-      offerExpPeriod: ['', Validators.required],
-      fin: localStorage.getItem("userId"),
-      discINAmt:['', Validators.required],
-      netAmtINDisc:['', Validators.required],
-      NetAmtpayableInvCCY:['', Validators.required],
-      AnnualYieldBasis:['', Validators.required],
-      OffExpdatetime:['', Validators.required],
-      offerExpINPeriod:['', Validators.required],
-      invoiceId : this.id
+      baseCcyAmt: ['',Validators.required],
+      fundablePercent: ['', Validators.required],
+      baseCcyFundingAmt: ['', Validators.required],
+      invCcyFundingAmt: ['', Validators.required],
+      repaymentDate:['', Validators.required],
+      invDiscRate: ['', Validators.required],
+      baseCcyDiscAmt:['', Validators.required],
+      invCcyDiscAmt:['', Validators.required],
+      baseCcyNetAmtPayable:['', Validators.required],
+      invCcyNetAmtPayable:['', Validators.required],
+      annualYeild:['', Validators.required],
+      offerExpPeriod:['', Validators.required],
+      offerExpDateTime:['', Validators.required],
+      finId: localStorage.getItem("userId"),
+      invoiceId : this.id,
+      invNo:[''],
+      invoiceAmt:['']
     })
   }
 
@@ -297,6 +299,15 @@ export class InvoiceDetailsComponent implements OnInit {
   }
   openModal(event, template) {
     event.preventDefault();
+    this.finBidform.patchValue({
+      invNo : this.invoiceDetails ? this.invoiceDetails.invId:'',
+      invoiceAmt:this.invoiceDetails ? this.invoiceDetails.invAmt:''
+    });
+      let array = []
+      array.push(this.finBidform.value)
+      this.launchBid_Popup = new MatTableDataSource(array);
+      console.log(this.finBidform.value)
+      console.log(this.finBidform,"this.finBidform")
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
   }
  
@@ -306,12 +317,6 @@ export class InvoiceDetailsComponent implements OnInit {
       //   this.invoiceForm.get(key).setValidators(Validators.required);
       //   this.invoiceForm.get(key).updateValueAndValidity();
       //   }
-
-      let array = []
-      array.push(this.finBidform.value)
-      this.launchBid_Popup = new MatTableDataSource(array);
-      console.log(this.finBidform.value)
-      console.log(this.finBidform,"this.finBidform")
       if (this.finBidform.status === "INVALID"){
         alert("Please fill Mandatory fields")
       }else{
@@ -326,6 +331,8 @@ export class InvoiceDetailsComponent implements OnInit {
         // }
         this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
           this.buildfinBidform();
+          this.modalRef.hide()
+          this.router.navigateByUrl('/financier-dashboard');
           // this.getInvDetailsLists();
         }, error => {
         })

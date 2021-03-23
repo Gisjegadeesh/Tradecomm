@@ -7,7 +7,7 @@
               <td rowspan="1" colspan="1">
                 <mat-form-field dense>
                   <mat-label>Invoice Reference No</mat-label>
-                  <input type="text" matInput value="FORD101"  readonly/>
+                  <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.invId : ''"  readonly/>
                 </mat-form-field>
               </td>
               <td rowspan="1" colspan="1">
@@ -19,7 +19,7 @@
               <td rowspan="1" colspan="1">
                 <mat-form-field dense>
                   <mat-label>SME Name</mat-label>
-                  <input type="text" matInput value="FORD"  readonly/>
+                  <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.smeId : ''"   readonly/>
                 </mat-form-field>
               </td>
             </tr>
@@ -47,30 +47,23 @@
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Invoice Date</mat-label>
-                      <input type="text" matInput value="22/03/2021" readonly />
+                      <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.invDate : ''" readonly />
                     </mat-form-field>
                   </td>
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Inv Due Date</mat-label>
-                      <input type="text" matInput value="01/09/2021" readonly/>
+                      <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.invDueDate : ''" readonly/>
                     </mat-form-field>
                   </td>
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Invoice Amt</mat-label>
-                      <input type="text" matInput value="1000 USD"  readonly/>
+                      <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.invAmt : ''" readonly/>
                     </mat-form-field>
                   </td>
                 </tr>
-                <tr>
-                    <td rowspan="1" colspan="1">
-                      <mat-form-field dense>
-                        <mat-label>Tenor</mat-label>
-                        <input type="text" matInput value="1200 SGD" readonly />
-                      </mat-form-field>
-                    </td>
-                  </tr>
+              
      
       </tbody>
     </table>
@@ -88,7 +81,7 @@
                                   <td mat-cell *matCellDef="let element;let row; let index = index" style="border-right: 1px solid grey;
                                   align-self: stretch;
                                   text-align: center">
-                                  <input matInput  formControlName="financeOfferAmt"  placeholder="Funding CCY"  >
+                                  <input matInput  formControlName="fundingCcy"  placeholder="Funding CCY"  >
                                 </td>
                               </ng-container>
                               <!-- <ng-container matColumnDef="Invoice Amount(Inv CCY)">
@@ -118,7 +111,7 @@
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
-                                  formControlName="margin" 
+                                  formControlName="baseCcyAmt" 
                                   placeholder="Base CCY Amt" 
                                   required>
                                 </td>
@@ -130,7 +123,7 @@
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
-                                  formControlName="discRate" 
+                                  formControlName="fundablePercent" 
                                   placeholder="Fundable percentage" 
                                   required>
                                 </td>
@@ -141,7 +134,7 @@
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
-                                  formControlName="discINAmt" 
+                                  formControlName="baseCcyFundingAmt" 
                                   placeholder="Funding Amount Repay Amount Base CCY" 
                                   required>
                                 </td>
@@ -152,7 +145,7 @@
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
-                                  formControlName="netAmtINDisc" 
+                                  formControlName="invCcyFundingAmt" 
                                   placeholder="Funding Amount Repay Amount Inv CCY" 
                                   required>
                                 </td>
@@ -164,7 +157,7 @@
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                     <input matInput 
-                                    formControlName="RepaymentDate" 
+                                    formControlName="repaymentDate" 
                                     placeholder="RepaymentDate" 
                                     required>
                                   <!-- <input matInput [matDatepicker]="picker" formControlName="RepaymentDate">
@@ -183,7 +176,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="offerExpINPeriod" 
+                              formControlName="invDiscRate" 
                               placeholder="Inv Discount Rate" 
                               required>
                             </td>
@@ -195,7 +188,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index" >
                               <input matInput 
-                              formControlName="fin" 
+                              formControlName="baseCcyDiscAmt" 
                               placeholder="Disc Amt Base CCY" 
                               required>
                             </td>
@@ -207,7 +200,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="discAmt" 
+                              formControlName="invCcyDiscAmt" 
                               placeholder="Disc Amt Inv CCY" 
                               required>
                             </td>
@@ -218,7 +211,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="netAmtDisc" 
+                              formControlName="baseCcyNetAmtPayable" 
                               placeholder="Net Amt payable Base CCY" 
                               required>
                             </td>
@@ -229,7 +222,7 @@
                               align-self: stretch;
                               text-align: center" *matCellDef="let element;let row; let index = index"  >
                                 <input matInput 
-                                formControlName="NetAmtpayableInvCCY" 
+                                formControlName="invCcyNetAmtPayable" 
                                 placeholder="Net Amt payable Inv CCY" 
                                 required>
                               </td>
@@ -240,7 +233,7 @@
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
-                                  formControlName="AnnualYieldBasis" 
+                                  formControlName="annualYeild" 
                                   placeholder="Annual Yield Basis a360" 
                                   required>
                                 </td>
@@ -265,7 +258,7 @@
                                     align-self: stretch;
                                     text-align: center" *matCellDef="let element;let row; let index = index"  >
                                       <input matInput 
-                                      formControlName="OffExpdatetime" 
+                                      formControlName="offerExpDateTime" 
                                       placeholder="Off Exp date time" 
                                       required>
                                     </td>
@@ -280,7 +273,7 @@
                 </mat-card-content>
             </mat-card>
             <div class="modal-footer" style="justify-content:center">
-                <button type="button" class="btn model-btn-outline"  style="background-color: #4CAF50;color: white;" (click)="onSubmitBidForm()"
+                <button type="button" class="btn model-btn-outline"  style="background-color: #4CAF50;color: white;" 
                  (click)="openModal($event,template)" >Launch Bid</button>
              </div>
           </form>
@@ -463,7 +456,7 @@
                         <td rowspan="1" colspan="1">
                             <mat-form-field dense>
                               <mat-label>SME Name</mat-label>
-                              <input type="text" matInput value="FORD"  />
+                              <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.smeId : ''"  />
                             </mat-form-field>
                           </td>
                           <td rowspan="1" colspan="1">
@@ -490,35 +483,31 @@
              
               <table mat-table [dataSource]="launchBid_Popup" class="mat-elevation-z8">
 
-                  <!--- Note that these columns can be defined in any order.
-                        The actual rendered columns are set as a property on the row definition" -->
-                
-                  <!-- Position Column -->
                   <ng-container matColumnDef="Funding CCY">
                     <th mat-header-cell *matHeaderCellDef> Funding CCY. </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.ccy || 'SGD' }} </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.fundingCcy || '' }} </td>
                   </ng-container>
                 
                   <!-- Name Column -->
                   <ng-container matColumnDef="Base CCY Amount">
                     <th mat-header-cell *matHeaderCellDef> Base CCY Amount </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.DiscAmtInvCCY || '1200 SGD' }}  </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.baseCcyAmt || '' }}  </td>
                   </ng-container>
                 
                   <!-- Weight Column -->
                   <ng-container matColumnDef="Fundable percentage">
                     <th mat-header-cell *matHeaderCellDef> Fundable percentage </th>
-                    <td mat-cell *matCellDef="let element">{{element?.discRate || '90' }}  </td>
+                    <td mat-cell *matCellDef="let element">{{element?.fundablePercent || '' }}  </td>
                   </ng-container>
                 
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="Funding Amount / Repay Amount (Base CCY)">
                     <th mat-header-cell *matHeaderCellDef> Funding Amount / Repay Amount (Base CCY) </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.discAmt || '1080 SGD' }}  </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.baseCcyFundingAmt || '' }}  </td>
                   </ng-container>
                   <ng-container matColumnDef="Repayment Date">
                     <th mat-header-cell *matHeaderCellDef> Repayment Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.RepaymentDate || '03/06/2021' }}  </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.repaymentDate || '' }}  </td>
                   </ng-container>
                 
                   <tr mat-header-row *matHeaderRowDef="launchBidPopup" style="background-color:#B4A6EA"></tr>
@@ -536,37 +525,33 @@
                   <!-- Position Column -->
                   <ng-container matColumnDef="Inv Discount Rate">
                     <th mat-header-cell *matHeaderCellDef>Inv Discount  Rate</th>
-                    <td mat-cell *matCellDef="let element"> {{element?.fxRate || '10%' }} </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.invDiscRate || '' }} </td>
                   </ng-container>
                 
                   <!-- Name Column -->
                   <ng-container matColumnDef="Disc Amt (Base CCY)">
                     <th mat-header-cell *matHeaderCellDef>Disc Amt (Base CCY) </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.offerExpPeriod || '108 SGD' }}   </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.baseCcyDiscAmt || '' }}   </td>
                   </ng-container>
                 
                   <!-- Weight Column -->
                   <ng-container matColumnDef="Net Amt payable (Base CCY)">
                     <th mat-header-cell *matHeaderCellDef> Net Amt payable (Base CCY) </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.DiscAmtInvCCY || '972 SGD' }}   </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.baseCcyNetAmtPayable || '' }}   </td>
                   </ng-container>
                 
                   <!-- Symbol Column -->
-                  <ng-container matColumnDef="Funding Amount / Repay Amount (Base CCY)">
-                    <th mat-header-cell *matHeaderCellDef> Funding Amount / Repay Amount (Base CCY) </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.netAmtDisc || '22.22%' }}   </td>
-                  </ng-container>
                   <ng-container matColumnDef="Annual Yield (Basis a360)">
                     <th mat-header-cell *matHeaderCellDef> Annual Yield (Basis a360) </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.OfferExpperiod || '1080 SGD' }}   </td>
+                    <td mat-cell *matCellDef="let element"> {{element?.annualYeild || '' }}   </td>
                   </ng-container>
                   <ng-container matColumnDef="Offer Exp period">
                       <th mat-header-cell *matHeaderCellDef> Offer Exp period </th>
-                      <td mat-cell *matCellDef="let element"> {{element?.offerExpPeriod || '24 Hs' }}   </td>
+                      <td mat-cell *matCellDef="let element"> {{element?.offerExpPeriod || '' }}   </td>
                     </ng-container>
                     <ng-container matColumnDef="Off Exp date /time">
                         <th mat-header-cell *matHeaderCellDef> Off Exp date /time </th>
-                        <td mat-cell *matCellDef="let element"> {{element?.offerExpPeriod || '02/03/2021 14:00' }}   </td>
+                        <td mat-cell *matCellDef="let element"> {{element?.offerExpDateTime || '' }}   </td>
                       </ng-container>
                 
                   <tr mat-header-row *matHeaderRowDef="launchBidTableTwoPopup" style="background-color:#B4A6EA"></tr>

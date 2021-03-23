@@ -200,65 +200,99 @@
                     </mat-expansion-panel-header>
                     <div style="overflow-x:auto;">
                         <table mat-table [dataSource]="dataSourceTwo">
-                            <ng-container matColumnDef="BidID">
+                            <!-- <ng-container matColumnDef="Funding CCY">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.bidId}}" [matTooltipPosition]="'below'">BID ID</th>
-                                <td mat-cell *matCellDef="let financier">{{ financier.id }}</td>
+                                matTooltip="{{financierTooltip.bidId}}" [matTooltipPosition]="'below'">Funding CCY</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.fundingCcy }}</td>
+                            </ng-container> -->
+                            <ng-container matColumnDef="FX rate Base CCY">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.financeOffer}}" [matTooltipPosition]="'below'">FX rate</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.fxRate }}</td>
                             </ng-container>
-                            <ng-container matColumnDef="FinOffAmt">
+                            <ng-container matColumnDef="Base CCY Amount">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.financeOffer}}" [matTooltipPosition]="'below'">Finance Offer Amt</th>
-                                <td mat-cell *matCellDef="let financier">{{ financier.financeOfferAmt }}</td>
+                                matTooltip="{{financierTooltip.ccy}}" [matTooltipPosition]="'below'">Base CCY Amount</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.baseCcyAmt }}</td>
                             </ng-container>
-                            <ng-container matColumnDef="Ccy">
+                            <ng-container matColumnDef="Fundable percentage">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.ccy}}" [matTooltipPosition]="'below'">CCY</th>
-                                <td mat-cell *matCellDef="let financier">{{ financier.ccy }}</td>
-                            </ng-container>
-                            <ng-container matColumnDef="FxRateDiff">
-                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.fxRate}}" [matTooltipPosition]="'below'">FX Rate if CCY Diff</th>
+                                matTooltip="{{financierTooltip.fxRate}}" [matTooltipPosition]="'below'">Fundable percentage</th>
                                 <td mat-cell *matCellDef="let financier"><input matInput
-                                        value="{{ financier.fxRate }}" /></td>
+                                        value="{{ financier.fundablePercent }}" /></td>
                             </ng-container>
-                            <ng-container matColumnDef="Margin">
+                            <ng-container matColumnDef="Funding Amount">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.margin}}" [matTooltipPosition]="'below'">Margin</th>
+                                matTooltip="{{financierTooltip.margin}}" [matTooltipPosition]="'below'">Funding Amount</th>
                                 <td mat-cell *matCellDef="let financier"><input matInput
-                                        value="{{ financier.margin }}" /></td>
+                                        value="{{ financier.baseCcyFundingAmt }}" /></td>
                             </ng-container>
-                            <ng-container matColumnDef="DiscRate">
+                            <!-- <ng-container matColumnDef="Funding Amount / Repay Amount (Inv CCY)">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.discRate}}" [matTooltipPosition]="'below'">Disc Rate</th>
+                                matTooltip="{{financierTooltip.discRate}}" [matTooltipPosition]="'below'">Funding Amount / Repay Amount (Inv CCY)</th>
                                 <td mat-cell *matCellDef="let financier"><input matInput
-                                        value="{{ financier.discRate }}" />
+                                        value="{{ financier.invCcyFundingAmt }}" />
+                                </td>
+                            </ng-container> -->
+                            <ng-container matColumnDef="Repayment Date">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.discAmount}}" [matTooltipPosition]="'below'">Repayment Date</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.repaymentDate }}</td>
+                            </ng-container>
+                            <!-- <ng-container matColumnDef="Inv Discount  Rate">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.netAmount}}" [matTooltipPosition]="'below'">Inv Discount  Rate</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.invDiscRate }}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Disc Amt (Base CCY)">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.dueDate}}" [matTooltipPosition]="'below'">Disc Amt (Base CCY)</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.baseCcyDiscAmt }}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="Disc Amt (Inv CCY)">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.dueDate}}" [matTooltipPosition]="'below'">Disc Amt (Inv CCY)</th>
+                                <td mat-cell *matCellDef="let financier">{{ financier.invCcyDiscAmt }}</td>
+                            </ng-container> -->
+                            <ng-container matColumnDef="Annual Yield (Basis a360)">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Annual Yield</th>
+                                <td mat-cell *matCellDef="let financier"><input matInput
+                                        value="{{ financier.annualYeild }}" />
                                 </td>
                             </ng-container>
-                            <ng-container matColumnDef="DiscAmt">
+                            <ng-container matColumnDef="Net Amt payable (Base CCY)">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.discAmount}}" [matTooltipPosition]="'below'">Disc Amt</th>
-                                <td mat-cell *matCellDef="let financier">{{ financier.discAmt }}</td>
+                                matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Net Amt payable</th>
+                                <td mat-cell *matCellDef="let financier"><input matInput
+                                        value="{{ financier.baseCcyNetAmtPayable }}" />
+                                </td>
                             </ng-container>
-                            <ng-container matColumnDef="NetAmtPay">
+                            <!-- <ng-container matColumnDef="Net Amt payable (Inv CCY)">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.netAmount}}" [matTooltipPosition]="'below'">Net Amt Payable After Disc</th>
-                                <td mat-cell *matCellDef="let financier">{{ financier.netAmtDisc }}</td>
-                            </ng-container>
-                            <ng-container matColumnDef="DueDate">
+                                matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Net Amt payable (Inv CCY)</th>
+                                <td mat-cell *matCellDef="let financier"><input matInput
+                                        value="{{ financier.invCcyNetAmtPayable }}" />
+                                </td>
+                            </ng-container> -->
+                            
+                            <!-- <ng-container matColumnDef="Offer Exp period">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.dueDate}}" [matTooltipPosition]="'below'">Due Date</th>
-                                <td mat-cell *matCellDef="let financier">{{ financier.dueDate }}</td>
-                            </ng-container>
-                            <ng-container matColumnDef="OffExpPrd">
-                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Offer Exp Period</th>
+                                matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Offer Exp period</th>
                                 <td mat-cell *matCellDef="let financier"><input matInput
                                         value="{{ financier.offerExpPeriod }}" />
+                                </td>
+                            </ng-container> -->
+                            <ng-container matColumnDef="Off Exp date /time">
+                                <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
+                                matTooltip="{{financierTooltip.expPeriod}}" [matTooltipPosition]="'below'">Off Exp date /time</th>
+                                <td mat-cell *matCellDef="let financier"><input matInput
+                                        value="{{ financier.offerExpDateTime }}" />
                                 </td>
                             </ng-container>
                             <ng-container matColumnDef="Status">
                                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                                matTooltip="{{financierTooltip.Status}}" [matTooltipPosition]="'below'">Status(InProg/Sub/Auth)</th>
+                                matTooltip="{{financierTooltip.Status}}" [matTooltipPosition]="'below'">Status</th>
                                 <td mat-cell *matCellDef="let element">
                                     <label class="switchStatus">
                                         <input class="ng-tns-c8-3 ng-untouched ng-pristine ng-valid" name="block"
@@ -275,7 +309,7 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
                         </table>
                         <button style="float: right;margin: 10px;" type="button" class="btn model-btn-outline" #tooltip="matTooltip"
-                        matTooltip="{{financierTooltip.submit}}" [matTooltipPosition]="'below'" (click)="saveFinBid()">Submit</button>
+                        matTooltip="{{financierTooltip.submit}}" [matTooltipPosition]="'below'" (click)="saveFinBid()">Accept</button>
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
@@ -520,14 +554,11 @@
                         matTooltip="{{detailsTooltip.total}}" [matTooltipPosition]="'below'">Total</th>
                         <td mat-cell *matCellDef="let element">{{ element.total }}</td>
                         </ng-container>
-<<<<<<< Updated upstream
 
                         <ng-container matColumnDef="TotalCurrency">
                             <th mat-header-cell *matHeaderCellDef scope="column">Total Currency</th>
                             <td mat-cell *matCellDef="let element">{{ element.totalCcy }}</td>
                         </ng-container>
-=======
->>>>>>> Stashed changes
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
                         </table>
