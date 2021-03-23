@@ -220,6 +220,7 @@ export class InvoiceDetailsComponent implements OnInit {
     
   }
   buildfinBidform(){
+    var ddatae = new Date();
     this.finBidform = this.fb.group({
       fundingCcy: ['SGD', Validators.required],
       fxRate: ['1', Validators.required],
@@ -227,15 +228,15 @@ export class InvoiceDetailsComponent implements OnInit {
       fundablePercent: ['90', Validators.required],
       baseCcyFundingAmt: ['', Validators.required],
       invCcyFundingAmt: ['', Validators.required],
-      repaymentDate:[this.invoiceDetails.invDate, Validators.required],
+      repaymentDate:[this.invoiceDetails.invDueDate, Validators.required],
       invDiscRate: ['', Validators.required],
       baseCcyDiscAmt:['', Validators.required],
       invCcyDiscAmt:['', Validators.required],
       baseCcyNetAmtPayable:['', Validators.required],
       invCcyNetAmtPayable:['', Validators.required],
       annualYeild:['', Validators.required],
-      offerExpPeriod:['', Validators.required],
-      offerExpDateTime:['', Validators.required],
+      offerExpPeriod:['24H', Validators.required],
+      offerExpDateTime:[ddatae, Validators.required],
       finId: localStorage.getItem("userId"),
       invoiceId : this.id,
       invNo:[''],

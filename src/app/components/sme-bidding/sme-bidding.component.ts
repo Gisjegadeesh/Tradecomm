@@ -233,6 +233,7 @@ export class SmeBiddingComponent implements OnInit {
     saveFinBid(){
       this.bidDetails[0]['smeId'] = localStorage.getItem("userId")
       this.bidDetails[0]['status'] = 'Active'
+      this.bidDetails[0]['invoiceId'] = this.bidDetails[0].invNo
       console.log(this.bidDetails[0],"this.bidDetails[0]")
       var element = this.bidDetails[0];
       this.smeBiddingServices.saveFinBid(element).subscribe(resp => {
