@@ -101,7 +101,8 @@
                                   <input matInput 
                                   formControlName="fxRate" 
                                   placeholder="FX RB CCY" 
-                                  >
+                                  (keyup)="changeRowgrid(index)"
+                                   >
                                 </td>
                               </ng-container>
             
@@ -112,8 +113,8 @@
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
                                   formControlName="baseCcyAmt" 
-                                  placeholder="Base CCY Amt" 
-                                  required>
+                                  placeholder="Base CCY Amt" (keyup)="changeRowgrid(index)"
+                                   required>
                                 </td>
                               </ng-container>
             
@@ -125,7 +126,7 @@
                                   <input matInput 
                                   formControlName="fundablePercent" 
                                   placeholder="Fundable percentage" 
-                                  required>
+                                  required  (keyup)="changeRowgrid(index)">
                                 </td>
                               </ng-container>
                               <ng-container matColumnDef="Funding Amount / Repay Amount (Base CCY)">
@@ -135,7 +136,7 @@
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
                                   formControlName="baseCcyFundingAmt" 
-                                  placeholder="Funding Amount Repay Amount Base CCY" 
+                                  placeholder="Funding Amount Repay Amount Base CCY" (keyup)="changeRowgrid(index)"
                                   required>
                                 </td>
                               </ng-container>
@@ -146,7 +147,7 @@
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
                                   formControlName="invCcyFundingAmt" 
-                                  placeholder="Funding Amount Repay Amount Inv CCY" 
+                                  placeholder="Funding Amount Repay Amount Inv CCY" (keyup)="changeRowgrid(index)"
                                   required>
                                 </td>
                               </ng-container>
@@ -176,7 +177,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="invDiscRate" 
+                              formControlName="invDiscRate" (keyup)="changeRowgrid(index)"
                               placeholder="Inv Discount Rate" 
                               required>
                             </td>
@@ -188,7 +189,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index" >
                               <input matInput 
-                              formControlName="baseCcyDiscAmt" 
+                              formControlName="baseCcyDiscAmt" (keyup)="changeRowgrid(index)"
                               placeholder="Disc Amt Base CCY" 
                               required>
                             </td>
@@ -200,8 +201,19 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="invCcyDiscAmt" 
+                              formControlName="invCcyDiscAmt" (keyup)="changeRowgrid(index)"
                               placeholder="Disc Amt Inv CCY" 
+                              required>
+                            </td>
+                          </ng-container>
+                          <ng-container matColumnDef="Annual Yield (Basis a360)">
+                            <th mat-header-cell *matHeaderCellDef scope="column" >Annual Yield (Basis a360)</th>
+                            <td mat-cell style="border-right: 1px solid grey;
+                            align-self: stretch;
+                            text-align: center" *matCellDef="let element;let row; let index = index"  >
+                              <input matInput 
+                              formControlName="annualYeild" 
+                              placeholder="Annual Yield Basis a360" 
                               required>
                             </td>
                           </ng-container>
@@ -227,17 +239,6 @@
                                 required>
                               </td>
                             </ng-container>
-                            <ng-container matColumnDef="Annual Yield (Basis a360)">
-                                <th mat-header-cell *matHeaderCellDef scope="column" >Annual Yield (Basis a360)</th>
-                                <td mat-cell style="border-right: 1px solid grey;
-                                align-self: stretch;
-                                text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                  <input matInput 
-                                  formControlName="annualYeild" 
-                                  placeholder="Annual Yield Basis a360" 
-                                  required>
-                                </td>
-                              </ng-container>
                               <ng-container matColumnDef="Offer Exp period">
                                   <th mat-header-cell *matHeaderCellDef scope="column" >Offer Exp period</th>
                                   <td mat-cell style="border-right: 1px solid grey;

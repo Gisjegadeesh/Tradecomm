@@ -120,9 +120,9 @@ export class InvoiceDetailsComponent implements OnInit {
     'Inv Discount  Rate',
     'Disc Amt (Base CCY)',
     'Disc Amt (Inv CCY)',
+    'Annual Yield (Basis a360)',
     'Net Amt payable (Base CCY)',
     'Net Amt payable (Inv CCY)',
-    'Annual Yield (Basis a360)',
     'Offer Exp period',
     'Off Exp date /time'
   ];
@@ -189,7 +189,7 @@ export class InvoiceDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.buildfinBidform()
+    // this.buildfinBidform()
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
@@ -198,6 +198,8 @@ export class InvoiceDetailsComponent implements OnInit {
       if(resp){
 
         this.invoiceDetails = resp
+        this.buildfinBidform()
+        this.changeRowgrid()
         this.displayInvDatas = new MatTableDataSource([
          {
           billNo : resp.billNo,
@@ -219,13 +221,13 @@ export class InvoiceDetailsComponent implements OnInit {
   }
   buildfinBidform(){
     this.finBidform = this.fb.group({
-      fundingCcy: ['', Validators.required],
-      fxRate: ['', Validators.required],
-      baseCcyAmt: ['',Validators.required],
-      fundablePercent: ['', Validators.required],
+      fundingCcy: ['SGD', Validators.required],
+      fxRate: ['1', Validators.required],
+      baseCcyAmt: [this.invoiceDetails.invAmt * 1,Validators.required],
+      fundablePercent: ['90', Validators.required],
       baseCcyFundingAmt: ['', Validators.required],
       invCcyFundingAmt: ['', Validators.required],
-      repaymentDate:['', Validators.required],
+      repaymentDate:[this.invoiceDetails.invDate, Validators.required],
       invDiscRate: ['', Validators.required],
       baseCcyDiscAmt:['', Validators.required],
       invCcyDiscAmt:['', Validators.required],
@@ -330,6 +332,7 @@ export class InvoiceDetailsComponent implements OnInit {
         //   this.invoiceForm.get(key).updateValueAndValidity();
         // }
         this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
+          alert("Please fill Mandatory fields")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');
@@ -340,5 +343,33 @@ export class InvoiceDetailsComponent implements OnInit {
     } 
     catch (err) {
     }
+  }
+    changeRowgrid(){
+       console.log(this.finBidform,"finnnn");
+      // this.finBidform.value.goodsDetails.forEach(element => { element.ID=this.invoiceID });
+      this.finBidform.value.baseCcyAmt = parseInt(this.invoiceDetails.invAmt)*parseInt(this.finBidform.value.fxRate)
+      this.finBidform.value.baseCcyFundingAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.fundablePercent) / 100;
+
+
+      this.finBidform.value.invDiscRate = 100 - parseInt(this.finBidform.value.fundablePercent);
+
+
+      this.finBidform.value.baseCcyDiscAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.invDiscRate) / 100;
+
+      this.finBidform.value.invCcyDiscAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.invDiscRate) / 100;
+
+
+
+      this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
+        baseCcyFundingAmt: this.finBidform.value.baseCcyFundingAmt,
+        invCcyFundingAmt:this.finBidform.value.baseCcyFundingAmt,
+        invDiscRate:this.finBidform.value.invDiscRate,
+        baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt,
+        invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt,
+
+
+
+
+      });
   }
 }
