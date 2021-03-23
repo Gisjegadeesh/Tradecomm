@@ -15,6 +15,7 @@ export class AcceptedFinanceServices {
   }
 
   getAcceptedFinanceDetails(id){
-    return this.apiService.tempGet(environment.serviePath_1+'api/v1/financing-details/getFinancingDetails/'+id);
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/financing-details/getFinancingDetails/'+id);
+
   }  
 }

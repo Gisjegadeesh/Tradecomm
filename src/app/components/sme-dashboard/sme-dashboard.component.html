@@ -122,12 +122,12 @@
         </div>
         <ng-container>
             <div #accountList class="accounts-list">
-                <uxg-account-card class="curs-pointer" name="Financier Bid Receive"  #tooltip="matTooltip"
-                matTooltip="{{dashboardTooltips.financeBidReceive}}"
-                [matTooltipPosition]="tooltipPosition" number="SGD 0" (click)="this.navigateFinancierBidding()" ></uxg-account-card>
                 <uxg-account-card name="Finance for Bidding" number="{{getSumOfOpenFinBidding?.invCcy}} {{getSumOfOpenFinBidding?.invTotalAmt? getSumOfOpenFinBidding?.invTotalAmt : 'SGD 0'}}" #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.bidDetails}}"
                 [matTooltipPosition]="tooltipPosition" (click)="this.navigateFinancieForBidding()"></uxg-account-card>
+                <uxg-account-card class="curs-pointer" name="Financier Bid Receive"  #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltips.financeBidReceive}}"
+                [matTooltipPosition]="tooltipPosition" number="SGD 0" (click)="this.navigateFinancierBidding()" ></uxg-account-card>
                 <!-- <uxg-account-card class="curs-pointer" name="Invoice Creation" number="New"(click)="this.navigateInvoiceCreation()" ></uxg-account-card> -->
                 <uxg-account-card class="curs-pointer" name="Accepted Finance" #tooltip="matTooltip"
                 matTooltip="{{dashboardTooltips.acceptedDetails}}"
