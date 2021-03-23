@@ -64,10 +64,9 @@ import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-s
 import { AcceptedFinanceComponent } from './components/accepted-finance/accepted-finance.component';
 import {AcceptedFinanceServices} from './components/accepted-finance/accepted-finance-service'
 import { SmeBiddingServices } from './components/sme-bidding/sme-bidding-services';
-
-
+import { ToastrModule } from 'ngx-toastr';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import { FinancierOnboardingService } from './components/financier-onboarding/financier-onboarding.service';
 
 @NgModule({
   declarations: [
@@ -124,11 +123,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AngularMultiSelectModule,
     NgMultiSelectDropDownModule.forRoot(),
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ToastrModule.forRoot()
   ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
-    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,
+    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

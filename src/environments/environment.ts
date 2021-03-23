@@ -28,6 +28,9 @@ let serviePath_1 = "http://e0e5381bff36.ngrok.io/";
 // Bidding Service Url 8081
 let serviePath_2 = "http://1c937486ae4a.ngrok.io/";
 
+//Financier onboard path
+let financierServicePath="http://e6a181d82c3b.ngrok.io/"
+
 //Dashboard  Service Url
 let dboardServerPath1 = "http://dboardServPath1/";
 let getSumOfOpenFinBidding = "http://localhost:8080/";
@@ -47,6 +50,7 @@ export const environment = {
   dboardServerPath4: `${dboardServerPath4}`,
   dboardServerPath5: `${dboardServerPath5}`,
   dboardServerPath6: `${dboardServerPath6}`,
+  financierServicePath: `${financierServicePath}`
 };
 
 /*
