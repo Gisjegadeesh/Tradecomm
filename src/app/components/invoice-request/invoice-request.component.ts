@@ -97,7 +97,7 @@ export class InvoiceRequestComponent implements OnInit {
     'ID',
     'DescGoods',
     // 'IdNo',
-    'DateOfInvoice',
+    // 'DateOfInvoice',
     'Quantity',
     'Rate',
     'Amt',
@@ -167,6 +167,8 @@ export class InvoiceRequestComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.getInvDetailsLists()
+    this.addRow();
+
 }
   getInvDetailsLists() {
     let tempInvArray;
@@ -258,6 +260,16 @@ export class InvoiceRequestComponent implements OnInit {
     })
   }
   onSubmitInvoiceForm() {
+
+    let grandtotal = 0;
+    this.invoiceForm.value.goodsDetails.forEach(element => {
+       grandtotal += element.total
+    });
+   
+if(grandtotal != this.invoiceForm.value.invAmt){
+  return alert("Please check Good Details !! Grant Total Should Be Equal to Funding Request Amount");
+}
+
     try {
       // for (const key in this.invoiceForm.controls) {
       //   this.invoiceForm.get(key).setValidators(Validators.required);
@@ -265,6 +277,7 @@ export class InvoiceRequestComponent implements OnInit {
       //   }
       if (this.invoiceForm.status === "INVALID")
         throw { "mes": "Please fill mendatory  fields" }
+
       let params = {
         "invoiceDetails": this.invoiceForm.value,
         // "goodsDetails": this.invoiceForm.value.data,
@@ -334,18 +347,30 @@ export class InvoiceRequestComponent implements OnInit {
       smeId: localStorage.getItem("userId"),
       invCcy: "SGD",
       goodsDetails: this.fb.array([]),
-      currency:[[],Validators.required]
+      // currency:[[],Validators.required]
     });
+
   }
   updateInvoiceId(event) {
     this.invoiceID = event.target.value;
-    this.invoiceForm.value.goodsDetails.findIndex((obj => obj.ID == 1));
+    // this.invoiceForm.value.goodsDetails.findIndex((obj => obj.ID == 1));
   }
   updateInvoicedate(event){
     this.InvoiceFdate = event.target.value;
   }
+  changeRowgrid(index){
+    this.invoiceForm.value.goodsDetails.forEach(element => { element.ID=this.invoiceID });
+    this.invoiceForm.value.goodsDetails[index]["amt"] = parseInt(this.invoiceForm.value.goodsDetails[index]["rate"])*parseInt(this.invoiceForm.value.goodsDetails[index]["quantity"]) ? parseInt(this.invoiceForm.value.goodsDetails[index]["rate"])*parseInt(this.invoiceForm.value.goodsDetails[index]["quantity"]) : "0" 
+    this.invoiceForm.value.goodsDetails[index]["netAmtPay"] = parseInt(this.invoiceForm.value.goodsDetails[index]["amt"]) - parseInt(this.invoiceForm.value.goodsDetails[index]["discAmt"]) ? parseInt(this.invoiceForm.value.goodsDetails[index]["amt"]) - parseInt(this.invoiceForm.value.goodsDetails[index]["discAmt"]) :'0'
+    this.invoiceForm.value.goodsDetails[index]["taxAmount"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100 ?parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100  :"0" 
+    this.invoiceForm.value.goodsDetails[index]["total"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmount"]) ?  parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmount"]):'0'
+    this.dateFormArray.patchValue(this.invoiceForm.value.goodsDetails);
+}
   onItemSelect(event){
 
   }
+  invoiceId(Id){
+    this.invoiceID=Id
+    }
 }
 

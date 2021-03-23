@@ -226,7 +226,14 @@ export class SmeBiddingComponent implements OnInit {
     }
     saveFinBid(){
       var element = this.bidDetails;
-      this.smeBiddingServices.saveFinBid(element).subscribe(resp => {
+      // var newArr = element.map(function(val, index){
+        this.bidDetails.map(function(val, index){
+      element['sme'] = "123";
+      // printing element
+      // console.log("key : ",index, "value : ",val*val);
+      })
+      console.log(this.bidDetails,"newArr");
+      this.smeBiddingServices.saveFinBid(this.bidDetails).subscribe(resp => {
     })
     }
     handleToggle(e,status){
