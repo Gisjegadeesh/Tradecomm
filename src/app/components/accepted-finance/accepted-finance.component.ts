@@ -97,8 +97,11 @@ export class AcceptedFinanceComponent implements OnInit {
   displayedColumnsTwo: string[] = ['invId', 'invDate', 'buyerName', 'invAmt', 'status'];
 
   dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
-  displayedColumnsThree: string[] = ['financierRef', 'financier', 'invoiceAmt',  'marginPercent',   'financierAmt',   'discRate', 'discAmt',  'netAmtDisc',    'fundedAmt', 'fxRate', 'dateOfFunding', 'tenorDays', 
-    'dueDate', 'paymentDate', 'relInvRef',  'relBidRef'];
+  displayedColumnsThree: string[] = [
+    'id','invoiceId','fxRate' ,'baseCcyAmt' ,'fundablePercent' ,'baseCcyFundingAmt' ,'repaymentDate' ,
+    'baseCcyNetAmtPayable', 'annualYeild' ,'offerExpDateTime','status' ,'smeId']
+  // ['financierRef', 'financier', 'invoiceAmt',  'marginPercent',   'financierAmt',   'discRate', 'discAmt',  'netAmtDisc',    'fundedAmt', 'fxRate', 'dateOfFunding', 'tenorDays', 
+  //   'dueDate', 'paymentDate', 'relInvRef',  'relBidRef'];
 
 
   isOpen = ""
