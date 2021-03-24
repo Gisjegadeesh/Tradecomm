@@ -47,13 +47,13 @@
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Invoice Date</mat-label>
-                      <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.invDate : ''" readonly />
+                      <input type="text" matInput  value="{{invoiceDetails.invDate | date}}" readonly />
                     </mat-form-field>
                   </td>
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Inv Due Date</mat-label>
-                      <input type="text" matInput [value]="invoiceDetails ? invoiceDetails.invDueDate : ''" readonly/>
+                      <input type="text" matInput value="{{invoiceDetails.invDueDate | date}}" readonly/>
                     </mat-form-field>
                   </td>
                   <td rowspan="1" colspan="1">
@@ -101,7 +101,7 @@
                                   <input matInput 
                                   formControlName="fxRate" 
                                   placeholder="FX RB CCY" 
-                                  (keyup)="changeRowgrid(index)"
+                                  (keyup)="changeRowgrid()"
                                    >
                                 </td>
                               </ng-container>
@@ -113,7 +113,7 @@
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
                                   formControlName="baseCcyAmt" 
-                                  placeholder="Base CCY Amt" (keyup)="changeRowgrid(index)"
+                                  placeholder="Base CCY Amt" (keyup)="changeRowgrid()"
                                    required>
                                 </td>
                               </ng-container>
@@ -126,7 +126,7 @@
                                   <input matInput 
                                   formControlName="fundablePercent" 
                                   placeholder="Fundable percentage" 
-                                  required  (keyup)="changeRowgrid(index)">
+                                  required  (keyup)="changeRowgrid()">
                                 </td>
                               </ng-container>
                               <ng-container matColumnDef="Funding Amount / Repay Amount (Base CCY)">
@@ -136,7 +136,7 @@
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
                                   formControlName="baseCcyFundingAmt" 
-                                  placeholder="Funding Amount Repay Amount Base CCY" (keyup)="changeRowgrid(index)"
+                                  placeholder="Funding Amount Repay Amount Base CCY" (keyup)="changeRowgrid()"
                                   required>
                                 </td>
                               </ng-container>
@@ -147,7 +147,7 @@
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                   <input matInput 
                                   formControlName="invCcyFundingAmt" 
-                                  placeholder="Funding Amount Repay Amount Inv CCY" (keyup)="changeRowgrid(index)"
+                                  placeholder="Funding Amount Repay Amount Inv CCY" (keyup)="changeRowgrid()"
                                   required>
                                 </td>
                               </ng-container>
@@ -177,7 +177,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="invDiscRate" (keyup)="changeRowgrid(index)"
+                              formControlName="invDiscRate" (keyup)="changeRowgrid()"
                               placeholder="Inv Discount Rate" 
                               required>
                             </td>
@@ -189,7 +189,7 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index" >
                               <input matInput 
-                              formControlName="baseCcyDiscAmt" (keyup)="changeRowgrid(index)"
+                              formControlName="baseCcyDiscAmt" (keyup)="changeRowgrid()"
                               placeholder="Disc Amt Base CCY" 
                               required>
                             </td>
@@ -201,24 +201,37 @@
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
                               <input matInput 
-                              formControlName="invCcyDiscAmt" (keyup)="changeRowgrid(index)"
+                              formControlName="invCcyDiscAmt" (keyup)="changeRowgrid()"
                               placeholder="Disc Amt Inv CCY" 
                               required>
                             </td>
                           </ng-container>
                           <ng-container matColumnDef="Annual Yield (Basis a360)">
-                            <th mat-header-cell *matHeaderCellDef scope="column" >Annual Yield (Basis a360)</th>
+                            <th mat-header-cell *matHeaderCellDef scope="column" >Annual Yield <br>(Basis a360)</th>
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
-                              <input matInput 
+                              <input matInput (keyup)="changeRowgrid()"
                               formControlName="annualYeild" 
                               placeholder="Annual Yield Basis a360" 
                               required>
                             </td>
                           </ng-container>
+                          <ng-container matColumnDef="Tenor Days">
+                              <th mat-header-cell *matHeaderCellDef scope="column" >Tenor Days</th>
+                              <td mat-cell style="border-right: 1px solid grey;
+                              align-self: stretch;
+                              text-align: center" *matCellDef="let element;let row; let index = index"  >
+                                <input matInput (keyup)="changeRowgrid()"
+                                formControlName="tenor"
+                                placeholder="Tenor Days" 
+                                required>
+                              </td>
+                            </ng-container>
                           <ng-container matColumnDef="Net Amt payable (Base CCY)">
-                            <th mat-header-cell *matHeaderCellDef scope="column" >Net Amt payable (Base CCY)</th>
+                            <th mat-header-cell *matHeaderCellDef scope="column" >
+                                     Net Amt
+                             <br> payable (Base CCY)</th>
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >

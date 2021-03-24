@@ -102,7 +102,7 @@
               matTooltip="{{financierTooltip.tradecommRef}}" [matTooltipPosition]="'below'"> ICC Tradecomm Ref </th>
               <td mat-cell *matCellDef="let element"> 
                 <mat-chip-list>
-                       <mat-chip color="primary" selected (click)="openModal($event,template,element)">{{element.invId}} </mat-chip>
+                       <mat-chip color="primary" selected (click)="navigateSmeDetails(element.invId)" >{{element.invId}} </mat-chip>
                    </mat-chip-list>
                </td>
             </ng-container>
@@ -133,7 +133,7 @@
               matTooltip="{{financierTooltip.invoiceDate}}" [matTooltipPosition]="'below'"> Inv Date  </th>
               <td mat-cell *matCellDef="let element"> 
                  <mat-chip-list>
-                        <mat-chip>{{element.invDate}} </mat-chip>
+                        <mat-chip>{{element.invDate | date}} </mat-chip>
                     </mat-chip-list>
                 </td>
             </ng-container>
@@ -143,7 +143,7 @@
               matTooltip="{{financierTooltip.invoiceDueDate}}" [matTooltipPosition]="'below'"> Inv Due date </th>
               <td mat-cell *matCellDef="let element"> 
                  <mat-chip-list>
-                        <mat-chip>{{element.invDueDate}} </mat-chip>
+                        <mat-chip>{{element.invDueDate | date}} </mat-chip>
                     </mat-chip-list>
                 </td>
             </ng-container>
@@ -178,8 +178,7 @@
 
 <div>
     <!-- <button type="button" class="btn btn-primary" >Open modal</button> -->
-
-    <ng-template #template>
+<ng-template #template>
         <div class="modal-header">
             <h4 class="modal-title pull-left">Sme Bidding</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"  #tooltip="matTooltip"
@@ -436,8 +435,7 @@
                 </div>
             </div>
             <!--Invoice Details-->
-            <p style="font-weight: 500;
-          color: #a899e4;margin-left: 14px;">Invoice Details</p>
+            <p style="font-weight: 500; color: #a899e4;margin-left: 14px;">Invoice Details</p>
             <table mat-table [dataSource]="dataSourceInvoiceDetails">
                 <ng-container matColumnDef="InvoiceID">
                     <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
@@ -479,9 +477,8 @@
             <!-- Invoice Details-->
             <!-- Goods Details-->
             <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                </mat-expansion-panel>
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel hideToggle></mat-expansion-panel>
+                <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title style="font-weight: 500;
                 color: #a899e4; ">
@@ -570,5 +567,5 @@
             <!-- <button type="button" class="btn model-btn-outline">Submit</button> -->
             <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
         </div>
-    </ng-template>
+ </ng-template>
 </div>

@@ -18,4 +18,7 @@ export class SmeBiddingServices {
   saveFinBid(body: any) {
     return this.apiService.post(environment.serviePath_2+'api/v1/financing-details/addFinancingBidDetails', body);
   }
+  updateFinBid(id){
+    return this.apiService.put(environment.serviePath_2+'api/v1/bidding-details/updateBidStatus/'+id,'');
+  }
 }

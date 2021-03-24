@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, HostListener, ViewChild,Input } from '@angular/core';
+import { Pipe, PipeTransform,Component, OnInit, ElementRef, HostListener, ViewChild,Input } from '@angular/core';
 import { AuthenticationService } from '../../../service/authentication/authentication.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { Validators, FormGroup ,FormBuilder} from '@angular/forms';
 import {InvoiceRequestServices} from '../../invoice-request/invoice-service';
 import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
 import { MatSort } from '@angular/material/sort';
+import { DatePipe } from '@angular/common';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
@@ -77,7 +78,8 @@ const displayInvDatas: any[] = [
 @Component({
   selector: 'app-invoice-details',
   templateUrl: './invoice-details.component.html',
-  styleUrls: ['./invoice-details.component.scss']
+  styleUrls: ['./invoice-details.component.scss'],
+  providers: [DatePipe]
 })
 export class InvoiceDetailsComponent implements OnInit {
   finBidform: FormGroup;
@@ -89,7 +91,7 @@ export class InvoiceDetailsComponent implements OnInit {
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
   
-  constructor(private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
+  constructor(private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
@@ -121,6 +123,7 @@ export class InvoiceDetailsComponent implements OnInit {
     'Disc Amt (Base CCY)',
     'Disc Amt (Inv CCY)',
     'Annual Yield (Basis a360)',
+    'Tenor Days',
     'Net Amt payable (Base CCY)',
     'Net Amt payable (Inv CCY)',
     'Offer Exp period',
@@ -213,6 +216,9 @@ export class InvoiceDetailsComponent implements OnInit {
 
       ])
       this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
+      }else{
+        this.buildfinBidform()
+
       }
      
     })
@@ -221,6 +227,7 @@ export class InvoiceDetailsComponent implements OnInit {
   }
   buildfinBidform(){
     var ddatae = new Date();
+    console.log(this.datePipe.transform(this.invoiceDetails.invDueDate),"this.datePipe.transform(this.invoiceDetails.invDueDate)")
     this.finBidform = this.fb.group({
       fundingCcy: ['SGD', Validators.required],
       fxRate: ['1', Validators.required],
@@ -228,7 +235,7 @@ export class InvoiceDetailsComponent implements OnInit {
       fundablePercent: ['90', Validators.required],
       baseCcyFundingAmt: ['', Validators.required],
       invCcyFundingAmt: ['', Validators.required],
-      repaymentDate:[this.invoiceDetails.invDueDate, Validators.required],
+      repaymentDate:[this.datePipe.transform(this.invoiceDetails.invDueDate), Validators.required],
       invDiscRate: ['', Validators.required],
       baseCcyDiscAmt:['', Validators.required],
       invCcyDiscAmt:['', Validators.required],
@@ -236,12 +243,23 @@ export class InvoiceDetailsComponent implements OnInit {
       invCcyNetAmtPayable:['', Validators.required],
       annualYeild:['', Validators.required],
       offerExpPeriod:['24H', Validators.required],
-      offerExpDateTime:[ddatae, Validators.required],
+      offerExpDateTime:[this.datePipe.transform(ddatae), Validators.required],
       finId: localStorage.getItem("userId"),
       invoiceId : this.id,
+      tenor:[this.dateMinus(this.datePipe.transform(this.invoiceDetails.invDueDate,'MM/dd/yyyy'),this.datePipe.transform(ddatae,'MM/dd/yyyy')), Validators.required],
       invNo:[''],
       invoiceAmt:['']
     })
+  }
+  dateMinus(repaymentDate,cureentday){
+    var date1, date2;  
+    console.log(repaymentDate,cureentday)
+    date1 = new Date(cureentday);  
+    date2 = new Date(repaymentDate);  
+    var time_difference = date2.getTime() - date1.getTime();  
+    console.log(time_difference,"time_difference")
+    var days_difference = time_difference / (1000 * 60 * 60 * 24);
+    return days_difference
   }
 
   isOpenHandle(isTrue){
@@ -347,8 +365,7 @@ export class InvoiceDetailsComponent implements OnInit {
   }
     changeRowgrid(){
        console.log(this.finBidform,"finnnn");
-      // this.finBidform.value.goodsDetails.forEach(element => { element.ID=this.invoiceID });
-      this.finBidform.value.baseCcyAmt = parseInt(this.invoiceDetails.invAmt)*parseInt(this.finBidform.value.fxRate)
+      this.finBidform.value.baseCcyAmt = parseInt(this.invoiceDetails.invAmt) * parseInt(this.finBidform.value.fxRate)
       this.finBidform.value.baseCcyFundingAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.fundablePercent) / 100;
 
 
@@ -359,6 +376,7 @@ export class InvoiceDetailsComponent implements OnInit {
 
       this.finBidform.value.invCcyDiscAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.invDiscRate) / 100;
 
+      this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyDiscAmt - (this.finBidform.value.baseCcyDiscAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
 
 
       this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
@@ -367,10 +385,8 @@ export class InvoiceDetailsComponent implements OnInit {
         invDiscRate:this.finBidform.value.invDiscRate,
         baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt,
         invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt,
-
-
-
-
+        baseCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2),
+        invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
       });
   }
 }

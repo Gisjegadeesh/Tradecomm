@@ -37,6 +37,7 @@ import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.
 import { InlineSVGModule } from 'ng-inline-svg';
 import { ChartsModule } from 'ng2-charts';
 import { SmeBiddingComponent } from './components/sme-bidding/sme-bidding.component';
+import { SmeBiddingDetailsComponent } from './components/sme-bidding/sme-bidding-details/sme-bidding-details.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {ModalDialogService} from './service/modal-dialog.service';
 import {ApiService} from './service/api.service';
@@ -79,6 +80,7 @@ import { FinancierOnboardingService } from './components/financier-onboarding/fi
     FinancierDashboardComponent,
     SmeDashboardComponent,
     SmeBiddingComponent,
+    SmeBiddingDetailsComponent,
     FinanceBiddingComponent,
     InvoiceDetailsComponent,
     InvoiceRequestComponent,
@@ -134,6 +136,8 @@ import { FinancierOnboardingService } from './components/financier-onboarding/fi
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],
+
+  exports:[ MatInputModule],
   bootstrap: [AppComponent],
     schemas: [
       CUSTOM_ELEMENTS_SCHEMA

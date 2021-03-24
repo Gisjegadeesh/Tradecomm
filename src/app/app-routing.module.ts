@@ -8,6 +8,7 @@ import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.
 import { FinancierOnboardingComponent } from './components/financier-onboarding/financier-onboarding.component';
 import { FinancierDashboardComponent } from './components/financier-dashboard/financier-dashboard.component';
 import { SmeBiddingComponent } from './components/sme-bidding/sme-bidding.component';
+import { SmeBiddingDetailsComponent } from './components/sme-bidding/sme-bidding-details/sme-bidding-details.component';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
 import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'sme-onboarding', component: SmeOnboardingComponent,  data : {"HeaderName" : "Sme Onboarding","homePath" : "/sme-dashboard"} },
   { path: 'sme-dashboard', component: SmeDashboardComponent,  data : {"HeaderName" : "Seller Dashboard","homePath" : "/sme-dashboard"}  },
   { path: 'sme-bidding', component: SmeBiddingComponent ,  data : {"HeaderName" : "SME Bidding","homePath" : "/sme-dashboard"}},
+  { path: 'sme-bidding/:id', component: SmeBiddingDetailsComponent ,  data : {"HeaderName" : "SME Bidding"}},
   { path: 'sme-finance-for-bidding', component: SmeFinanceforBiddingComponent , data : {"HeaderName" : "Finance For Bidding","homePath" : "/sme-dashboard"}},
   { path: 'accepted-finance', component: AcceptedFinanceComponent , data : {"HeaderName" : "Accepted Finance","homePath" : "/sme-dashboard"}},
 
@@ -32,9 +34,8 @@ const routes: Routes = [
 
   { path: 'financier-dashboard', component: FinancierDashboardComponent ,  data : {"HeaderName" : "Financier Dashboard","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding', component: FinanceBiddingComponent, data : {"HeaderName" : "Financier Bidding","homePath" : "/financier-dashboard"} },
-  { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Funding Request","homePath" : "/financier-dashboard"}},
-  { path: 'finance-bidding/:id', component: InvoiceDetailsComponent , data : {"HeaderName" : "Financier Onboarding","homePath" : "/financier-dashboard"}},
-  // { path: 'finance-bidding/invoice-details', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details" ,"homePath" : "/financier-dashboard"}},
+  { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Invoice Entry","homePath" : "/financier-dashboard"}},
+  { path: 'finance-bidding/:id', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/finance-bidding"}},
   { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}}
 ];
 

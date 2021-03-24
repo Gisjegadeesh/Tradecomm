@@ -1,17 +1,18 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ModalDialogService } from '../../service/modal-dialog.service';
+import { ModalDialogService } from '../../../service/modal-dialog.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import {ThemePalette} from '@angular/material/core';
-import { AuthenticationService } from '../../service/authentication/authentication.service';
-import { Financier } from '../../model/financier-bidding/financier';
-import { FinancierService } from '../../service/financier/financier.service';
+import { AuthenticationService } from '../../../service/authentication/authentication.service';
+import { Financier } from '../../../model/financier-bidding/financier';
+import { FinancierService } from '../../../service/financier/financier.service';
 import { Observable } from 'rxjs';
 import {DataSource} from '@angular/cdk/collections';
-import { SMEDASHBOARDCONSTANTS } from '../../shared/constants/constants';
-import { SmeBiddingServices } from './sme-bidding-services';
-import {INVOICEDETAILSCONSTANTS} from '../../shared/constants/constants';
+import { SMEDASHBOARDCONSTANTS } from '../../../shared/constants/constants';
+import { SmeBiddingServices } from '../sme-bidding-services';
+import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
+import * as _ from 'lodash';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -96,17 +97,16 @@ const DATA_INV_DETAILS: any[] = [
 ];
 @Component({
   selector: 'app-sme-bidding',
-  templateUrl: './sme-bidding.component.html',
-  styleUrls: ['./sme-bidding.component.scss']  
+  templateUrl: './sme-bidding-details.component.html',
+  styleUrls: ['./sme-bidding-details.component.scss']  
 })
 
-export class SmeBiddingComponent implements OnInit {
+export class SmeBiddingDetailsComponent implements OnInit {
 
   displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount'];
   tabledataSource = new MatTableDataSource(ELEMENT_DATA);
 
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','position1','name1'];
-  dataSource ;
     isOpen = ""
     mobileScreen = false;
   end = false;
@@ -121,6 +121,8 @@ export class SmeBiddingComponent implements OnInit {
   bidDetails
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
+  id: any;
+  smeDetails: any;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -133,16 +135,37 @@ export class SmeBiddingComponent implements OnInit {
   panelOpenState = false;
   financierTooltip=SMEDASHBOARDCONSTANTS;
   
-  constructor(public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
+  constructor(private activatedRoute: ActivatedRoute,public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
     ,private financierService: FinancierService,private smeBiddingServices : SmeBiddingServices) { }
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   dataSourceTwo; //data
+  dataBIDDetails;
   dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
 
   displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
-
+  displayedsmeOne: string[] = [
+    'Funding CCY',
+    'FX rate Base CCY',
+    'Base CCY Amount',
+    'Fundable percentage',
+    // 'Funding Amount / Repay Amount (Base CCY)',
+    'Funding Amount / Repay Amount (Inv CCY)',
+    'Repayment Date'
+  ];
+  displayedsmeTwo: string[] = [
+    'Inv Discount  Rate',
+    'Disc Amt (Base CCY)',
+    'Disc Amt (Inv CCY)',
+    'Annual Yield (Basis a360)',
+    'Net Amt payable (Base CCY)',
+    'Net Amt payable (Inv CCY)',
+    'Offer Exp period',
+    'Off Exp date /time'
+  ];
   displayedColumnsTwo: string[] = [
     // 'Funding CCY',
+    'Bid ID',
+    'Financier Name',
     'FX rate Base CCY',
     'Base CCY Amount',
     'Fundable percentage',
@@ -157,7 +180,7 @@ export class SmeBiddingComponent implements OnInit {
     // 'Net Amt payable (Inv CCY)',
     // 'Offer Exp period',
     'Off Exp date /time',
-    'Status'
+    // 'Status'
   ];
   displayedInvDetailsColumns: string[] = [
     'InvoiceID',
@@ -169,15 +192,23 @@ export class SmeBiddingComponent implements OnInit {
   
   goods_array : object [];
   ngOnInit() {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.financierService.getInvoiceDetails().subscribe(resp => {
-      console.log(resp);
-      this.dataSource = new MatTableDataSource(resp);
-    })
+    this.smeBiddingServices.getBiddingDetails(this.id).subscribe(resp => {
+      console.log(resp,"resp")
+      this.smeBiddingServices.getInvoiceGoodsDetails(resp[0].id).subscribe(resp => {
+        this.dataSourceOne = new MatTableDataSource(resp.goodsDetails)
+        this.dataSourceInvoiceDetails = new MatTableDataSource([
+          { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status ,'smeId' : resp.smeId}
+        ]);
+       })
+      this.dataSourceTwo = new MatTableDataSource(resp);
+     this.bidDetails = resp;
+    }) 
   }
-
+ 
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -204,44 +235,34 @@ export class SmeBiddingComponent implements OnInit {
       behavior: 'smooth',
     });
   }
-
+  openModal(event, template,index,financier) {
+    console.log(financier,"financier")
+    console.log(index,"index")
+    let array = []
+    array.push(financier)
+    this.dataBIDDetails = new MatTableDataSource(array);
+    event.preventDefault();
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+  }
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
     }
-  navigateSmeDetails(id){
-      this.router.navigateByUrl('/sme-bidding/'+id);
-  }
-  openModal(event, template,element) {
-      event.preventDefault();
-      this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
-      this.smeBiddingServices.getBiddingDetails(element.invId).subscribe(resp => {
-        console.log(resp,"resp")
-       this.dataSourceTwo = new MatTableDataSource(resp);
-       this.bidDetails = resp;
-      }) 
-      this.smeBiddingServices.getInvoiceGoodsDetails(element.id).subscribe(resp => {
-        this.dataSourceOne = new MatTableDataSource(resp.goodsDetails)
-        this.dataSourceInvoiceDetails = new MatTableDataSource([
-          { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status ,'smeId' : resp.smeId}
-        ]);
-       })
-     
-      // this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
-      //   if(resp){
-      //     this.dataSourceThree = new MatTableDataSource(resp);
-      //   }
-      // })
-    }
-    saveFinBid(){
-      this.bidDetails[0]['smeId'] = localStorage.getItem("userId")
-      this.bidDetails[0]['status'] = 'Active'
-      this.bidDetails[0]['invoiceId'] = this.bidDetails[0].invNo
-      console.log(this.bidDetails[0],"this.bidDetails[0]")
-      var element = this.bidDetails[0];
+
+    saveFinBid(data){
+      console.log(data.filteredData,"usus")
+      data.filteredData[0]['smeId'] = localStorage.getItem("userId")
+      data.filteredData[0]['status'] = 'A'
+      data.filteredData[0]['invoiceId'] = data.filteredData[0].invNo
+      var element =  data.filteredData[0];
       this.smeBiddingServices.saveFinBid(element).subscribe(resp => {
         console.log(resp,"resp")
+        if(resp){
+          this.smeBiddingServices.updateFinBid(resp.id).subscribe(resp => {
+
+          })
         this.modalRef.hide()
         this.router.navigateByUrl('/sme-bidding');
+        }
       })
     }
     handleToggle(e,status){
