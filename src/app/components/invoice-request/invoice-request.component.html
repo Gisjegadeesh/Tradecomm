@@ -144,10 +144,10 @@
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" style="margin-left: -32px;">
                 <mat-form-field appearance="fill" class="select-split-input">
                   <mat-label>Currency</mat-label>
-                  <select matNativeControl [disabled]="disableSelect.value">
+                  <select matNativeControl [disabled]="disableSelect.value" formControlName="currency">
                     <option value=""></option>
                     <option value="SGD">Singapore - SGD</option>
                     <option value="USD">America - USD</option>
