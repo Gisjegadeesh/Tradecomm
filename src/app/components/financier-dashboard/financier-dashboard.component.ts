@@ -286,4 +286,34 @@ export class FinancierDashboardComponent implements OnInit {
       })
     }
 
+  //multiple line chart
+  chartType = "line";
+  chartOptions = {
+  responsive: true,
+  heigh:400,
+  width :700
+  };
+  chartData = [
+  { data: [350, 600, 260, 700, 650, 416, 400, 300, 556, 500, 600, 580], label: "Funding Requested" },
+  { data: [500, 410, 450, 600, 550, 680, 720, 380, 350, 450, 650, 700], label: "Actual Funding" },
+  // { data: [120, 200, 700], label: "Repayment" },
+  ];
+  chartLabels = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  chartColors = [
+  {
+  backgroundColor: "rgba(204, 51, 0, .3)",
+  borderColor: "rgba(204, 51, 0, .7)",
+  },
+  {
+  backgroundColor: "rgba(0, 137, 132, .3)",
+  borderColor: "rgba(0, 10, 130, .7)",
+  },
+  {
+  backgroundColor: "rgba(0, 128, 43, .3)",
+  borderColor: "rgba(0, 128, 43, .7)",
+  }
+  ];
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+    }
 }

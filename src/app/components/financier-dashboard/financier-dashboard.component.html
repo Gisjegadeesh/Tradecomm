@@ -146,7 +146,19 @@
                                 <div class="col-lg-10 grid-margin stretch-card p-0">
                                   <div class="card" >
                                     <div class="card-body">
-                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" height="150"></canvas>
+                                        <div style="display: block;">
+                                            <canvas baseChart
+                                            [chartType]="chartType"
+                                            [datasets]="chartData"
+                                            [labels]="chartLabels"
+                                            [colors]="chartColors"
+                                            [options]="chartOptions"
+                                            [legend]="true"
+                                            (chartHover)="chartHovered($event)"
+                                            >
+                                            </canvas>
+                                            </div>
+                                      <!-- <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" height="150"></canvas> -->
                                     </div>
                                   </div>
                                 </div>
