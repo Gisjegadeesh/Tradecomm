@@ -376,7 +376,7 @@ export class InvoiceDetailsComponent implements OnInit {
 
       this.finBidform.value.invCcyDiscAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.invDiscRate) / 100;
 
-      this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyDiscAmt - (this.finBidform.value.baseCcyDiscAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyFundingAmt - (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
 
 
       this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,

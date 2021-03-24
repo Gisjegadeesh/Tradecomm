@@ -94,7 +94,7 @@
                                 </td>
                               </ng-container> -->
                               <ng-container matColumnDef="FX rate Base CCY">
-                                <th mat-header-cell *matHeaderCellDef scope="column" >FX rate Base CCY</th>
+                                <th mat-header-cell *matHeaderCellDef scope="column" >FX rate Base CCY %</th>
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index">
@@ -119,7 +119,7 @@
                               </ng-container>
             
                               <ng-container matColumnDef="Fundable percentage">
-                                <th mat-header-cell *matHeaderCellDef scope="column" >Fundable percentage</th>
+                                <th mat-header-cell *matHeaderCellDef scope="column" >Fundable percentage %</th>
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
@@ -172,7 +172,7 @@
                        </table>
                        <table mat-table [dataSource]="dataSourceTwo">
                         <ng-container matColumnDef="Inv Discount  Rate">
-                            <th mat-header-cell *matHeaderCellDef scope="column" >Inv Discount  Rate</th>
+                            <th mat-header-cell *matHeaderCellDef scope="column" >Inv Discount  Rate%</th>
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
@@ -207,7 +207,7 @@
                             </td>
                           </ng-container>
                           <ng-container matColumnDef="Annual Yield (Basis a360)">
-                            <th mat-header-cell *matHeaderCellDef scope="column" >Annual Yield <br>(Basis a360)</th>
+                            <th mat-header-cell *matHeaderCellDef scope="column" >Annual Yield <br>(Basis a360) %</th>
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
@@ -409,7 +409,7 @@
                   -->
                   <ng-container matColumnDef="taxRate">
                   <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
-                  matTooltip="{{detailsTooltip.taxRate}}" [matTooltipPosition]="'below'">Tax Rate</th>
+                  matTooltip="{{detailsTooltip.taxRate}}" [matTooltipPosition]="'below'">Tax Rate %</th>
                   <td mat-cell *matCellDef="let element">{{ element.taxRate }}</td>
                   </ng-container>
                   <ng-container matColumnDef="taxAmount">
@@ -510,7 +510,7 @@
                 
                   <!-- Weight Column -->
                   <ng-container matColumnDef="Fundable percentage">
-                    <th mat-header-cell *matHeaderCellDef> Fundable percentage </th>
+                    <th mat-header-cell *matHeaderCellDef> Fundable percentage %</th>
                     <td mat-cell *matCellDef="let element">{{element?.fundablePercent || '' }}  </td>
                   </ng-container>
                 
@@ -538,7 +538,7 @@
                 
                   <!-- Position Column -->
                   <ng-container matColumnDef="Inv Discount Rate">
-                    <th mat-header-cell *matHeaderCellDef>Inv Discount  Rate</th>
+                    <th mat-header-cell *matHeaderCellDef>Inv Discount  Rate%</th>
                     <td mat-cell *matCellDef="let element"> {{element?.invDiscRate || '' }} </td>
                   </ng-container>
                 
@@ -556,7 +556,7 @@
                 
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="Annual Yield (Basis a360)">
-                    <th mat-header-cell *matHeaderCellDef> Annual Yield (Basis a360) </th>
+                    <th mat-header-cell *matHeaderCellDef> Annual Yield (Basis a360) %</th>
                     <td mat-cell *matCellDef="let element"> {{element?.annualYeild || '' }}   </td>
                   </ng-container>
                   <ng-container matColumnDef="Offer Exp period">

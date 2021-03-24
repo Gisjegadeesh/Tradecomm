@@ -113,10 +113,10 @@
             </ng-template>
             <div class="paginator" *ngIf="!mobileScreen">
                 <button mat-icon-button (click)="scrollLeft()"  [disabled]="start">
-                    <mat-icon>keyboard_arrow_left</mat-icon>
+                    <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->
                 </button>
                 <button mat-icon-button (click)="scrollRight()" [disabled]="end">
-                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
                 </button>
             </div>
         </div>
@@ -141,7 +141,7 @@
             </div>
         </ng-container>
         <div class="col-md-12" style="float:right">
-        <button type="button" style="float:right" class="btn btn-outline"  #tooltip="matTooltip"
+        <button type="button" style="float:right;margin-right: 100px;" class="btn btn-outline"  #tooltip="matTooltip"
         matTooltip="{{dashboardTooltips.fundingRequest}}"
         [matTooltipPosition]="tooltipPosition"  (click)="this.navigateInvoiceCreation()">+ Funding Request</button>
         </div>
@@ -150,37 +150,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-6 p-0">
-                        <h6>Chart</h6>
-                        <ng-container>
-                            <div class="chart {{isOpen}}">
-                                <div class="col-lg-10 grid-margin stretch-card p-0">
-                                  <div class="card" >
-                                    <div class="card-body">
-                                        <div style="display: block;">
-                                            <canvas baseChart
-                                            [chartType]="chartType"
-                                            [datasets]="chartData"
-                                            [labels]="chartLabels"
-                                            [colors]="chartColors"
-                                            [options]="chartOptions"
-                                            [legend]="true"
-                                            (chartHover)="chartHovered($event)"
-                                            >
-                                            </canvas>
-                                            </div>
-                                      <!-- <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" height="150"></canvas> -->
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </ng-container>
-                    </div>
                     <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="trans-table">
                             <div class="">
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <h6>Finance Maturity</h6>
                                     </div>
                                     <div class="col-md-1">
@@ -215,7 +190,7 @@
                                 <td>12</td>
                                 <td>$3,067.98</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>61 to 75 days</td>
                                 <td>12</td>
                                 <td>$3,067.98</td>
@@ -229,37 +204,16 @@
                                 <td>Above 90 days</td>
                                 <td>12</td>
                                 <td>$3,067.98</td>
-                            </tr>
+                            </tr> -->
                           </table>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6 p-0">
-                        <h6>Chart</h6>
-                        <ng-container>
-                            <div class="chart {{isOpen}}">
-                                <div class="col-lg-10 grid-margin stretch-card p-0">
-                                  <div class="card" >
-                                    <div class="card-body">
-                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </ng-container>
-                    </div>
-                    <div class="col-md-6">
+                    <div style="height:20px"></div>
+                   <div class="col-md-3">
                         <div class="trans-table">
                             <div class="">
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <h6> Finance Size</h6>
                                     </div>
                                     <div class="col-md-1">
@@ -289,7 +243,7 @@
                                 <td>Febraury</td>
                                 <td>$3,067.98</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>60001 to 80000</td>
                                 <td>January</td>
                                 <td>$3,067.98</td>
@@ -303,11 +257,63 @@
                                 <td>Above 100000</td>
                                 <td>November</td>
                                 <td>$3,067.98</td>
-                            </tr>
+                            </tr> -->
                             
                           </table>
                         </div>
                     </div>
+                </div>
+
+                    <div class="col-md-6 p-0">
+                        <h6>Chart</h6>
+                        <ng-container>
+                            <div class="chart {{isOpen}}">
+                                <div class="col-lg-10 grid-margin stretch-card p-0">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                        <div style="display: block;">
+                                            <canvas baseChart
+                                            [chartType]="chartType"
+                                            [datasets]="chartData"
+                                            [labels]="chartLabels"
+                                            [colors]="chartColors"
+                                            [options]="chartOptions"
+                                            [legend]="true"
+                                            (chartHover)="chartHovered($event)"
+                                            >
+                                            </canvas>
+                                            </div>
+                                      <!-- <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" height="150"></canvas> -->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <!-- <div class="col-md-6 p-0">
+                        <h6>Chart</h6>
+                        <ng-container>
+                            <div class="chart {{isOpen}}">
+                                <div class="col-lg-10 grid-margin stretch-card p-0">
+                                  <div class="card" >
+                                    <div class="card-body">
+                                      <canvas baseChart [chartType]="'line'" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-container>
+                    </div> -->
+                    
                 </div>
             </div>
         </div>

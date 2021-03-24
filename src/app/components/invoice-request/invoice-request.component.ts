@@ -317,13 +317,13 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       if (this.invoiceForm.status === "INVALID")
         throw { "mes": "Please fill mendatory  fields" }
         let invoiceFormData = this.invoiceForm.value
-        invoiceFormData.invDate = invoiceFormData.invDate && moment(invoiceFormData.invDate).format('DD/MM/YYYY')
+        // invoiceFormData.invDate = invoiceFormData.invDate && moment(invoiceFormData.invDate).format('DD/MM/YYYY')
         
-        invoiceFormData.invDueDate = invoiceFormData.invDueDate && moment(invoiceFormData.invDueDate).format('DD/MM/YYYY')
-        invoiceFormData.dispDate = invoiceFormData.dispDate && moment(invoiceFormData.dispDate).format('DD/MM/YYYY')
-
+        // invoiceFormData.invDueDate = invoiceFormData.invDueDate && moment(invoiceFormData.invDueDate).format('DD/MM/YYYY')
+        // invoiceFormData.dispDate = invoiceFormData.dispDate && moment(invoiceFormData.dispDate).format('DD/MM/YYYY')
+        this.invoiceForm.value['invoiceDetailsSequenceNumber']={}
       let params = {
-        "invoiceDetails": invoiceFormData,
+        "invoiceDetails": this.invoiceForm.value,
         // "goodsDetails": this.invoiceForm.value.data,
       }
       console.log(params,"params");
