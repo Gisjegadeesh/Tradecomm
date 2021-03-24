@@ -319,3 +319,27 @@ mat-form-field {
     width: 233px;
     left:6px;
  }
+
+ .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .spilt-input{
+    width: 195px;
+    right: 14px;
+    // top: 7px;
+  }
+  .select-split-input{
+    width: 200px;
+
+  }
+  .mat-form-field-appearance-fill .mat-form-field-wrapper .mat-form-field-flex {
+    height: 48px !important;
+    padding-top: 7px;
+    padding-left: 1em;
+}

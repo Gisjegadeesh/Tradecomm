@@ -4,11 +4,13 @@ import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Validators, FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { InvoiceRequestServices } from './invoice-service';
 import { DatePipe } from '@angular/common';
 import { FUNDINGREQUESTCONSTANTS } from '../../shared/constants/constants';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -101,6 +103,7 @@ export class InvoiceRequestComponent implements OnInit {
     'Quantity',
     'Rate',
     'Amt',
+    'Ccy',
     'DiscAmt',
     'NetAmtPay',
     'TaxRate',
@@ -113,7 +116,7 @@ export class InvoiceRequestComponent implements OnInit {
 
   dataSource = new MatTableDataSource(INVOICE_ARRAY);
 
-  displayedColumns: string[] = ['select', 'DateTime', 'DateOfInvoice', 'Seller', 'buyerName', 'InvoiceAmount', 'Status'];
+  displayedColumns: string[] = ['select', 'DateTime', 'DateOfInvoice', 'Seller', 'buyerName', 'InvoiceAmount','Ccy','Status'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   // tslint:disable-next-line: typedef
   isOpen = ""
@@ -157,6 +160,11 @@ export class InvoiceRequestComponent implements OnInit {
     textField: 'item_text',
     allowSearchFilter: true  
   }
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+  disableSelect = new FormControl(false);
+
   constructor(public router: Router, private authenticationService: AuthenticationService, private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
     private datePipe: DatePipe) {
     this.invoiceFormBuild()
@@ -168,7 +176,16 @@ export class InvoiceRequestComponent implements OnInit {
     }
     this.getInvDetailsLists()
     this.addRow();
+    
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+}
 
+private _filter(value: string): string[] {
+  const filterValue = value.toLowerCase();
+  return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
 }
   getInvDetailsLists() {
     let tempInvArray;
@@ -324,6 +341,7 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       quantity: [""],
       rate: [""],
       amt: [""],
+      ccy: ["SGD"],
       discAmt: [""],
       netAmtPay: [""],
       taxRate: [""],
@@ -347,7 +365,7 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       smeId: localStorage.getItem("userId"),
       invCcy: "SGD",
       goodsDetails: this.fb.array([]),
-      // currency:[[],Validators.required]
+      currency:['',Validators.required]
     });
 
   }

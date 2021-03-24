@@ -22,6 +22,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SkeletonTextModule } from '@ffdc/uxg-angular-components/skeleton-text';
 // import { UxgUserProfileMenuModule } from '@ffdc/uxg-angular-components/user-profile-menu';
 import { AccountCardModule } from '@ffdc/uxg-angular-components/cards/account-card';
@@ -113,6 +114,7 @@ import { FinancierOnboardingService } from './components/financier-onboarding/fi
     MatListModule,
     BrowserAnimationsModule,
     SkeletonTextModule,
+    MatAutocompleteModule,
     // UxgUserProfileMenuModule,
     AccountCardModule,
     UxgTableModule,
