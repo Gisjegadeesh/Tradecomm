@@ -113,7 +113,7 @@
                 </td> -->
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
-                    <mat-label>Funding Request ID</mat-label>
+                    <mat-label>Invoice No</mat-label>
                     <input type="text" matInput formControlName="invId" (keyup)="updateInvoiceId($event)"/>
                     <!-- <mat-hint>Please enter Invoice ID</mat-hint> -->
                   </mat-form-field>
@@ -136,12 +136,46 @@
                       class="invoice_amt_field" >
                   </ng-multiselect-dropdown>
                 </span> -->
-                <mat-form-field dense >
+                <div class="row col-md-12">
+                  <div class="col-md-6">
+                <mat-form-field dense class="spilt-input" >
                   <mat-label>Funding Request Amount</mat-label>
                   <input type="text" matInput value="" autocomplete="on" formControlName="invAmt"/>
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="fill" class="select-split-input">
+                  <mat-label>Currency</mat-label>
+                  <select matNativeControl [disabled]="disableSelect.value">
+                    <option value=""></option>
+                    <option value="SGD">Singapore - SGD</option>
+                    <option value="USD">America - USD</option>
+                    <option value="AUD">Australia - AUD</option>
+                    <option value="INR">India - INR</option>
+                  </select>
+                </mat-form-field>
+                <!-- <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Number</mat-label>
+                    <input type="text"
+                           placeholder="Pick one"
+                           aria-label="Number"
+                           matInput
+                           [formControl]="myControl"
+                           [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </form> -->
+                </div>
+              </div>
                 </td>
+                <!-- formControlName="currency" -->
+
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Buyer Name</mat-label>
@@ -301,6 +335,17 @@
                       required readonly>
                     </td>
                   </ng-container>
+                  <ng-container matColumnDef="Ccy">
+                    <th mat-header-cell *matHeaderCellDef scope="column">Ccy</th>
+                    <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <!-- <input matInput 
+                      formControlName="amt" 
+                      placeholder="Currency" 
+                      value="{{element.ccy}}"
+                      required readonly> -->
+                      {{"SGD"}}
+                    </td>
+                  </ng-container>
 
                   <ng-container matColumnDef="DiscAmt">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
@@ -435,6 +480,10 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
               matTooltip="{{fundingTooltip.invoiceAmount}}" [matTooltipPosition]="tooltipPosition">Invoice Amount </th>
               <td mat-cell *matCellDef="let element">{{ element.invAmt }}</td>
+            </ng-container>
+            <ng-container matColumnDef="Ccy">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" >Ccy </th>
+              <td mat-cell *matCellDef="let element">{{ element.ccy }}</td>
             </ng-container>
             <ng-container matColumnDef="Status">
               <th mat-header-cell *matHeaderCellDef mat-sort-header scope="column" #tooltip="matTooltip"
