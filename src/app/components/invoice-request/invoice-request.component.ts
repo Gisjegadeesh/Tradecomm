@@ -83,6 +83,7 @@ export class InvoiceRequestComponent implements OnInit {
   invoiceForm: FormGroup;
   tcode: string;
   invoiceID: any;
+  currencyName:any;
   InvoiceFdate:any
   moment: any = moment;
   invoicedata: invoiceData = {
@@ -118,7 +119,7 @@ export class InvoiceRequestComponent implements OnInit {
 
   dataSource = new MatTableDataSource(INVOICE_ARRAY);
 
-  displayedColumns: string[] = ['select', 'DateTime', 'DateOfInvoice', 'Seller', 'buyerName', 'InvoiceAmount','Ccy','Status'];
+  displayedColumns: string[] = ['select', 'DateTime','InvoiceRefNo', 'DateOfInvoice', 'Seller', 'buyerName', 'InvoiceAmount','Ccy','Status'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   // tslint:disable-next-line: typedef
   isOpen = ""
@@ -272,10 +273,29 @@ private _filter(value: string): string[] {
     let invIdparams = {
       "invoiceIds": invoiceIds,
     }
+
     alert("Selected Inovices has been Authorized !");
     this.invoiceRequestServices.authoriseInvoice(invoiceIds.toString()).subscribe(resp => {
       this.getInvDetailsLists();
     }, error => {
+    })
+
+    let reqParams=[]
+    this.dataSource.data.map((item)=>{
+      if(invoiceIds.includes(item.id)){
+        let obj={
+          "invoiceId":item.id,
+          "invoiceRef":item['invoiceDetailsSequenceNumber'] && item['invoiceDetailsSequenceNumber'].invoice_ref ? item['invoiceDetailsSequenceNumber'].invoice_ref : '',
+          "invoiceDate":item['invDate'],
+          "smeId":item['smeId'],
+          "invoiceAmt":item['invAmt'],
+          "invoiceCcy":item['invCcy']
+        }
+        reqParams.push(obj)
+      }
+    })
+    this.invoiceRequestServices.updateInvoiceDetails(reqParams).subscribe(resp =>{
+      this.getInvDetailsLists();
     })
   }
   onSubmitInvoiceForm() {
@@ -348,7 +368,7 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       quantity: [""],
       rate: [""],
       amt: [""],
-      ccy: ["SGD"],
+      amtCcy: this.currencyName,
       discAmt: [""],
       netAmtPay: [""],
       taxRate: [""],
@@ -370,15 +390,18 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       invDate: ['', Validators.required], 
       dispDate: ['', Validators.required],
       smeId: localStorage.getItem("userId"),
-      invCcy: "SGD",
+      // invCcy: "",
       goodsDetails: this.fb.array([]),
-      currency:['',Validators.required]
+      invCcy:['',Validators.required]
     });
 
   }
   updateInvoiceId(event) {
     this.invoiceID = event.target.value;
     // this.invoiceForm.value.goodsDetails.findIndex((obj => obj.ID == 1));
+  }
+  updateCurrency(event){
+    this.currencyName=event.target.value
   }
   updateInvoicedate(event){
     this.InvoiceFdate = event.target.value;
@@ -389,6 +412,7 @@ if(grandtotal != this.invoiceForm.value.invAmt){
     this.invoiceForm.value.goodsDetails[index]["netAmtPay"] = parseInt(this.invoiceForm.value.goodsDetails[index]["amt"]) - parseInt(this.invoiceForm.value.goodsDetails[index]["discAmt"]) ? parseInt(this.invoiceForm.value.goodsDetails[index]["amt"]) - parseInt(this.invoiceForm.value.goodsDetails[index]["discAmt"]) :'0'
     this.invoiceForm.value.goodsDetails[index]["taxAmount"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100 ?parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100  :"0" 
     this.invoiceForm.value.goodsDetails[index]["total"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmount"]) ?  parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmount"]):'0'
+    this.invoiceForm.value.goodsDetails[index]["amtCcy"]=this.currencyName
     this.dateFormArray.patchValue(this.invoiceForm.value.goodsDetails);
 }
   onItemSelect(event){
