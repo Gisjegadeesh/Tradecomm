@@ -105,8 +105,8 @@ mat-card {
     margin: 0 !important;
 }
 .trans-table{
-    height: 224px;
-    overflow: auto;
+    height: 180px;
+    // overflow: auto;
     width: 500px;
     #customers td, #customers th{
         padding: 5px;
@@ -124,7 +124,7 @@ mat-card {
 }
 .active{
     .trans-table{
-        height: 284px;
+        height: 180px;
     }
 }
 .chart.inActive{
