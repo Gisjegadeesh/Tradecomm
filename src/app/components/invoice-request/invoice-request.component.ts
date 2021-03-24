@@ -11,6 +11,7 @@ import { FUNDINGREQUESTCONSTANTS } from '../../shared/constants/constants';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import * as moment from 'moment';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -83,6 +84,7 @@ export class InvoiceRequestComponent implements OnInit {
   tcode: string;
   invoiceID: any;
   InvoiceFdate:any
+  moment: any = moment;
   invoicedata: invoiceData = {
     id: "",
     RefNo: "",
@@ -294,9 +296,14 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       //   }
       if (this.invoiceForm.status === "INVALID")
         throw { "mes": "Please fill mendatory  fields" }
+        let invoiceFormData = this.invoiceForm.value
+        invoiceFormData.invDate = invoiceFormData.invDate && moment(invoiceFormData.invDate).format('DD/MM/YYYY')
+        
+        invoiceFormData.invDueDate = invoiceFormData.invDueDate && moment(invoiceFormData.invDueDate).format('DD/MM/YYYY')
+        invoiceFormData.dispDate = invoiceFormData.dispDate && moment(invoiceFormData.dispDate).format('DD/MM/YYYY')
 
       let params = {
-        "invoiceDetails": this.invoiceForm.value,
+        "invoiceDetails": invoiceFormData,
         // "goodsDetails": this.invoiceForm.value.data,
       }
       console.log(params,"params");
