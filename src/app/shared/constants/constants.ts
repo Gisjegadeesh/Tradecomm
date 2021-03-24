@@ -23,7 +23,9 @@ export const FUNDINGREQUESTCONSTANTS={
     'submit':'Submit',
     'invoiceAuthorise':'Authorise a Selected Invoices',
     'pendingInvoice':'Pending a Selected Invoices',
-    'billInfo':'BL(Landing Bill ) / Roadway Bill for Specific Good'
+    'billInfo':'BL(Landing Bill ) / Roadway Bill for Specific Good',
+    'ccy':'Currency',
+    'refno':'Invoice Referral Number (Unique)'
 }
 
 // DASHBOARD PAGE TOOLTIPS
