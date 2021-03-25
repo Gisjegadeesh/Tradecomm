@@ -142,7 +142,7 @@ export class SmeBiddingDetailsComponent implements OnInit {
   dataBIDDetails;
   dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
 
-  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+  displayedColumnsOne: string[] = ['descGoods', 'quantity', 'taxRate','amt','rate','total'];
   displayedsmeOne: string[] = [
     'Funding CCY',
     'FX rate Base CCY',

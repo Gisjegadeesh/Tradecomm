@@ -99,10 +99,10 @@
                     <td mat-cell *matCellDef="let data">{{ 'FIN00'+data.id }}</td>
                 </ng-container>
         
-                <!-- <ng-container matColumnDef="relInvRef">
-                    <th mat-header-cell *matHeaderCellDef scope="column">INV REF No</th>
-                    <td mat-cell *matCellDef="let data">{{ data.relInvRef }}</td>
-                </ng-container> -->
+                <ng-container matColumnDef="finId">
+                    <th mat-header-cell *matHeaderCellDef scope="column">FIN Id</th>
+                    <td mat-cell *matCellDef="let data">{{ data.finId }}</td>
+                </ng-container>
         
                 <ng-container matColumnDef="invoiceId">
                     <th mat-header-cell *matHeaderCellDef scope="column">Invoice Id</th>
