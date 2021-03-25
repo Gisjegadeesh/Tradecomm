@@ -84,7 +84,7 @@ export class FinancierOnboardingComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       // this.financierId=params.id
       let id = params.id && params.id.split('FIN')
-      this.financierId = id && id[1]
+      this.financierId = id && id[1] ? id[1] : ''
       this.isView = params.edit == 'view' ? true : false
     })
     this.buildFinancierForm()
@@ -445,5 +445,22 @@ export class FinancierOnboardingComponent implements OnInit {
   }
   editPath() {
     this.router.navigateByUrl('/financier-onboarding/edit/' + this.financierId)
+  }
+  removeRow(type,index){
+    if (type == 'partner') {
+      let removeEntry=this.dataSource1.data
+      removeEntry.splice(index,1)
+      this.dataSource1.data=removeEntry
+    }
+    else if (type == 'auth') {
+      let removeEntry=this.dataSource2.data
+      removeEntry.splice(index,1)
+      this.dataSource2.data=removeEntry
+    }
+    else {
+      let removeEntry=this.dataSource3.data
+      removeEntry.splice(index,1)
+      this.dataSource3.data=removeEntry
+    }
   }
 }
