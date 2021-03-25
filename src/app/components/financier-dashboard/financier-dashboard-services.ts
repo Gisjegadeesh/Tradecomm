@@ -5,7 +5,10 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class FinancierDashboardServices {
   constructor(private apiService: ApiService) { }
-  getfinDashDetails(){
-    return this.apiService.generalServiceget('https://jsonplaceholder.typicode.com/posts',);
+  getOpenForOffer(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/openForOffer/'+localStorage.getItem("userId"));
+  }
+  getbidsToBeAccepted(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/bidsToBeAccepted/'+localStorage.getItem("userId"));
   }
 }

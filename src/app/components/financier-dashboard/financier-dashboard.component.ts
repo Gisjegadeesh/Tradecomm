@@ -234,13 +234,15 @@ export class FinancierDashboardComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-
+  getSumofgetOpenForOffer;
+  getSumofgetbidsToBeAccepted;
   constructor(public router: Router,public authenticationService: AuthenticationService,public financierDashboardServices: FinancierDashboardServices) { }
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.getfinDashDetails();
+    this.getOpenForOffer();
+    this.getbidsToBeAccepted();
   }
 
   public scrollRight(): void {
@@ -279,12 +281,17 @@ export class FinancierDashboardComponent implements OnInit {
     logout(){
       this.authenticationService.logout()
     }
-    getfinDashDetails(){
-      this.financierDashboardServices.getfinDashDetails().subscribe(resp => {
-        // const ELEMENT_DATA: financeForBiddingData[] = resp;
-        // this.dataSource = new MatTableDataSource(resp);
+    getOpenForOffer(){
+      this.financierDashboardServices.getOpenForOffer().subscribe(resp => {
+        this.getSumofgetOpenForOffer = resp;
       })
     }
+    getbidsToBeAccepted(){
+      this.financierDashboardServices.getbidsToBeAccepted().subscribe(resp => {
+        this.getSumofgetbidsToBeAccepted = resp;
+      })
+    }
+    
 
   //multiple line chart
   chartType = "line";
