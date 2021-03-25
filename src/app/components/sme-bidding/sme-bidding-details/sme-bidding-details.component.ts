@@ -198,14 +198,16 @@ export class SmeBiddingDetailsComponent implements OnInit {
     }
     this.smeBiddingServices.getBiddingDetails(this.id).subscribe(resp => {
       console.log(resp,"resp")
-      this.smeBiddingServices.getInvoiceGoodsDetails(resp[0].id).subscribe(resp => {
-        this.dataSourceOne = new MatTableDataSource(resp.goodsDetails)
-        this.dataSourceInvoiceDetails = new MatTableDataSource([
-          { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status ,'smeId' : resp.smeId}
-        ]);
-       })
-      this.dataSourceTwo = new MatTableDataSource(resp);
-     this.bidDetails = resp;
+      if(resp){
+        this.smeBiddingServices.getInvoiceGoodsDetails(resp[0].id).subscribe(resp => {
+          this.dataSourceOne = new MatTableDataSource(resp.goodsDetails)
+          this.dataSourceInvoiceDetails = new MatTableDataSource([
+            { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status ,'smeId' : resp.smeId}
+          ]);
+         })
+        this.dataSourceTwo = new MatTableDataSource(resp);
+       this.bidDetails = resp;
+      }
     }) 
   }
  
@@ -258,10 +260,10 @@ export class SmeBiddingDetailsComponent implements OnInit {
         console.log(resp,"resp")
         if(resp){
           this.smeBiddingServices.updateFinBid(resp.id).subscribe(resp => {
-
           })
+        alert("Accepted successfully")
         this.modalRef.hide()
-        this.router.navigateByUrl('/sme-bidding');
+        this.router.navigateByUrl('/sme-dashboard');
         }
       })
     }

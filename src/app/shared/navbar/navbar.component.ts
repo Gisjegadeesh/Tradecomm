@@ -23,8 +23,15 @@ export class NavbarComponent implements OnInit {
     const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
     this.homePath = result && result[0] && result[0].data && result[0].data.homePath
-    this.currentHeaderName = this.router.url.includes('financier-onboarding') && (this.router.url.includes('edit') || this.router.url.includes('view')) ? 
-    'Financier Onboarding' : result && result[0] && result[0].data && result[0].data.HeaderName
+    if(this.router.url.includes('financier-onboarding') && (this.router.url.includes('edit') || this.router.url.includes('view'))){
+      this.currentHeaderName = 'Financier Onboarding'
+    }else if(this.router.url.includes('sme-bidding/') && this.router.url.includes('id')){
+      this.currentHeaderName = 'SME Bidding / SME Bidding Details'
+    }else if(this.router.url.includes('finance-bidding') && this.router.url.includes('id')){
+      this.currentHeaderName = 'Invoice Details'
+    }else{
+      this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    }
   }
   goHome(){
     this.router.navigateByUrl(this.homePath);

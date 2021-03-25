@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'sme-onboarding', component: SmeOnboardingComponent,  data : {"HeaderName" : "Sme Onboarding","homePath" : "/sme-dashboard"} },
   { path: 'sme-dashboard', component: SmeDashboardComponent,  data : {"HeaderName" : "Seller Dashboard","homePath" : "/sme-dashboard"}  },
   { path: 'sme-bidding', component: SmeBiddingComponent ,  data : {"HeaderName" : "SME Bidding","homePath" : "/sme-dashboard"}},
-  { path: 'sme-bidding/:id', component: SmeBiddingDetailsComponent ,  data : {"HeaderName" : "SME Bidding"}},
+  { path: 'sme-bidding/:id', component: SmeBiddingDetailsComponent ,  data : {"HeaderName" : "SME Bidding Details","homePath" : "/sme-bidding"}},
   { path: 'sme-finance-for-bidding', component: SmeFinanceforBiddingComponent , data : {"HeaderName" : "Finance For Bidding","homePath" : "/sme-dashboard"}},
   { path: 'accepted-finance', component: AcceptedFinanceComponent , data : {"HeaderName" : "Accepted Finance","homePath" : "/sme-dashboard"}},
 
