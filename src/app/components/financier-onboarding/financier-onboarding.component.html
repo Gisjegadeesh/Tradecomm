@@ -671,6 +671,9 @@
               formControlName="email" 
               placeholder="Email" [readonly]="isView"
               >
+              <span class="minus-btn" *ngIf="this.dataSource1.data.length > 1 && index >= 1" mat-flat-button color="primary" (click)="removeRow('partner',index)"  >
+                <mat-icon (click)="removeRow('partner',index)" style="cursor: pointer;">cancel</mat-icon>
+              </span>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
@@ -724,6 +727,10 @@
               formControlName="email" 
               placeholder="Email" [readonly]="isView"
               >
+
+              <span class="minus-btn" *ngIf="this.dataSource2.data.length > 1 && index >= 1" mat-flat-button color="primary" (click)="removeRow('auth',index)"  >
+                <mat-icon (click)="removeRow('auth',index)" style="cursor: pointer;">cancel</mat-icon>
+              </span>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
@@ -777,6 +784,9 @@
               formControlName="email" 
               placeholder="Email" [readonly]="isView"
               >
+              <span class="minus-btn" *ngIf="this.dataSource3.data.length > 1 && index >= 1" mat-flat-button color="primary" (click)="removeRow('entity',index)"  >
+                <mat-icon (click)="removeRow('entity',index)" style="cursor: pointer;">cancel</mat-icon>
+              </span>
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
@@ -794,14 +804,14 @@
 
   </mat-horizontal-stepper>
   <div class="submit" >
-    <button  mat-flat-button [disabled]="!check" color="primary">
+    <button  mat-flat-button *ngIf="!isView" [disabled]="!check" color="primary">
       <mat-icon>arrow_right_alt</mat-icon>
       Submit
     </button>
-    <!-- <button *ngIf="isView" type="button" (click)="editPath()" mat-flat-button [disabled]="!check" color="primary">
+    <button *ngIf="isView" type="button" (click)="editPath()" mat-flat-button  color="primary">
       <mat-icon>arrow_right_alt</mat-icon>
       Edit
-    </button> -->
+    </button>
   </div>
 </form>
 
