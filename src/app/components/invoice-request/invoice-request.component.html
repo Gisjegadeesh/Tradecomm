@@ -144,15 +144,16 @@
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
               </div>
-              <div class="col-md-6" style="margin-left: -32px;">
-                <mat-form-field appearance="fill" class="select-split-input">
+              <div class="col-md-6">
+                <mat-form-field dense class="select-split-input">
                   <mat-label>Currency</mat-label>
                   <select matNativeControl [disabled]="disableSelect.value" formControlName="invCcy" (change)="updateCurrency($event)">
                     <option value=""></option>
-                    <option value="SGD">Singapore - SGD</option>
-                    <option value="USD">America - USD</option>
-                    <option value="AUD">Australia - AUD</option>
-                    <option value="INR">India - INR</option>
+                    <option value="SGD">SGD</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="EUR">EUR</option>
+                    <option value="JPY">JPY</option>
                   </select>
                 </mat-form-field>
                 <!-- <form class="example-form">
