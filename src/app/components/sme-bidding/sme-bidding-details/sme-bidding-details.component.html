@@ -196,11 +196,11 @@
                         <th mat-header-cell *matHeaderCellDef scope="column">ID No</th>
                         <td mat-cell *matCellDef="let element">{{ element.idNo }}</td>
                         </ng-container> -->
-                        <ng-container matColumnDef="dateOfInvoice">
+                        <!-- <ng-container matColumnDef="dateOfInvoice">
                         <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                         matTooltip="{{detailsTooltip.dateInvoice}}" [matTooltipPosition]="'below'">Date Of Invoice</th>
                         <td mat-cell *matCellDef="let element">{{ element.dateOfInvoice | date }}</td>
-                        </ng-container>
+                        </ng-container> -->
                         <ng-container matColumnDef="quantity">
                         <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                         matTooltip="{{detailsTooltip.quantity}}" [matTooltipPosition]="'below'">Quantity</th>
@@ -236,16 +236,16 @@
                         matTooltip="{{detailsTooltip.ccyTaxAmount}}" [matTooltipPosition]="'below'">Tax Amt Ccy</th>
                         <td mat-cell *matCellDef="let element">{{ element.taxAmtCcy }}</td>
                         </ng-container>
-                        <ng-container matColumnDef="taxAmountccy">
+                        <!-- <ng-container matColumnDef="taxAmountccy">
                         <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                         matTooltip="{{detailsTooltip.ccyTaxAmount}}" [matTooltipPosition]="'below'">Tax Amt Ccy</th>
                         <td mat-cell *matCellDef="let element">{{ element.taxAmtCcy }}</td>
-                        </ng-container>
-                        <ng-container matColumnDef="totalccy">
+                        </ng-container> -->
+                        <!-- <ng-container matColumnDef="totalccy">
                         <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                         matTooltip="{{detailsTooltip.totalCcy}}" [matTooltipPosition]="'below'">Total Ccy</th>
                         <td mat-cell *matCellDef="let element">{{ element.totalCcy }}</td>
-                        </ng-container>
+                        </ng-container> -->
                         
                         <ng-container matColumnDef="total">
                         <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"

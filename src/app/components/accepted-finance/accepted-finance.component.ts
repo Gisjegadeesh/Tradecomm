@@ -100,7 +100,7 @@ export class AcceptedFinanceComponent implements OnInit {
 
   dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
   displayedColumnsThree: string[] = [
-    'id','invoiceId','fxRate' ,'baseCcyAmt' ,'fundablePercent' ,'baseCcyFundingAmt' ,'repaymentDate' ,
+    'id','finId','invoiceId','fxRate','baseCcyAmt' ,'fundablePercent' ,'baseCcyFundingAmt' ,'repaymentDate' ,
     'baseCcyNetAmtPayable', 'annualYeild' ]
   // ['financierRef', 'financier', 'invoiceAmt',  'marginPercent',   'financierAmt',   'discRate', 'discAmt',  'netAmtDisc',    'fundedAmt', 'fxRate', 'dateOfFunding', 'tenorDays', 
   //   'dueDate', 'paymentDate', 'relInvRef',  'relBidRef'];
