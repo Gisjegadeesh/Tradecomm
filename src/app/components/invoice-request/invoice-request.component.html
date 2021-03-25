@@ -271,7 +271,7 @@
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.desc}}"
                     [matTooltipPosition]="tooltipPosition">Description of Goods</th>
-                      <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
+                      <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" class="desc-goods">
                       <input matInput 
                       formControlName="descGoods" 
                       placeholder="Description of Goods" 
