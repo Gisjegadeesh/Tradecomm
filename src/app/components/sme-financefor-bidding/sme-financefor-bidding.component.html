@@ -50,7 +50,7 @@
             matTooltip="{{biddingTooltip.invoiceCreateDate}}" [matTooltipPosition]="'below'"> Inv Date  </th>
             <td mat-cell *matCellDef="let element"> 
                <mat-chip-list>
-                      <mat-chip>{{element.invDate}} </mat-chip>
+                      <mat-chip>{{ element.invDate && moment(element.invDate).format('DD/MM/YYYY')}} </mat-chip>
                   </mat-chip-list>
               </td>
           </ng-container>
@@ -60,7 +60,7 @@
             matTooltip="{{biddingTooltip.invoiceDueDate}}" [matTooltipPosition]="'below'"> Inv Due date </th>
             <td mat-cell *matCellDef="let element"> 
                <mat-chip-list>
-                      <mat-chip>{{element.invDueDate}} </mat-chip>
+                      <mat-chip>{{element.invDueDate && moment(element.invDueDate).format('DD/MM/YYYY')}} </mat-chip>
                   </mat-chip-list>
               </td>
           </ng-container>
@@ -129,7 +129,7 @@
                 <ng-container matColumnDef="invDate">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{biddingTooltip.invoiceCreateDate}}" [matTooltipPosition]="'below'">Invoice Date</th>
-                    <td mat-cell *matCellDef="let invoiceDetailsData">{{ invoiceDetailsData.invDate }}</td>
+                    <td mat-cell *matCellDef="let invoiceDetailsData">{{ invoiceDetailsData.invDate && moment(invoiceDetailsData.invDate).format('DD/MM/YYYY') }}</td>
                 </ng-container>
         
                 <ng-container matColumnDef="buyerName">
@@ -177,11 +177,11 @@
                         <td mat-cell *matCellDef="let element">{{ element.idNo }}</td>
                     </ng-container> -->
         
-                    <ng-container matColumnDef="dateOfInvoice">
+                    <!-- <ng-container matColumnDef="dateOfInvoice">
                         <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                         matTooltip="{{biddingTooltip.dateInvoice}}" [matTooltipPosition]="'below'">Date Of Invoice</th>
                         <td mat-cell *matCellDef="let element">{{ element.dateOfInvoice }}</td>
-                    </ng-container>
+                    </ng-container> -->
         
                     <ng-container matColumnDef="quantity">
                         <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
@@ -224,17 +224,17 @@
                         matTooltip="{{biddingTooltip.ccyTaxAmount}}" [matTooltipPosition]="'below'">Tax Amt Ccy</th>
                         <td mat-cell *matCellDef="let element">{{ element.taxAmtCcy }}</td>
                     </ng-container>
-                    <ng-container matColumnDef="taxAmountccy">
+                    <!-- <ng-container matColumnDef="taxAmountccy">
                         <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                         matTooltip="{{biddingTooltip.ccyTaxAmount}}" [matTooltipPosition]="'below'">Tax Amt Ccy</th>
                         <td mat-cell *matCellDef="let element">{{ element.taxAmtCcy }}</td>
-                    </ng-container>
+                    </ng-container> -->
         
-                    <ng-container matColumnDef="totalccy">
+                    <!-- <ng-container matColumnDef="totalccy">
                         <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                         matTooltip="{{biddingTooltip.totalCcy}}" [matTooltipPosition]="'below'">Total Ccy</th>
                         <td mat-cell *matCellDef="let element">{{ element.totalCcy }}</td>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="total">
                         <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"

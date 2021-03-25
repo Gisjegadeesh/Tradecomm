@@ -12,6 +12,7 @@ import {DataSource} from '@angular/cdk/collections';
 import { SMEDASHBOARDCONSTANTS } from '../../shared/constants/constants';
 import { SmeBiddingServices } from './sme-bidding-services';
 import {INVOICEDETAILSCONSTANTS} from '../../shared/constants/constants';
+import * as moment from 'moment';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -121,6 +122,8 @@ export class SmeBiddingComponent implements OnInit {
   bidDetails
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
+  moment: any = moment;
+
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -139,7 +142,7 @@ export class SmeBiddingComponent implements OnInit {
   dataSourceTwo; //data
   dataSourceInvoiceDetails = new MatTableDataSource(DATA_INV_DETAILS); //data
 
-  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+  displayedColumnsOne: string[] = ['descGoods', 'quantity', 'taxRate','amt','rate','total'];
 
   displayedColumnsTwo: string[] = [
     // 'Funding CCY',

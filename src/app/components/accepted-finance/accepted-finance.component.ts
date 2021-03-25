@@ -24,6 +24,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { AcceptedFinanceServices } from './accepted-finance-service'
+import * as moment from 'moment';
+
 // const ELEMENT_DATA: any[] = [
 //   {
 //     Name: '',
@@ -84,11 +86,11 @@ const BIDDING_DATA: biddingDetails[] = [];
 })
 export class AcceptedFinanceComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status'];
+  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
-  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity',   'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+  displayedColumnsOne: string[] = ['descGoods', 'quantity','taxRate','amt','rate','total'];
   dataSourceOne = new MatTableDataSource(GOODS_DATA); //data
 
 
@@ -99,7 +101,7 @@ export class AcceptedFinanceComponent implements OnInit {
   dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
   displayedColumnsThree: string[] = [
     'id','invoiceId','fxRate' ,'baseCcyAmt' ,'fundablePercent' ,'baseCcyFundingAmt' ,'repaymentDate' ,
-    'baseCcyNetAmtPayable', 'annualYeild' ,'offerExpDateTime','status' ,'smeId']
+    'baseCcyNetAmtPayable', 'annualYeild' ]
   // ['financierRef', 'financier', 'invoiceAmt',  'marginPercent',   'financierAmt',   'discRate', 'discAmt',  'netAmtDisc',    'fundedAmt', 'fxRate', 'dateOfFunding', 'tenorDays', 
   //   'dueDate', 'paymentDate', 'relInvRef',  'relBidRef'];
 
@@ -115,6 +117,8 @@ export class AcceptedFinanceComponent implements OnInit {
   color: ThemePalette = 'warn';
   ischecked = "true"
   bidpanelOpenState = false;
+  moment: any = moment;
+
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;

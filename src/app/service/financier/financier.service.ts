@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Financier } from '../../model/financier-bidding/financier';
 import { ApiService } from "../../service/api.service";
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class FinancierService {
 
-  private custUrl='http://localhost:8081/api/v1/bidding-details/getBiddingDetails/1';
+  private custUrl=environment.serviePath_2+'api/v1/bidding-details/getBiddingDetails/1';
   private baseUrl='http://localhost:8080/';
   constructor(private http: HttpClient,private apiService: ApiService) {
     this.baseUrl = "http://localhost:8080/";
