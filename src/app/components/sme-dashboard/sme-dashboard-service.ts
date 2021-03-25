@@ -5,14 +5,14 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class SmeDashboardServices {
   constructor(private apiService: ApiService) { }
-  getFinBidRecvd(){
-    return this.apiService.generalServiceget(environment.dboardServerPath1+'getFinBidRecvd');
-  }
   getFinForBid(){
-    return this.apiService.generalServiceget(environment.getSumOfOpenFinBidding+'invoice-request/getSumOfOpenFinBidding/'+localStorage.getItem("userId"));
+    return this.apiService.generalServiceget(environment.serviePath_1+'invoice-request/getSumOfOpenFinBidding/'+localStorage.getItem("userId"));
   }
-  getAcceptdFin(){
-    return this.apiService.generalServiceget(environment.dboardServerPath3+'getAcceptdFin');
+  getFundingBids(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/invoice-request/getSumOfIntiatedBidAmt/'+localStorage.getItem("userId"));
+  }
+  getFunded(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/invoice-request/getSumOfFinancingDue/'+localStorage.getItem("userId"));
   }
   getFinDueTdy(){
     return this.apiService.generalServiceget(environment.dboardServerPath4+'getFinDueTdy');

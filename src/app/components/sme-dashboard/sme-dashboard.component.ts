@@ -229,6 +229,8 @@ export class SmeDashboardComponent implements OnInit {
   dashboardTooltips=DASHBOARDCONSTANTS;
   commonTooltips=COMMONCONSTANTS;
   getSumOfOpenFinBidding;
+  getSumofFundingBids;
+  getsumOfFunded;
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {
@@ -244,9 +246,9 @@ export class SmeDashboardComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.getFinBidRecvd();
     this.getFinForBid();
-    this.getAcceptdFin();
+    this.getFundingBids();
+    this.getFunded();
     this.getFinDueTdy();
     this.getFinPastDue();
   }
@@ -301,17 +303,20 @@ export class SmeDashboardComponent implements OnInit {
     logout(){
       this.authenticationService.logout()
       }
-    getFinBidRecvd(){
-      this.smeDashboardServices.getFinBidRecvd().subscribe(resp => {
-    })
-    }
     getFinForBid(){
       this.smeDashboardServices.getFinForBid().subscribe(resp => {
         this.getSumOfOpenFinBidding = resp;
     })
     }
-    getAcceptdFin(){
-      this.smeDashboardServices.getAcceptdFin().subscribe(resp => {
+    getFundingBids(){
+      this.smeDashboardServices.getFundingBids().subscribe(resp => {
+        this.getSumofFundingBids = resp;
+    })
+    }
+    getFunded(){
+      this.smeDashboardServices.getFunded().subscribe(resp => {
+        this.getsumOfFunded = resp;
+        
     })
     }
     getFinDueTdy(){
