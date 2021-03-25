@@ -7,6 +7,8 @@ import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { SmeFinancierForBiddingServices } from './sme-financefor-bidding-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
+import * as moment from 'moment';
+
 // const ELEMENT_DATA: any[] = [
 //   {
 //     Name: '',
@@ -31,7 +33,7 @@ const ELEMENT_DATA: financeForBiddingData[] = [];
 export interface goodsDetails {
   descGoods: String;
   idNo: String;
-  dateOfInvoice: String;
+  // dateOfInvoice: String;
   quantity: String;
   rate: String;
   amt: String;
@@ -64,7 +66,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
-  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity',   'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+  displayedColumnsOne: string[] = ['descGoods', 'quantity','taxRate','amt','rate','total'];
   dataSourceOne = new MatTableDataSource(GOODS_DATA); //data
 
 
@@ -88,6 +90,8 @@ export class SmeFinanceforBiddingComponent implements OnInit {
   ischecked = "true"
   bidpanelOpenState = false;
   biddingTooltip = BIDDINGCONSTANTS;
+  moment: any = moment;
+
   
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
