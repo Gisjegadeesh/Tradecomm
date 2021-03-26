@@ -10,14 +10,14 @@ import { DatePipe } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FinancierOnboardingService } from './financier-onboarding.service';
 import { ToastrService } from 'ngx-toastr';
-
+import {Validation} from '../../service/Validation'
 
 const ELEMENT_DATA: any[] = [
   {
     Name: '',
     Position: '',
     Address: '',
-    TelephoneNo: '',
+    TelephoneNo: '', 
     Email: ''
   }
 ];
@@ -40,6 +40,8 @@ export class FinancierOnboardingComponent implements OnInit {
   isOpen = '';
   financierForm: FormGroup
   financierId = ''
+  validation: any = Validation;
+
   constructor(private route: ActivatedRoute, private router: Router, private datePipe: DatePipe, private fb: FormBuilder,
     private customerService: CustomerService, public authenticationService: AuthenticationService, private toastr: ToastrService,
     private activatedRoute: ActivatedRoute, private financierService: FinancierOnboardingService) {
@@ -249,7 +251,7 @@ export class FinancierOnboardingComponent implements OnInit {
       fName: ['', Validators.required],
       regNum: ['', Validators.required],
       taxIdNum: ['', Validators.required],
-      regDate: [''],
+      regDate: ['',Validators.required],
       fExpYears: ['', Validators.required],
       activity: [''],
       prnBankAcc: [''],
@@ -264,7 +266,7 @@ export class FinancierOnboardingComponent implements OnInit {
       headpostalCode: [''],
       headtelephoneNumber: [''],
       headcountry: [[]],
-      heademail: [''],
+      heademail: ['',Validators.email],
       headswiftBic: [''],
       headfaxNo: [''],
       servAddrLine1: [''],
@@ -275,7 +277,7 @@ export class FinancierOnboardingComponent implements OnInit {
       paymentCode: [''],
       servpostalCode: [''],
       servtelephoneNumber: [''],
-      servemail: [''],
+      servemail: ['',Validators.email],
       servswiftBic: [''],
       servfaxNo: [''],
       servCountry: [[]],
@@ -288,21 +290,21 @@ export class FinancierOnboardingComponent implements OnInit {
       position: [""],
       address: [""],
       phoneNo: [""],
-      email: [""]
+      email: ["",Validators.email]
     })
     const authRow = this.fb.group({
       name: [""],
       position: [""],
       address: [""],
       phoneNo: [""],
-      email: [""]
+      email: ["",Validators.email]
     })
     const entityRow = this.fb.group({
       name: [""],
       position: [""],
       address: [""],
       phoneNo: [""],
-      email: [""]
+      email: ["",Validators.email]
     })
     this.partnerFormArray.push(partnerRow);
     this.authoriseFormArray.push(authRow);

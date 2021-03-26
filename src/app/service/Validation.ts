@@ -1,7 +1,7 @@
 import _ from 'lodash';
 // import {Enums} from '../../utils/enums';
 
-let validationRules = {
+export const Validation = {
 required: (value, form, component) => {
 if (value === undefined || value === null || (_.isString(value) && value.trim() === '')) {
 return "required";
@@ -66,12 +66,12 @@ return "confirmPasswordValid"
 },
 
 
-confirmPass:(value, form, component) => {
-var pass = form.refs.password.refsObj.value;
-if(!_.isEqual(value,pass)){
-return "confirmPasswordValid"
-}
-},
+// confirmPass:(value, form, component) => {
+// var pass = form.refs.password.refsObj.value;
+// if(!_.isEqual(value,pass)){
+// return "confirmPasswordValid"
+// }
+// },
 
 enableSpouse: (value, form, component) => {
 if(value === "1"){
@@ -159,23 +159,23 @@ form.state.FormData['prePaymentResources'] = "";
 component.props.disabledPrepaymentInfo();
 }
 },
-validateWithPrePayment: (value, form, component) => {
-if (form.state.FormData["prePayment"] === "0") {
-delete form.state.Errors[component.props._ref];
-} else {
-if (value === undefined || value.trim() === "") {
-return 'required';
-} else {
-if (component.props._ref === "prePaymentDate") {
-return validationRules.dateValidate(value, form, component);
-} else if (component.props._ref === "prePaymentValue") {
-return validationRules.onlyNumber(value, form, component);
-} else if (component.props._ref === "prePaymentResources") {
-return validationRules.onlyAlphabet(value, form, component);
-}
-}
-}
-},
+// validateWithPrePayment: (value, form, component) => {
+// if (form.state.FormData["prePayment"] === "0") {
+// delete form.state.Errors[component.props._ref];
+// } else {
+// if (value === undefined || value.trim() === "") {
+// return 'required';
+// } else {
+// if (component.props._ref === "prePaymentDate") {
+// return validationRules.dateValidate(value, form, component);
+// } else if (component.props._ref === "prePaymentValue") {
+// return validationRules.onlyNumber(value, form, component);
+// } else if (component.props._ref === "prePaymentResources") {
+// return validationRules.onlyAlphabet(value, form, component);
+// }
+// }
+// }
+// },
 validateOwnerResource: (value, form, component) => {
 if(value === "0"){
 component.props.enableOwnerInfo();
@@ -217,22 +217,26 @@ return false;
 }
 },
 dateFormatValidation(value){
-var dateReg = /^[0-9]{2}\-[0-9]{2}\-[0-9]{4}$/;
-if (dateReg.test(value)) {
-let date = value.split('-');
-if (date[0] === "00" || date[0] > 12) {
-return "invalidMonth"
-}
-if (date[1] === "00" || new Date(date[2], date[0], 0).getDate() < date[1]) {
-return 'invalidDate'
-}
-if (date[2] === "0000" || date[2] < 1900) {
-return 'invalidYear'
-}
-} else {
-return "invalidDate"
-}
+// var dateReg = /^[0-9]{2}\-[0-9]{2}\-[0-9]{4}$/;
+// debugger;
+// if (dateReg.test(value)) {
+// let date = value.split('-');
+// if (date[0] === "00" || date[0] > 12) {
+// return "invalidMonth"
+// }
+// if (date[1] === "00" || new Date(date[2], date[0], 0).getDate() < date[1]) {
+// return 'invalidDate'
+// }
+// if (date[2] === "0000" || date[2] < 1900) {
+// return 'invalidYear'
+// }
+// return true
+// } else {
+// return false
+// }
+// }
+return "Validators.pattern('/^[0-9]{2}\-[0-9]{2}\-[0-9]{4}$/')"
 }
 }
 
-export default validationRules;
+// export default validationRules;
