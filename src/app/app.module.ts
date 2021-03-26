@@ -24,6 +24,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SkeletonTextModule } from '@ffdc/uxg-angular-components/skeleton-text';
+import { ToastrModule } from 'ngx-toastr';
+import {MatTooltipModule} from '@angular/material/tooltip';
 // import { UxgUserProfileMenuModule } from '@ffdc/uxg-angular-components/user-profile-menu';
 import { AccountCardModule } from '@ffdc/uxg-angular-components/cards/account-card';
 import { UxgTableModule } from '@ffdc/uxg-angular-components/table';
@@ -31,6 +33,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { SmeOnboardingComponent } from './components/sme-onboarding/sme-onboarding.component';
 import { FinancierOnboardingComponent } from './components/financier-onboarding/financier-onboarding.component';
+import { FinancierOnboardingListComponent } from './components/financier-onboarding/financier-onboarding-list/financier-onboarding-list.component';
 import { CustomerService } from './service/customer/customer.service';
 import { FinancierDashboardComponent } from './components/financier-dashboard/financier-dashboard.component';
 import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.component';
@@ -66,9 +69,8 @@ import { IccDashboardServices } from './components/icc-dashboard/icc-dashboard-s
 import { AcceptedFinanceComponent } from './components/accepted-finance/accepted-finance.component';
 import {AcceptedFinanceServices} from './components/accepted-finance/accepted-finance-service'
 import { SmeBiddingServices } from './components/sme-bidding/sme-bidding-services';
-import { ToastrModule } from 'ngx-toastr';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import { FinancierOnboardingService } from './components/financier-onboarding/financier-onboarding.service';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { FinancierOnboardingService } from './components/financier-onboarding/fi
     LoginComponent,
     SmeOnboardingComponent,
     FinancierOnboardingComponent,
+    FinancierOnboardingListComponent,
     FinancierDashboardComponent,
     SmeDashboardComponent,
     SmeBiddingComponent,
@@ -117,6 +120,7 @@ import { FinancierOnboardingService } from './components/financier-onboarding/fi
     BrowserAnimationsModule,
     SkeletonTextModule,
     MatAutocompleteModule,
+    MatPaginatorModule,
     // UxgUserProfileMenuModule,
     AccountCardModule,
     UxgTableModule,
