@@ -110,7 +110,7 @@
                 </ng-container>
         
                 <ng-container matColumnDef="fxRate">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Fx Rate</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column">Fx Rate %</th>
                     <td mat-cell *matCellDef="let data">{{ data.fxRate }}</td>
                 </ng-container>
         
@@ -121,7 +121,7 @@
                 
                 
                 <ng-container matColumnDef="fundablePercent">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Fundable Percentage</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column">% Funded</th>
                     <td mat-cell *matCellDef="let data">{{ data.fundablePercent }}</td>
                 </ng-container> 
 
@@ -136,12 +136,12 @@
                 </ng-container> 
 
                 <ng-container matColumnDef="baseCcyNetAmtPayable">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Net Amt After Pay</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column">Net Amount Received</th>
                     <td mat-cell *matCellDef="let data">{{ data.baseCcyNetAmtPayable }}</td>
                 </ng-container> 
 
                 <ng-container matColumnDef="annualYeild">
-                    <th mat-header-cell *matHeaderCellDef scope="column">Annual Amt</th>
+                    <th mat-header-cell *matHeaderCellDef scope="column">Annual Yield %</th>
                     <td mat-cell *matCellDef="let data">{{ data.annualYeild }}</td>
                 </ng-container> 
 
@@ -230,7 +230,7 @@
         
                 <ng-container matColumnDef="status">
                     <th mat-header-cell *matHeaderCellDef scope="column">Status</th>
-                    <td mat-cell *matCellDef="let invoiceDetailsData">{{ invoiceDetailsData.status }}</td>
+                    <td mat-cell *matCellDef="let invoiceDetailsData">Financed</td>
                 </ng-container>        
         
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsTwo" style="background-color:#B4A6EA"></tr>
