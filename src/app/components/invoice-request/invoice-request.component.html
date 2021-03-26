@@ -144,7 +144,7 @@
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" style="margin-left:-25px">
                 <mat-form-field dense class="select-split-input">
                   <mat-label>Currency</mat-label>
                   <select matNativeControl [disabled]="disableSelect.value" formControlName="invCcy" (change)="updateCurrency($event)">
@@ -206,7 +206,7 @@
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
-                    <mat-label>Buyer Address</mat-label>
+                    <mat-label>Buyer Location</mat-label>
                     <input type="text" matInput value="" formControlName="buyerAddr" />
                     <!-- <mat-hint>Please enter Buyer Address </mat-hint> -->
                   </mat-form-field>

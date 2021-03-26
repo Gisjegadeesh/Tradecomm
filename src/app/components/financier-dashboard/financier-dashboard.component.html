@@ -111,10 +111,10 @@
             </ng-template>
             <div class="paginator" *ngIf="!mobileScreen">
                 <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
-                    <mat-icon>keyboard_arrow_left</mat-icon>
+                    <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->
                 </button>
                 <button mat-icon-button (click)="scrollRight()" [disabled]="end">
-                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
                 </button>
             </div>
         </div>
@@ -157,29 +157,39 @@
                                 <th  #tooltip="matTooltip"
                                 matTooltip="{{dashboardTooltip.financePeriod}}" [matTooltipPosition]="'below'">Period</th>
                                 <th  #tooltip="matTooltip"
-                                matTooltip="{{dashboardTooltip.financeNumber}}" [matTooltipPosition]="'below'">No.</th>
+                                matTooltip="{{dashboardTooltip.financeNumber}}" [matTooltipPosition]="'below'">Number</th>
                                 <th  #tooltip="matTooltip"
                                 matTooltip="{{dashboardTooltip.financeAmount}}" [matTooltipPosition]="'below'">Amount</th>
                             </tr>
                             <tr>
                                 <td>Upto 30 days</td>
-                                <td>12</td>
-                                <td>$3,067.98</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
                             </tr>
                             <tr>
-                                <td>31 to 45 days</td>
-                                <td>12</td>
-                                <td>$3,067.98</td>
+                                <td>30 to 45 days</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
                             </tr>
                             <tr>
-                                <td>45 to 60 days</td>
-                                <td>12</td>
-                                <td>$3,067.98</td>
+                                <td>46 to 60 days</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
                             </tr>
                             <tr>
                                 <td>61 to 75 days</td>
-                                <td>12</td>
-                                <td>$3,067.98</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <tr>
+                                <td>75 to 90 days</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <tr>
+                                <td>91 to 120 Days</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
                             </tr>
                             <!-- <tr>
                                 <td>76 to 90 days</td>
@@ -199,11 +209,71 @@
                         <div class="trans-table">
                             <div class="">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <h6> Finance Size</h6>
+                                    </div>
+                                    <div class="col-md-1">
+                                    </div>
+                                </div>
+                            </div>
+                        <table class="table-bordered table" id="customers">
+                            <tr>
+                                <th #tooltip="matTooltip"
+                                matTooltip="{{dashboardTooltip.transactions}}" [matTooltipPosition]="'below'">Invoice size</th>
+                                <th #tooltip="matTooltip"
+                                matTooltip="{{dashboardTooltip.transactions}}" [matTooltipPosition]="'below'">Number</th>
+                                <th #tooltip="matTooltip"
+                                matTooltip="{{dashboardTooltip.type}}" [matTooltipPosition]="'below'">Amount</th>
+                              </tr>
+                           
+                              <tr>
+                                <td>upto 10000 SGD</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <tr>
+                                <td>10001  to 20000 SGD</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <tr>
+                                <td>20001 TO 40000 SGD</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <tr>
+                                <td>80001 to 100000 SGD</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <tr>
+                                <td>Above 100000 SGD</td>
+                                <td>0</td>
+                                <td>0 SGD</td>
+                            </tr>
+                            <!-- <tr>
+                                <td>80001 to 100000</td>
+                                <td>December</td>
+                                <td>$3,067.98</td>
+                            </tr>
+                            <tr>
+                                <td>Above 100000</td>
+                                <td>November</td>
+                                <td>$3,067.98</td>
+                            </tr> -->
+                            
+                          </table>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="trans-table">
+                            <div class="">
+                                <div class="row">
                                     <div class="col-md-10">
                                         <h6> All Transactions</h6>
                                     </div>
                                     <div class="col-md-1">
-                                        <!-- <button type="button" class="btn btn-outline">+ Add</button> -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -237,19 +307,9 @@
                                 <td>No Description</td>
                                 <td>Credit</td>
                             </tr>
-                            <!-- <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
-                            </tr>
-                            <tr>
-                                <td>2020-03-10</td>
-                                <td>No Description</td>
-                                <td>Credit</td>
-                            </tr> -->
                           </table>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                     <div class="col-md-6 p-0">
                         <h6>Chart</h6>
