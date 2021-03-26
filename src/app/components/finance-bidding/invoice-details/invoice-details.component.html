@@ -47,13 +47,13 @@
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Invoice Date</mat-label>
-                      <input type="text" matInput  value="{{invoiceDetails.invDate | date}}" readonly />
+                      <input type="text" matInput  value="{{invoiceDetails ? invoiceDetails.invDate : '' | date}}" readonly />
                     </mat-form-field>
                   </td>
                   <td rowspan="1" colspan="1">
                     <mat-form-field dense>
                       <mat-label>Inv Due Date</mat-label>
-                      <input type="text" matInput value="{{invoiceDetails.invDueDate | date}}" readonly/>
+                      <input type="text" matInput value="{{invoiceDetails ? invoiceDetails.invDueDate: '' | date}}" readonly/>
                     </mat-form-field>
                   </td>
                   <td rowspan="1" colspan="1">

@@ -26,7 +26,7 @@ export class IccDashboardComponent implements OnInit {
   pageCount = 1;
   limit = 7;
   isOpen = "active";
-  displayedColumns: string[] = ['financierId', 'financierName', 'regNumber', 'action'];
+  displayedColumns: string[] = ['financierId', 'financierName', 'regNumber'];
   dataSource = [];
   @ViewChild("accountList", { read: ElementRef })
   public accountList: ElementRef<any>;
@@ -54,8 +54,9 @@ export class IccDashboardComponent implements OnInit {
   getFinancierDetails(){
     this.iccDashboardServices.getFinancierList().subscribe(resp=>{
       if(resp){
-        FINANACIERLIST = []      
-        resp.length && resp.map((item=>{
+        FINANACIERLIST = [] 
+        let response = resp.splice(0,5)     
+        response.length && response.map((item=>{
             let obj={
               "financierId":'FIN' + item.namedPKKey,
               "financierName":item.financierNameConstitution,
@@ -143,5 +144,8 @@ export class IccDashboardComponent implements OnInit {
       else{
         this.router.navigateByUrl('/financier-onboarding/view/' + id)
       }
+    }
+    financierOnBoardingList(){
+      this.router.navigateByUrl('/financier-onboarding-list')
     }
 }

@@ -6,6 +6,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SmeOnboardingComponent } from './components/sme-onboarding/sme-onboarding.component';
 import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.component';
 import { FinancierOnboardingComponent } from './components/financier-onboarding/financier-onboarding.component';
+import { FinancierOnboardingListComponent } from './components/financier-onboarding/financier-onboarding-list/financier-onboarding-list.component';
 import { FinancierDashboardComponent } from './components/financier-dashboard/financier-dashboard.component';
 import { SmeBiddingComponent } from './components/sme-bidding/sme-bidding.component';
 import { SmeBiddingDetailsComponent } from './components/sme-bidding/sme-bidding-details/sme-bidding-details.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
 
 
   { path: 'financier-onboarding', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding","homePath" : "/icc-dashboard"}},
+  { path: 'financier-onboarding-list', component: FinancierOnboardingListComponent ,  data : {"HeaderName" : "ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding/:edit/:id', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding/:view/:id', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding","homePath" : "/icc-dashboard"}},
 
