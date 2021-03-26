@@ -114,7 +114,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Invoice No</mat-label>
-                    <input type="text" matInput formControlName="invId" (keyup)="updateInvoiceId($event)"/>
+                    <input type="number" matInput formControlName="invId" (keyup)="updateInvoiceId($event)"/>
                     <!-- <mat-hint>Please enter Invoice ID</mat-hint> -->
                   </mat-form-field>
                 </td>
@@ -140,7 +140,7 @@
                   <div class="col-md-6">
                 <mat-form-field dense class="spilt-input" >
                   <mat-label>Funding Request Amount</mat-label>
-                  <input type="text" matInput value="" autocomplete="on" formControlName="invAmt"/>
+                  <input type="number" matInput value="" autocomplete="on" formControlName="invAmt"/>
                   <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
                 </mat-form-field>
               </div>
@@ -191,7 +191,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Funding Request Date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="invDate" (dateInput)="updateInvoicedate($event)">
+                    <input matInput readonly="true" [matDatepicker]="picker" formControlName="invDate" (dateInput)="updateInvoicedate($event)">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -199,7 +199,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Funding Request Due Date</mat-label>
-                    <input matInput [matDatepicker]="pickers" formControlName="invDueDate" />
+                    <input matInput readonly="true" [matDatepicker]="pickers" formControlName="invDueDate" />
                     <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
                     <mat-datepicker #pickers></mat-datepicker>
                   </mat-form-field>
@@ -228,7 +228,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Date of Dispatch</mat-label>
-                    <input matInput [matDatepicker]="picker1" formControlName="dispDate" />
+                    <input readonly="true" matInput [matDatepicker]="picker1" formControlName="dispDate" />
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
@@ -260,6 +260,7 @@
                     [matTooltipPosition]="tooltipPosition"> ID</th>
                       <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="ID" 
                       placeholder="ID" 
                       readonly
@@ -273,6 +274,7 @@
                     [matTooltipPosition]="tooltipPosition">Description of Goods</th>
                       <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" class="desc-goods">
                       <input matInput 
+                      type="text" 
                       formControlName="descGoods" 
                       placeholder="Description of Goods" 
                       required>
@@ -307,6 +309,7 @@
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                    
                      <input matInput 
+                      type="number" 
                       formControlName="quantity" 
                       placeholder="Quantity" 
                       required (keyup)="changeRowgrid(index)">
@@ -319,6 +322,7 @@
                     [matTooltipPosition]="tooltipPosition">Rate %</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="rate" 
                       placeholder="Rate" 
                       required (keyup)="changeRowgrid(index)">
@@ -330,6 +334,7 @@
                     [matTooltipPosition]="tooltipPosition">Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="amt" 
                       placeholder="Amount" 
                       value="{{element.amt}}"
@@ -342,6 +347,7 @@
                     [matTooltipPosition]="tooltipPosition">Ccy</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="text" 
                       formControlName="amtCcy" 
                       placeholder="CCY" 
                       readonly
@@ -357,6 +363,7 @@
                     [matTooltipPosition]="tooltipPosition">Disc Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="discAmt" 
                       placeholder="Disc Amount" 
                        required (keyup)="changeRowgrid(index)">
@@ -369,6 +376,7 @@
                     [matTooltipPosition]="tooltipPosition">Net Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="netAmtPay" 
                       placeholder="Net Amount" 
                       required readonly>
@@ -381,6 +389,7 @@
                     [matTooltipPosition]="tooltipPosition">Tax Rate %</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="taxRate" 
                       placeholder="Tax Rate" 
                       required  (keyup)="changeRowgrid(index)"
@@ -394,6 +403,7 @@
                     [matTooltipPosition]="tooltipPosition">Tax Amount</th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="taxAmount" 
                       placeholder="Tax Amount" 
                       required readonly>
@@ -409,6 +419,7 @@
                   </span> </th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
+                      type="number" 
                       formControlName="total" 
                       placeholder="Total" 
                       required readonly>

@@ -139,7 +139,7 @@
                 <td rowspan="1" colspan="1" *ngIf="financierId">
                   <mat-form-field dense>
                     <mat-label>Financier Id</mat-label>
-                    <input matInput type="text" value="{{'FIN' + financierId}}"  readonly
+                    <input matInput type="number" value="{{'FIN' + financierId}}"  readonly
                        />
                     <!-- <mat-hint>Please Enter Financier Name Constitution</mat-hint> -->
                   </mat-form-field>
@@ -171,14 +171,14 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Tax Identification No</mat-label>
-                    <input matInput type="text" formControlName="taxIdNum" [readonly]="isView" required />
+                    <input matInput type="number" formControlName="taxIdNum" [readonly]="isView" required />
                     <mat-hint>Please Enter Tax Identification Number</mat-hint>
                   </mat-form-field>
                 </td>
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Registration Date</mat-label>
-                    <input matInput formControlName="regDate"  [matDatepicker]="pickers" [readonly]="isView"  />
+                    <input matInput formControlName="regDate" [matDatepicker]="pickers" readonly="true"  />
                      <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
                     <mat-datepicker #pickers></mat-datepicker> 
                 </mat-form-field>
@@ -209,7 +209,7 @@
                   <mat-form-field dense>
                     <mat-icon dense color="primary" matPrefix>person_outline</mat-icon>
                     <mat-label>Principal Bank Account</mat-label>
-                    <input matInput type="text" formControlName="prnBankAcc" [readonly]="isView"/>
+                    <input matInput type="number" formControlName="prnBankAcc" [readonly]="isView"/>
                     <mat-hint>Please Enter Principal Bank Account</mat-hint>
                   </mat-form-field>
                 </td>
@@ -230,7 +230,7 @@
                       <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                         <mat-label>Annual SCF Turnover</mat-label>
-                        <input type="text" matInput formControlName="anlScfTrnOver" [readonly]="isView"/>
+                        <input type="number" matInput formControlName="anlScfTrnOver" [readonly]="isView"/>
                         <mat-hint>Please enter annual SCF turnover</mat-hint>
                       </mat-form-field>
                     </div>
@@ -242,7 +242,7 @@
                       <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                         <mat-label>Transaction Limit</mat-label>
-                        <input type="text" matInput  formControlName="transLimit" [readonly]="isView" />
+                        <input type="number" matInput  formControlName="transLimit" [readonly]="isView" />
                         <mat-hint>Please enter transaction limit</mat-hint>
                       </mat-form-field>
                     </div>
@@ -345,7 +345,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Telephone No</mat-label>
-                          <input type="text" matInput formControlName="headtelephoneNumber" [readonly]="isView" />
+                          <input type="number" matInput formControlName="headtelephoneNumber" [readonly]="isView" />
                           <mat-hint>Please enter your telephone number</mat-hint>
                         </mat-form-field>
                       </div>
@@ -371,7 +371,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Fax No</mat-label>
-                          <input type="text" matInput formControlName="headfaxNo" [readonly]="isView"/>
+                          <input type="number" matInput formControlName="headfaxNo" [readonly]="isView"/>
                           <mat-hint>Please enter your fax number</mat-hint>
                         </mat-form-field>
                       </div>
@@ -397,7 +397,7 @@
                         <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                           <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                           <mat-label>Email / Domain</mat-label>
-                          <input type="text" matInput formControlName="heademail" [readonly]="isView"/>
+                          <input type="email" matInput formControlName="heademail" [readonly]="isView"/>
                           <mat-hint>Please enter your email / domain</mat-hint>
                         </mat-form-field>
                       </div>
@@ -515,7 +515,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Telephone No</mat-label>
-                      <input type="text" matInput formControlName="servtelephoneNumber" [readonly]="isView" />
+                      <input type="number" matInput formControlName="servtelephoneNumber" [readonly]="isView" />
                       <mat-hint>Please enter your telephone number</mat-hint>
                     </mat-form-field>
                   </div>
@@ -541,7 +541,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Fax No</mat-label>
-                      <input type="text" matInput formControlName="servfaxNo" [readonly]="isView" />
+                      <input type="number" matInput formControlName="servfaxNo" [readonly]="isView" />
                       <mat-hint>Please enter your fax number</mat-hint>
                     </mat-form-field>
                   </div>
@@ -567,7 +567,7 @@
                     <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
                       <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
                       <mat-label>Email / Domain</mat-label>
-                      <input type="text" matInput formControlName="servemail" [readonly]="isView" />
+                      <input type="email" matInput formControlName="servemail" [readonly]="isView" />
                       <mat-hint>Please enter your email / domain</mat-hint>
                     </mat-form-field>
                   </div>
@@ -630,6 +630,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >NAME</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="name" 
               placeholder="Name" [readonly]="isView"
               >
@@ -639,6 +640,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >POSITION</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="position" 
               placeholder="Position" [readonly]="isView"
               >
@@ -648,6 +650,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >Address</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="address" 
               placeholder="Address" [readonly]="isView"
               >
@@ -657,6 +660,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >TELEPHONE NO</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="number"
               formControlName="phoneNo" 
               placeholder="Telephone No" [readonly]="isView"
               >
@@ -668,6 +672,7 @@
             </span></th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="email"
               formControlName="email" 
               placeholder="Email" [readonly]="isView"
               >
@@ -686,6 +691,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >NAME</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="name" 
               placeholder="Name" [readonly]="isView"
               >
@@ -695,6 +701,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >POSITION</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="position" 
               placeholder="Position" [readonly]="isView"
               >
@@ -704,6 +711,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >Address</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="address" 
               placeholder="Address" [readonly]="isView"
               >
@@ -713,6 +721,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >TELEPHONE NO</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="number"
               formControlName="phoneNo" 
               placeholder="Telephone No" [readonly]="isView"
               >
@@ -724,6 +733,7 @@
             </span></th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                 <input matInput 
+                type="email"
               formControlName="email" 
               placeholder="Email" [readonly]="isView"
               >
@@ -743,6 +753,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >NAME</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="name" 
               placeholder="Name" [readonly]="isView"
               >
@@ -752,6 +763,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >POSITION</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="position" 
               placeholder="Position" [readonly]="isView"
               >
@@ -761,6 +773,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >Address</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="text"
               formControlName="address" 
               placeholder="Address" [readonly]="isView"
               >
@@ -770,6 +783,7 @@
             <th mat-header-cell *matHeaderCellDef scope="column"  >TELEPHONE NO</th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="number"
               formControlName="phoneNo" 
               placeholder="Telephone No" [readonly]="isView"
               >
@@ -781,6 +795,7 @@
             </span></th>
               <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
               <input matInput 
+              type="email"
               formControlName="email" 
               placeholder="Email" [readonly]="isView"
               >
@@ -804,7 +819,8 @@
 
   </mat-horizontal-stepper>
   <div class="submit" >
-    <button  mat-flat-button *ngIf="!isView" [disabled]="!check" color="primary">
+    <button  mat-flat-button  color="primary">
+      <!-- [disabled]="!check" -->
       <mat-icon>arrow_right_alt</mat-icon>
       Submit
     </button>

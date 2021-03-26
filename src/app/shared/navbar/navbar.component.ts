@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   userName
   homePath = "";
 
-  constructor(public router: Router, public authenticationService:AuthenticationService,private _location: Location) { }
+  constructor(public router: Router, private route: ActivatedRoute,public authenticationService:AuthenticationService,private _location: Location) { }
   ngOnInit(): void {
     this.userName = localStorage.getItem("userId")
     const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
@@ -21,6 +21,22 @@ export class NavbarComponent implements OnInit {
   }
   ngDoCheck(){
     const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
+    // debugger;
+    // let dd = this.route
+
+    // this.route.params.subscribe((params) => {
+    //   debugger;
+    //   console.log(params);
+    //   console.log(this.route.snapshot.data);
+    // });
+
+    // let dd = this._location.path()
+
+
+    // this.router.events.subscribe(val => {
+    //   debugger;
+    // })
+
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
     this.homePath = result && result[0] && result[0].data && result[0].data.homePath
     if(this.router.url.includes('financier-onboarding') && (this.router.url.includes('edit') || this.router.url.includes('view'))){
