@@ -236,6 +236,8 @@ export class FinancierDashboardComponent implements OnInit {
   }
   getSumofgetOpenForOffer;
   getSumofgetbidsToBeAccepted;
+  getFinMaturityData;
+  getFinnSizeData
   constructor(public router: Router,public authenticationService: AuthenticationService,public financierDashboardServices: FinancierDashboardServices) { }
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -243,6 +245,8 @@ export class FinancierDashboardComponent implements OnInit {
     }
     this.getOpenForOffer();
     this.getbidsToBeAccepted();
+    this.getFinMatData();
+    this.getFinSizeData();
   }
 
   public scrollRight(): void {
@@ -290,6 +294,16 @@ export class FinancierDashboardComponent implements OnInit {
       this.financierDashboardServices.getbidsToBeAccepted().subscribe(resp => {
         this.getSumofgetbidsToBeAccepted = resp;
       })
+    }
+    getFinMatData(){
+      this.financierDashboardServices.getFinMatData().subscribe(resp => {
+      this.getFinMaturityData = resp;
+    })
+    }
+    getFinSizeData(){
+      this.financierDashboardServices.getFinSizeData().subscribe(resp => {
+      this.getFinnSizeData = resp;
+    })
     }
     
 

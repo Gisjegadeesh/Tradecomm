@@ -22,7 +22,8 @@ export class SmeDashboardServices {
   }
   getFinMatData(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/getFinMatData/'+localStorage.getItem("userId"));
-
   }
- 
+  getFinSizeData(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/getFinSizeData/'+localStorage.getItem("userId"));
+  }
 }

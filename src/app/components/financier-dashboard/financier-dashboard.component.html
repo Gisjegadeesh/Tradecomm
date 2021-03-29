@@ -161,46 +161,11 @@
                                 <th  #tooltip="matTooltip"
                                 matTooltip="{{dashboardTooltip.financeAmount}}" [matTooltipPosition]="'below'">Amount</th>
                             </tr>
-                            <tr>
-                                <td>Upto 30 days</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>30 to 45 days</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>46 to 60 days</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>61 to 75 days</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>75 to 90 days</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>91 to 120 Days</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <!-- <tr>
-                                <td>76 to 90 days</td>
-                                <td>12</td>
-                                <td>$3,067.98</td>
-                            </tr>
-                            <tr>
-                                <td>Above 90 days</td>
-                                <td>12</td>
-                                <td>$3,067.98</td>
-                            </tr> -->
+                            <tr *ngFor="let getFinMaturityDatas of getFinMaturityData" >
+                                <td>{{getFinMaturityDatas.PERIOD}}</td>
+                                <td>{{getFinMaturityDatas.NUMBER}}</td>
+                                <td>{{getFinMaturityDatas.AMOUNT}}</td>
+                              </tr>
                           </table>
                         </div>
                     </div>
@@ -226,41 +191,11 @@
                                 matTooltip="{{dashboardTooltip.type}}" [matTooltipPosition]="'below'">Amount</th>
                               </tr>
                            
-                              <tr>
-                                <td>upto 10000 SGD</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>10001  to 20000 SGD</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>20001 TO 40000 SGD</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>80001 to 100000 SGD</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <tr>
-                                <td>Above 100000 SGD</td>
-                                <td>0</td>
-                                <td>0 SGD</td>
-                            </tr>
-                            <!-- <tr>
-                                <td>80001 to 100000</td>
-                                <td>December</td>
-                                <td>$3,067.98</td>
-                            </tr>
-                            <tr>
-                                <td>Above 100000</td>
-                                <td>November</td>
-                                <td>$3,067.98</td>
-                            </tr> -->
+                              <tr *ngFor="let getFinnSizeDatas of getFinnSizeData" >
+                                <td>{{getFinnSizeDatas.INVOICE_SIZE}}</td>
+                                <td>{{getFinnSizeDatas.NUMBER}}</td>
+                                <td>{{getFinnSizeDatas.AMOUNT}}</td>
+                              </tr>
                             
                           </table>
                         </div>

@@ -11,4 +11,10 @@ export class FinancierDashboardServices {
   getbidsToBeAccepted(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/bidsToBeAccepted/'+localStorage.getItem("userId"));
   }
+  getFinMatData(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/getFinMatData/'+localStorage.getItem("userId"));
+  }
+  getFinSizeData(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/getFinSizeData/'+localStorage.getItem("userId"));
+  }
 }

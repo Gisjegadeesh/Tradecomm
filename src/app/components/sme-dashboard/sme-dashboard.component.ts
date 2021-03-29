@@ -231,7 +231,8 @@ export class SmeDashboardComponent implements OnInit {
   getSumOfOpenFinBidding;
   getSumofFundingBids;
   getsumOfFunded;
-  getsumOfFinMatData;
+  getFinMaturityData;
+  getFinnSizeData
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {
@@ -253,6 +254,7 @@ export class SmeDashboardComponent implements OnInit {
     this.getFinDueTdy();
     this.getFinPastDue();
     this.getFinMatData();
+    this.getFinSizeData();
   }
 
   public scrollRight(): void {
@@ -324,7 +326,12 @@ export class SmeDashboardComponent implements OnInit {
     }
     getFinMatData(){
       this.smeDashboardServices.getFinMatData().subscribe(resp => {
-      this.getsumOfFinMatData = resp;
+      this.getFinMaturityData = resp;
+    })
+    }
+    getFinSizeData(){
+      this.smeDashboardServices.getFinSizeData().subscribe(resp => {
+      this.getFinnSizeData = resp;
     })
     }
   //multiple line chart
