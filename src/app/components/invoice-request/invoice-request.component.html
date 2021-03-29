@@ -191,7 +191,7 @@
                 <td rowspan="1" colspan="1">
                   <mat-form-field dense>
                     <mat-label>Funding Request Date</mat-label>
-                    <input matInput readonly="true" [matDatepicker]="picker" formControlName="invDate" (dateInput)="updateInvoicedate($event)">
+                    <input matInput readonly="true"  [matDatepicker]="picker" formControlName="invDate" (dateInput)="updateInvoicedate($event)">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -408,7 +408,7 @@
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       type="number" 
-                      formControlName="taxAmount" 
+                      formControlName="taxAmt" 
                       placeholder="Tax Amount" 
                       required readonly>
                     </td>
@@ -416,11 +416,9 @@
                   <ng-container matColumnDef="Total">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.total}}"
-                    [matTooltipPosition]="tooltipPosition">Total <span class="add-good-plusbtn" mat-flat-button color="primary" (click)=addRow() id=grid  #tooltip="matTooltip"
-                    matTooltip="{{fundingTooltip.addGoods}}"
-                    [matTooltipPosition]="tooltipPosition">
-                    +
-                  </span> </th>
+                    [matTooltipPosition]="tooltipPosition">Total 
+                    <span *ngIf="!UpdateInvoiceLable" class="add-good-plusbtn" mat-flat-button color="primary" (click)=addRow() id=grid  #tooltip="matTooltip"
+                    matTooltip="{{fundingTooltip.addGoods}}" [matTooltipPosition]="tooltipPosition">+</span> </th>
                     <td mat-cell *matCellDef="let element;let row; let index = index" [formGroupName]="index" >
                       <input matInput 
                       type="number" 
@@ -438,10 +436,15 @@
             </div>
             <mat-card-actions class="ebtn">
               <span class="fill-remaining-space"></span>
-              <button mat-flat-button color="primary"id=grid #tooltip="matTooltip"
+              <button  mat-flat-button color="primary"id=grid #tooltip="matTooltip"
               matTooltip="{{fundingTooltip.saveGoods}}"
               [matTooltipPosition]="tooltipPosition">
-                Add Invoice
+                <div *ngIf="!UpdateInvoiceLable">
+                  Add Invoice
+                </div>
+                <div *ngIf="UpdateInvoiceLable">
+                  Update Invoice
+                </div>
               </button>
             </mat-card-actions>
           </mat-card-content>
@@ -477,7 +480,12 @@
               <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
               matTooltip="{{fundingTooltip.invoiceNumber}}"
               [matTooltipPosition]="tooltipPosition">Invoice No</th>
-              <td mat-cell *matCellDef="let element">{{element.invId}}</td>
+              
+              <td mat-cell *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip color="primary" selected (click)="UpdateInvoice(element)">{{element.invId}} </mat-chip>
+              </mat-chip-list>
+              </td>
             </ng-container>
             <mat-checkbox name="box"></mat-checkbox>
             <ng-container matColumnDef="InvoiceRefNo">

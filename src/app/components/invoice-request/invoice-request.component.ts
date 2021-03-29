@@ -135,6 +135,8 @@ export class InvoiceRequestComponent implements OnInit {
   tooltipPosition= "below";
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
+  UpdateInvoiceLable: boolean;
+  invoiceDetails: any;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -301,61 +303,79 @@ private _filter(value: string): string[] {
       this.getInvDetailsLists();
     })
   }
+  UpdateInvoice(data){
+    console.log(data,"testtt")
+    this.invoiceDetails = data
+    this.invoiceForm.patchValue({
+      buyerName: data.buyerName,
+      invDueDate: data.invDueDate.toString(),
+      invId: data.invId,
+      buyerAddr: data.buyerAddr,
+      billNo: data.billNo,
+      invAmt: data.invAmt,
+      invDate: data.invDate.toString(),
+      dispDate: data.dispDate.toString(),
+      smeId: localStorage.getItem("userId"),
+      invCcy:data.invCcy
+    });
+    this.invoiceID = data.invId;
+    this.currencyName=data.invCcy
+    this.InvoiceFdate=data.invDueDate
+    this.dateFormArray.patchValue(data.goodsDetails);
+    this.UpdateInvoiceLable = true
+  }
   onSubmitInvoiceForm() {
     let grandtotal = 0;
     this.invoiceForm.value.goodsDetails.forEach(element => {
        grandtotal += element.total
     });
-   
-if(grandtotal != this.invoiceForm.value.invAmt){
-  return alert("Please check Good Details !! Grant Total Should Be Equal to Funding Request Amount");
-}
+    if(grandtotal != this.invoiceForm.value.invAmt){
+      return alert("Please check Good Details !! Grant Total Should Be Equal to Funding Request Amount");
+    }
 
     try {
-      // for (const key in this.invoiceForm.controls) {
-      //   this.invoiceForm.get(key).setValidators(Validators.required);
-      //   this.invoiceForm.get(key).updateValueAndValidity();
-      //   }
-      if (this.invoiceForm.status === "INVALID")
+      if (this.invoiceForm.status === "INVALID"){
         throw { "mes": "Please fill mendatory  fields" }
-        let invoiceFormData = this.invoiceForm.value
-        // invoiceFormData.invDate = invoiceFormData.invDate && moment(invoiceFormData.invDate).format('DD/MM/YYYY')
-        
-        // invoiceFormData.invDueDate = invoiceFormData.invDueDate && moment(invoiceFormData.invDueDate).format('DD/MM/YYYY')
-        // invoiceFormData.dispDate = invoiceFormData.dispDate && moment(invoiceFormData.dispDate).format('DD/MM/YYYY')
-        this.invoiceForm.value['invoiceDetailsSequenceNumber']={}
+      }
+      this.invoiceForm.value['invoiceDetailsSequenceNumber']={}
       let params = {
         "invoiceDetails": this.invoiceForm.value,
-        // "goodsDetails": this.invoiceForm.value.data,
       }
       console.log(params,"params");
-      this.invoiceFormBuild();
-      this.dataSourceTwo.data = [];
-      this.invoiceID = "";
-      this.InvoiceFdate = ""
-      for (const key in this.invoiceForm.controls) {
-        this.invoiceForm.get(key).clearValidators();
-        this.invoiceForm.get(key).updateValueAndValidity();
+      if(this.UpdateInvoiceLable === true){
+        this.invoiceRequestServices.UpdateInvoice(this.invoiceDetails.id,params).subscribe(resp => {
+          this.invoiceFormBuild();
+          this.dataSourceTwo.data = [];
+          this.invoiceID = "";
+          this.InvoiceFdate = ""
+          for (const key in this.invoiceForm.controls) {
+            this.invoiceForm.get(key).clearValidators();
+            this.invoiceForm.get(key).updateValueAndValidity();
+          }
+          this.UpdateInvoiceLable = false
+          this.addRow()
+          this.getInvDetailsLists();
+        }, error => {
+        })
+
+      }else{
+        this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
+          this.invoiceFormBuild();
+          this.dataSourceTwo.data = [];
+          this.invoiceID = "";
+          this.InvoiceFdate = ""
+          for (const key in this.invoiceForm.controls) {
+            this.invoiceForm.get(key).clearValidators();
+            this.invoiceForm.get(key).updateValueAndValidity();
+          }
+          this.addRow()
+          this.getInvDetailsLists();
+        }, error => {
+        })
       }
-      this.invoiceRequestServices.invoiceRequestSave(params).subscribe(resp => {
-        this.getInvDetailsLists();
-      }, error => {
-      })
     } catch (err) {
     }
   }
-  //   addNew(){ 
-  //     INVOICE_ARRAY.push(this.invoicedata)
-  //     this.dataSource = new MatTableDataSource(INVOICE_ARRAY);
-  //     this.invoicedata = {
-  //      id :"1",
-  //      RefNo :"ref",
-  //      invoiceId :"inv",
-  //      invoiceDate : "123123",
-  //      buyerName :"123213",
-  //      InvoiceAmount :"123213"
-  //    }
-  //  }
   get dateFormArray(): FormArray {
     return this.invoiceForm.get('goodsDetails') as FormArray;
   }
@@ -374,7 +394,7 @@ if(grandtotal != this.invoiceForm.value.invAmt){
       discAmt: [""],
       netAmtPay: [""],
       taxRate: [""],
-      taxAmount: [""],
+      taxAmt: [""],
       total: [""],
       goodsId: "GD101",
     })
@@ -412,8 +432,8 @@ if(grandtotal != this.invoiceForm.value.invAmt){
     this.invoiceForm.value.goodsDetails.forEach(element => { element.ID=this.invoiceID });
     this.invoiceForm.value.goodsDetails[index]["amt"] = parseInt(this.invoiceForm.value.goodsDetails[index]["rate"])*parseInt(this.invoiceForm.value.goodsDetails[index]["quantity"]) ? parseInt(this.invoiceForm.value.goodsDetails[index]["rate"])*parseInt(this.invoiceForm.value.goodsDetails[index]["quantity"]) : "0" 
     this.invoiceForm.value.goodsDetails[index]["netAmtPay"] = parseInt(this.invoiceForm.value.goodsDetails[index]["amt"]) - parseInt(this.invoiceForm.value.goodsDetails[index]["discAmt"]) ? parseInt(this.invoiceForm.value.goodsDetails[index]["amt"]) - parseInt(this.invoiceForm.value.goodsDetails[index]["discAmt"]) :'0'
-    this.invoiceForm.value.goodsDetails[index]["taxAmount"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100 ?parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100  :"0" 
-    this.invoiceForm.value.goodsDetails[index]["total"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmount"]) ?  parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmount"]):'0'
+    this.invoiceForm.value.goodsDetails[index]["taxAmt"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100 ?parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) * parseInt(this.invoiceForm.value.goodsDetails[index]["taxRate"]) / 100  :"0" 
+    this.invoiceForm.value.goodsDetails[index]["total"] = parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmt"]) ?  parseInt(this.invoiceForm.value.goodsDetails[index]["netAmtPay"]) + parseInt(this.invoiceForm.value.goodsDetails[index]["taxAmt"]):'0'
     this.invoiceForm.value.goodsDetails[index]["amtCcy"]=this.currencyName
     this.dateFormArray.patchValue(this.invoiceForm.value.goodsDetails);
 }
