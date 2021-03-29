@@ -254,7 +254,8 @@ export class SmeBiddingDetailsComponent implements OnInit {
       console.log(data.filteredData,"usus")
       data.filteredData[0]['smeId'] = localStorage.getItem("userId")
       data.filteredData[0]['status'] = 'A'
-      data.filteredData[0]['invoiceId'] = data.filteredData[0].invNo
+      data.filteredData[0]['invoiceId'] = data.filteredData[0].invoiceId
+      data.filteredData[0]['invoiceNo'] = data.filteredData[0].invNo
       var element =  data.filteredData[0];
       this.smeBiddingServices.saveFinBid(element).subscribe(resp => {
         console.log(resp,"resp")

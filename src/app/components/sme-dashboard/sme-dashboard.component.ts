@@ -231,6 +231,7 @@ export class SmeDashboardComponent implements OnInit {
   getSumOfOpenFinBidding;
   getSumofFundingBids;
   getsumOfFunded;
+  getsumOfFinMatData;
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {
@@ -251,6 +252,7 @@ export class SmeDashboardComponent implements OnInit {
     this.getFunded();
     this.getFinDueTdy();
     this.getFinPastDue();
+    this.getFinMatData();
   }
 
   public scrollRight(): void {
@@ -279,44 +281,37 @@ export class SmeDashboardComponent implements OnInit {
       behavior: 'smooth',
     });
   }
-
-  isOpenHandle(isTrue){
+    isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
     }
-
     navigateFinancierBidding(){
       this.router.navigateByUrl('/sme-bidding');
     }
-
     navigateFinancieForBidding(){
       this.router.navigateByUrl('/sme-finance-for-bidding');
     }
-
     navigateInvoiceCreation(){
       this.router.navigateByUrl('/invoice-request');
     }
-
     navigateAcceptedFinance(){
       this.router.navigateByUrl('/accepted-finance');
     }
-
     logout(){
       this.authenticationService.logout()
-      }
+    }
     getFinForBid(){
       this.smeDashboardServices.getFinForBid().subscribe(resp => {
-        this.getSumOfOpenFinBidding = resp;
+      this.getSumOfOpenFinBidding = resp;
     })
     }
     getFundingBids(){
       this.smeDashboardServices.getFundingBids().subscribe(resp => {
-        this.getSumofFundingBids = resp;
+      this.getSumofFundingBids = resp;
     })
     }
     getFunded(){
       this.smeDashboardServices.getFunded().subscribe(resp => {
-        this.getsumOfFunded = resp;
-        
+      this.getsumOfFunded = resp;
     })
     }
     getFinDueTdy(){
@@ -325,6 +320,11 @@ export class SmeDashboardComponent implements OnInit {
     }
     getFinPastDue(){
       this.smeDashboardServices.getFinPastDue().subscribe(resp => {
+    })
+    }
+    getFinMatData(){
+      this.smeDashboardServices.getFinMatData().subscribe(resp => {
+      this.getsumOfFinMatData = resp;
     })
     }
   //multiple line chart

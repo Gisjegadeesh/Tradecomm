@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 export class SmeDashboardServices {
   constructor(private apiService: ApiService) { }
   getFinForBid(){
-    return this.apiService.generalServiceget(environment.serviePath_1+'invoice-request/getSumOfOpenFinBidding/'+localStorage.getItem("userId"));
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/invoice-request/getOpenFundingRequests/'+localStorage.getItem("userId"));
   }
   getFundingBids(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/invoice-request/getSumOfIntiatedBidAmt/'+localStorage.getItem("userId"));
@@ -20,4 +20,9 @@ export class SmeDashboardServices {
   getFinPastDue(){
     return this.apiService.generalServiceget(environment.dboardServerPath5+'getFinPastDue');
   }
+  getFinMatData(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/getFinMatData/'+localStorage.getItem("userId"));
+
+  }
+ 
 }
