@@ -62,7 +62,7 @@ const BIDDING_DATA: biddingDetails[] = [];
 
 export class SmeFinanceforBiddingComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status'];
+  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -168,7 +168,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
    
-    this.SmeFinancierForBiddingServices.getInvoiceRequestLists(data.id).subscribe(resp => {
+    this.SmeFinancierForBiddingServices.getInvoiceRequestLists(data.invoiceId).subscribe(resp => {
       let status = "";
       if (resp.status == "I") {
         status = "Initiated"
@@ -183,7 +183,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
         status = "Financed Successfully"
       }
       this.dataSourceTwo = new MatTableDataSource([
-        { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status }
+        { 'invId': resp.invId, 'invDate': resp.invDate,'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status }
       ]);
 
       this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
@@ -193,7 +193,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     // this.dataSourceThree = new MatTableDataSource([
     //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
 
-    this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
+    this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invoiceNo).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }

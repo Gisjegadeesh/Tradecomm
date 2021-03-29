@@ -8,7 +8,7 @@ export class SmeFinancierForBiddingServices {
   constructor(private apiService: ApiService) { this.baseUrl = "http://localhost:8080/ "; }
   
   getFinanceForBiddingLists(){
-    return this.apiService.tempGet(environment.serviePath_1+'invoice-request/allInvoicesBySmeId/'+localStorage.getItem("userId"));
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/invoice-request/allInvoicesBySmeId/'+localStorage.getItem("userId"));
   }
   getInvoiceRequestLists(id){
     // let stringifyObj = JSON.stringify( { invoiceDetails : { id : 1} })

@@ -63,6 +63,7 @@ const ELEMENT_DATA: any[] = [
 // const NAMES = ['', '', '', '', '', '',];
 
 export interface invoiceData {
+  invDueDate: any;
   invId: any;
   id: String;
   RefNo: String;
@@ -94,7 +95,8 @@ export class InvoiceRequestComponent implements OnInit {
     invoiceId: "",
     invoiceDate: "",
     buyerName: "",
-    InvoiceAmount: ""
+    InvoiceAmount: "",
+    invDueDate:""
   };
 
   hide = true;
@@ -294,7 +296,10 @@ private _filter(value: string): string[] {
           "invoiceDate":item['invDate'],
           "smeId":item['smeId'],
           "invoiceAmt":item['invAmt'],
-          "invoiceCcy":item['invCcy']
+          "invoiceCcy":item['invCcy'],
+          "status" : "A",
+          "buyerName": item.buyerName,
+           "invDueDate":item.invDueDate
         }
         reqParams.push(obj)
       }
