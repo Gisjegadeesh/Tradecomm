@@ -183,6 +183,9 @@
                               <td>{{getFinMaturityDatas.NUMBER}}</td>
                               <td>{{getFinMaturityDatas.AMOUNT}}</td>
                             </tr>
+                            <tr *ngIf="!getFinMaturityData?.length">
+                                <td colspan="3">No Records Found</td>
+                            </tr>
                           </table>
                         </div>
                     </div>
@@ -215,6 +218,9 @@
                                 <td>{{getFinnSizeDatas.NUMBER}}</td>
                                 <td>{{getFinnSizeDatas.AMOUNT}}</td>
                               </tr>
+                              <tr *ngIf="!getFinnSizeData?.length">
+                                <td colspan="3">No Records Found</td>
+                            </tr>
                             </table>
                         </div>
                     </div>
