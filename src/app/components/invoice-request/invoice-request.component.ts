@@ -302,7 +302,6 @@ private _filter(value: string): string[] {
     })
   }
   onSubmitInvoiceForm() {
-
     let grandtotal = 0;
     this.invoiceForm.value.goodsDetails.forEach(element => {
        grandtotal += element.total
