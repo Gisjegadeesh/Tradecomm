@@ -8,8 +8,8 @@ import {InvoiceRequestServices} from '../../invoice-request/invoice-service';
 import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
 import { MatSort } from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
-
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import * as moment from 'moment';
 
 interface Status {
   value: string;
@@ -94,7 +94,7 @@ export class InvoiceDetailsComponent implements OnInit {
   constructor(private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
-  displayedColumnsOne: string[] = ['descGoods', 'dateOfInvoice', 'quantity', 'taxRate','amt','rate','totalccy','taxAmountccy','total'];
+  displayedColumnsOne: string[] = ['descGoods', 'quantity', 'taxRate','amt','rate','total'];
   displayedColumnsOne1: string[] = [
     'SNo',
     'DescGoods',
@@ -187,6 +187,7 @@ export class InvoiceDetailsComponent implements OnInit {
   //         smeId : String,  
   // }
   invoiceDetails:any
+  moment: any = moment;
 
 
 

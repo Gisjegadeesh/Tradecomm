@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
 
 
     // this.router.events.subscribe(val => {
-    //   debugger;
+      // debugger;
     // })
 
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { LOGINCONSTANTS } from '../../shared/constants/constants'
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginTooltip = LOGINCONSTANTS;
   
-  constructor(private router: Router, private authService: AuthenticationService) { }
+  constructor(private router: Router, private authService: AuthenticationService,private toastr: ToastrService) { }
   ngOnInit(): void {
   }
   // tslint:disable-next-line: typedef
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = false;
     } else {
       this.invalidLogin = true;
+      this.toastr.error("Invalid username or password")
     }
   }
 
