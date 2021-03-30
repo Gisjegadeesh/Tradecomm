@@ -122,13 +122,13 @@
         <ng-container>
             <div #accountList class="accounts-list">
                 <uxg-account-card class="curs-pointer" name="Open for Offer" number="{{getSumofgetOpenForOffer?.CCY}} {{getSumofgetOpenForOffer?.AMOUNT? getSumofgetOpenForOffer?.AMOUNT : 'SGD 0'}}" #tooltip="matTooltip"
-                matTooltip="{{dashboardTooltip.offerDetails}}" [matTooltipPosition]="'below'" (click)="this.navigateFinanceBidding('finacierbid')"></uxg-account-card>
+                matTooltip="{{dashboardTooltip.offerDetails}}" [matTooltipPosition]="'below'" (click)="this.navigateBiddingPage('/finance-bidding')"></uxg-account-card>
                 <uxg-account-card name="Offer Expired" number="SGD 0" balance="" #tooltip="matTooltip"
-                matTooltip="{{dashboardTooltip.expiredDetails}}" [matTooltipPosition]="'below'" currency=""></uxg-account-card>
-                <uxg-account-card name="Bids to be accepted" (click)="this.navigateFinanceBidding('BidsAccept')" number="{{getSumofgetbidsToBeAccepted?.CCY}} {{getSumofgetbidsToBeAccepted?.AMOUNT? getSumofgetbidsToBeAccepted?.AMOUNT : 'SGD 0'}}" balance="" #tooltip="matTooltip"
-                matTooltip="{{dashboardTooltip.acceptedDetails}}" [matTooltipPosition]="'below'" currency=""></uxg-account-card>
+                matTooltip="{{dashboardTooltip.expiredDetails}}" [matTooltipPosition]="'below'" (click)="this.navigateBiddingPage('/finance-bidding-expired')" currency=""></uxg-account-card>
+                <uxg-account-card name="Bids to be accepted" number="{{getSumofgetbidsToBeAccepted?.CCY}} {{getSumofgetbidsToBeAccepted?.AMOUNT? getSumofgetbidsToBeAccepted?.AMOUNT : 'SGD 0'}}" balance="" #tooltip="matTooltip"
+                matTooltip="{{dashboardTooltip.acceptedDetails}}" [matTooltipPosition]="'below'" (click)="this.navigateBiddingPage('/financier-bids-accept')"  currency=""></uxg-account-card>
                 <uxg-account-card name="Offer Rejected" number="SGD 0" balance="" #tooltip="matTooltip"
-                matTooltip="{{dashboardTooltip.rejectedDetails}}" [matTooltipPosition]="'below'" currency=""></uxg-account-card>
+                matTooltip="{{dashboardTooltip.rejectedDetails}}" [matTooltipPosition]="'below'" (click)="this.navigateBiddingPage('/finance-bidding-rejected')" currency=""></uxg-account-card>
              </div>
         </ng-container>
         <div class="col-md-12" style="float:right;min-height: 50px;">

@@ -279,12 +279,8 @@ export class FinancierDashboardComponent implements OnInit {
   isOpenHandle(isTrue){
     this.isOpen = isTrue === 'inActive' ? 'active' : 'inActive';
     }
-    navigateFinanceBidding(type){
-      if(type === 'finacierbid'){
-        this.router.navigateByUrl('/finance-bidding');
-      }else{
-        this.router.navigateByUrl('/financier-bids-accept');
-      }
+    navigateBiddingPage(path){
+      this.router.navigateByUrl(path);
     }
     logout(){
       this.authenticationService.logout()

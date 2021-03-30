@@ -54,8 +54,6 @@ import { SmeBiddingDetailsComponent } from './components/sme-bidding/sme-bidding
 import {InvoiceRequestServices} from '../app/components/invoice-request/invoice-service';
 import {FinanceRequestServices} from '../app/components/finance-bidding/finance-service';
 import { ModalComponent } from './shared/modals';
-import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
-import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { IccDashboardComponent } from './components/icc-dashboard/icc-dashboard.component';
@@ -77,6 +75,14 @@ import { FinancebidsRequestServices } from './components/finance-bids-accept/fin
 import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids-accept/finance-bids-accept-details/finance-bids-accept-details.component';
 
 
+import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
+import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
+import { FinanceBiddingExpiredComponent } from './components/finance-bidding-expired/finance-bidding-expired.component';
+import { InvoiceDetailsExpiredComponent } from './components/finance-bidding-expired/invoice-details-expired/invoice-details-expired.component';
+import {FinanceBiddingExpiryServices} from './components/finance-bidding-expired/finance-bidding-expiry-service';
+import { FinanceBiddingRejectedComponent } from './components/finance-bidding-rejected/finance-bidding-rejected.component';
+import { InvoiceDetailsRejectedComponent } from './components/finance-bidding-rejected/invoice-details-rejected/invoice-details-rejected.component'
+import {FinanceBiddingRejectedServices} from './components/finance-bidding-rejected/finance-bidding-rejected-service'
 
 // import { DynamicFormService } from './shared/constants/dynamicForm';
 import { TextboxComponent } from './shared/textBox/textBox.component';
@@ -110,7 +116,11 @@ import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
     MultiSelectDropdown,
     RadioButtonComponent,
     DateFieldComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FinanceBiddingExpiredComponent,
+    InvoiceDetailsExpiredComponent,
+    FinanceBiddingRejectedComponent,
+    InvoiceDetailsRejectedComponent
   ],
   imports: [
     BrowserModule,
@@ -153,9 +163,9 @@ import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
     MatTooltipModule,
     ToastrModule.forRoot()
   ],
-  providers: [LoaderService,CustomerService,FinancebidsRequestServices,
-    MatRadioModule,SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
-    FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
+
+  providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,
+    FinanceRequestServices,FinanceBiddingRejectedServices,FinanceBiddingExpiryServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
     FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
