@@ -197,7 +197,7 @@ export class InvoiceDetailsComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-
+    this.buildform()
     this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
       if(resp){
 
@@ -226,6 +226,30 @@ export class InvoiceDetailsComponent implements OnInit {
 
     
   }
+  buildform() {
+    this.finBidform = this.fb.group({
+      fundingCcy: ['SGD', Validators.required],
+      fxRate: ['1', Validators.required],
+      baseCcyAmt: ['', Validators.required],
+      fundablePercent: ['90', Validators.required],
+      baseCcyFundingAmt: ['', Validators.required],
+      invCcyFundingAmt: ['', Validators.required],
+      repaymentDate: ['', Validators.required],
+      invDiscRate: ['', Validators.required],
+      baseCcyDiscAmt: ['', Validators.required],
+      invCcyDiscAmt: ['', Validators.required],
+      baseCcyNetAmtPayable: ['', Validators.required],
+      invCcyNetAmtPayable: ['', Validators.required],
+      annualYeild: ['', Validators.required],
+      offerExpPeriod: ['24H', Validators.required],
+      offerExpDateTime: ['', Validators.required],
+      finId: localStorage.getItem("userId"),
+      invoiceId: this.id,
+      tenor: ['', Validators.required],
+      invNo: [''],
+      invoiceAmt: ['']
+    })
+  }
   buildfinBidform(){
     var ddatae = new Date();
     console.log(this.datePipe.transform(this.invoiceDetails.invDueDate),"this.datePipe.transform(this.invoiceDetails.invDueDate)")
@@ -244,7 +268,7 @@ export class InvoiceDetailsComponent implements OnInit {
       invCcyNetAmtPayable:['', Validators.required],
       annualYeild:['', Validators.required],
       offerExpPeriod:['24H', Validators.required],
-      offerExpDateTime:[this.datePipe.transform(ddatae), Validators.required],
+      offerExpDateTime:[this.datePipe.transform(ddatae.setDate(ddatae.getDate() + 1)), Validators.required],
       finId: localStorage.getItem("userId"),
       invoiceId : this.id,
       tenor:[this.dateMinus(this.datePipe.transform(this.invoiceDetails.invDueDate,'MM/dd/yyyy'),this.datePipe.transform(ddatae,'MM/dd/yyyy')), Validators.required],
@@ -366,16 +390,16 @@ export class InvoiceDetailsComponent implements OnInit {
   }
     changeRowgrid(){
        console.log(this.finBidform,"finnnn");
-      this.finBidform.value.baseCcyAmt = parseInt(this.invoiceDetails.invAmt) * parseInt(this.finBidform.value.fxRate)
-      this.finBidform.value.baseCcyFundingAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.fundablePercent) / 100;
+      this.finBidform.value.baseCcyAmt = Number(this.invoiceDetails.invAmt) * Number(this.finBidform.value.fxRate)
+
+      this.finBidform.value.baseCcyFundingAmt = Number(this.finBidform.value.baseCcyAmt)*Number(this.finBidform.value.fundablePercent) / 100;
+
+      this.finBidform.value.baseCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+
+      this.finBidform.value.invDiscRate = Number(this.finBidform.value.baseCcyDiscAmt) / Number(this.finBidform.value.baseCcyFundingAmt)*100;
 
 
-      this.finBidform.value.invDiscRate = 100 - parseInt(this.finBidform.value.fundablePercent);
-
-
-      this.finBidform.value.baseCcyDiscAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.invDiscRate) / 100;
-
-      this.finBidform.value.invCcyDiscAmt = parseInt(this.finBidform.value.baseCcyAmt)*parseInt(this.finBidform.value.invDiscRate) / 100;
+      this.finBidform.value.invCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
 
       this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyFundingAmt - (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
 
@@ -383,9 +407,9 @@ export class InvoiceDetailsComponent implements OnInit {
       this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
         baseCcyFundingAmt: this.finBidform.value.baseCcyFundingAmt,
         invCcyFundingAmt:this.finBidform.value.baseCcyFundingAmt,
-        invDiscRate:this.finBidform.value.invDiscRate,
-        baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt,
-        invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt,
+        baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt.toFixed(2),
+        invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt.toFixed(2),
+        invDiscRate:this.finBidform.value.invDiscRate.toFixed(2),
         baseCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2),
         invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
       });
