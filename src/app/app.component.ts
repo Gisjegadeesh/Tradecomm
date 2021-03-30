@@ -1,5 +1,7 @@
-import { Component,EventEmitter } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef, Renderer2} from '@angular/core';
 import { Router, NavigationEnd, NavigationStart, ActivatedRoute, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
+import { LoaderService } from "../../src/app/service/loader.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -13,8 +15,9 @@ export class AppComponent {
   showSidebar: boolean = false;
   showNavbar: boolean = false;
   showFooter: boolean = false;
-
-  constructor(private router: Router) {
+  private subscription: Subscription
+  showLoadingIcon = false;
+  constructor(private loaderService: LoaderService,private router: Router,private cdr: ChangeDetectorRef,private renderer: Renderer2) {
   }
 
   emitIsOpen(value){
@@ -22,9 +25,16 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.subscription = this.loaderService.currentLoadingIconStatus.subscribe(
+      value => {
+        this.showLoadingIcon = value;
+      }
+    );
     this.check();
   }
-
+  ngAfterViewInit() {
+    this.showLoadingIcon = false
+}
   ngDoCheck() {
     this.check();
   }
