@@ -326,13 +326,40 @@ private _filter(value: string): string[] {
     this.invoiceID = data.invId;
     this.currencyName=data.invCcy
     this.InvoiceFdate=data.invDueDate
-    this.dateFormArray.patchValue(data.goodsDetails);
+    // console.log(this.dateFormArray,"this.dateFormArray")
+    // this.dateFormArray.controls.splice(0,0);
+
+   
+    this.dataSourceTwo.data = []
+    data.goodsDetails.forEach(element => {
+      const row = this.fb.group({
+      ID: this.invoiceID,
+      descGoods: element.descGoods,
+      dateOfInvoice:this.datePipe.transform(this.InvoiceFdate,"dd/MM/yyyy"),
+      quantity: element.quantity,
+      rate:element.rate,
+      amt: element.amt,
+      amtCcy: this.currencyName,
+      discAmt: element.discAmt,
+      netAmtPay: element.netAmtPay,
+      taxRate: element.taxRate,
+      taxAmt: element.taxAmt,
+      total: element.total,
+      goodsId: "GD101"
+      })
+      this.dateFormArray.push(row);
+    });
+    this.delete(0)
+    this.dataSourceTwo.data = this.dateFormArray.controls;
     this.UpdateInvoiceLable = true
   }
+  delete(index){
+    this.dateFormArray.removeAt(index)
+}
   onSubmitInvoiceForm() {
     let grandtotal = 0;
     this.invoiceForm.value.goodsDetails.forEach(element => {
-       grandtotal += element.total
+       grandtotal += Number(element.total)
     });
     if(grandtotal != this.invoiceForm.value.invAmt){
       return alert("Please check Good Details !! Grant Total Should Be Equal to Funding Request Amount");
@@ -424,6 +451,7 @@ private _filter(value: string): string[] {
 
   }
   updateInvoiceId(event) {
+    console.log(event.target.value)
     this.invoiceID = event.target.value;
     // this.invoiceForm.value.goodsDetails.findIndex((obj => obj.ID == 1));
   }
