@@ -252,7 +252,7 @@ export class InvoiceDetailsComponent implements OnInit {
       invoiceAmt:['']
     })
   }
-  dateMinus(repaymentDate,cureentday){
+  dateMinus(repaymentDate,cureentday){ 
     var date1, date2;  
     console.log(repaymentDate,cureentday)
     date1 = new Date(cureentday);  
@@ -345,7 +345,6 @@ export class InvoiceDetailsComponent implements OnInit {
         let params = this.finBidform.value
         params.repaymentDate = this.invoiceDetails.invDueDate;
         params.offerExpDateTime = moment().format('YYYY-MM-DD')+ "T00:00:00.000Z"
-
         // this.invoiceFormBuild();
         // this.dataSourceTwo.data = [];
         // this.invoiceID = "";
