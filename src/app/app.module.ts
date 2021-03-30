@@ -78,6 +78,12 @@ import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids
 
 
 
+// import { DynamicFormService } from './shared/constants/dynamicForm';
+import { TextboxComponent } from './shared/textBox/textBox.component';
+import { MultiSelectDropdown } from './shared/multiSelectDropdown/multiSelectDropdown.component';
+import { RadioButtonComponent } from './shared/radioButton/radioButton.component';
+import { DateFieldComponent } from './shared/dateField/dateField.component';
+import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +105,12 @@ import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids
     SmeFinanceforBiddingComponent,
     AcceptedFinanceComponent,
     FinanceBiddingAcceptsComponent,
-    FinanceBiddingAcceptsDetailsComponent
+    FinanceBiddingAcceptsDetailsComponent,
+    TextboxComponent,
+    MultiSelectDropdown,
+    RadioButtonComponent,
+    DateFieldComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -142,7 +153,8 @@ import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids
     MatTooltipModule,
     ToastrModule.forRoot()
   ],
-  providers: [LoaderService,CustomerService,FinancebidsRequestServices, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
+  providers: [LoaderService,CustomerService,FinancebidsRequestServices,
+    MatRadioModule,SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
     FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

@@ -1,0 +1,24 @@
+<div class="card-form-container"  *ngIf="questionDatas.type == 'QuestionTextDto'">
+    <div class="dynamicForm-example-full-width">
+      <mat-form-field floatLabel="never" dense appearance="fill" class="form" >
+        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+        <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
+        <input matInput type="text" (change)="onChange($event)" [(ngModel)]="textboxValue"
+        [maxLength]="questionDatas.characterMax" [required]="questionDatas.required" />
+
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="card-form-container"  *ngIf="questionDatas.type == 'QuestionNumberDto'">
+    <div class="dynamicForm-example-full-width">
+      <mat-form-field floatLabel="never" dense appearance="fill" class="form" >
+        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
+        <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
+        <input matInput type="number" (change)="onChange($event)" *ngIf="questionDatas.type == 'QuestionNumberDto'" [(ngModel)]="textboxValue" 
+        [maxLength]="questionDatas.characterMax" [required]="questionDatas.required" />
+      
+
+      </mat-form-field>
+    </div>
+  </div>
