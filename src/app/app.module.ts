@@ -26,9 +26,21 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SkeletonTextModule } from '@ffdc/uxg-angular-components/skeleton-text';
 import { ToastrModule } from 'ngx-toastr';
 import {MatTooltipModule} from '@angular/material/tooltip';
-// import { UxgUserProfileMenuModule } from '@ffdc/uxg-angular-components/user-profile-menu';
 import { AccountCardModule } from '@ffdc/uxg-angular-components/cards/account-card';
 import { UxgTableModule } from '@ffdc/uxg-angular-components/table';
+import { InlineSVGModule } from 'ng-inline-svg';
+import { ChartsModule } from 'ng2-charts';
+import {MatChipsModule} from '@angular/material/chips';
+import {ModalDialogService} from './service/modal-dialog.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {DatePipe} from '@angular/common';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { LoaderService } from './service/loader.service';
+
+import {ApiService} from './service/api.service';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { SmeOnboardingComponent } from './components/sme-onboarding/sme-onboarding.component';
@@ -37,30 +49,20 @@ import { FinancierOnboardingListComponent } from './components/financier-onboard
 import { CustomerService } from './service/customer/customer.service';
 import { FinancierDashboardComponent } from './components/financier-dashboard/financier-dashboard.component';
 import { SmeDashboardComponent } from './components/sme-dashboard/sme-dashboard.component';
-import { InlineSVGModule } from 'ng-inline-svg';
-import { ChartsModule } from 'ng2-charts';
 import { SmeBiddingComponent } from './components/sme-bidding/sme-bidding.component';
 import { SmeBiddingDetailsComponent } from './components/sme-bidding/sme-bidding-details/sme-bidding-details.component';
-import {MatChipsModule} from '@angular/material/chips';
-import {ModalDialogService} from './service/modal-dialog.service';
-import {ApiService} from './service/api.service';
 import {InvoiceRequestServices} from '../app/components/invoice-request/invoice-service';
 import {FinanceRequestServices} from '../app/components/finance-bidding/finance-service';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './shared/modals';
 import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
 import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { IccDashboardComponent } from './components/icc-dashboard/icc-dashboard.component';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import {DatePipe} from '@angular/common';
 import { FinancierService } from './service/financier/financier.service';
 import { FinanceBiddingService } from './service/finance_bidding/finance-bidding.service';
-import {MatExpansionModule} from '@angular/material/expansion';
 import { SmeFinanceforBiddingComponent } from './components/sme-financefor-bidding/sme-financefor-bidding.component';
 import { SmeFinancierForBiddingServices } from './components/sme-financefor-bidding/sme-financefor-bidding-service';
 import { SmeDashboardServices } from './components/sme-dashboard/sme-dashboard-service';
@@ -70,7 +72,11 @@ import { AcceptedFinanceComponent } from './components/accepted-finance/accepted
 import {AcceptedFinanceServices} from './components/accepted-finance/accepted-finance-service'
 import { SmeBiddingServices } from './components/sme-bidding/sme-bidding-services';
 import { FinancierOnboardingService } from './components/financier-onboarding/financier-onboarding.service';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { FinanceBiddingAcceptsComponent } from './components/finance-bids-accept/finance-bids-accept.component';
+import { FinancebidsRequestServices } from './components/finance-bids-accept/finance-bids-accept';
+import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids-accept/finance-bids-accept-details/finance-bids-accept-details.component';
+
+
 
 // import { DynamicFormService } from './shared/constants/dynamicForm';
 import { TextboxComponent } from './shared/textBox/textBox.component';
@@ -98,6 +104,8 @@ import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
     SidebarComponent,
     SmeFinanceforBiddingComponent,
     AcceptedFinanceComponent,
+    FinanceBiddingAcceptsComponent,
+    FinanceBiddingAcceptsDetailsComponent,
     TextboxComponent,
     MultiSelectDropdown,
     RadioButtonComponent,
@@ -143,10 +151,10 @@ import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
     NgMultiSelectDropDownModule.forRoot(),
     MatExpansionModule,
     MatTooltipModule,
-    ToastrModule.forRoot(),
-    MatRadioModule
-    ],
-  providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
+    ToastrModule.forRoot()
+  ],
+  providers: [LoaderService,CustomerService,FinancebidsRequestServices,
+    MatRadioModule,SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
     FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

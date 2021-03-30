@@ -16,6 +16,8 @@ import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-de
 import { IccDashboardComponent} from './components/icc-dashboard/icc-dashboard.component';
 import {SmeFinanceforBiddingComponent} from './components/sme-financefor-bidding/sme-financefor-bidding.component'
 import {AcceptedFinanceComponent} from './components/accepted-finance/accepted-finance.component'
+import {FinanceBiddingAcceptsComponent} from './components/finance-bids-accept/finance-bids-accept.component'
+import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids-accept/finance-bids-accept-details/finance-bids-accept-details.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -34,6 +36,9 @@ const routes: Routes = [
   { path: 'financier-onboarding-list', component: FinancierOnboardingListComponent ,  data : {"HeaderName" : "ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding/:edit/:id', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding/:view/:id', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding","homePath" : "/icc-dashboard"}},
+
+  { path: 'financier-bids-accept', component: FinanceBiddingAcceptsComponent ,  data : {"HeaderName" : "Financier Dashboard","homePath" : "/icc-dashboard"}},
+  { path: 'financier-bids-accept-Details/:type/:id', component: FinanceBiddingAcceptsDetailsComponent ,  data : {"HeaderName" : "Financier Dashboard","homePath" : "/icc-dashboard"}},
 
   { path: 'financier-dashboard', component: FinancierDashboardComponent ,  data : {"HeaderName" : "Financier Dashboard","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding', component: FinanceBiddingComponent, data : {"HeaderName" : "Financier Bidding","homePath" : "/financier-dashboard"} },
