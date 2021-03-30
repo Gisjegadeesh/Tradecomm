@@ -20,34 +20,23 @@ export class NavbarComponent implements OnInit {
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
   }
   ngDoCheck(){
-    const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
-    // debugger;
-    // let dd = this.route
+    let componentName =  this.route.firstChild && this.route.firstChild.data && this.route.firstChild.data['_value'] && this.route.firstChild.data['_value'].HeaderName ? this.route.firstChild.data['_value'].HeaderName : '';
 
-    // this.route.params.subscribe((params) => {
-    //   debugger;
-    //   console.log(params);
-    //   console.log(this.route.snapshot.data);
-    // });
-
-    // let dd = this._location.path()
-
-
-    // this.router.events.subscribe(val => {
-      // debugger;
-    // })
+    // const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
+   
+    const result = this.router.config && this.router.config.filter(item => item.data && item.data.HeaderName == componentName);
 
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
     this.homePath = result && result[0] && result[0].data && result[0].data.homePath
-    if(this.router.url.includes('financier-onboarding') && (this.router.url.includes('edit') || this.router.url.includes('view'))){
-      this.currentHeaderName = 'Financier Onboarding'
-    }else if(this.router.url.includes('sme-bidding/') && this.router.url.includes('id')){
-      this.currentHeaderName = 'SME Bidding / SME Bidding Details'
-    }else if(this.router.url.includes('finance-bidding') && this.router.url.includes('id')){
-      this.currentHeaderName = 'Invoice Details'
-    }else{
-      this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
-    }
+    // if(this.router.url.includes('financier-onboarding') && (this.router.url.includes('edit') || this.router.url.includes('view'))){
+    //   this.currentHeaderName = 'Financier Onboarding'
+    // }else if(this.router.url.includes('sme-bidding/') && this.router.url.includes('id')){
+    //   this.currentHeaderName = 'SME Bidding / SME Bidding Details'
+    // }else if(this.router.url.includes('finance-bidding') && this.router.url.includes('id')){
+    //   this.currentHeaderName = 'Invoice Details'
+    // }else{
+    //   this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    // }
   }
   goHome(){
     this.router.navigateByUrl(this.homePath);

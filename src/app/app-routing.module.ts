@@ -12,13 +12,18 @@ import { SmeBiddingComponent } from './components/sme-bidding/sme-bidding.compon
 import { SmeBiddingDetailsComponent } from './components/sme-bidding/sme-bidding-details/sme-bidding-details.component';
 import { InvoiceRequestComponent } from './components/invoice-request/invoice-request.component';
 import { FinanceBiddingComponent } from './components/finance-bidding/finance-bidding.component';
+import {FinanceBiddingExpiredComponent} from './components/finance-bidding-expired/finance-bidding-expired.component'
 import { InvoiceDetailsComponent } from './components/finance-bidding/invoice-details/invoice-details.component';
 import { IccDashboardComponent} from './components/icc-dashboard/icc-dashboard.component';
 import {SmeFinanceforBiddingComponent} from './components/sme-financefor-bidding/sme-financefor-bidding.component'
 import {AcceptedFinanceComponent} from './components/accepted-finance/accepted-finance.component'
 import {FinanceBiddingAcceptsComponent} from './components/finance-bids-accept/finance-bids-accept.component'
 import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids-accept/finance-bids-accept-details/finance-bids-accept-details.component';
+import {InvoiceDetailsExpiredComponent} from './components/finance-bidding-expired/invoice-details-expired/invoice-details-expired.component'
+import {FinanceBiddingRejectedComponent} from './components/finance-bidding-rejected/finance-bidding-rejected.component'
+import {InvoiceDetailsRejectedComponent} from './components/finance-bidding-rejected/invoice-details-rejected/invoice-details-rejected.component'
 
+ 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -42,9 +47,13 @@ const routes: Routes = [
 
   { path: 'financier-dashboard', component: FinancierDashboardComponent ,  data : {"HeaderName" : "Financier Dashboard","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding', component: FinanceBiddingComponent, data : {"HeaderName" : "Financier Bidding","homePath" : "/financier-dashboard"} },
-  { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Funding Request","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding/:id', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
-  { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}},
+  { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Funding Request","homePath" : "/financier-dashboard"}},
+  { path: 'finance-bidding-expired', component: FinanceBiddingExpiredComponent, data : {"HeaderName" : "Financier Offer Expired","homePath" : "/financier-dashboard"} },
+  { path: 'finance-bidding-expired/:id', component: InvoiceDetailsExpiredComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
+  { path: 'finance-bidding-rejected', component: FinanceBiddingRejectedComponent, data : {"HeaderName" : "Financier Offer rejected","homePath" : "/financier-dashboard"} },
+  { path: 'finance-bidding-rejected/:id', component: InvoiceDetailsRejectedComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
+  { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}}
 ];
 
 @NgModule({
