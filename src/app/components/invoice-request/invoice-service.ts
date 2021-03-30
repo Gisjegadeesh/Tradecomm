@@ -28,7 +28,6 @@ export class InvoiceRequestServices {
   finbidSave(body: any) {
     return this.apiService.post(environment.serviePath_2+'api/v1/bidding-details', body);
   }
-
   updateInvoiceDetails(data){
     return this.apiService.post(environment.serviePath_2+'api/v1/invoice-details',data)
   }

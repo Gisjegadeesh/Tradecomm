@@ -151,16 +151,16 @@
                                   required>
                                 </td>
                               </ng-container>
-            
                               <ng-container matColumnDef="Repayment Date">
-                                <th mat-header-cell *matHeaderCellDef scope="column" >Repayment Date</th>
+                                <th mat-header-cell *matHeaderCellDef scope="column" >Repayment Datess</th>
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
                                     <input matInput 
                                     formControlName="repaymentDate" 
                                     placeholder="RepaymentDate" 
-                                    required>
+                                    required
+                                    >
                                   <!-- <input matInput [matDatepicker]="picker" formControlName="RepaymentDate">
                                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                   <mat-datepicker #picker></mat-datepicker> -->

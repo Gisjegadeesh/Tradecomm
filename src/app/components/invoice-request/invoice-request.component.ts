@@ -42,7 +42,6 @@ const ELEMENT_DATA: any[] = [
     Status: 'Active'
   },
 ];
-
 // const DATA_TWO: any[] = [
 //   {
 //     BidID: 'BID03456',
