@@ -343,6 +343,9 @@ export class InvoiceDetailsComponent implements OnInit {
         alert("Please fill Mandatory fields")
       }else{
         let params = this.finBidform.value
+        params.repaymentDate = this.invoiceDetails.invDueDate;
+        params.offerExpDateTime = moment().format('YYYY-MM-DD')+ "T00:00:00.000Z"
+
         // this.invoiceFormBuild();
         // this.dataSourceTwo.data = [];
         // this.invoiceID = "";

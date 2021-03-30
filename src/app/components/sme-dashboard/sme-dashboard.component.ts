@@ -232,7 +232,8 @@ export class SmeDashboardComponent implements OnInit {
   getSumofFundingBids;
   getsumOfFunded;
   getFinMaturityData;
-  getFinnSizeData
+  getFinnSizeData;
+  getTblChartData
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {
@@ -255,6 +256,8 @@ export class SmeDashboardComponent implements OnInit {
     this.getFinPastDue();
     this.getFinMatData();
     this.getFinSizeData();
+    this.getChartData();
+    
   }
 
   public scrollRight(): void {
@@ -334,7 +337,7 @@ export class SmeDashboardComponent implements OnInit {
       this.getFinnSizeData = resp;
     })
     }
-  //multiple line chart
+    //multiple line chart
 chartType = "line";
 chartOptions = {
 responsive: true,
@@ -342,8 +345,8 @@ heigh:400,
 width :700
 };
 chartData = [
-{ data: [350, 600, 260, 700, 650, 416, 400, 300, 556, 500, 600, 580], label: "Funding Requested" },
-{ data: [500, 410, 450, 600, 550, 680, 720, 380, 350, 450, 650, 700], label: "Actual Funding" },
+{ data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: "Funding Requested" },
+{ data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: "Actual Funding" },
 // { data: [120, 200, 700], label: "Repayment" },
 ];
 chartLabels = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -364,5 +367,16 @@ borderColor: "rgba(0, 128, 43, .7)",
 public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
   console.log(event, active);
   }
+    getChartData(){
+      this.smeDashboardServices.getChartData().subscribe(resp => {
+      this.chartData=[
+        { data:Object.values(resp) , label: "Funding Requested" },
+        { data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] , label: "Actual Funding" },
+      ]
+      console.log("getTblChartData",this.getTblChartData)
+    })
+    }
+
+  
 }
 

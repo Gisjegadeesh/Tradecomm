@@ -222,7 +222,7 @@ export class AcceptedFinanceComponent implements OnInit {
       
     })
 
-    this.AcceptedFinanceServices.getAcceptedFinanceDetails(data.invId).subscribe(resp => {
+    this.AcceptedFinanceServices.getAcceptedFinanceDetails(data.invoiceId).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }
