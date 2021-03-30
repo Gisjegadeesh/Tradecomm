@@ -1,0 +1,10 @@
+<div class="card-form-container">
+    <div class="dynamicForm-example-full-width">
+<mat-form-field dense class="form">
+    <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
+    <input matInput   [matDatepicker]="pickers" (dateChange)="onChange($event)"  />
+     <mat-datepicker-toggle matSuffix [for]="pickers" ></mat-datepicker-toggle>
+    <mat-datepicker #pickers ></mat-datepicker> 
+</mat-form-field>
+</div>
+</div>

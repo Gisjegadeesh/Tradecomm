@@ -72,6 +72,12 @@ import { SmeBiddingServices } from './components/sme-bidding/sme-bidding-service
 import { FinancierOnboardingService } from './components/financier-onboarding/financier-onboarding.service';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
+// import { DynamicFormService } from './shared/constants/dynamicForm';
+import { TextboxComponent } from './shared/textBox/textBox.component';
+import { MultiSelectDropdown } from './shared/multiSelectDropdown/multiSelectDropdown.component';
+import { RadioButtonComponent } from './shared/radioButton/radioButton.component';
+import { DateFieldComponent } from './shared/dateField/dateField.component';
+import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,7 +97,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     NavbarComponent,
     SidebarComponent,
     SmeFinanceforBiddingComponent,
-    AcceptedFinanceComponent
+    AcceptedFinanceComponent,
+    TextboxComponent,
+    MultiSelectDropdown,
+    RadioButtonComponent,
+    DateFieldComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -132,8 +143,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     NgMultiSelectDropDownModule.forRoot(),
     MatExpansionModule,
     MatTooltipModule,
-    ToastrModule.forRoot()
-  ],
+    ToastrModule.forRoot(),
+    MatRadioModule
+    ],
   providers: [CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,
     FinanceRequestServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
     FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,

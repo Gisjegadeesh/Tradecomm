@@ -498,3 +498,47 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 .desc-goods{
     width: 22%;
 }
+.dynamicForm-example-full-width{
+  & .form{
+    align-self: stretch;
+    margin-bottom: $uxg-spacing-2;
+    margin-left: $uxg-spacing-3 * 6;
+    width: 400px;
+  }
+  & .dynamic-file-upload{
+    background-color: #f3f1fc;
+    height: 48px;
+    border-bottom: 1px solid #694ed6;
+    border-radius: 4px;
+}
+}
+.dyn-Formmultiselect-dropdown-dsgn{
+    width: 400px;
+    margin: 2px 8px 44px 93px;
+    background-color: #f3f1fc;
+    border-bottom: 1px solid #694ed6;
+    padding-top: 5px;
+    border-radius: 3px;
+}
+.pure-checkbox input[type=checkbox]+label:before{
+    border: 1px solid black;
+}
+.dynamic-radio-btn{
+    background: #f3f1fc;
+    border-bottom: 1px solid #694ed6;
+    width: 400px;
+    margin-left: 100px;
+    h6{
+        color: #616065;
+    font: 500 16px/24px Roboto, roboto, "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 10px;
+    }
+    & .mat-radio-group {
+        padding-left: 10px;
+    }
+}
+.selected-list .c-list .c-token .c-remove svg {
+    fill: #0e0d0d !important;
+}

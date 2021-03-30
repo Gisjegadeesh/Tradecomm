@@ -5,458 +5,78 @@
   </ul>
 </mat-toolbar>
 
-<form (ngSubmit)="onSubmit()" #smeForm="ngForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="smeForm1">
   <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper>
-    <mat-step>
+    <mat-step *ngFor="let questionSections of questionnaireSections;let sectionIndex=index">
 
-      <ng-template matStepLabel>Seller OnBoarding</ng-template>
-
+      <ng-template matStepLabel>{{questionSections.label}}</ng-template>
       <mat-card>
         <mat-card-content>
           <table style="width: 100%;">
-            <caption></caption>
-            <tbody>
-              
-              <tr>
-                <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
-                    <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                    <mat-label>SME Name</mat-label>
-                    <input matInput type="text" name="sName" [(ngModel)]="sName" required />
-                    <mat-hint>Please enter SME name</mat-hint>
-                  </mat-form-field>
-                </td>
-                <td rowspan="1" colspan="1">
-                  <mat-form-field dense>
-                    <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                    <mat-label>Tax Identification No</mat-label>
-                    <input matInput type="text" name="taxId" [(ngModel)]="taxId" required />
-                    <mat-hint>Please enter Tax Identification No</mat-hint>
-                  </mat-form-field>
-                </td>
+            <tbody >
+              <div class="row col-md-12">
+                <tr class="form-group col-md-6"  data-always-visible="false" *ngFor="let questionType of questionSections.questions;let questionIndex=index">
+                  <td  class="T1" rowspan="1" colspan="1" >
+                    <textBox  [questionDatas]="questionType" (formChange)="onTextBoxChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionTextDto' || 'QuestionNumberDto' "></textBox>
+                    <!-- *ngIf="questionType.type == 'QuestionTextDto' || 'QuestionFileListDto' || 'QuestionNumberDto' " -->
+                    <multiSelectDropdown [questionDatas]="questionType" (formChange)="onDropdownChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionMultipleChoiceDto'" ></multiSelectDropdown>
+                    <radioButton  [questionDatas]="questionType" (formChange)="onRadioChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionBoolDto'"></radioButton>
+                    <DateField  [questionDatas]="questionType" (formChange)="onDateChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionDateDto'"></DateField>
+                    <fileUpload [questionDatas]="questionType" (formChange)="onFileChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionFileListDto'"></fileUpload>
+                  </td>
+                </tr>
+            </div>
+            </tbody>
+          </table>
+          </mat-card-content>
+      </mat-card>
 
-              </tr>
-              <tr class="form-group" data-always-visible="false">
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field dense>
-                        <mat-label>Registration Date</mat-label>
-                        <input matInput  [matDatepicker]="pickers"/>
-                         <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
-                        <mat-datepicker #pickers></mat-datepicker> 
-                    </mat-form-field>
-                    </div>
-                  </div>
-                </td>
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Registration No</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Registration No</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
+    </mat-step>
 
-              </tr>
-              <tr class="form-group" data-always-visible="false">
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Nature of Activity</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Nature of Activity</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Annual Sales Turnover</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Annual Sales Turnover</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
 
-              </tr>
-              <tr class="form-group" data-always-visible="false">
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Earning before Tax</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Earning before Tax</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Net Profit after Tax</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Net Profit after Tax</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr class="form-group" data-always-visible="false">
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Total Capital Employed in Business</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Total Capital Employed in Business</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Accounts Receivable Turnover</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Accounts Receivable Turnover</mat-hint>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+    <!-- <mat-step *ngFor="let questionSections of questionnaireSections;let questionIndex=index">
 
-              <tr class="form-group" data-always-visible="false">
-                <td class="T1" rowspan="1" colspan="1">
-                  <div class="card-form-container">
-                    <div>
-                      <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                        <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                        <mat-label>Inventory Turnover</mat-label>
-                        <input type="text" matInput value="" />
-                        <mat-hint>Please enter Inventory Turnover</mat-hint>
-                      </mat-form-field>
+      <ng-template matStepLabel>{{questionSections.label}}</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <table style="width: 100%;">
+            <tbody >
+              <div class="row col-md-12">
+                <tr class="form-group col-md-6"  data-always-visible="false" *ngFor="let questionType of formSections.controls;let i=index">
+                  <td  class="T1" rowspan="1" colspan="1" *ngFor="let data of questions">
+                    <div [formGroupName]="i">
+                        <div class="form-group" *ngIf="data.type == 'QuestionTextDto'"> 
+                          <div class="card-form-container">
+                            <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
+                              <mat-icon color="primary"  dense matPrefix>person_outline</mat-icon>
+                              <mat-label>{{data.label}}</mat-label>
+                              <input type="text" matInput value="" />
+                            </mat-form-field>
+                        </div>
+                        </div>
+                        <div class="form-group" *ngIf="data.type == 'QuestionMultipleChoiceDto'"> 
+                        <div class="card-form-container">
+                          <div class="multiselect-dropdown-dsgn">
+                              <angular2-multiselect  
+                              [settings]="dropdownSettings" ></angular2-multiselect>
+                          </div>
+                      </div>
+                        </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-
+                  </td>
+                </tr>
+            </div>
             </tbody>
           </table>
         </mat-card-content>
-        <mat-card-actions>
-          <span class="fill-remaining-space"></span>
-
-          <div>
-            <button mat-flat-button matStepperNext color="primary"> <mat-icon>arrow_forward</mat-icon>Next</button>
-          </div>
-        </mat-card-actions>
       </mat-card>
+    </mat-step> -->
 
-    </mat-step>
-
-    <mat-step>
-
-      <ng-template matStepLabel>Customer Address</ng-template>
-      <mat-card>
-
-        <form>
-          <mat-card-content>
-            <table style="width: 100%;">
-              <caption></caption>
-              <tbody>
-
-
-                <tr class="form-group" data-always-visible="false">
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Address Line 1</mat-label>
-                          <input matInput type="text"/>
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Address Line 2</mat-label>
-                          <input type="text" matInput value="" />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="form-group" data-always-visible="false">
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Address Line 3</mat-label>
-                          <input type="text" matInput value="" />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-              
-                
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Place/City</mat-label>
-                          <input type="text" matInput value="" />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="form-group" data-always-visible="false">
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>State/Region</mat-label>
-                          <input matInput type="text" name="state" [(ngModel)]="state" required />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Postal Code</mat-label>
-                          <input type="text" matInput value="" />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="form-group" data-always-visible="false">
-                  <td class="T1" rowspan="1" colspan="1">
-                    <!-- <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Country</mat-label>
-                          <input matInput type="text" name="country" [(ngModel)]="country" required />
-                        </mat-form-field>
-                      </div>
-                    </div> -->
-
-                    <ng-multiselect-dropdown
-                    name=""
-                    [settings]="dropdownSettings"
-                    [data]="cities"
-                >
-                </ng-multiselect-dropdown>
-                  </td>
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Fax No</mat-label>
-                          <input type="text" matInput value="" />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr class="form-group" data-always-visible="false">
-                  <td class="T1" rowspan="1" colspan="1">
-                    <div class="card-form-container">
-                      <div>
-                        <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                          <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                          <mat-label>Email for Communication</mat-label>
-                          <input type="text" matInput value="" />
-                        </mat-form-field>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-            <mat-card-actions>
-              <span class="fill-remaining-space"></span>
-              <button mat-stroked-button matStepperPrevious color="primary">
-                <mat-icon>arrow_back</mat-icon>
-                Back to Seller Onboarding
-              </button>
-              <button mat-flat-button matStepperNext color="primary">
-                <mat-icon>arrow_forward</mat-icon>
-                Next
-              </button>
-            </mat-card-actions>
-          </mat-card-content>
-        </form>
-
-
-      </mat-card>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>KYC Details</ng-template>
-      <mat-card>
-        <table style="width: 100%;">
-          <caption></caption>
-          <tbody>
-            <tr class="form-group" data-always-visible="false">
-              <td class="T1" rowspan="1" colspan="1">
-                <div class="card-form-container">
-                  <div>
-                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                      <mat-label>Registration of Incorporation Documents Upload</mat-label>
-                      <input type="text" matInput value="" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </td>
-              <td class="T1" rowspan="1" colspan="1">
-                <div class="card-form-container">
-                  <div>
-                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                      <mat-label>MSME Certificate Upload</mat-label>
-                      <input type="text" matInput value="" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr class="form-group" data-always-visible="false">
-              <td class="T1" rowspan="1" colspan="1">
-                <div class="card-form-container">
-                  <div>
-                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                      <mat-label>Tax Registration Certificate Upload</mat-label>
-                      <input type="text" matInput value="" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </td>
-
-              <td class="T1" rowspan="1" colspan="1">
-                <div class="card-form-container">
-                  <div>
-                    <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                      <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
-                      <mat-label>Other Certificate Upload</mat-label>
-                      <input type="text" matInput value="" />
-                    </mat-form-field>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
-
-
-
-          </tbody>
-        </table>
-
-        
-        <mat-card-actions>
-          <span class="fill-remaining-space"></span>
-          <button mat-stroked-button matStepperPrevious color="primary">
-            <mat-icon>arrow_back</mat-icon>
-            Back to Customer Address
-          </button>
-          <button mat-flat-button matStepperNext color="primary">
-            <mat-icon>arrow_forward</mat-icon>
-            Next
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-step>
-
-    <mat-step>
-      <ng-template matStepLabel>More Details</ng-template>
-      <mat-card>
-
-        <span class="uxg-h6" id=grid>Settlement Account Details</span>
-        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
-          <caption></caption>
-          <mat-text-column name="Name"></mat-text-column>
-          <mat-text-column name="Position"></mat-text-column>
-          <mat-text-column name="Address"></mat-text-column>
-          <mat-text-column name="TelephoneNo"></mat-text-column>
-          <mat-text-column name="Email"></mat-text-column>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-
-
-
-        <span class="uxg-h6" id=grid>Director / Partner Details</span>
-        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
-          <caption></caption>
-          <mat-text-column name="Name"></mat-text-column>
-          <mat-text-column name="Position"></mat-text-column>
-          <mat-text-column name="Address"></mat-text-column>
-          <mat-text-column name="TelephoneNo"></mat-text-column>
-          <mat-text-column name="Email"></mat-text-column>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-
-        <span class="uxg-h6" id=grid>Authorised Signatories</span>
-        <table mat-table [dataSource]="dataSource" style="width: 90%;" id=right>
-          <caption></caption>
-          <mat-text-column name="Name"></mat-text-column>
-          <mat-text-column name="Position"></mat-text-column>
-          <mat-text-column name="Address"></mat-text-column>
-          <mat-text-column name="TelephoneNo"></mat-text-column>
-          <mat-text-column name="Email"></mat-text-column>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-
-
-        <mat-card-actions>
-          <span class="fill-remaining-space"></span>
-          <button mat-stroked-button matStepperPrevious color="primary">
-            <mat-icon>arrow_back</mat-icon>
-            Back to KYC Details
-          </button>
-        </mat-card-actions>
-
-      </mat-card>
-    </mat-step>
 
     </mat-horizontal-stepper>
     <div class="submit">
-      <button mat-flat-button [disabled]="!smeForm.form.valid" color="primary">
+      <button mat-flat-button  color="primary">
+        <!-- [disabled]="!smeForm.form.valid" -->
         <mat-icon>arrow_right_alt</mat-icon>
         Submit
       </button>
