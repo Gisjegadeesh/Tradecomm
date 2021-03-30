@@ -376,7 +376,5 @@ public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): voi
       console.log("getTblChartData",this.getTblChartData)
     })
     }
-
-  
 }
 
