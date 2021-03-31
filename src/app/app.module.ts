@@ -83,6 +83,8 @@ import {FinanceBiddingExpiryServices} from './components/finance-bidding-expired
 import { FinanceBiddingRejectedComponent } from './components/finance-bidding-rejected/finance-bidding-rejected.component';
 import { InvoiceDetailsRejectedComponent } from './components/finance-bidding-rejected/invoice-details-rejected/invoice-details-rejected.component'
 import {FinanceBiddingRejectedServices} from './components/finance-bidding-rejected/finance-bidding-rejected-service'
+import {IccFundingServices} from './components/icc-funding-request/icc-funding-service'
+import {IccOfferAcceptServices} from './components/icc-offer-acceptance/icc-offer-accept-service'
 
 // import { DynamicFormService } from './shared/constants/dynamicForm';
 import { TextboxComponent } from './shared/textBox/textBox.component';
@@ -96,6 +98,10 @@ import { IccFinanceMasterComponent } from './components/icc-finance-master/icc-f
 import { IccFinanceMasterServices } from './components/icc-finance-master/icc-finance-master-service';
 import { IccInvoiceMasterComponent } from './components/icc-invoice-master/icc-invoice-master.component';
 import { IccInvoiceMasterServices } from './components/icc-invoice-master/icc-invoice-master-service';
+import { IccFundingRequestComponent } from './components/icc-funding-request/icc-funding-request.component';
+import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/icc-offer-acceptance.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,7 +135,9 @@ import { IccInvoiceMasterServices } from './components/icc-invoice-master/icc-in
     InvoiceDetailsRejectedComponent,
     IccFinanceTodayComponent,
     IccFinanceMasterComponent,
-    IccInvoiceMasterComponent
+    IccInvoiceMasterComponent,
+    IccFundingRequestComponent,
+    IccOfferAcceptanceComponent
   ],
   imports: [
     BrowserModule,
@@ -176,7 +184,7 @@ import { IccInvoiceMasterServices } from './components/icc-invoice-master/icc-in
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,
     FinanceRequestServices,FinanceBiddingRejectedServices,FinanceBiddingExpiryServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
-    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,IccFinanceTodayServices,IccFinanceMasterServices,IccInvoiceMasterServices,
+    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,IccFinanceTodayServices,IccFinanceMasterServices,IccInvoiceMasterServices,IccFundingServices,IccOfferAcceptServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

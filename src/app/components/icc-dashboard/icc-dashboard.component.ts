@@ -30,6 +30,8 @@ export class IccDashboardComponent implements OnInit {
   dataSource = [];
   @ViewChild("accountList", { read: ElementRef })
   public accountList: ElementRef<any>;
+  fundingRequestObj;
+  OfferAcceptanceObj;
 
   @HostListener("window:resize", ["$event"])
   onResize() {
@@ -48,26 +50,38 @@ export class IccDashboardComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.getIccDashDetails()
-    this.getFinancierDetails()
+    this.getDashboardDetailsDetails()
     this.dataSource=[]
   }
-  getFinancierDetails(){
-    this.iccDashboardServices.getFinancierList().subscribe(resp=>{
-      if(resp){
-        FINANACIERLIST = [] 
-        let response = resp.splice(0,5)     
-        response.length && response.map((item=>{
-            let obj={
-              "financierId":'FIN' + item.namedPKKey,
-              "financierName":item.financierNameConstitution,
-              "regNumber":item.locregno,
-              "action":'edit'
-            }
-            FINANACIERLIST.push(obj)
-            this.dataSource=FINANACIERLIST
-          }))
-      }
-    })
+  getDashboardDetailsDetails(){
+    // this.iccDashboardServices.getFundingRequestTileList().subscribe(resp=>{
+    //   if(resp){
+    //     FINANACIERLIST = [] 
+    //     let response = resp.splice(0,5)     
+    //     response.length && response.map((item=>{
+    //         let obj={
+    //           "financierId":'FIN' + item.namedPKKey,
+    //           "financierName":item.financierNameConstitution,
+    //           "regNumber":item.locregno,
+    //           "action":'edit'
+    //         }
+    //         FINANACIERLIST.push(obj)
+    //         this.dataSource=FINANACIERLIST
+    //       }))
+    //   }
+    // })
+
+        this.iccDashboardServices.getFundingRequestTileList().subscribe(resp=>{
+          this.fundingRequestObj = resp
+
+        })
+
+        this.iccDashboardServices.getOfferAcceptanceTileList().subscribe(resp=>{
+          this.OfferAcceptanceObj = resp
+
+        })
+
+
   }
   public scrollRight(): void {
     this.start = false;
@@ -132,10 +146,10 @@ export class IccDashboardComponent implements OnInit {
       this.router.navigateByUrl('/financier-onboarding');
     }
     getIccDashDetails(){
-      this.iccDashboardServices.getIccDashDetails().subscribe(resp => {
-        // const ELEMENT_DATA: financeForBiddingData[] = resp;
-        // this.dataSource = new MatTableDataSource(resp);
-      })
+      // this.iccDashboardServices.getIccDashDetails().subscribe(resp => {
+      //   // const ELEMENT_DATA: financeForBiddingData[] = resp;
+      //   // this.dataSource = new MatTableDataSource(resp);
+      // })
     }
     editFinancier(id,type){
       if(type == 'edit'){
@@ -158,4 +172,8 @@ export class IccDashboardComponent implements OnInit {
       this.router.navigateByUrl('/icc-invoice-master');
       }
       
+
+    naviageTiles(path){
+      this.router.navigateByUrl(path)
+    }
 }

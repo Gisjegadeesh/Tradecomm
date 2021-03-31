@@ -12,4 +12,12 @@ export class IccDashboardServices  {
     let params=environment.financierServicePath+'finonb/getall'
     return this.apiService.generalServiceget(params)
   }
+
+  getFundingRequestTileList(){
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/icc-dashboard/getFundingRequests');
+  }
+
+  getOfferAcceptanceTileList(){
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/icc-dashboard/getOfferForAcceptance');
+  }
 }
