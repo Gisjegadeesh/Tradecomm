@@ -40,7 +40,10 @@ export class IccDashboardComponent implements OnInit {
     }
   }
   dashboardTooltip=ICCDASHBOARDCONSTANTS
-  financierListDatas=[]
+  financierListDatas=[];
+  getSumInvoiceMasterCount;
+  getSumAllfinTdyCount;
+  financeMasterCount
   constructor(public router: Router,private authenticationService: AuthenticationService,private iccDashboardServices: IccDashboardServices ) { }
 
   ngOnInit() {
@@ -49,7 +52,11 @@ export class IccDashboardComponent implements OnInit {
     }
     this.getIccDashDetails()
     this.getFinancierDetails()
-    this.dataSource=[]
+    this.dataSource=[];
+    this.getInvoiceMasterCount();
+    this.getAllfinTdyCount();
+    this.getFinanceMasterCount();
+    
   }
   getFinancierDetails(){
     this.iccDashboardServices.getFinancierList().subscribe(resp=>{
@@ -158,4 +165,19 @@ export class IccDashboardComponent implements OnInit {
       this.router.navigateByUrl('/icc-invoice-master');
       }
       
+      getInvoiceMasterCount(){
+        this.iccDashboardServices.getInvoiceMasterCount().subscribe(resp => {
+        this.getSumInvoiceMasterCount = resp;
+      })
+      }
+      getAllfinTdyCount(){
+        this.iccDashboardServices.getAllfinTdyCount().subscribe(resp => {
+        this.getSumAllfinTdyCount = resp;
+      })
+      }
+      getFinanceMasterCount(){
+        this.iccDashboardServices.getFinanceMasterCount().subscribe(resp => {
+        this.financeMasterCount=resp
+        })
+      }
 }

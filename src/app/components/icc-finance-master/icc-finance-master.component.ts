@@ -20,13 +20,12 @@ import * as moment from 'moment';
 // ];
 
 export interface financeForBiddingData {
-  invId: String;
-  invAmt: String;
+  invoiceNo: String;
+  baseCcyAmt: String;
   smeId: String;
-  buyerName: String;
-  invDate: String;
-  invDueDate: String;
-  status: String;
+  fundablePercent: String;
+  baseCcyFundingAmt: String;
+  baseCcyNetAmtPayable: String;
 }
 const ELEMENT_DATA: financeForBiddingData[] = [];
 
@@ -62,7 +61,7 @@ const BIDDING_DATA: biddingDetails[] = [];
 
 export class IccFinanceMasterComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status'];
+  displayedColumns: string[] = ['invoiceNo', 'baseCcyAmt', 'fundablePercent', 'baseCcyFundingAmt', 'baseCcyNetAmtPayable','smeId'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -113,20 +112,16 @@ export class IccFinanceMasterComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.dataSource = new MatTableDataSource([{
-      buyerAddr: "Singapore",
-      buyerName: "Tata Steel",
-      dispDate: "17/03/2021",
-      id: 2,
-      invAmt: "10000",
-      invCcy: "SGD",
-      invDate: "17/03/2021",
-      invDueDate: "17/06/2021",
-      invId: "INV102",
+      invoiceNo: "INV102",
+      baseCcyAmt:'1000',
+      fundablePercent: "10",
+      baseCcyFundingAmt: "1000",
+      baseCcyNetAmtPayable: "10",
       smeId: "SME101",
-      status: "I"
     }]);
 
     this.IccFinanceMasterServices.getFinanceMasterLists().subscribe(resp => {
+      console.log(resp,"resp")
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
     })

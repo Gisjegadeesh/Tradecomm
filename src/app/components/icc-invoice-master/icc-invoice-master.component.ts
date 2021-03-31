@@ -62,7 +62,7 @@ const BIDDING_DATA: biddingDetails[] = [];
 
 export class IccInvoiceMasterComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status'];
+  displayedColumns: string[] = ['invId','invRefNo','invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -212,5 +212,6 @@ export class IccInvoiceMasterComponent implements OnInit {
   logout() {
     this.authenticationService.logout()
   }
+
 }
 
