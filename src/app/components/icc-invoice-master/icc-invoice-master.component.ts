@@ -193,7 +193,7 @@ export class IccInvoiceMasterComponent implements OnInit {
     // this.dataSourceThree = new MatTableDataSource([
     //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
 
-    this.IccInvoiceMasterServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
+    this.IccInvoiceMasterServices.getFinanceBiddingLists(data.invoiceId).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }
