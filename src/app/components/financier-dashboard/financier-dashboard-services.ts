@@ -23,4 +23,7 @@ export class FinancierDashboardServices {
   getFinSizeData(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/getFinSizeData/'+localStorage.getItem("userId"));
   }
+  getChartData(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/invoice-request/getFinActualFundingChartData/'+localStorage.getItem("userId"));
+  }
 }

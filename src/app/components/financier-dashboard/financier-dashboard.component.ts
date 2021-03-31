@@ -249,6 +249,7 @@ export class FinancierDashboardComponent implements OnInit {
     this.getbidsToBeAccepted();
     this.getFinMatData();
     this.getFinSizeData();
+    this.getChartData();
   }
 
   public scrollRight(): void {
@@ -323,8 +324,8 @@ export class FinancierDashboardComponent implements OnInit {
   width :700
   };
   chartData = [
-  { data: [350, 600, 260, 700, 650, 416, 400, 300, 556, 500, 600, 580], label: "Funding Requested" },
-  { data: [500, 410, 450, 600, 550, 680, 720, 380, 350, 450, 650, 700], label: "Actual Funding" },
+  // { data: [350, 600, 260, 700, 650, 416, 400, 300, 556, 500, 600, 580], label: "Funding Requested" },
+  { data: [0,0,0,0,0,0,0,0,0,0,0,0,0], label: "Actual Funding" },
   // { data: [120, 200, 700], label: "Repayment" },
   ];
   chartLabels = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -344,5 +345,15 @@ export class FinancierDashboardComponent implements OnInit {
   ];
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
+    }
+    getChartData(){
+      let FRresp;
+      this.financierDashboardServices.getChartData().subscribe(resp => {
+        let FRresp = resp;
+      this.chartData=[
+        { data:Object.values(resp) , label: "Actual Funding" },
+        // { data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] , label: "Actual Funding" },
+      ]
+    })
     }
 }

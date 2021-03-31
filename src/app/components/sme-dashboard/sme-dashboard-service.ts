@@ -29,4 +29,8 @@ export class SmeDashboardServices {
   getChartData(){
     return this.apiService.tempGet(environment.serviePath_1+'/invoice-request/getChartData/'+localStorage.getItem("userId")); 
   }
+  getActualFundingChartData(){
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/invoice-request/getSmeActualFundingChartData/'+localStorage.getItem("userId")); 
+  }
+  
 }
