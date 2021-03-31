@@ -8,7 +8,7 @@ export class IccInvoiceMasterServices {
   constructor(private apiService: ApiService) { this.baseUrl = "http://localhost:8080/ "; }
   
   getInvoiceMasterLists(){
-    return this.apiService.tempGet(environment.serviePath_1+'invoice-request/allInvoicesBySmeId/'+localStorage.getItem("userId"));
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/icc-dashboard/getAllInvoiceMaster');
   }
   getInvoiceRequestLists(id){
     // let stringifyObj = JSON.stringify( { invoiceDetails : { id : 1} })
@@ -21,6 +21,9 @@ export class IccInvoiceMasterServices {
     // debugger;
     // bidding-details/getBiddingDetails/{invoiceId}    http://950f76a46a8b.ngrok.io/api/v1
     return this.apiService.tempGet(environment.serviePath_2+'api/v1/bidding-details/getBiddingDetails/'+id);
+  }
+  getInvoiceMasterCount(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/icc-dashboard/getInvoiceMaster');
   }
   
 }
