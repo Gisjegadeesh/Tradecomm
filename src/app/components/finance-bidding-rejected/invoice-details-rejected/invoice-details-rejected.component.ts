@@ -1,36 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-invoice-details-rejected',
-//   templateUrl: './invoice-details-rejected.component.html',
-//   styleUrls: ['./invoice-details-rejected.component.scss']
-// })
-// export class InvoiceDetailsRejectedComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-invoice-details-expired',
-//   templateUrl: './invoice-details-expired.component.html',
-//   styleUrls: ['./invoice-details-expired.component.scss']
-// })
-// export class InvoiceDetailsExpiredComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
-
 import { Pipe, PipeTransform,Component, OnInit, ElementRef, HostListener, ViewChild,Input } from '@angular/core';
 import { AuthenticationService } from '../../../service/authentication/authentication.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -43,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
+import {FinanceBiddingExpiryServices} from '../../finance-bidding-expired/finance-bidding-expiry-service';
 
 interface Status {
   value: string;
@@ -124,7 +92,7 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
   
-  constructor(private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
+  constructor(private FinanceBiddingExpiryServices:FinanceBiddingExpiryServices,private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = ['descGoods', 'quantity', 'taxRate','amt','rate','total'];
@@ -221,67 +189,82 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
   // }
   invoiceDetails:any
   moment: any = moment;
-
-
+  FinancebiddingDetails: any;
+  type: string;
+  isView: boolean;
 
   ngOnInit(): void {
+    this.type = this.activatedRoute.snapshot.paramMap.get("type");
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    // this.buildfinBidform()
+    if(this.type === 'view'){
+      this.isView = true
+    }
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-
-    this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
+    this.buildform()
+    this.FinanceBiddingExpiryServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
       if(resp){
-
-        this.invoiceDetails = resp
-        this.buildfinBidform()
-        this.changeRowgrid()
-        this.displayInvDatas = new MatTableDataSource([
-         {
-          billNo : resp.billNo,
-          invId : resp.invId,
-          invDate : resp.invDate,
-          invDueDate : resp.invDueDate,
-          invAmt : resp.invAmt,
-          buyerName : resp.buyerName,
-          smeId : resp.smeId,          
-        }
-
-      ])
-      this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
+        this.FinancebiddingDetails = resp
+        this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(resp.invoiceId).subscribe(resp => {
+          this.invoiceDetails = resp
+          this.buildfinBidform()
+          this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
+        })
       }else{
         this.buildfinBidform()
       }
      
     })
 
-    
   }
-  buildfinBidform(){
+  buildfinBidform() {
     var ddatae = new Date();
-    console.log(this.datePipe.transform(this.invoiceDetails.invDueDate),"this.datePipe.transform(this.invoiceDetails.invDueDate)")
+    this.finBidform = this.fb.group({
+      fundingCcy: [this.FinancebiddingDetails.fundingCcy, Validators.required],
+      fxRate: [this.FinancebiddingDetails.fxRate, Validators.required],
+      baseCcyAmt: [this.FinancebiddingDetails.baseCcyAmt, Validators.required],
+      fundablePercent: [this.FinancebiddingDetails.fundablePercent, Validators.required],
+      baseCcyFundingAmt: [this.FinancebiddingDetails.baseCcyFundingAmt, Validators.required],
+      invCcyFundingAmt: [this.FinancebiddingDetails.invCcyFundingAmt, Validators.required],
+      repaymentDate: [this.datePipe.transform(this.FinancebiddingDetails.repaymentDate), Validators.required],
+      invDiscRate: [this.FinancebiddingDetails.invDiscRate, Validators.required],
+      baseCcyDiscAmt: [this.FinancebiddingDetails.baseCcyDiscAmt, Validators.required],
+      invCcyDiscAmt: [this.FinancebiddingDetails.invCcyDiscAmt, Validators.required],
+      baseCcyNetAmtPayable: [this.FinancebiddingDetails.baseCcyNetAmtPayable, Validators.required],
+      invCcyNetAmtPayable: [this.FinancebiddingDetails.invCcyNetAmtPayable, Validators.required],
+      annualYeild: [this.FinancebiddingDetails.annualYeild, Validators.required],
+      offerExpPeriod: [this.FinancebiddingDetails.offerExpPeriod, Validators.required],
+      offerExpDateTime: [this.datePipe.transform(this.FinancebiddingDetails.offerExpDateTime), Validators.required],
+      finId: localStorage.getItem("userId"),
+      invoiceId: this.id,
+      tenor: [this.dateMinus(this.datePipe.transform(this.invoiceDetails.invDueDate, 'MM/dd/yyyy'), this.datePipe.transform(ddatae, 'MM/dd/yyyy')), Validators.required],
+      invNo: [this.FinancebiddingDetails.invNo],
+      invoiceAmt: [this.FinancebiddingDetails.invoiceAmt]
+    })
+  }
+  buildform() {
     this.finBidform = this.fb.group({
       fundingCcy: ['SGD', Validators.required],
       fxRate: ['1', Validators.required],
-      baseCcyAmt: [this.invoiceDetails.invAmt * 1,Validators.required],
+      baseCcyAmt: ['', Validators.required],
       fundablePercent: ['90', Validators.required],
       baseCcyFundingAmt: ['', Validators.required],
       invCcyFundingAmt: ['', Validators.required],
-      repaymentDate:[this.datePipe.transform(this.invoiceDetails.invDueDate), Validators.required],
+      repaymentDate: ['', Validators.required],
       invDiscRate: ['', Validators.required],
-      baseCcyDiscAmt:['', Validators.required],
-      invCcyDiscAmt:['', Validators.required],
-      baseCcyNetAmtPayable:['', Validators.required],
-      invCcyNetAmtPayable:['', Validators.required],
-      annualYeild:['', Validators.required],
-      offerExpPeriod:['24H', Validators.required],
-      offerExpDateTime:[this.datePipe.transform(ddatae), Validators.required],
+      baseCcyDiscAmt: ['', Validators.required],
+      invCcyDiscAmt: ['', Validators.required],
+      baseCcyNetAmtPayable: ['', Validators.required],
+      invCcyNetAmtPayable: ['', Validators.required],
+      annualYeild: ['', Validators.required],
+      offerExpPeriod: ['24H', Validators.required],
+      offerExpDateTime: ['', Validators.required],
       finId: localStorage.getItem("userId"),
-      invoiceId : this.id,
-      tenor:[this.dateMinus(this.datePipe.transform(this.invoiceDetails.invDueDate,'MM/dd/yyyy'),this.datePipe.transform(ddatae,'MM/dd/yyyy')), Validators.required],
-      invNo:[''],
-      invoiceAmt:['']
+      invoiceId: this.id,
+      tenor: ['', Validators.required],
+      invNo: [''],
+      invoiceAmt: ['']
     })
   }
   dateMinus(repaymentDate,cureentday){
@@ -367,28 +350,15 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
  
   onSubmitBidForm() {
     try {
-      // for (const key in this.invoiceForm.controls) {
-      //   this.invoiceForm.get(key).setValidators(Validators.required);
-      //   this.invoiceForm.get(key).updateValueAndValidity();
-      //   }
       if (this.finBidform.status === "INVALID"){
         alert("Please fill Mandatory fields")
       }else{
         let params = this.finBidform.value
-        // this.invoiceFormBuild();
-        // this.dataSourceTwo.data = [];
-        // this.invoiceID = "";
-        // this.InvoiceFdate = ""
-        // for (const key in this.invoiceForm.controls) {
-        //   this.invoiceForm.get(key).clearValidators();
-        //   this.invoiceForm.get(key).updateValueAndValidity();
-        // }
-        this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
-          alert("Bid accepted successfully")
+        this.FinanceBiddingExpiryServices.UpdateBiddingSave(this.id,params).subscribe(resp => {
+          alert("Bid Update successfully")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');
-          // this.getInvDetailsLists();
         }, error => {
         })
       }

@@ -28,6 +28,9 @@ export class FinanceBiddingExpiryServices {
     finbidSave(body: any) {
       return this.apiService.post(environment.serviePath_2+'api/v1/bidding-details', body);
     }
+    UpdateBiddingSave(id,body: any) {
+      return this.apiService.post(environment.serviePath_2+'api/v1/bidding-details/updateBidStatusInitiated/'+id,body);
+    }
 
     // getInvDetailsLists_ForFinanceBidding(id){
     //   return this.apiService.get('invoice-request/getInvoiceData/'+id);

@@ -50,9 +50,9 @@ const routes: Routes = [
   { path: 'finance-bidding/:id', component: InvoiceDetailsComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
   { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Funding Request","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding-expired', component: FinanceBiddingExpiredComponent, data : {"HeaderName" : "Financier Offer Expired","homePath" : "/financier-dashboard"} },
-  { path: 'finance-bidding-expired/:id', component: InvoiceDetailsExpiredComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
+  { path: 'finance-bidding-expired-details/:type/:id', component: InvoiceDetailsExpiredComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding-rejected', component: FinanceBiddingRejectedComponent, data : {"HeaderName" : "Financier Offer rejected","homePath" : "/financier-dashboard"} },
-  { path: 'finance-bidding-rejected/:id', component: InvoiceDetailsRejectedComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
+  { path: 'finance-bidding-rejected/:type/:id', component: InvoiceDetailsRejectedComponent , data : {"HeaderName" : "Invoice Details","homePath" : "/financier-dashboard"}},
   { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}}
 ];
 
