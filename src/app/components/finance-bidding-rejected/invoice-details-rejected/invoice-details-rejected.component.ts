@@ -237,7 +237,8 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
       offerExpPeriod: [this.FinancebiddingDetails.offerExpPeriod, Validators.required],
       offerExpDateTime: [this.datePipe.transform(this.FinancebiddingDetails.offerExpDateTime), Validators.required],
       finId: localStorage.getItem("userId"),
-      invoiceId: this.id,
+      //invoiceId: this.id,
+      invoiceId: [this.FinancebiddingDetails.invoiceId, Validators.required],
       tenor: [this.dateMinus(this.datePipe.transform(this.invoiceDetails.invDueDate, 'MM/dd/yyyy'), this.datePipe.transform(ddatae, 'MM/dd/yyyy')), Validators.required],
       invNo: [this.FinancebiddingDetails.invNo],
       invoiceAmt: [this.FinancebiddingDetails.invoiceAmt]

@@ -268,6 +268,16 @@ export class SmeBiddingDetailsComponent implements OnInit {
         }
       })
     }
+    
+    rejectBid(data){
+      //console.log(data.filteredData.id,"usus")
+        this.smeBiddingServices.rejectFinBid(data.filteredData[0].id).subscribe(resp => {
+        })
+      alert("Rejected successfully")
+      this.modalRef.hide()
+      this.router.navigateByUrl('/sme-dashboard');
+    }
+
     handleToggle(e,status){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
     })
