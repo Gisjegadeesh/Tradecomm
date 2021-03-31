@@ -55,7 +55,7 @@ export class IccDashboardComponent implements OnInit {
     this.getIccDashDetails()
     this.getDashboardDetailsDetails()
     this.dataSource=[]
-    this.getFinancierDetails()
+    // this.getFinancierDetails()
     this.dataSource=[];
     this.getInvoiceMasterCount();
     this.getAllfinTdyCount();
