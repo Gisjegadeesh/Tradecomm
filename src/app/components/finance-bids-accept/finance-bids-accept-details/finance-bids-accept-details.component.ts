@@ -180,7 +180,6 @@ export class FinanceBiddingAcceptsDetailsComponent implements OnInit {
         this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(resp.invoiceId).subscribe(resp => {
           this.invoiceDetails = resp
           this.buildfinBidform()
-          // this.changeRowgrid()
           this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
         })
       } else {
@@ -257,9 +256,6 @@ export class FinanceBiddingAcceptsDetailsComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-
-
-
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -275,7 +271,6 @@ export class FinanceBiddingAcceptsDetailsComponent implements OnInit {
       });
     }
   }
-
   public scrollLeft(): void {
     this.end = false;
     if (this.accountList.nativeElement.scrollLeft === 0) {

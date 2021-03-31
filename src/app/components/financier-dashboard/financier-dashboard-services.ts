@@ -8,6 +8,12 @@ export class FinancierDashboardServices {
   getOpenForOffer(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/openForOffer/'+localStorage.getItem("userId"));
   }
+  getExpireOffer(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/allExpiredBids/'+localStorage.getItem("userId"));
+  }
+  getRejectOffer(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/allRejectedBids/'+localStorage.getItem("userId"));
+  }
   getbidsToBeAccepted(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/bidsToBeAccepted/'+localStorage.getItem("userId"));
   }

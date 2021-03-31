@@ -29,7 +29,7 @@ export class FinanceBiddingExpiryServices {
       return this.apiService.post(environment.serviePath_2+'api/v1/bidding-details', body);
     }
     UpdateBiddingSave(id,body: any) {
-      return this.apiService.post(environment.serviePath_2+'api/v1/bidding-details/updateBidStatusInitiated/'+id,body);
+      return this.apiService.put(environment.serviePath_2+'api/v1/bidding-details/updateBidStatusInitiated/'+id,body);
     }
 
     // getInvDetailsLists_ForFinanceBidding(id){

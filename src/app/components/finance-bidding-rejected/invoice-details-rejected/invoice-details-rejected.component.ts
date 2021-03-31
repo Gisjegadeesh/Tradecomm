@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
-import {FinanceBiddingExpiryServices} from '../../finance-bidding-expired/finance-bidding-expiry-service';
+import {FinanceBiddingRejectedServices} from '../finance-bidding-rejected-service';
 
 interface Status {
   value: string;
@@ -92,7 +92,7 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
   
-  constructor(private FinanceBiddingExpiryServices:FinanceBiddingExpiryServices,private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
+  constructor(private FinanceBiddingRejectedServices:FinanceBiddingRejectedServices,private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = ['descGoods', 'quantity', 'taxRate','amt','rate','total'];
@@ -203,7 +203,7 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.buildform()
-    this.FinanceBiddingExpiryServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
+    this.FinanceBiddingRejectedServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
       if(resp){
         this.FinancebiddingDetails = resp
         this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(resp.invoiceId).subscribe(resp => {
@@ -294,8 +294,6 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
     }
   }
 
-  
-
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -325,14 +323,12 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
   logout(){
     this.authenticationService.logout()
     }
-    goHome(){
+  goHome(){
       this.router.navigateByUrl('/financier-dashboard');
     }
-
-    handleToggle(e,status){
+  handleToggle(e,status){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
       })
-
   }
   openModal(event, template) {
     event.preventDefault();
@@ -354,7 +350,9 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
         alert("Please fill Mandatory fields")
       }else{
         let params = this.finBidform.value
-        this.FinanceBiddingExpiryServices.UpdateBiddingSave(this.id,params).subscribe(resp => {
+        params.repaymentDate = this.invoiceDetails.invDueDate;
+        params.offerExpDateTime = moment().format('YYYY-MM-DD')+ "T00:00:00.000Z";
+        this.FinanceBiddingRejectedServices.UpdateBiddingSave(this.id,params).subscribe(resp => {
           alert("Bid Update successfully")
           this.buildfinBidform();
           this.modalRef.hide()
@@ -368,30 +366,33 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
   }
   changeRowgrid(){
     console.log(this.finBidform,"finnnn");
-    this.finBidform.value.baseCcyAmt = Number(this.invoiceDetails.invAmt) * Number(this.finBidform.value.fxRate)
+    if(this.isView === true){
+    }else{
+      this.finBidform.value.baseCcyAmt = Number(this.invoiceDetails.invAmt) * Number(this.finBidform.value.fxRate)
     
-    this.finBidform.value.baseCcyFundingAmt = Number(this.finBidform.value.baseCcyAmt)*Number(this.finBidform.value.fundablePercent) / 100;
-    
-    this.finBidform.value.baseCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
-    
-    this.finBidform.value.invDiscRate = Number(this.finBidform.value.baseCcyDiscAmt) / Number(this.finBidform.value.baseCcyFundingAmt)*100;
-    
-    
-    this.finBidform.value.invCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
-    
-    this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyFundingAmt - (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
-    
-    
-    this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
-    baseCcyFundingAmt: this.finBidform.value.baseCcyFundingAmt,
-    invCcyFundingAmt:this.finBidform.value.baseCcyFundingAmt,
-    baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt.toFixed(2),
-    invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt.toFixed(2),
-    invDiscRate:this.finBidform.value.invDiscRate.toFixed(2),
-    baseCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2),
-    invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
-    });
+      this.finBidform.value.baseCcyFundingAmt = Number(this.finBidform.value.baseCcyAmt)*Number(this.finBidform.value.fundablePercent) / 100;
+      
+      this.finBidform.value.baseCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      
+      this.finBidform.value.invDiscRate = Number(this.finBidform.value.baseCcyDiscAmt) / Number(this.finBidform.value.baseCcyFundingAmt)*100;
+      
+      
+      this.finBidform.value.invCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      
+      this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyFundingAmt - (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      
+      
+      this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
+      baseCcyFundingAmt: this.finBidform.value.baseCcyFundingAmt,
+      invCcyFundingAmt:this.finBidform.value.baseCcyFundingAmt,
+      baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt.toFixed(2),
+      invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt.toFixed(2),
+      invDiscRate:this.finBidform.value.invDiscRate.toFixed(2),
+      baseCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2),
+      invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
+      });
     }
+  }
 }
 
 
