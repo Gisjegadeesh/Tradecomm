@@ -128,9 +128,9 @@
         matTooltip="{{dashboardTooltip.offerAcceptance}}" [matTooltipPosition]="'below'"></uxg-account-card>
         <uxg-account-card  class="curs-pointer" name="Financed Today" number="SGD 0" #tooltip="matTooltip"
         matTooltip="{{dashboardTooltip.financedToday}}" (click)="this.navigatefinancedToday()" [matTooltipPosition]="'below'"></uxg-account-card>
-        <uxg-account-card  class="curs-pointer" name="Finance Master" number="SGD 0" #tooltip="matTooltip"
+        <uxg-account-card name="Finance Master" number="{{financeMasterCount?.CCY}} {{financeMasterCount?.AMOUNT ? financeMasterCount?.AMOUNT : 'SGD 0'}}" #tooltip="matTooltip"
         matTooltip="{{dashboardTooltip.financedMaster}}" (click)="this.navigatefinancedMaster()" [matTooltipPosition]="'below'"></uxg-account-card>
-        <uxg-account-card  class="curs-pointer" name="Invoice Master" number="SGD 0" #tooltip="matTooltip"
+        <uxg-account-card  class="curs-pointer" name="Invoice Master" number="{{getSumInvoiceMasterCount?.CCY}} {{getSumInvoiceMasterCount?.AMOUNT? getSumInvoiceMasterCount?.AMOUNT : 'SGD 0'}}" #tooltip="matTooltip"
         matTooltip="{{dashboardTooltip.invoiceMaster}}" (click)="this.navigateinvoiceMaster()" [matTooltipPosition]="'below'"></uxg-account-card>
         </div>
         </ng-container>
