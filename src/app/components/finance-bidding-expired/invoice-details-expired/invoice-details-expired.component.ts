@@ -184,6 +184,9 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
  
   invoiceDetails:any
   moment: any = moment;
+  @ViewChild('accountList', { read: ElementRef })
+  public accountList: ElementRef<any>;
+  @HostListener('window:resize', ['$event'])
 
   ngOnInit(): void {
     this.type = this.activatedRoute.snapshot.paramMap.get("type");
@@ -272,12 +275,7 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
 
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
-    }
-
-  @ViewChild('accountList', { read: ElementRef })
-  public accountList: ElementRef<any>;
-
-  @HostListener('window:resize', ['$event'])
+  }
   onResize() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
@@ -285,9 +283,6 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
-
-  
-
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -303,7 +298,6 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
       });
     }
   }
-
   public scrollLeft(): void {
     this.end = false;
     if (this.accountList.nativeElement.scrollLeft === 0) {
@@ -316,15 +310,13 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
   }
   logout(){
     this.authenticationService.logout()
-    }
-    goHome(){
+  }
+  goHome(){
       this.router.navigateByUrl('/financier-dashboard');
-    }
-
-    handleToggle(e,status){
+  }
+  handleToggle(e,status){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
-      })
-
+  })
   }
   openModal(event, template) {
     event.preventDefault();
@@ -346,6 +338,8 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
         alert("Please fill Mandatory fields")
       }else{
         let params = this.finBidform.value
+        params.repaymentDate = this.invoiceDetails.invDueDate;
+        params.offerExpDateTime = moment().format('YYYY-MM-DD')+ "T00:00:00.000Z"
         this.FinanceBiddingExpiryServices.UpdateBiddingSave(this.id,params).subscribe(resp => {
           alert("Bid Update successfully")
           this.buildfinBidform();
@@ -360,7 +354,8 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
   }
   changeRowgrid(){
     console.log(this.finBidform,"finnnn");
-    if(this.isView === false){
+    if(this.isView === true){
+    }else{
       this.finBidform.value.baseCcyAmt = Number(this.invoiceDetails.invAmt) * Number(this.finBidform.value.fxRate)
     
       this.finBidform.value.baseCcyFundingAmt = Number(this.finBidform.value.baseCcyAmt)*Number(this.finBidform.value.fundablePercent) / 100;
