@@ -225,6 +225,8 @@ export class FinancierDashboardComponent implements OnInit {
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
   dashboardTooltip=FINANCEDASHBOARDCONSTANTS;
+  getSumofexpeireOffer: any;
+  getSumofrejectrOffer: any;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -288,6 +290,12 @@ export class FinancierDashboardComponent implements OnInit {
     getOpenForOffer(){
       this.financierDashboardServices.getOpenForOffer().subscribe(resp => {
         this.getSumofgetOpenForOffer = resp;
+      })
+      this.financierDashboardServices.getExpireOffer().subscribe(resp => {
+        this.getSumofexpeireOffer = resp;
+      })
+      this.financierDashboardServices.getRejectOffer().subscribe(resp => {
+        this.getSumofrejectrOffer = resp;
       })
     }
     getbidsToBeAccepted(){
