@@ -25,18 +25,7 @@ import {FinanceBiddingExpiryServices} from './finance-bidding-expiry-service'
 import {FinanceBiddingService} from '../../service/finance_bidding/finance-bidding.service';
 import { FINANCIERDASHBOARDCONSTANTS} from '../../shared/constants/constants';
 
-const ELEMENT_DATA: any[] = [
-  {
-    IccTraComRef: 'INV098765',
-    InvId: 'VGRE4567',
-    SellerName: 'Midweat Corp',
-    BuyerName: 'AramCo',
-    SellerRating: '7/10',
-    BuyerRating: '9/10',
-    InvDate: '01/03/2021',
-    InvAmt: '84576 USD'
-  }
-];
+
 
  
 
@@ -53,24 +42,13 @@ export class FinanceBiddingExpiredComponent implements OnInit {
 
   dataSource ;//data
   displayedColumns: string[] = [
-    // 'billNo',
-    'id',
-    // 'invoiceId',
-    'invoiceAmt',
-    'baseCcyNetAmtPayable',
-    'offerExpDateTime',
+    'BIDID',
+    'Invoice Amount',
+    'BIDing Amount', 
+    'offer Expires',
     'action'
-    // 'invDate',
-    // 'offerExpires'
-    // 'invAmt'
-    // 'SellerRating',
-    // 'BuyerRating',
-    // 'InvDate',
-    // 'InvAmt'
-  ];
+  ]
 
-  // displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount'];
-  // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   modalRef: BsModalRef;
   
@@ -160,15 +138,8 @@ export class FinanceBiddingExpiredComponent implements OnInit {
   goHome(){
     this.router.navigateByUrl('/financier-dashboard');
   }
-
-  navigateInvoiceDetails(id){
-    this.router.navigateByUrl('/finance-bidding-expired/'+id);
+  navigateFinanceDetails(id,type){
+    this.router.navigateByUrl('/finance-bidding-expired-details/'+type+'/'+id);
   }
-  openModal(event, template,id) {
-    event.preventDefault();
-    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
-    this.id = id
-  }
-
 }
 

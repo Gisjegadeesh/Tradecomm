@@ -92,6 +92,8 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
   FinancebiddingDetails: any;
+  type: string;
+  isView: boolean;
   
   constructor(private invoiceRequestServices: InvoiceRequestServices,private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private FinanceBiddingExpiryServices:FinanceBiddingExpiryServices) { }
 
@@ -179,23 +181,16 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
   // @Input() id: "";
   id:any
 
-  // invoiceDetails = {
-  //   billNo : String,
-  //         invId : String,
-  //         invDate : String,
-  //         invDueDate : String,
-  //         invAmt : String,
-  //         buyerName : String,
-  //         smeId : String,  
-  // }
+ 
   invoiceDetails:any
   moment: any = moment;
 
-
-
   ngOnInit(): void {
+    this.type = this.activatedRoute.snapshot.paramMap.get("type");
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    // this.buildfinBidform()
+    if(this.type === 'view'){
+      this.isView = true
+    }
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
@@ -206,7 +201,6 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
         this.invoiceRequestServices.getInvDetailsLists_ForFinanceBidding(resp.invoiceId).subscribe(resp => {
           this.invoiceDetails = resp
           this.buildfinBidform()
-          // this.changeRowgrid()
           this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
         })
       }else{
@@ -348,28 +342,15 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
  
   onSubmitBidForm() {
     try {
-      // for (const key in this.invoiceForm.controls) {
-      //   this.invoiceForm.get(key).setValidators(Validators.required);
-      //   this.invoiceForm.get(key).updateValueAndValidity();
-      //   }
       if (this.finBidform.status === "INVALID"){
         alert("Please fill Mandatory fields")
       }else{
         let params = this.finBidform.value
-        // this.invoiceFormBuild();
-        // this.dataSourceTwo.data = [];
-        // this.invoiceID = "";
-        // this.InvoiceFdate = ""
-        // for (const key in this.invoiceForm.controls) {
-        //   this.invoiceForm.get(key).clearValidators();
-        //   this.invoiceForm.get(key).updateValueAndValidity();
-        // }
-        this.FinanceBiddingExpiryServices.finbidSave(params).subscribe(resp => {
-          alert("Bid accepted successfully")
+        this.FinanceBiddingExpiryServices.UpdateBiddingSave(this.id,params).subscribe(resp => {
+          alert("Bid Update successfully")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');
-          // this.getInvDetailsLists();
         }, error => {
         })
       }
@@ -379,29 +360,31 @@ export class InvoiceDetailsExpiredComponent implements OnInit {
   }
   changeRowgrid(){
     console.log(this.finBidform,"finnnn");
-    this.finBidform.value.baseCcyAmt = Number(this.invoiceDetails.invAmt) * Number(this.finBidform.value.fxRate)
+    if(this.isView === false){
+      this.finBidform.value.baseCcyAmt = Number(this.invoiceDetails.invAmt) * Number(this.finBidform.value.fxRate)
     
-    this.finBidform.value.baseCcyFundingAmt = Number(this.finBidform.value.baseCcyAmt)*Number(this.finBidform.value.fundablePercent) / 100;
-    
-    this.finBidform.value.baseCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
-    
-    this.finBidform.value.invDiscRate = Number(this.finBidform.value.baseCcyDiscAmt) / Number(this.finBidform.value.baseCcyFundingAmt)*100;
-    
-    
-    this.finBidform.value.invCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
-    
-    this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyFundingAmt - (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
-    
-    
-    this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
-    baseCcyFundingAmt: this.finBidform.value.baseCcyFundingAmt,
-    invCcyFundingAmt:this.finBidform.value.baseCcyFundingAmt,
-    baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt.toFixed(2),
-    invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt.toFixed(2),
-    invDiscRate:this.finBidform.value.invDiscRate.toFixed(2),
-    baseCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2),
-    invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
-    });
+      this.finBidform.value.baseCcyFundingAmt = Number(this.finBidform.value.baseCcyAmt)*Number(this.finBidform.value.fundablePercent) / 100;
+      
+      this.finBidform.value.baseCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      
+      this.finBidform.value.invDiscRate = Number(this.finBidform.value.baseCcyDiscAmt) / Number(this.finBidform.value.baseCcyFundingAmt)*100;
+      
+      
+      this.finBidform.value.invCcyDiscAmt = (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      
+      this.finBidform.value.baseCcyNetAmtPayable = this.finBidform.value.baseCcyFundingAmt - (this.finBidform.value.baseCcyFundingAmt * this.finBidform.value.tenor * (this.finBidform.value.annualYeild/100) /360)
+      
+      
+      this.finBidform.patchValue({baseCcyAmt: this.finBidform.value.baseCcyAmt,
+      baseCcyFundingAmt: this.finBidform.value.baseCcyFundingAmt,
+      invCcyFundingAmt:this.finBidform.value.baseCcyFundingAmt,
+      baseCcyDiscAmt:this.finBidform.value.baseCcyDiscAmt.toFixed(2),
+      invCcyDiscAmt:this.finBidform.value.invCcyDiscAmt.toFixed(2),
+      invDiscRate:this.finBidform.value.invDiscRate.toFixed(2),
+      baseCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2),
+      invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
+      });
+    }
     }
 }
 

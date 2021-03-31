@@ -81,7 +81,7 @@
                                   <td mat-cell *matCellDef="let element;let row; let index = index" style="border-right: 1px solid grey;
                                   align-self: stretch;
                                   text-align: center">
-                                  <input matInput  formControlName="fundingCcy"  placeholder="Funding CCY"  >
+                                  <input matInput [readonly]="isView" formControlName="fundingCcy"  placeholder="Funding CCY"  >
                                 </td>
                               </ng-container>
                               <!-- <ng-container matColumnDef="Invoice Amount(Inv CCY)">
@@ -98,7 +98,7 @@
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index">
-                                  <input matInput 
+                                  <input matInput [readonly]="isView"
                                   formControlName="fxRate" 
                                   placeholder="FX RB CCY" 
                                   (keyup)="changeRowgrid()"
@@ -111,7 +111,7 @@
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                  <input matInput 
+                                  <input matInput [readonly]="isView"
                                   formControlName="baseCcyAmt" 
                                   placeholder="Base CCY Amt" (keyup)="changeRowgrid()"
                                    required>
@@ -123,7 +123,7 @@
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                  <input matInput 
+                                  <input matInput [readonly]="isView"
                                   formControlName="fundablePercent" 
                                   placeholder="Fundable percentage" 
                                   required  (keyup)="changeRowgrid()">
@@ -134,7 +134,7 @@
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                  <input matInput 
+                                  <input matInput [readonly]="isView"
                                   formControlName="baseCcyFundingAmt" 
                                   placeholder="Funding Amount Repay Amount Base CCY" (keyup)="changeRowgrid()"
                                   required>
@@ -145,7 +145,7 @@
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                  <input matInput 
+                                  <input matInput [readonly]="isView"
                                   formControlName="invCcyFundingAmt" 
                                   placeholder="Funding Amount Repay Amount Inv CCY" (keyup)="changeRowgrid()"
                                   required>
@@ -157,7 +157,7 @@
                                 <td mat-cell style="border-right: 1px solid grey;
                                 align-self: stretch;
                                 text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                    <input matInput 
+                                    <input matInput [readonly]="isView"
                                     formControlName="repaymentDate" 
                                     placeholder="RepaymentDate" 
                                     required>
@@ -176,7 +176,7 @@
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
-                              <input matInput 
+                              <input matInput [readonly]="isView"
                               formControlName="invDiscRate" (keyup)="changeRowgrid()"
                               placeholder="Inv Discount Rate" 
                               required>
@@ -188,7 +188,7 @@
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index" >
-                              <input matInput 
+                              <input matInput [readonly]="isView"
                               formControlName="baseCcyDiscAmt" (keyup)="changeRowgrid()"
                               placeholder="Disc Amt Base CCY" 
                               required>
@@ -200,7 +200,7 @@
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
-                              <input matInput 
+                              <input matInput [readonly]="isView"
                               formControlName="invCcyDiscAmt" (keyup)="changeRowgrid()"
                               placeholder="Disc Amt Inv CCY" 
                               required>
@@ -211,7 +211,7 @@
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
-                              <input matInput (keyup)="changeRowgrid()"
+                              <input matInput (keyup)="changeRowgrid()"[readonly]="isView"
                               formControlName="annualYeild" 
                               placeholder="Annual Yield Basis a360" 
                               required>
@@ -222,7 +222,7 @@
                               <td mat-cell style="border-right: 1px solid grey;
                               align-self: stretch;
                               text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                <input matInput (keyup)="changeRowgrid()"
+                                <input matInput (keyup)="changeRowgrid()"[readonly]="isView"
                                 formControlName="tenor"
                                 placeholder="Tenor Days" 
                                 required>
@@ -235,7 +235,7 @@
                             <td mat-cell style="border-right: 1px solid grey;
                             align-self: stretch;
                             text-align: center" *matCellDef="let element;let row; let index = index"  >
-                              <input matInput 
+                              <input matInput [readonly]="isView"
                               formControlName="baseCcyNetAmtPayable" 
                               placeholder="Net Amt payable Base CCY" 
                               required>
@@ -246,7 +246,7 @@
                               <td mat-cell style="border-right: 1px solid grey;
                               align-self: stretch;
                               text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                <input matInput 
+                                <input matInput [readonly]="isView"
                                 formControlName="invCcyNetAmtPayable" 
                                 placeholder="Net Amt payable Inv CCY" 
                                 required>
@@ -257,7 +257,7 @@
                                   <td mat-cell style="border-right: 1px solid grey;
                                   align-self: stretch;
                                   text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                    <input matInput 
+                                    <input matInput [readonly]="isView"
                                     formControlName="offerExpPeriod" 
                                     placeholder="Offer Exp period" 
                                     required>
@@ -271,7 +271,7 @@
                                     <td mat-cell style="border-right: 1px solid grey;
                                     align-self: stretch;
                                     text-align: center" *matCellDef="let element;let row; let index = index"  >
-                                      <input matInput 
+                                      <input matInput [readonly]="isView"
                                       formControlName="offerExpDateTime" 
                                       placeholder="Off Exp date time" 
                                       required>

@@ -27,7 +27,7 @@
      
           <ng-container matColumnDef="BIDing Amount">
             <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
-            matTooltip="{{dashboardTooltip.invoiceCreateDate}}" [matTooltipPosition]="'below'">BIDing Amount</th>
+            matTooltip="{{dashboardTooltip.invoiceCreateDate}}" [matTooltipPosition]="'below'">Bidding Amount</th>
             <td mat-cell *matCellDef="let element">
               <mat-chip-list>
                 <mat-chip> {{ element.baseCcyNetAmtPayable }} </mat-chip>
@@ -46,9 +46,9 @@
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element"> 
-              <a href="javascript:void(0)" (click)="navigateFinanceDetails(element.id,'edit')">
+              <!-- <a href="javascript:void(0)" (click)="navigateFinanceDetails(element.id,'edit')">
                   <mat-icon>edit</mat-icon>
-                </a>&nbsp;
+                </a>&nbsp; -->
               <a href="javascript:void(0)" (click)="navigateFinanceDetails(element.id,'view')">
                   <mat-icon>visibility</mat-icon>
               </a>
