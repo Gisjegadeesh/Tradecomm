@@ -172,8 +172,33 @@ table#financBidding {
     max-width: 1200px;
 }
 }
-
-
+.mat-tab-list {
+    // background-image: linear-gradient(to bottom right, #d706dafa, #790cdc,#4d00e4) !important;
+    }
+    .mat-tab-label {
+        opacity: .9 !important;    
+    }
+    // .mat-tab-label-container {
+    //     background-image: linear-gradient(to bottom right, #d706dafa, #790cdc,#4d00e4) !important;
+    // }
+    .mat-ripple.mat-tab-label.mat-focus-indicator{
+        border-right: 1px solid #fff!important; 
+        border-bottom: 2px solid transparent;
+        transition: .3s ease;
+        &:hover{
+            border-bottom: 2px solid #694ed6;
+            background-color: rgba(169,140,233,.3);
+        }
+    }
+    // .mat-ripple.mat-tab-label.mat-focus-indicator.mat-tab-label-active{
+    //     border-bottom: 4px solid #fff!important;    
+    // }
+    .mat-tab-label-active {
+        background-image: linear-gradient(to bottom right, #d706dafa, #790cdc, #4d00e4) !important;
+        .mat-tab-label-content{
+            color: #fff !important;
+        }
+    }
 .mat-card {
     display: inline !important;
     }
@@ -541,4 +566,7 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 }
 .selected-list .c-list .c-token .c-remove svg {
     fill: #0e0d0d !important;
+}
+.mat-tab-label .mat-tab-label-content{
+    color:#694ed6;
 }

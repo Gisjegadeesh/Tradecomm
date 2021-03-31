@@ -90,6 +90,12 @@ import { MultiSelectDropdown } from './shared/multiSelectDropdown/multiSelectDro
 import { RadioButtonComponent } from './shared/radioButton/radioButton.component';
 import { DateFieldComponent } from './shared/dateField/dateField.component';
 import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
+import { IccFinanceTodayComponent } from './components/icc-finance-today/icc-finance-today.component';
+import { IccFinanceTodayServices } from './components/icc-finance-today/icc-finance-today-service';
+import { IccFinanceMasterComponent } from './components/icc-finance-master/icc-finance-master.component';
+import { IccFinanceMasterServices } from './components/icc-finance-master/icc-finance-master-service';
+import { IccInvoiceMasterComponent } from './components/icc-invoice-master/icc-invoice-master.component';
+import { IccInvoiceMasterServices } from './components/icc-invoice-master/icc-invoice-master-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,7 +126,10 @@ import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
     FinanceBiddingExpiredComponent,
     InvoiceDetailsExpiredComponent,
     FinanceBiddingRejectedComponent,
-    InvoiceDetailsRejectedComponent
+    InvoiceDetailsRejectedComponent,
+    IccFinanceTodayComponent,
+    IccFinanceMasterComponent,
+    IccInvoiceMasterComponent
   ],
   imports: [
     BrowserModule,
@@ -161,12 +170,13 @@ import { FileUploadComponent } from './shared/fileUpload/fileUpload.component';
     NgMultiSelectDropDownModule.forRoot(),
     MatExpansionModule,
     MatTooltipModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+
   ],
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,
     FinanceRequestServices,FinanceBiddingRejectedServices,FinanceBiddingExpiryServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
-    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,
+    FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,IccFinanceTodayServices,IccFinanceMasterServices,IccInvoiceMasterServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
   ],

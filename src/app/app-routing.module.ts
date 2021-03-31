@@ -24,6 +24,9 @@ import {FinanceBiddingRejectedComponent} from './components/finance-bidding-reje
 import {InvoiceDetailsRejectedComponent} from './components/finance-bidding-rejected/invoice-details-rejected/invoice-details-rejected.component'
 
  
+import {IccFinanceMasterComponent} from './components/icc-finance-master/icc-finance-master.component';
+import {IccInvoiceMasterComponent} from './components/icc-invoice-master/icc-invoice-master.component';
+import {IccFinanceTodayComponent} from './components/icc-finance-today/icc-finance-today.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -53,7 +56,14 @@ const routes: Routes = [
   { path: 'finance-bidding-expired-details/:type/:id', component: InvoiceDetailsExpiredComponent , data : {"HeaderName" : "Financier Offer Expired","homePath" : "/financier-dashboard"}},
   { path: 'finance-bidding-rejected', component: FinanceBiddingRejectedComponent, data : {"HeaderName" : "Financier Dashboard","homePath" : "/financier-dashboard"} },
   { path: 'finance-bidding-rejected/:type/:id', component: InvoiceDetailsRejectedComponent , data : {"HeaderName" : "Financier Offer rejected","homePath" : "/financier-dashboard"}},
-  { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}}
+  { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}},
+
+  { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}},
+  { path: 'icc-finance-today', component: IccFinanceTodayComponent , data : {"HeaderName" : "Finance-Today","homePath" : "/icc-dashboard"}},
+  { path: 'icc-finance-master', component: IccFinanceMasterComponent , data : {"HeaderName" : "Finance-Master","homePath" : "/icc-dashboard"}},
+  { path: 'icc-invoice-master', component: IccInvoiceMasterComponent , data : {"HeaderName" : "Invoice-Master","homePath" : "/icc-dashboard"}}
+
+
 ];
 
 @NgModule({

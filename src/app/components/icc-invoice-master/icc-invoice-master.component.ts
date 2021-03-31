@@ -5,7 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
-import { SmeFinancierForBiddingServices } from './sme-financefor-bidding-service';
+import { IccInvoiceMasterServices } from './icc-invoice-master-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
 
@@ -55,14 +55,14 @@ export interface biddingDetails {
 const BIDDING_DATA: biddingDetails[] = [];
      
 @Component({
-  selector: 'app-sme-financefor-bidding',
-  templateUrl: './sme-financefor-bidding.component.html',
-  styleUrls: ['./sme-financefor-bidding.component.scss']
+  selector: 'app-icc-invoice-master',
+  templateUrl: './icc-invoice-master.component.html',
+  styleUrls: ['./icc-invoice-master.component.scss']
 })
 
-export class SmeFinanceforBiddingComponent implements OnInit {
+export class IccInvoiceMasterComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status'];
+  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -105,7 +105,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     }
   }
   constructor(public router: Router, private modalService: BsModalService, private modalDialogService: ModalDialogService,
-    private authenticationService: AuthenticationService, private SmeFinancierForBiddingServices: SmeFinancierForBiddingServices) { }
+    private authenticationService: AuthenticationService, private IccInvoiceMasterServices: IccInvoiceMasterServices) { }
 
 
   ngOnInit() {
@@ -126,7 +126,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
       status: "I"
     }]);
 
-    this.SmeFinancierForBiddingServices.getFinanceForBiddingLists().subscribe(resp => {
+    this.IccInvoiceMasterServices.getInvoiceMasterLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
     })
@@ -168,7 +168,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
    
-    this.SmeFinancierForBiddingServices.getInvoiceRequestLists(data.invoiceId).subscribe(resp => {
+    this.IccInvoiceMasterServices.getInvoiceRequestLists(data.id).subscribe(resp => {
       let status = "";
       if (resp.status == "I") {
         status = "Initiated"
@@ -183,7 +183,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
         status = "Financed Successfully"
       }
       this.dataSourceTwo = new MatTableDataSource([
-        { 'invId': resp.invId, 'invDate': resp.invDate,'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'invCcy': resp.invCcy, 'status': status }
+        { 'invId': resp.invId, 'invDate': resp.invDate, 'buyerName': resp.buyerName, 'invAmt': resp.invAmt, 'status': status }
       ]);
 
       this.dataSourceOne = new MatTableDataSource(resp.goodsDetails);
@@ -193,7 +193,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     // this.dataSourceThree = new MatTableDataSource([
     //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
 
-    this.SmeFinancierForBiddingServices.getFinanceBiddingLists(data.invoiceNo).subscribe(resp => {
+    this.IccInvoiceMasterServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }

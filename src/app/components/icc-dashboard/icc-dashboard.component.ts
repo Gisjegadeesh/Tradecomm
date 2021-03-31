@@ -148,4 +148,14 @@ export class IccDashboardComponent implements OnInit {
     financierOnBoardingList(){
       this.router.navigateByUrl('/financier-onboarding-list')
     }
+    navigatefinancedToday(){
+      this.router.navigateByUrl('/icc-finance-today');
+      }
+      navigatefinancedMaster(){
+      this.router.navigateByUrl('/icc-finance-master');
+      }
+      navigateinvoiceMaster(){
+      this.router.navigateByUrl('/icc-invoice-master');
+      }
+      
 }

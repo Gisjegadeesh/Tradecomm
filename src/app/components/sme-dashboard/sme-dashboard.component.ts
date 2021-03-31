@@ -252,8 +252,8 @@ export class SmeDashboardComponent implements OnInit {
     this.getFinForBid();
     this.getFundingBids();
     this.getFunded();
-    this.getFinDueTdy();
-    this.getFinPastDue();
+    // this.getFinDueTdy();
+    // this.getFinPastDue();
     this.getFinMatData();
     this.getFinSizeData();
     this.getChartData();
