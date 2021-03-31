@@ -45,7 +45,7 @@ export class FinanceBiddingRejectedComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.FinanceBiddingService.getInvoiceDetails().subscribe(resp => {
+    this.FinanceBiddingRejectedServices.getInvoiceDetails().subscribe(resp => {
       console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
     })
@@ -97,7 +97,7 @@ export class FinanceBiddingRejectedComponent implements OnInit {
     this.router.navigateByUrl('/financier-dashboard');
   }
   navigateFinanceDetails(id, type) {
-    this.router.navigateByUrl('/financier-bids-accept-Details/' + type + '/' + id);
+    this.router.navigateByUrl('/finance-bidding-rejected/' + type + '/' + id);
   }
 }
 

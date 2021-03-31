@@ -24,16 +24,16 @@
 
 
 //General Service
-let BASE_PATH = "http://ba1c16d54aeb.ngrok.io/";
+let BASE_PATH = "http://localhost:8080/";
 
 // Invoice Service Url 8080
-let serviePath_1 = "http://ba1c16d54aeb.ngrok.io/";
+let serviePath_1 = "http://localhost:8080/";
 
 // Bidding Service Url 8081
-let serviePath_2 = "http://c010530bd8ee.ngrok.io/";
+let serviePath_2 = "http://localhost:8081/";
 
 //Financier onboard path
-let financierServicePath="http://54639771eb32.ngrok.io/"
+let financierServicePath="http://localhost:8082/"
 
 //Dashboard  Service Url
 let dboardServerPath1 = "http://dboardServPath1/";
