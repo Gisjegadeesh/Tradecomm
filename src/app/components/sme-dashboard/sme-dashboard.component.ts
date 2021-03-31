@@ -351,30 +351,38 @@ chartData = [
 ];
 chartLabels = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 chartColors = [
-{
-backgroundColor: "rgba(204, 51, 0, .3)",
-borderColor: "rgba(204, 51, 0, .7)",
-},
+  {
+    backgroundColor: "rgba(0, 137, 132, .3)",
+    borderColor: "rgba(0, 10, 130, .7)",
+    },
 {
 backgroundColor: "rgba(0, 137, 132, .3)",
 borderColor: "rgba(0, 10, 130, .7)",
 },
 {
-backgroundColor: "rgba(0, 128, 43, .3)",
-borderColor: "rgba(0, 128, 43, .7)",
-}
+  backgroundColor: "rgba(0, 137, 132, .3)",
+  borderColor: "rgba(0, 10, 130, .7)",
+  },
 ];
 public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
   console.log(event, active);
   }
     getChartData(){
+      let FRresp;
       this.smeDashboardServices.getChartData().subscribe(resp => {
+        let FRresp = resp;
       this.chartData=[
         { data:Object.values(resp) , label: "Funding Requested" },
-        { data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] , label: "Actual Funding" },
+        // { data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] , label: "Actual Funding" },
       ]
-      console.log("getTblChartData",this.getTblChartData)
     })
+    this.smeDashboardServices.getActualFundingChartData().subscribe(AFresp => {
+      this.chartData.push( { data:Object.values(AFresp) , label: "Actual Funding" })
+    })
+    // this.chartData=[
+    //   { data:Object.values(FRresp) , label: "Funding Requested" },
+    //   { data:Object.values(AFresp) , label: "Actual Funding" },
+    //  ]
     }
 }
 
