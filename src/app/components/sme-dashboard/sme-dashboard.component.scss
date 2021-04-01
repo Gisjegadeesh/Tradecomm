@@ -145,7 +145,7 @@ header {
     }
 
     .accounts-list {
-        overflow: hidden;
+        overflow: auto;
         padding-top: $margin;
     }
 }
@@ -169,7 +169,7 @@ header {
     }
 
     .accounts-list {
-        overflow: hidden;
+        overflow: auto;
         // padding-top: $margin;
         // padding-top: $margin;
     }
