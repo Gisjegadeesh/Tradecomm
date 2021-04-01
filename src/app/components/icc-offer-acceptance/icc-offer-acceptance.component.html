@@ -8,7 +8,7 @@
             matTooltip="{{biddingTooltip.invoiceId}}" [matTooltipPosition]="'below'"> Invoice Id  </th>
             <td mat-cell *matCellDef="let element"> 
               <mat-chip-list>
-                     <mat-chip color="primary" selected (click)="openModal($event,template,element)">{{element.invNo}} </mat-chip>
+                     <mat-chip color="primary" selected (click)="openModal($event,template,element)">{{element.invoiceNo}} </mat-chip>
                  </mat-chip-list>
              </td>
           </ng-container>

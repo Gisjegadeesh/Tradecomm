@@ -126,7 +126,7 @@
         matTooltip="{{dashboardTooltip.fundingRequest}}" [matTooltipPosition]="'below'"></uxg-account-card>
         <uxg-account-card  class="curs-pointer" name="Offer for Acceptance" (click)="naviageTiles('/icc-offer-acceptance')" number="{{OfferAcceptanceObj?.CCY}} {{OfferAcceptanceObj?.AMOUNT? OfferAcceptanceObj?.AMOUNT : 'SGD 0'}}"  #tooltip="matTooltip"
         matTooltip="{{dashboardTooltip.offerAcceptance}}" [matTooltipPosition]="'below'"></uxg-account-card>
-        <uxg-account-card  class="curs-pointer" name="Financed Today" number="SGD 0" #tooltip="matTooltip"
+        <uxg-account-card  class="curs-pointer" name="Financed Today" number="{{getSumAllfinTdyCount?.FINANCECCY}} {{getSumAllfinTdyCount?.FINANCEAMT ? getSumAllfinTdyCount?.FINANCEAMT : '0'}}" #tooltip="matTooltip"
         matTooltip="{{dashboardTooltip.financedToday}}" (click)="this.navigatefinancedToday()" [matTooltipPosition]="'below'"></uxg-account-card>
         <uxg-account-card name="Finance Master" number="{{financeMasterCount?.CCY}} {{financeMasterCount?.AMOUNT ? financeMasterCount?.AMOUNT : 'SGD 0'}}" #tooltip="matTooltip"
         matTooltip="{{dashboardTooltip.financedMaster}}" (click)="this.navigatefinancedMaster()" [matTooltipPosition]="'below'"></uxg-account-card>

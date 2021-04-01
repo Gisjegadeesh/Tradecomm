@@ -26,7 +26,7 @@ export class IccDashboardServices  {
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/icc-dashboard/getInvoiceMaster');
   }
   getAllfinTdyCount(){
-    return this.apiService.generalServiceget(environment.serviePath_1+'financing-details/allFinanceToday');
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/allFinanceToday');
   }
   getFinanceMasterCount(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/icc-dashboard/getFinanceMaster');

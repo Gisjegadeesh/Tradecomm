@@ -2,7 +2,8 @@
     <header>
         <br>
         <h5>Funding Requests</h5>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="position: relative;top: 100px;">
+        <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" >
           <ng-container matColumnDef="invId">
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceId}}" [matTooltipPosition]="'below'"> Invoice Id  </th>
@@ -76,7 +77,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-    
+        </div>
     </header>
   </div>
   

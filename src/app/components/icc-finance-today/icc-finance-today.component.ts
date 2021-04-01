@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { IccFinanceTodayServices } from './icc-finance-today-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -70,6 +71,7 @@ export class IccFinanceTodayComponent implements OnInit {
   dataSourceOne = new MatTableDataSource(GOODS_DATA); //data
 
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSourceTwo = new MatTableDataSource(INVOICE_DATA); //data
   displayedColumnsTwo: string[] = ['invId', 'invDate', 'buyerName', 'invAmt', 'status'];
@@ -129,6 +131,7 @@ export class IccFinanceTodayComponent implements OnInit {
     this.IccFinanceTodayServices.getFinanceTodayLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
   }
@@ -168,7 +171,7 @@ export class IccFinanceTodayComponent implements OnInit {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
    
-    this.IccFinanceTodayServices.getInvoiceRequestLists(data.id).subscribe(resp => {
+    this.IccFinanceTodayServices.getInvoiceRequestLists(data.INV_ID).subscribe(resp => {
       let status = "";
       if (resp.status == "I") {
         status = "Initiated"
@@ -193,7 +196,7 @@ export class IccFinanceTodayComponent implements OnInit {
     // this.dataSourceThree = new MatTableDataSource([
     //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
 
-    this.IccFinanceTodayServices.getFinanceBiddingLists(data.invId).subscribe(resp => {
+    this.IccFinanceTodayServices.getFinanceBiddingLists(data.INV_ID).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }

@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { IccFinanceMasterServices } from './icc-finance-master-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -103,6 +104,8 @@ export class IccFinanceMasterComponent implements OnInit {
       this.mobileScreen = false;
     }
   }
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(public router: Router, private modalService: BsModalService, private modalDialogService: ModalDialogService,
     private authenticationService: AuthenticationService, private IccFinanceMasterServices: IccFinanceMasterServices) { }
 
@@ -124,6 +127,7 @@ export class IccFinanceMasterComponent implements OnInit {
       console.log(resp,"resp")
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
   }
