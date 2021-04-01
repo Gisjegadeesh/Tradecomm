@@ -26,6 +26,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { IccOfferAcceptServices } from './icc-offer-accept-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -109,6 +110,7 @@ export class IccOfferAcceptanceComponent implements OnInit {
   bidpanelOpenState = false;
   biddingTooltip = BIDDINGCONSTANTS;
   moment: any = moment;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   
   @ViewChild('accountList', { read: ElementRef })
@@ -147,6 +149,7 @@ export class IccOfferAcceptanceComponent implements OnInit {
     this.IccOfferAcceptServices.getOfferAcceptanceLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
   }
