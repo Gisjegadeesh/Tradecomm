@@ -103,7 +103,7 @@ const DATA_INV_DETAILS: any[] = [
 
 export class SmeBiddingComponent implements OnInit {
 
-  displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount'];
+  displayedColumns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount','action'];
   tabledataSource = new MatTableDataSource(ELEMENT_DATA);
 
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','position1','name1'];

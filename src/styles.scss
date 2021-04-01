@@ -76,7 +76,9 @@ table#customers {
 // {
 // margin-left: 300px;
 // }
-
+.app-content{
+    z-index: 0;
+}
 .chart.inActive{
     // margin-left: 300px;
 }
@@ -391,19 +393,24 @@ table.mat-table.cdk-table {
     right: 0;
     // top: 33px;
     transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-    &.active{
-        width: calc(100% - 200px);
-        margin-left: 200px;
-    }
-    &.inActive{
-        width: 100%;
-        margin-left: 0;
-    }
+    // &.active{
+    //     width: calc(100% - 200px);
+    //     margin-left: 200px;
+    // }
+    // &.inActive{
+    //     width: 100%;
+    //     margin-left: 0;
+    // }
 }
 
 mat-sidenav.mat-drawer.mat-sidenav.ng-trigger.ng-trigger-transform.mat-drawer-over.mat-drawer-opened{
     .mat-list-base{
         width: 200px;
+        box-shadow: 0 0 5px 0 rgb(0,0,0,0.3);
+        z-index: 1000;
+        position: fixed;
+        display: block;
+        overflow-x: hidden;
     }
 }
 
