@@ -577,3 +577,39 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 .mat-tab-label .mat-tab-label-content{
     color:#694ed6;
 }
+.fundreq-btn{
+    margin-right: 100px;
+}
+//iphonex
+@media screen and (max-width: 575px) {
+    table#customers{
+    width:177px;
+    }
+    .trans-table{
+        width: auto;
+    }
+    .fundreq-btn{
+        margin-right: 40px;
+    }
+    }
+//ipad
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        header .wave svg {
+            height: 224px;
+        }
+        table#customers{
+            width:600px;
+            }  
+            .fundreq-btn{
+                margin-right: 0;
+            } 
+    }
+//ipadpro
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+        table#customers{
+            width:720px;
+            }   
+            .fundreq-btn{
+                margin-right: 130px;
+            }
+    }
