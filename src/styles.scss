@@ -8,7 +8,9 @@
 @import "~@ffdc/uxg-angular-components/global-nav/global-nav.theme";
 @import "~@ffdc/uxg-angular-components/skeleton-text/skeleton-text.theme";
 @import '~ngx-toastr/toastr';
+@import '~@angular/cdk/text-field/text-field'; 
 
+@include cdk-text-field();
 html,
 body {
     height: 100%;
@@ -613,3 +615,16 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
                 margin-right: 130px;
             }
     }
+.dynamicForm-textarea{
+    align-self: stretch;
+    margin-bottom: 8px;
+    margin-left: 96px;
+    width: 400px;
+    background-color: #f3f1fc;
+    border: none;
+    border-bottom: 1px solid #694ed6;
+    border-radius: 3px;
+}
+input.custom-autofill {
+    @include cdk-text-field-autofill-color(transparent, red);
+  }

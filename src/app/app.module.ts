@@ -102,6 +102,8 @@ import { IccFundingRequestComponent } from './components/icc-funding-request/icc
 import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/icc-offer-acceptance.component';
 
 
+import { TextAreaComponent } from './shared/textArea/textArea.component';
+import {TextFieldModule} from '@angular/cdk/text-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,6 +131,7 @@ import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/i
     RadioButtonComponent,
     DateFieldComponent,
     FileUploadComponent,
+    TextAreaComponent,
     FinanceBiddingExpiredComponent,
     InvoiceDetailsExpiredComponent,
     FinanceBiddingRejectedComponent,
@@ -179,7 +182,7 @@ import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/i
     MatExpansionModule,
     MatTooltipModule,
     ToastrModule.forRoot(),
-
+    TextFieldModule
   ],
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,

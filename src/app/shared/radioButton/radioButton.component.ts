@@ -7,13 +7,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export class RadioButtonComponent implements OnInit {
     @Input() questionDatas
+    @Input() sectionIndex
+    @Input() questionIndex
     @Output("formChange") change: EventEmitter<any> = new EventEmitter();
     radioChecked=''
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.radioChecked=this.questionDatas.response ? "true" : ""
+     }
 
     radioChange(event){
-        this.change.emit(event.value);
+        let obj={
+            condition:event.value,
+            secIndex:this.sectionIndex,
+            quesIndex:this.questionIndex,
+            questionDatas:this.questionDatas
+        }
+        this.change.emit(obj);
     }
 }

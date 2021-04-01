@@ -17,6 +17,11 @@ export class TextboxComponent implements OnInit {
 
     onChange(event){
         this.textboxValue=event.target.value
-        this.change.emit(this.textboxValue);
+        let obj={
+            questionDatas: this.questionDatas,
+            value:this.textboxValue,
+            number:this.questionDatas.number
+        }
+        this.change.emit(obj);
     }
 }
