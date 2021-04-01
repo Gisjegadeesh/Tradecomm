@@ -24,6 +24,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { IccFundingServices } from './icc-funding-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -108,7 +109,8 @@ export class IccFundingRequestComponent implements OnInit {
   biddingTooltip = BIDDINGCONSTANTS;
   moment: any = moment;
 
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -145,6 +147,7 @@ export class IccFundingRequestComponent implements OnInit {
     this.IccFundingServices.getAllFundingList().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
   }
