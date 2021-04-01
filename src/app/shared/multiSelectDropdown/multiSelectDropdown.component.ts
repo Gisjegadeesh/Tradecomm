@@ -36,6 +36,11 @@ export class MultiSelectDropdown implements OnInit {
         this.dropdownSettings['text']=this.questionDatas.label
      }
      onChange(event){
-        this.change.emit(this.selectedItems);
+         let obj={
+             selectedItems:this.selectedItems,
+             questionDatas:this.questionDatas,
+             number:this.questionDatas['number']
+         }
+        this.change.emit(obj);
     }
 }
