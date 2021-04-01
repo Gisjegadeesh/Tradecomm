@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { IccInvoiceMasterServices } from './icc-invoice-master-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -69,6 +70,7 @@ export class IccInvoiceMasterComponent implements OnInit {
   displayedColumnsOne: string[] = ['descGoods', 'quantity','taxRate','amt','rate','total'];
   dataSourceOne = new MatTableDataSource(GOODS_DATA); //data
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
   dataSourceTwo = new MatTableDataSource(INVOICE_DATA); //data
@@ -129,6 +131,7 @@ export class IccInvoiceMasterComponent implements OnInit {
     this.IccInvoiceMasterServices.getInvoiceMasterLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
   }
