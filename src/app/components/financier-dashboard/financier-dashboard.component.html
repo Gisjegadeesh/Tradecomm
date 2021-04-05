@@ -109,12 +109,12 @@
                     <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
                 </div>
             </ng-template>
-            <div class="paginator" *ngIf="!mobileScreen">
+            <div class="paginator">
                 <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
-                    <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->
+                    <mat-icon>keyboard_arrow_left</mat-icon>
                 </button>
                 <button mat-icon-button (click)="scrollRight()" [disabled]="end">
-                    <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
+                    <mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
             </div>
         </div>
@@ -139,7 +139,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12 col-xl-6">
                     <div class="col-md-3">
                         <div class="trans-table">
                             <div class="">
@@ -252,7 +252,7 @@
                         </div>
                     </div> -->
                 </div>
-                    <div class="col-md-6 p-0">
+                    <div class="col-md-12 col-xl-6 p-0 chart-cls">
                         <h6>Chart</h6>
                         <ng-container>
                             <div class="chart {{isOpen}}">
