@@ -38,3 +38,15 @@ mat-form-field {
     padding-top: 5px;
     border-radius: 3px;
 }
+.ques-sec-btn{
+    margin: 20px 0px 15px 0px;
+    border-radius: 10px;
+    background-color: #4d95c7;
+    border: 1px;
+    color: white;
+    padding: 4px 14px 2px 14px;
+    cursor: pointer;
+    &.selbut{
+        border:2px solid black;
+    }
+}

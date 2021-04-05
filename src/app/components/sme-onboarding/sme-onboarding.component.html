@@ -5,101 +5,50 @@
   </ul> -->
 </mat-toolbar>
 
-<form (ngSubmit)="onSubmit()" [formGroup]="smeForm1">
-  <mat-horizontal-stepper linear="true" selectedIndex="0" #stepper>
-    <mat-step *ngFor="let questionSections of questionnaireSections;let sectionIndex=index">
+<div class="row col-md-12">
+  <div class="col-md-3" >
+    <div *ngFor="let sections of questionnaireSections;let secIndex=index" style="text-align: center;">
+    <button class="ques-sec-btn section-title" [ngClass]="{'selbut': secIndex == sectionIndex}" type="button" (click)="onSectionClick(secIndex)">{{sections.label}}</button>
+  </div>
+  <!-- <mat-form-field class="example-chip-list">
+    <mat-label>Favorite Fruits</mat-label>
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip
+      *ngFor="let fruit of fruits"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(fruit)">
+      {{fruit}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+    placeholder="New fruit..."
+    #fruitInput
+    formControlName="fruitCtrl"
+    [matChipInputFor]="chipList"
+    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field> -->
+  </div>
+  <div class="col-md-9">
+    <div class="row" *ngFor="let questionType of questionnaireSections[sectionIndex].questions;let questionIndex=index">
+            <span class="form-group" *ngIf="questionType.show">
+              <textBox  [questionDatas]="questionType" (formChange)="onTextBoxChange($event,sectionIndex,questionIndex)" *ngIf="(questionType.type == 'QuestionTextDto' || 'QuestionNumberDto')"></textBox>
+              <multiSelectDropdown [questionDatas]="questionType" (formChange)="onDropdownChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionMultipleChoiceDto'" ></multiSelectDropdown>
+              <radioButton  [questionDatas]="questionType" [sectionIndex]="sectionIndex" [questionIndex]="questionIndex" (formChange)="onRadioChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionBoolDto'"></radioButton>
+              <DateField  [questionDatas]="questionType" (formChange)="onDateChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionDateDto'"></DateField>
+              <fileUpload [questionDatas]="questionType" (formChange)="onFileChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionFileListDto'"></fileUpload>
+              <textList [questionDatas]="questionType" (formChange)="onTextListChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionTextListDto'"></textList>
 
-      <ng-template matStepLabel>{{questionSections.label}}</ng-template>
-      <mat-card>
-        <mat-card-content>
-          <table style="width: 100%;">
-            <tbody >
-              <div class="row col-md-12">
-                <div *ngFor="let questionType of questionSections.questions;let questionIndex=index">
-                <tr class="form-group col-md-6"  data-always-visible="false" *ngIf="questionType.show"  >
-                  <td  class="T1" rowspan="1" colspan="1" >
-                    <textBox  [questionDatas]="questionType" (formChange)="onTextBoxChange($event,sectionIndex,questionIndex)" *ngIf="(questionType.type == 'QuestionTextDto' || 'QuestionNumberDto')"></textBox>
-                    <!-- *ngIf="questionType.type == 'QuestionTextDto' || 'QuestionFileListDto' || 'QuestionNumberDto' " -->
-                    <multiSelectDropdown [questionDatas]="questionType" (formChange)="onDropdownChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionMultipleChoiceDto'" ></multiSelectDropdown>
-                    <radioButton  [questionDatas]="questionType" [sectionIndex]="sectionIndex" [questionIndex]="questionIndex" (formChange)="onRadioChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionBoolDto'"></radioButton>
-                    <DateField  [questionDatas]="questionType" (formChange)="onDateChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionDateDto'"></DateField>
-                    <fileUpload [questionDatas]="questionType" (formChange)="onFileChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionFileListDto'"></fileUpload>
-                    <textArea class="dynamicForm-textarea" [questionDatas]="questionType" (formChange)="onTextAreaChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionTextListDto'"></textArea>
-                  </td>
-                </tr>
-                </div>
-            </div>
-            </tbody>
-          </table>
-          </mat-card-content>
-          <mat-card-actions >
-            <span class="fill-remaining-space"></span>
-            <button mat-stroked-button  *ngIf="sectionIndex"
-                    color="primary"
-                    type="button"
-                    matStepperPrevious>
-              <mat-icon>arrow_back</mat-icon>
-             Back to {{questionnaireSections[sectionIndex-1].label}}
-            </button>
-            <button mat-flat-button *ngIf="(questionnaireSections.length-1) != sectionIndex "
-            type="button"
-            color="primary"
-            matStepperNext>
-      <mat-icon>arrow_forward</mat-icon>
-      Next
-    </button>
-          </mat-card-actions>
-      </mat-card>
+            </span>
+          </div>
+  </div>
+</div>
 
-    </mat-step>
-
-
-    <!-- <mat-step *ngFor="let questionSections of questionnaireSections;let questionIndex=index">
-
-      <ng-template matStepLabel>{{questionSections.label}}</ng-template>
-      <mat-card>
-        <mat-card-content>
-          <table style="width: 100%;">
-            <tbody >
-              <div class="row col-md-12">
-                <tr class="form-group col-md-6"  data-always-visible="false" *ngFor="let questionType of formSections.controls;let i=index">
-                  <td  class="T1" rowspan="1" colspan="1" *ngFor="let data of questions">
-                    <div [formGroupName]="i">
-                        <div class="form-group" *ngIf="data.type == 'QuestionTextDto'"> 
-                          <div class="card-form-container">
-                            <mat-form-field floatLabel="never" dense appearance="fill" class="example-full-width">
-                              <mat-icon color="primary"  dense matPrefix>person_outline</mat-icon>
-                              <mat-label>{{data.label}}</mat-label>
-                              <input type="text" matInput value="" />
-                            </mat-form-field>
-                        </div>
-                        </div>
-                        <div class="form-group" *ngIf="data.type == 'QuestionMultipleChoiceDto'"> 
-                        <div class="card-form-container">
-                          <div class="multiselect-dropdown-dsgn">
-                              <angular2-multiselect  
-                              [settings]="dropdownSettings" ></angular2-multiselect>
-                          </div>
-                      </div>
-                        </div>
-                    </div>
-                  </td>
-                </tr>
-            </div>
-            </tbody>
-          </table>
-        </mat-card-content>
-      </mat-card>
-    </mat-step> -->
-
-
-    </mat-horizontal-stepper>
-    <div class="submit">
-      <button mat-flat-button  color="primary">
-        <!-- [disabled]="!smeForm.form.valid" -->
-        <mat-icon>arrow_right_alt</mat-icon>
-        Submit
-      </button>
-    </div>
-    </form>
-
+<div class="submit">
+  <button mat-flat-button  color="primary" [disabled]="disableSubbtn" type="button" (click)="onSubmit()">
+    <mat-icon>arrow_right_alt</mat-icon>
+    Submit
+  </button>
+</div>

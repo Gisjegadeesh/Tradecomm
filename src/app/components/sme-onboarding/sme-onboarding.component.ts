@@ -44,8 +44,9 @@ export class SmeOnboardingComponent implements OnInit {
   getFormInput
   questions=[]
   questionnaireSections=[]
-
+  sectionIndex=0
   smeForm1:FormGroup
+  disableSubbtn=true
   // smeForm2:FormGroup
   // smeForm3:FormGroup
   // smeForm4:FormGroup
@@ -67,6 +68,7 @@ export class SmeOnboardingComponent implements OnInit {
   radioChecked={}
 
   ngOnInit() {
+    this.sectionIndex=0
     this.questionnaireSections=[
       {
         "alias": "getting-to-know-you",
@@ -4395,6 +4397,9 @@ export class SmeOnboardingComponent implements OnInit {
     })
     console.log(this.questionnaireSections)
   }
+//   ngDoCheck(){
+//        this.checkForm()
+//   }
   checkParentresp(secIndex,parNum){
     let itHasResp=false
    this.questionnaireSections[secIndex].questions.forEach((item) => { 
@@ -4470,14 +4475,18 @@ export class SmeOnboardingComponent implements OnInit {
         if(data.number == item.parentNumber ){
           data.selectedItems && data.selectedItems.length && data.selectedItems.map((selItem)=>{
                 if(item.conditions && item.conditions.length && item.conditions[0]['optionAlias'] == selItem.id){
-                    item.show=true
+                    item.show= true
                 }
+                // else {
+                //     item.show=  item.show ? false : true
+                // }
             })
             if(data.selectedItems && data.selectedItems.length == 0){
                 item.show = false
             }
         }
     })
+    console.log(this.questionnaireSections)
   }
   onRadioChange(data,secIndex,quesIndex){
     this.radioChecked={
@@ -4522,5 +4531,23 @@ export class SmeOnboardingComponent implements OnInit {
     else{
     return true
     }
+  }
+
+  onSectionClick(index){
+      this.sectionIndex=index
+  }
+  checkForm(){
+      this.questionnaireSections.forEach((item)=>{
+          item.questions.forEach((quesItem)=>{
+              if(quesItem.required && !quesItem.response){
+                    this.disableSubbtn=true
+              }
+              else{
+                  this.disableSubbtn= false
+              }
+          })
+      })
+  }
+  onTextListChange(event,secIndex,quesIndex){
   }
 }
