@@ -583,18 +583,32 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     color:#694ed6;
 }
 .fundreq-btn{
+    float: right;
     margin-right: 100px;
 }
 //iphonex
 @media screen and (max-width: 575px) {
     table#customers{
-    width:177px;
+    width:250px;
     }
     .trans-table{
         width: auto;
     }
-    .fundreq-btn{
-        margin-right: 40px;
+    // .fundreq-btn{
+    //     float: initial;
+    //     margin-right: 40px;
+    // }
+    button.mat-tooltip-trigger.btn.btn-outline.fundreq-btn {
+        margin-bottom: 20px;
+        margin-right: 74px;
+        margin-top: 15px;
+    }
+    .chart-cls{
+        margin-top: 60px;
+    }
+    .contnr-div{
+    margin-right: -16px;
+    margin-left: -16px;
     }
     }
 //ipad

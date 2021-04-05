@@ -136,7 +136,8 @@ header {
         .wave {
             overflow: hidden;
             ::ng-deep svg {
-                height: 300px;
+                // height: 300px;
+                height: 257px;
             }
         }
     }
@@ -171,7 +172,13 @@ header {
         // padding-top: $margin;
     }
 }
-
+@media screen and (max-width: 575px) {
+    .app-content{
+        top: 56px;
+        left: -28px;
+        padding: 5px;
+    }
+}
 .uxg-nav {
     position: absolute;
     // height: 850px;
@@ -235,6 +242,7 @@ mat-card-content[_ngcontent-njk-c181]
     padding: "";
     margin-left: -11px;
 }
+
 
 
 

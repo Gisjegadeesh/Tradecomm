@@ -111,14 +111,14 @@
             <uxg-skeleton-text style="width: 300px; height: 40px;" animated></uxg-skeleton-text>
           </div>
         </ng-template>
-        <!-- <div class="paginator" *ngIf="!mobileScreen">
+        <div class="paginator">
           <button mat-icon-button (click)="scrollLeft()" [disabled]="start">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
           <button mat-icon-button (click)="scrollRight()" [disabled]="end">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
-        </div> -->
+        </div> 
       </div>
       <ng-container>
         <div #accountList class="accounts-list">
@@ -136,7 +136,7 @@
         </ng-container>
       <div class="wave" [inlineSVG]="'/assets/wave.svg'"></div>
     
-      <div class="container-fluid">
+      <div class="container-fluid contnr-div">
         <div class="row">
             <div class="col-md-12">
               <mat-tab-group dynamicHeight>

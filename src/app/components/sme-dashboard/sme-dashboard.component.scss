@@ -110,9 +110,7 @@ header {
         .wave {
             overflow: hidden;
             ::ng-deep svg {
-                // height: 200px;
-                height: 150px;
-                
+                height: 200px;
             }
         }
 
@@ -237,6 +235,14 @@ mat-card-content[_ngcontent-njk-c181]
     border-color: #7c49cb;
     padding: "";
     margin-left: -11px;
+}
+///Resp
+@media screen and (max-width: 575px) {
+.app-content{
+    top: 56px;
+    left: -28px;
+    padding: 5px;
+}
 }
 
 

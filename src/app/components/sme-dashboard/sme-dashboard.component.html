@@ -144,7 +144,7 @@
             </div>
         </ng-container>
         <div class="col-md-12" style="float:right">
-        <button type="button" style="float:right;" class="btn btn-outline fundreq-btn"  #tooltip="matTooltip"
+        <button type="button" class="btn btn-outline fundreq-btn"  #tooltip="matTooltip"
         matTooltip="{{dashboardTooltips.fundingRequest}}"
         [matTooltipPosition]="tooltipPosition"  (click)="this.navigateInvoiceCreation()">+ Funding Request</button>
         </div>
@@ -228,7 +228,7 @@
                     </div>
                 </div>
 
-                    <div class="col-md-12 p-0 col-xl-6">
+                    <div class="col-md-12 p-0 col-xl-6 chart-cls">
                         <h6>Chart</h6>
                         <ng-container>
                             <div class="chart {{isOpen}}">
