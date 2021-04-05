@@ -1,7 +1,9 @@
 @import "@ffdc/uxg-angular-theme/lib/core/style/spacing";
 
 $margin: $uxg-spacing-4 + $uxg-spacing-2; // $margin;
-
+.BID-Details:hover {
+    background-color:rgb(181, 171, 221)
+  }
 header {
     // margin: -$margin (-$margin) $uxg-spacing-0;
     margin: -32px 30px 0;

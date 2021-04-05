@@ -51,7 +51,7 @@ export class FinanceBiddingExpiredComponent implements OnInit {
 
 
   modalRef: BsModalRef;
-  
+  isHover: boolean = false;
 
   ngOnInit() {
     if (window.innerWidth < 415) {

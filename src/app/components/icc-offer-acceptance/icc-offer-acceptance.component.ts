@@ -81,7 +81,7 @@ const BIDDING_DATA: biddingDetails[] = [];
 
 export class IccOfferAcceptanceComponent implements OnInit {
 
-  displayedColumns: string[] = ['invNo', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status'];
+  displayedColumns: string[] = ['invNo', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status','action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -110,6 +110,7 @@ export class IccOfferAcceptanceComponent implements OnInit {
   bidpanelOpenState = false;
   biddingTooltip = BIDDINGCONSTANTS;
   moment: any = moment;
+  isHover: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   

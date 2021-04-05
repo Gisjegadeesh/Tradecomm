@@ -41,6 +41,7 @@ export class FinanceBiddingRejectedComponent implements OnInit {
   dashboardTooltip = FINANCIERDASHBOARDCONSTANTS;
   @HostListener('window:resize', ['$event'])
   modalRef: BsModalRef;
+  isHover: boolean = false;
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;

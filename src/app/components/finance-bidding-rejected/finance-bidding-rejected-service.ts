@@ -14,7 +14,7 @@ export class FinanceBiddingRejectedServices {
       return this.apiService.tempGet(environment.serviePath_2+'api/v1/invoice-request/allRejectedBidsList/'+localStorage.getItem("userId"));
     }
     UpdateBiddingSave(id,body: any) {
-      return this.apiService.put(environment.serviePath_2+'api/v1/bidding-details/updateRejectedBidStatusInitiated/'+id,body);
+      return this.apiService.put(environment.serviePath_2+'api/v1/bidding-details/updateBidStatusInitiated/'+id,body);
     }
     getInvDetailsLists_ForFinanceBidding(id){
       return this.apiService.tempGet(environment.serviePath_2+'api/v1/bidding-details/getBiddingFromId/'+id); 
