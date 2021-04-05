@@ -26,8 +26,8 @@ export class IccOfferAcceptServices {
   getFinancierBidding(params : any){
     return this.apiService.get('invoiceRequestSave', params);
 }
-getInvoiceDetails() {
-  return this.apiService.tempGet(environment.serviePath_2+'api/v1/invoice-request/allBiddingInvoicesBySmeId/'+'SME');
+getInvoiceDetails(id) {
+  return this.apiService.tempGet(environment.serviePath_2+'api/v1/invoice-request/allBiddingInvoicesBySmeId/'+id);
 }
 UpdateBiddingSave(id,body: any) {
   return this.apiService.put(environment.serviePath_2+'api/v1/bidding-details/updateBidStatusInitiated/'+id,body);
