@@ -98,6 +98,23 @@ header {
     z-index: 1;
 }
 
+table.fun-table{
+    margin: 0;
+    padding-bottom: 0;
+    td{
+        padding-right: 0;
+    }
+    .spilt-input{
+        right: 0;
+    }
+}
+table{
+    margin-top: 0;
+    &.table-responsive{
+        display: inline-table;
+    }
+}
+
 @media only screen and (min-width: 377px) and (max-width: 415px) {
     header {
         height: 35%;
@@ -146,6 +163,11 @@ header {
             }
         }
     }
+    table{
+        &.table-responsive{
+            display: block;
+        }
+    }
 }
 
 /* Tablet Styles */
@@ -166,6 +188,11 @@ header {
         overflow: hidden;
         padding-top: $margin;
     }
+    table{
+        &.table-responsive{
+            display: block;
+        }
+    }
 }
 .app-content.active{
     @media only screen and (min-width: 1025px) {
@@ -174,6 +201,13 @@ header {
         }
     }
 }
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    table.table-responsive.inv-detail-table{
+        display: inline-table;
+    }
+}
+
 /* Desktop Styles */
 @media only screen and (min-width: 1025px) {
     .wave {
@@ -261,7 +295,8 @@ table {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: $uxg-spacing-2;
+    // margin-top: $uxg-spacing-2;
+    margin-top: 0;
     padding-bottom: $uxg-spacing-4;
 }
 

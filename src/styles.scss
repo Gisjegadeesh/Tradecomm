@@ -610,6 +610,25 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     margin-right: -16px;
     margin-left: -16px;
     }
+    table{
+        &.table-responsive{
+            display: block;
+        }
+        &.inv-table{
+                td{
+                    display: block;
+                }
+                table.fun-table{
+                    .spilt-input, .select-split-input{
+                        width: 402px;
+                    }
+                }
+            }
+            .add-good-plusbtn{
+                padding: 3% 20% 6% 20%;
+                float: left;
+            }
+        }
     }
 //ipad
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -645,3 +664,4 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 input.custom-autofill {
     @include cdk-text-field-autofill-color(transparent, red);
   }
+ 
