@@ -100,7 +100,7 @@
       <form [formGroup]="invoiceForm" autocomplete="off" (ngSubmit)="onSubmitInvoiceForm()">
       <mat-card>
         <mat-card-content>
-          <table>
+          <table  class="table-responsive inv-table">
             <tbody>
             
               <tr>
@@ -136,12 +136,12 @@
                       class="invoice_amt_field" >
                   </ng-multiselect-dropdown>
                 </span> -->
-                <div class="row col-md-12">
+                <!-- <div class="row col-md-12">
                   <div class="col-md-6">
                 <mat-form-field dense class="spilt-input" >
                   <mat-label>Funding Request Amount</mat-label>
                   <input type="number" matInput value="" autocomplete="on" formControlName="invAmt"/>
-                  <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
+                <mat-hint>Please enter the Invoice Amount</mat-hint> 
                 </mat-form-field>
               </div>
               <div class="col-md-6" style="margin-left:-25px">
@@ -156,7 +156,7 @@
                     <option value="JPY">JPY</option>
                   </select>
                 </mat-form-field>
-                <!-- <form class="example-form">
+            <form class="example-form">
                   <mat-form-field class="example-full-width">
                     <mat-label>Number</mat-label>
                     <input type="text"
@@ -171,9 +171,34 @@
                       </mat-option>
                     </mat-autocomplete>
                   </mat-form-field>
-                </form> -->
+                </form> 
                 </div>
-              </div>
+              </div> -->
+
+<table class="fun-table">
+  <tr>
+    <td rowspan="1" colspan="1">
+      <mat-form-field dense class="spilt-input" >
+        <mat-label>Funding Request Amount</mat-label>
+        <input type="number" matInput value="" autocomplete="on" formControlName="invAmt"/>
+        <!-- <mat-hint>Please enter the Invoice Amount</mat-hint> -->
+      </mat-form-field>
+    </td>
+    <td rowspan="1" colspan="1">
+      <mat-form-field dense class="select-split-input">
+        <mat-label>Currency</mat-label>
+        <select matNativeControl [disabled]="disableSelect.value" formControlName="invCcy" (change)="updateCurrency($event)">
+          <option value=""></option>
+          <option value="SGD">SGD</option>
+          <option value="USD">USD</option>
+          <option value="GBP">GBP</option>
+          <option value="EUR">EUR</option>
+          <option value="JPY">JPY</option>
+        </select>
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
                 </td>
                 <!-- formControlName="currency" -->
 
@@ -253,7 +278,7 @@
               <span class="uxg-h6" id=grid>Goods Details </span>
               <div class="mat-elevation-z8">
                 <form [formGroup]="invoiceForm">
-                 <table mat-table [dataSource]="dataSourceTwo" style="width: 100%;" formArrayName="goodsDetails">
+                 <table  class="table-responsive" mat-table [dataSource]="dataSourceTwo" style="width: 100%;" formArrayName="goodsDetails">
                   <ng-container matColumnDef="ID" >
                     <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
                     matTooltip="{{fundingTooltip.id}}"
@@ -455,7 +480,7 @@
       <div id="container">
         <span class="uxg-h6" id=grid>Invoice Details </span>
         <div class="mat-elevation-z8">
-          <table mat-table matSort [dataSource]="dataSource" summary="table of APIs" style="width: 100%;">
+          <table class="table-responsive inv-detail-table" mat-table matSort [dataSource]="dataSource" summary="table of APIs" style="width: 100%;">
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
               <th mat-header-cell *matHeaderCellDef>
