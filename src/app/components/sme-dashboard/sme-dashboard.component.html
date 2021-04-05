@@ -154,7 +154,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12 col-xl-6">
-                    <div class="col-md-3">
+                    <div class="col-md-3" style="margin-bottom: 40px;">
                         <div class="trans-table">
                             <div class="">
                                 <div class="row">
@@ -178,7 +178,7 @@
                               <th #tooltip="matTooltip"
                               matTooltip="{{dashboardTooltips.financeAmount}}"
                               [matTooltipPosition]="tooltipPosition">Amount</th>
-                            </tr>
+                            </tr>   
                            <tr *ngFor="let getFinMaturityDatas of getFinMaturityData" >
                               <td>{{getFinMaturityDatas.PERIOD}}</td>
                               <td>{{getFinMaturityDatas.NUMBER}}</td>
@@ -191,7 +191,7 @@
                         </div>
                         </div>
                     </div>
-                    <div style="height:20px"></div>
+                    <!-- <div style="height:20px"></div> -->
                    <div class="col-md-3">
                         <div class="trans-table">
                             <div class="">
