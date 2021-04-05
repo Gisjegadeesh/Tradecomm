@@ -95,7 +95,8 @@
                       <mat-icon>edit</mat-icon>
                     </a>&nbsp; -->
                   <a href="javascript:void(0)" (click)="openModal($event,template,element)">
-                      <mat-icon>visibility</mat-icon>
+                      <mat-icon  #tooltip="matTooltip"
+                      matTooltip="View" [matTooltipPosition]="'below'">visibility</mat-icon>
                   </a>
                    </td>
               </ng-container>

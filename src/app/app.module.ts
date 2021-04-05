@@ -81,6 +81,7 @@ import { FinanceBiddingExpiredComponent } from './components/finance-bidding-exp
 import { InvoiceDetailsExpiredComponent } from './components/finance-bidding-expired/invoice-details-expired/invoice-details-expired.component';
 import {FinanceBiddingExpiryServices} from './components/finance-bidding-expired/finance-bidding-expiry-service';
 import { FinanceBiddingRejectedComponent } from './components/finance-bidding-rejected/finance-bidding-rejected.component';
+import { ICCacceptancedetailsComponent } from './components/icc-offer-acceptance/icc-acceptance-details/icc-acceptance-details.component';
 import { InvoiceDetailsRejectedComponent } from './components/finance-bidding-rejected/invoice-details-rejected/invoice-details-rejected.component'
 import {FinanceBiddingRejectedServices} from './components/finance-bidding-rejected/finance-bidding-rejected-service'
 import {IccFundingServices} from './components/icc-funding-request/icc-funding-service'
@@ -135,6 +136,7 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     FinanceBiddingExpiredComponent,
     InvoiceDetailsExpiredComponent,
     FinanceBiddingRejectedComponent,
+    ICCacceptancedetailsComponent,
     InvoiceDetailsRejectedComponent,
     IccFinanceTodayComponent,
     IccFinanceMasterComponent,

@@ -24,7 +24,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { IccOfferAcceptServices } from './icc-offer-accept-service';
-import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
+import { BIDDINGCONSTANTS, SMEDASHBOARDCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -83,7 +83,9 @@ export class IccOfferAcceptanceComponent implements OnInit {
 
   displayedColumns: string[] = ['invNo', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status','action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
- 
+  displayed2Columns: string[] = ['refNo', 'invoiceId', 'invoiceAmt','invDate','invDueDate', 'buyer', 'financiercount','action'];
+  financierTooltip=SMEDASHBOARDCONSTANTS;
+
 
   displayedColumnsOne: string[] = ['descGoods', 'quantity','taxRate','amt','rate','total'];
   dataSourceOne = new MatTableDataSource(GOODS_DATA); //data
@@ -116,7 +118,8 @@ export class IccOfferAcceptanceComponent implements OnInit {
   
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
-
+  AllFundingOpen: boolean;
+  data2Source:any;
   @HostListener('window:resize', ['$event'])
   onResize() {
     if (window.innerWidth < 415) {
@@ -227,7 +230,16 @@ export class IccOfferAcceptanceComponent implements OnInit {
     })
 
   }
-
+  navigateFinanceDetails(id, type) {
+    this.router.navigateByUrl('/icc-offer-acceptance-details/' + type + '/' + id);
+  }
+  OpenAllFundingBids(id, type){
+    this.AllFundingOpen = !this.AllFundingOpen
+    this.IccOfferAcceptServices.getInvoiceDetails().subscribe(resp => {
+      console.log(resp);
+      this.data2Source = new MatTableDataSource(resp);
+    })
+  }
   goHome() {
     this.router.navigateByUrl('/sme-dashboard');
   }
