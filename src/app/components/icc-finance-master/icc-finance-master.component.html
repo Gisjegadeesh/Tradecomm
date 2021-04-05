@@ -8,9 +8,11 @@
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceNo}}" [matTooltipPosition]="'below'"> Invoice No  </th>
             <td mat-cell *matCellDef="let element"> 
-              <mat-chip-list>
-                     <mat-chip color="primary" selected (click)="openModal($event,template,element)">{{element.invoiceNo}} </mat-chip>
-                 </mat-chip-list>
+              <!-- <mat-chip-list>
+                     <mat-chip color="primary" selected (click)="openModal($event,template,element)"> -->
+                         {{element.invoiceNo}} 
+                        <!-- </mat-chip>
+                 </mat-chip-list> -->
              </td>
           </ng-container>
 
@@ -18,9 +20,11 @@
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceAmount}}" [matTooltipPosition]="'below'">  Amt (BaseCcy)  </th>
             <td mat-cell *matCellDef="let element"> 
-              <mat-chip-list>
-                     <mat-chip >{{element.baseCcyAmt}} </mat-chip>
-                 </mat-chip-list>
+              <!-- <mat-chip-list>
+                     <mat-chip > -->
+                         {{element.baseCcyAmt}} 
+                        <!-- </mat-chip>
+                 </mat-chip-list> -->
              </td>
           </ng-container>
         
@@ -28,9 +32,11 @@
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.smeName}}" [matTooltipPosition]="'below'"> Fundable Percentage </th>
             <td mat-cell *matCellDef="let element"> 
-              <mat-chip-list>
-                     <mat-chip>{{element.fundablePercent ?element.fundablePercent : '0' }} % </mat-chip>
-                 </mat-chip-list>
+              <!-- <mat-chip-list>
+                     <mat-chip> -->
+                         {{element.fundablePercent ?element.fundablePercent : '0' }} % 
+                        <!-- </mat-chip>
+                 </mat-chip-list> -->
              </td>
           </ng-container>
           
@@ -39,9 +45,11 @@
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.buyerName}}" [matTooltipPosition]="'below'"> Funding Amt (BaseCcy) </th>
             <td mat-cell *matCellDef="let element"> 
-               <mat-chip-list>
-                      <mat-chip>{{element.baseCcyFundingAmt}} </mat-chip>
-                  </mat-chip-list>
+               <!-- <mat-chip-list>
+                      <mat-chip> -->
+                          {{element.baseCcyFundingAmt}} 
+                        <!-- </mat-chip>
+                  </mat-chip-list> -->
               </td>
           </ng-container>
         
@@ -50,9 +58,11 @@
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceCreateDate}}" [matTooltipPosition]="'below'">  Net Amt payable  </th>
             <td mat-cell *matCellDef="let element"> 
-               <mat-chip-list>
-                      <mat-chip>{{ element.baseCcyNetAmtPayable}} </mat-chip>
-                  </mat-chip-list>
+               <!-- <mat-chip-list>
+                      <mat-chip> -->
+                          {{ element.baseCcyNetAmtPayable}}
+                         <!-- </mat-chip>
+                  </mat-chip-list> -->
               </td>
           </ng-container>
         
@@ -60,10 +70,21 @@
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceDueDate}}" [matTooltipPosition]="'below'"> SME Id </th>
             <td mat-cell *matCellDef="let element"> 
-               <mat-chip-list>
-                      <mat-chip>{{element.smeId}} </mat-chip>
-                  </mat-chip-list>
+               <!-- <mat-chip-list>
+                      <mat-chip> -->
+                          {{element.smeId}} 
+                        <!-- </mat-chip>
+                  </mat-chip-list> -->
               </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element"> 
+              <a href="javascript:void(0)" (click)="openModal($event,template,element)">
+                  <mat-icon>visibility</mat-icon>
+              </a>
+               </td>
           </ng-container>
   
           <!-- <ng-container matColumnDef="status">
