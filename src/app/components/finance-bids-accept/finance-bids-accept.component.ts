@@ -40,6 +40,7 @@ export class FinanceBiddingAcceptsComponent implements OnInit {
   public accountList: ElementRef<any>;
   dashboardTooltip=FINANCIERDASHBOARDCONSTANTS;
   @HostListener('window:resize', ['$event'])
+  isHover: boolean = false;
   ngOnInit() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;

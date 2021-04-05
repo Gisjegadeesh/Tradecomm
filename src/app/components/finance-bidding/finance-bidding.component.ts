@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {FinanceRequestServices} from './finance-service'
 import {FinanceBiddingService} from '../../service/finance_bidding/finance-bidding.service';
 import { FINANCIERDASHBOARDCONSTANTS} from '../../shared/constants/constants';
+import { MatPaginator } from '@angular/material/paginator';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -42,6 +43,7 @@ export class FinanceBiddingComponent implements OnInit {
     'invAmt',
     'buyerName',
     'invDate',
+    'action'
     // 'invAmt'
     // 'SellerRating',
     // 'BuyerRating',
@@ -53,7 +55,9 @@ export class FinanceBiddingComponent implements OnInit {
   // dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   modalRef: BsModalRef;
-  
+  isHover: boolean = false;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -64,7 +68,8 @@ export class FinanceBiddingComponent implements OnInit {
       
       console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
-     
+      this.dataSource.paginator = this.paginator
+
      
     })
 
