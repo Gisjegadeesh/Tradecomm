@@ -22,6 +22,7 @@ import { FinanceBiddingAcceptsDetailsComponent } from './components/finance-bids
 import {InvoiceDetailsExpiredComponent} from './components/finance-bidding-expired/invoice-details-expired/invoice-details-expired.component'
 import {FinanceBiddingRejectedComponent} from './components/finance-bidding-rejected/finance-bidding-rejected.component'
 import {InvoiceDetailsRejectedComponent} from './components/finance-bidding-rejected/invoice-details-rejected/invoice-details-rejected.component'
+import {ICCacceptancedetailsComponent} from './components/icc-offer-acceptance/icc-acceptance-details/icc-acceptance-details.component'
 import {IccFundingRequestComponent} from './components/icc-funding-request/icc-funding-request.component'
 import {IccOfferAcceptanceComponent}  from './components/icc-offer-acceptance/icc-offer-acceptance.component'
 import {IccFinanceMasterComponent} from './components/icc-finance-master/icc-finance-master.component';
@@ -63,7 +64,8 @@ const routes: Routes = [
   { path: 'icc-invoice-master', component: IccInvoiceMasterComponent , data : {"HeaderName" : "Invoice-Master","homePath" : "/icc-dashboard"}},
   // { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Dashboard"}},
   { path: 'icc-funding-request', component: IccFundingRequestComponent , data : {"HeaderName" : "ICC Open Funding","homePath" : "/icc-dashboard"}},  
-  { path: 'icc-offer-acceptance', component: IccOfferAcceptanceComponent , data : {"HeaderName" : "ICC Offer Acceptance","homePath" : "/icc-dashboard"}},
+  { path: 'icc-offer-acceptance', component: IccOfferAcceptanceComponent , data : {"HeaderName" : "ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},
+  { path: 'icc-offer-acceptance-details/:type/:id', component: ICCacceptancedetailsComponent , data : {"HeaderName" : "ICC TradeComm Dashboard / ICC Offer Acceptance","homePath" : "/icc-dashboard"}},
 
 ];
 

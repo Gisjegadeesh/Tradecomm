@@ -23,4 +23,16 @@ export class IccOfferAcceptServices {
     return this.apiService.tempGet(environment.serviePath_2+'api/v1/bidding-details/getBiddingDetails/'+id);
   }
   
+  getFinancierBidding(params : any){
+    return this.apiService.get('invoiceRequestSave', params);
+}
+getInvoiceDetails() {
+  return this.apiService.tempGet(environment.serviePath_2+'api/v1/invoice-request/allBiddingInvoicesBySmeId/'+'SME');
+}
+UpdateBiddingSave(id,body: any) {
+  return this.apiService.put(environment.serviePath_2+'api/v1/bidding-details/updateBidStatusInitiated/'+id,body);
+}
+getInvDetailsLists_ForFinanceBidding(id){
+  return this.apiService.tempGet(environment.serviePath_2+'api/v1/bidding-details/getBiddingFromId/'+id); 
+}
 }
