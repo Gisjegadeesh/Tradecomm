@@ -233,13 +233,13 @@ export class IccOfferAcceptanceComponent implements OnInit {
   navigateFinanceDetails(id, type) {
     this.router.navigateByUrl('/icc-offer-acceptance-details/' + type + '/' + id);
   }
-  OpenAllFundingBids(id, type){
-    this.AllFundingOpen = !this.AllFundingOpen
-    this.IccOfferAcceptServices.getInvoiceDetails().subscribe(resp => {
-      console.log(resp);
-      this.data2Source = new MatTableDataSource(resp);
-    })
-  }
+  // OpenAllFundingBids(id, type){
+  //   this.AllFundingOpen = !this.AllFundingOpen
+  //   this.IccOfferAcceptServices.getInvoiceDetails().subscribe(resp => {
+  //     console.log(resp);
+  //     this.data2Source = new MatTableDataSource(resp);
+  //   })
+  // }
   goHome() {
     this.router.navigateByUrl('/sme-dashboard');
   }

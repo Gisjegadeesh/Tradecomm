@@ -205,7 +205,7 @@ export class ICCacceptancedetailsComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.IccOfferAcceptServices.getInvoiceDetails().subscribe(resp => {
+    this.IccOfferAcceptServices.getInvoiceDetails(this.id).subscribe(resp => {
       console.log(resp);
       this.data2Source = new MatTableDataSource(resp);
     })
