@@ -16,18 +16,18 @@ export class NavbarComponent implements OnInit {
   constructor(public router: Router, private route: ActivatedRoute,public authenticationService:AuthenticationService,private _location: Location) { }
   ngOnInit(): void {
     this.userName = localStorage.getItem("userId")
-    const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
-    this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    // const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
+    // this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    this.getModuleDependencies()
   }
   ngDoCheck(){
-    let componentName =  this.route.firstChild && this.route.firstChild.data && this.route.firstChild.data['_value'] && this.route.firstChild.data['_value'].HeaderName ? this.route.firstChild.data['_value'].HeaderName : '';
+    this.getModuleDependencies()
+    // let componentName =  this.route.firstChild && this.route.firstChild.data && this.route.firstChild.data['_value'] && this.route.firstChild.data['_value'].HeaderName ? this.route.firstChild.data['_value'].HeaderName : '';   
+    // const result = this.router.config && this.router.config.filter(item => item.data && item.data.HeaderName == componentName);
+    // this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    // this.homePath = result && result[0] && result[0].data && result[0].data.homePath
 
-    // const result = this.router.config && this.router.config.filter(item => '/'+item.path == this.router.url);
-   
-    const result = this.router.config && this.router.config.filter(item => item.data && item.data.HeaderName == componentName);
 
-    this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
-    this.homePath = result && result[0] && result[0].data && result[0].data.homePath
     // if(this.router.url.includes('financier-onboarding') && (this.router.url.includes('edit') || this.router.url.includes('view'))){
     //   this.currentHeaderName = 'Financier Onboarding'
     // }else if(this.router.url.includes('sme-bidding/') && this.router.url.includes('id')){
@@ -38,6 +38,15 @@ export class NavbarComponent implements OnInit {
     //   this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
     // }
   }
+
+
+  getModuleDependencies(){
+    let componentName =  this.route.firstChild && this.route.firstChild.data && this.route.firstChild.data['_value'] && this.route.firstChild.data['_value'].HeaderName ? this.route.firstChild.data['_value'].HeaderName : '';   
+    const result = this.router.config && this.router.config.filter(item => item.data && item.data.HeaderName == componentName);
+    this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
+    this.homePath = result && result[0] && result[0].data && result[0].data.homePath
+  }
+
   goHome(){
     this.router.navigateByUrl(this.homePath);
   }
