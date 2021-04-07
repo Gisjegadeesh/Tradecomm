@@ -13,6 +13,7 @@ import { SMEDASHBOARDCONSTANTS } from '../../../shared/constants/constants';
 import { SmeBiddingServices } from '../sme-bidding-services';
 import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
 import * as _ from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -136,7 +137,7 @@ export class SmeBiddingDetailsComponent implements OnInit {
   financierTooltip=SMEDASHBOARDCONSTANTS;
   
   constructor(private activatedRoute: ActivatedRoute,public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
-    ,private financierService: FinancierService,private smeBiddingServices : SmeBiddingServices) { }
+    ,private financierService: FinancierService,private smeBiddingServices : SmeBiddingServices,private toastr: ToastrService) { }
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   dataSourceTwo; //data
   dataBIDDetails;
@@ -262,7 +263,7 @@ export class SmeBiddingDetailsComponent implements OnInit {
         if(resp){
           this.smeBiddingServices.updateFinBid(resp.id).subscribe(resp => {
           })
-        alert("Accepted successfully")
+          this.toastr.success("Accepted successfully")
         this.modalRef.hide()
         this.router.navigateByUrl('/sme-dashboard');
         }
@@ -273,7 +274,7 @@ export class SmeBiddingDetailsComponent implements OnInit {
       //console.log(data.filteredData.id,"usus")
         this.smeBiddingServices.rejectFinBid(data.filteredData[0].id).subscribe(resp => {
         })
-      alert("Rejected successfully")
+        this.toastr.success("Rejected successfully")
       this.modalRef.hide()
       this.router.navigateByUrl('/sme-dashboard');
     }

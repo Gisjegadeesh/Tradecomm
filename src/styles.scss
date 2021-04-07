@@ -590,6 +590,11 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     float: right;
     margin-right: 100px;
 }
+.toast-top-right {
+    top: 12px;
+    right: 0;
+    left: 40%;
+}
 //iphonex
 @media screen and (max-width: 575px) {
     table#customers{

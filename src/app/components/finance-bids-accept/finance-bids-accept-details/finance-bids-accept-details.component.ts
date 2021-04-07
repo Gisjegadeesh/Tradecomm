@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
 import {FinanceBiddingService} from '../../../service/finance_bidding/finance-bidding.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -72,7 +73,7 @@ export class FinanceBiddingAcceptsDetailsComponent implements OnInit {
   isView: boolean;
   FinancebiddingDetails: any;
 
-  constructor(private FinanceBiddingService:FinanceBiddingService,private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private modalService: BsModalService, private authenticationService: AuthenticationService, private router: Router, private modalDialogService: ModalDialogService, private fb: FormBuilder, private invoiceRequestServices: InvoiceRequestServices) { }
+  constructor(private FinanceBiddingService:FinanceBiddingService,private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private modalService: BsModalService, private authenticationService: AuthenticationService, private router: Router, private modalDialogService: ModalDialogService, private fb: FormBuilder, private invoiceRequestServices: InvoiceRequestServices,private toastr: ToastrService) { }
   finBidform: FormGroup;
   modalRef: BsModalRef;
   detailsTooltip = INVOICEDETAILSCONSTANTS
@@ -310,11 +311,11 @@ export class FinanceBiddingAcceptsDetailsComponent implements OnInit {
   onSubmitBidForm() {
     try {
       if (this.finBidform.status === "INVALID") {
-        alert("Please fill Mandatory fields")
+        this.toastr.error("Please fill Mandatory fields")
       } else {
         let params = this.finBidform.value
         this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
-          alert("Bid accepted successfully")
+          this.toastr.success("Bid accepted successfully")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');

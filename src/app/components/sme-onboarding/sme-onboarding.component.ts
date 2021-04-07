@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -58,7 +59,7 @@ export class SmeOnboardingComponent implements OnInit {
   smeForm:FormGroup
 
   constructor(private router: Router,
-    private fb:FormBuilder) { }
+    private fb:FormBuilder,private toastr: ToastrService) { }
 
   
   name = "Angular";
@@ -4448,7 +4449,7 @@ export class SmeOnboardingComponent implements OnInit {
   }
 
   onSubmit() {
-    alert("Onboard Sucessfully")
+    this.toastr.success("Onboard Sucessfully")
     if (this.sName.valueOf() !== '' || this.taxId.valueOf() !== '') {
       if (this.state.valueOf() !== '' || this.state.valueOf() !== '') {
         this.router.navigate(['sme-dashboard']);
@@ -4553,13 +4554,18 @@ export class SmeOnboardingComponent implements OnInit {
   }
 
   checkFormComp(sectionIndex){
+      let isFormComp = true
     this.questionnaireSections[sectionIndex].questions.map((item)=>{
         if(!item.response && item.required){
-            return false
+            isFormComp = false
         }
         else{
-            return true
+            isFormComp = true
         }
     })
+    return isFormComp
   }
+
+
+  
 }
