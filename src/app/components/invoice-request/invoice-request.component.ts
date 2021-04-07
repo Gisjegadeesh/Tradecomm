@@ -281,7 +281,7 @@ private _filter(value: string): string[] {
       "invoiceIds": invoiceIds,
     }
 
-    this.toastr.success("Selected Inovices has been Authorized !");
+    this.toastr.success("Selected Invoices has been Authorized !");
     this.invoiceRequestServices.authoriseInvoice(invoiceIds.toString()).subscribe(resp => {
       this.getInvDetailsLists();
     }, error => {
