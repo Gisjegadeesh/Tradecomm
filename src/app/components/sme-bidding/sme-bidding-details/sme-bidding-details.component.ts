@@ -14,6 +14,8 @@ import { SmeBiddingServices } from '../sme-bidding-services';
 import {INVOICEDETAILSCONSTANTS} from '../../../shared/constants/constants';
 import * as _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -124,6 +126,8 @@ export class SmeBiddingDetailsComponent implements OnInit {
   public accountList: ElementRef<any>;
   id: any;
   smeDetails: any;
+  TextAreaDiv: boolean;
+  public issubmitTrue: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -135,8 +139,10 @@ export class SmeBiddingDetailsComponent implements OnInit {
   }
   panelOpenState = false;
   financierTooltip=SMEDASHBOARDCONSTANTS;
+  Rejectform: FormGroup;
+
   
-  constructor(private activatedRoute: ActivatedRoute,public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
+  constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute,public router: Router,private modalService: BsModalService,private modalDialogService:ModalDialogService,private authenticationService: AuthenticationService
     ,private financierService: FinancierService,private smeBiddingServices : SmeBiddingServices,private toastr: ToastrService) { }
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   dataSourceTwo; //data
@@ -190,7 +196,23 @@ export class SmeBiddingDetailsComponent implements OnInit {
     'Buyer',
     'Amount',
   ];
-  
+ 
+  rejectQustionOne = {
+    subrejectQustionOne: [
+      { name: 'Inv Discount Rate High',labelPosition:'before',formControlName:'Inv_Discount_Low'},
+      { name: 'Annual Yield (Basis a360) Too High',labelPosition:'before',formControlName:'Annual_Yield'},
+      { name: 'Fundable percentage Less',labelPosition:'before',formControlName:'Fundable_percentage_low'},
+      { name: 'Funding Amount Less',labelPosition:'before',formControlName:'Funding_Amount_High' },
+    ]
+};
+rejectQustionTwo = {
+  subrejectQustionTwo: [
+    { name: 'Net Amt payable (Base CCY) Low',labelPosition:'before',formControlName:'Net_payable'},
+    { name: 'Repayment Date Less',labelPosition:'before',formControlName:'Repayment_Date'},
+    { name: 'Off Exp date /time Less',labelPosition:'before',formControlName:'Off_date'},
+    { name: 'Others',labelPosition:'before',formControlName:'Others'},
+  ]
+}
   goods_array : object [];
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
@@ -211,7 +233,33 @@ export class SmeBiddingDetailsComponent implements OnInit {
       }
     }) 
   }
- 
+  buildform() {
+    this.Rejectform = this.fb.group({
+      Inv_Discount_Low: [''],
+      Annual_Yield: [''],
+      Fundable_percentage_low: [''],
+      Funding_Amount_High: [''],
+      Net_payable: [''],
+      Base_Amount: [''],
+      invoiceAmt: [''],
+      Repayment_Date: [''],
+      Funding_CCY: [''],
+      Off_date:[''],
+      Others:[''],
+      OthersRemarks:['']
+    })
+  }
+  updateAllComplete(text){
+    console.log(text,"text")
+    if(text === 'Others'){
+      this.Rejectform.get('OthersRemarks').setValidators([Validators.required]);
+      this.Rejectform.get('OthersRemarks').updateValueAndValidity();
+      this.TextAreaDiv = !this.TextAreaDiv
+    }
+  }
+  submit(){
+
+  }
   public scrollRight(): void {
     this.start = false;
     const scrollWidth =
@@ -239,13 +287,26 @@ export class SmeBiddingDetailsComponent implements OnInit {
     });
   }
   openModal(event, template,index,financier) {
+    console.log(template,"template")
     console.log(financier,"financier")
     console.log(index,"index")
+    console.log(event,"event")
+    if(index === 'reject'){
+      this.modalRef.hide()
+      this.TextAreaDiv = false
+      this.buildform()
+      event.preventDefault();
+      this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    }else{
     let array = []
     array.push(financier)
     this.dataBIDDetails = new MatTableDataSource(array);
     event.preventDefault();
     this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    }
+  }
+  public errorHandling = (control: string, error: string) => {
+    return this.Rejectform.controls[control].hasError(error);
   }
   isOpenHandle(isTrue){
     this.isOpen = isTrue == "inActive" ? "active" : "inActive"
@@ -271,13 +332,25 @@ export class SmeBiddingDetailsComponent implements OnInit {
     }
     
     rejectBid(data){
-      //console.log(data.filteredData.id,"usus")
-        this.smeBiddingServices.rejectFinBid(data.filteredData[0].id).subscribe(resp => {
-        })
+      console.log(data.filteredData[0].id,"usus")
+      console.log(this.Rejectform.value,"this.finBidform.value")
+      console.log(this.Rejectform,"this.Rejectform")
+      this.issubmitTrue = true;
+      if (this.Rejectform.invalid) {
+        alert("Please fill Mandatory fields")
+        return;
+      }
+      if (this.Rejectform.valid){
+      this.smeBiddingServices.rejectFinBid(data.filteredData[0].id,this.Rejectform.value).subscribe(resp => {
         this.toastr.success("Rejected successfully")
-      this.modalRef.hide()
-      this.router.navigateByUrl('/sme-dashboard');
+          this.issubmitTrue = false;
+          this.modalRef.hide()
+          this.Rejectform.reset();
+          this.router.navigateByUrl('/sme-dashboard');
+        })
+   
     }
+  }
 
     handleToggle(e,status){
       this.modalDialogService.confirm("Confirm Delete","Do you really want to change the status ?","Ok","Cancel").subscribe(result =>{       
