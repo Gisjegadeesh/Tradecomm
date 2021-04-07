@@ -9,7 +9,9 @@
             <mat-icon>chevron_left</mat-icon>
           </button>
         <li class="uxg-h6">{{currentHeaderName}}</li>
-        <li class="curs-pointer" (click)="goHome()">Home</li>
+        <!-- <li class="curs-pointer" (click)="goHome()">Home</li> -->
+        <li *ngFor="let item of headerPaths" class="curs-pointer" (click)="navigationHeadersPath(item.path)">{{item.pathName}}</li>
+
     </ul>
     <span class="fill-remaining-space"></span>
     <div class="uxg-toolbar-actions">

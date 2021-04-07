@@ -421,12 +421,12 @@ export class FinancierOnboardingComponent implements OnInit {
     }
     !this.financierId && this.financierService.submitFinancier(findetobj).subscribe(result => {
       //  this.toastr.success('Financier onboard Sucessfully')
-      alert('Financier onboard Sucessfully')
+      this.toastr.success('Financier onboard Sucessfully')
       this.gotoPage();
     })
     this.financierId && this.financierService.updateFinancier(findetobj).subscribe(result => {
       // this.toastr.success('Financier Updated Sucessfully')
-      alert('Financier details updated Sucessfully')
+      this.toastr.success('Financier details updated Sucessfully')
       this.gotoPage();
     })
   }

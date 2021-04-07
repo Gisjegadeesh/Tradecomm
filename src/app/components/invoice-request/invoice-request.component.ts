@@ -12,6 +12,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -173,8 +174,9 @@ export class InvoiceRequestComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   disableSelect = new FormControl(false);
 
-  constructor(public router: Router, private authenticationService: AuthenticationService, private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
-    private datePipe: DatePipe) {
+  constructor(public router: Router, private authenticationService: AuthenticationService, 
+    private invoiceRequestServices: InvoiceRequestServices, private fb: FormBuilder,
+    private datePipe: DatePipe,private toastr: ToastrService) {
     this.invoiceFormBuild()
     this.dataSourceTwo = new MatTableDataSource();
   }
@@ -279,7 +281,7 @@ private _filter(value: string): string[] {
       "invoiceIds": invoiceIds,
     }
 
-    alert("Selected Inovices has been Authorized !");
+    this.toastr.success("Selected Inovices has been Authorized !");
     this.invoiceRequestServices.authoriseInvoice(invoiceIds.toString()).subscribe(resp => {
       this.getInvDetailsLists();
     }, error => {
@@ -361,7 +363,7 @@ private _filter(value: string): string[] {
        grandtotal += Number(element.total)
     });
     if(grandtotal != this.invoiceForm.value.invAmt){
-      return alert("Please check Good Details !! Grant Total Should Be Equal to Funding Request Amount");
+      return this.toastr.error("Please check Good Details !! Grant Total Should Be Equal to Funding Request Amount");
     }
 
     try {

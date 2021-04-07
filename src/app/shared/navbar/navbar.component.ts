@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   currentHeaderName = "";
   userName
   homePath = "";
+  headerPaths = [];
 
   constructor(public router: Router, private route: ActivatedRoute,public authenticationService:AuthenticationService,private _location: Location) { }
   ngOnInit(): void {
@@ -45,6 +46,9 @@ export class NavbarComponent implements OnInit {
     const result = this.router.config && this.router.config.filter(item => item.data && item.data.HeaderName == componentName);
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
     this.homePath = result && result[0] && result[0].data && result[0].data.homePath
+
+    this.headerPaths = result && result[0] && result[0].data && result[0].data.headerPaths ? result[0].data.headerPaths : []
+
   }
 
   goHome(){
@@ -57,5 +61,9 @@ export class NavbarComponent implements OnInit {
 
     backNavigation() {
       this._location.back();
+    }
+
+    navigationHeadersPath(path){
+      this.router.navigateByUrl(path);
     }
 }

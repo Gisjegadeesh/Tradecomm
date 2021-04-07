@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 interface Status {
   value: string;
@@ -91,7 +92,9 @@ export class InvoiceDetailsComponent implements OnInit {
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
   
-  constructor(private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices) { }
+  constructor(private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,
+    private authenticationService:AuthenticationService,private router :Router,private modalDialogService:ModalDialogService,
+    private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices,private toastr: ToastrService) { }
 
   dataSourceOne = new MatTableDataSource(DATA_ONE); //data
   displayedColumnsOne: string[] = ['descGoods', 'quantity', 'taxRate','amt','rate','total'];
@@ -364,7 +367,7 @@ export class InvoiceDetailsComponent implements OnInit {
       //   this.invoiceForm.get(key).updateValueAndValidity();
       //   }
       if (this.finBidform.status === "INVALID"){
-        alert("Please fill Mandatory fields")
+        this.toastr.error("Please fill Mandatory fields")
       }else{
         let params = this.finBidform.value
         params.repaymentDate = this.invoiceDetails.invDueDate;
@@ -378,7 +381,7 @@ export class InvoiceDetailsComponent implements OnInit {
         //   this.invoiceForm.get(key).updateValueAndValidity();
         // }
         this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
-          alert("Bid accepted successfully")
+          this.toastr.success("Bid accepted successfully")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');
