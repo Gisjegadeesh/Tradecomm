@@ -32,17 +32,20 @@
             </button>
         </form>
         
-            <a routerLink="/signup" mat-flat-button color="primary"  #tooltip="matTooltip"
+        <div class="login-actions"> 
+            <span class="uxg-body-3">Don't have an account? </span>
+            <a routerLink="/signup" color="primary"  #tooltip="matTooltip"
             matTooltip="{{loginTooltip.signup}}" [matTooltipPosition]="'below'">
                 <!-- <mat-icon>arrow_right_alt</mat-icon> -->
                 Sign Up
             </a>
+            </div>
 
-            <div class="login-actions">
+            <!-- <div class="login-actions">
                 <mat-checkbox color="primary"  #tooltip="matTooltip"
                 matTooltip="{{loginTooltip.select}}" [matTooltipPosition]="'below'"><span class="uxg-body-3">Remember me</span></mat-checkbox>
                 <a href="" class="uxg-body-3" >Forgot password</a>
-            </div>
+            </div> -->
         
         <span class="fill-remaining-space"></span>
 
