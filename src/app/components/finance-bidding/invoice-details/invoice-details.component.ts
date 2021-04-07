@@ -381,7 +381,7 @@ export class InvoiceDetailsComponent implements OnInit {
         //   this.invoiceForm.get(key).updateValueAndValidity();
         // }
         this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
-          this.toastr.success("Bid accepted successfully")
+          this.toastr.success("Bid Launched successfully")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');

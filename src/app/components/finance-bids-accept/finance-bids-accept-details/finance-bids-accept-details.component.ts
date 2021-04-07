@@ -315,7 +315,7 @@ export class FinanceBiddingAcceptsDetailsComponent implements OnInit {
       } else {
         let params = this.finBidform.value
         this.invoiceRequestServices.finbidSave(params).subscribe(resp => {
-          this.toastr.success("Bid accepted successfully")
+          this.toastr.success("Bid Accepted successfully")
           this.buildfinBidform();
           this.modalRef.hide()
           this.router.navigateByUrl('/financier-dashboard');
