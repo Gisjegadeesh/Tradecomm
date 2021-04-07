@@ -107,6 +107,14 @@ import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/i
 import { TextAreaComponent } from './shared/textArea/textArea.component';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import { TextListComponent } from './shared/textList/textList.component';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -188,14 +196,19 @@ import { TextListComponent } from './shared/textList/textList.component';
     MatTooltipModule,
     ToastrModule.forRoot(),
     TextFieldModule,
-    MatSliderModule
+    MatSliderModule,
+    PerfectScrollbarModule
   ],
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,
     FinanceRequestServices,FinanceBiddingRejectedServices,FinanceBiddingExpiryServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
     FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,IccFinanceTodayServices,IccFinanceMasterServices,IccInvoiceMasterServices,IccFundingServices,IccOfferAcceptServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } }
+    { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
 
   exports:[ MatInputModule],
