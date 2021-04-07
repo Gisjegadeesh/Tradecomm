@@ -1,0 +1,23 @@
+@media only screen and (max-width: 1000px)
+{
+
+.uxg-breadcrumb
+{
+    position: absolute;
+    top: 103%;
+    left: -14px;
+    overflow: hidden;   
+    overflow-x: auto;
+    background-color: #fff;
+    button{    margin-right: -8px;}
+    li{font-size: 12px;} 
+}
+}
+
+@media only screen and (max-width: 500px)
+{
+    .uxg-breadcrumb
+{ 
+    max-width: 350px;     
+}
+}

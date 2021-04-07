@@ -1,5 +1,6 @@
 <div class="app-content {{isOpen}} ">
-    <header>
+    <header class="mt20">
+        <div class="mmt70"></div>
   <div class="data-section">
     <mat-tab-group>
         <mat-tab label="Bid Details">
@@ -134,6 +135,7 @@
                                 Invoice Details
                             </mat-panel-title>
                         </mat-expansion-panel-header>
+                        <div class="table-res">
             <table mat-table [dataSource]="dataSourceInvoiceDetails">
                 <ng-container matColumnDef="InvoiceID">
                     <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
@@ -172,6 +174,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedInvDetailsColumns" style="background-color:#B4A6EA"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedInvDetailsColumns"></tr>
             </table>
+            </div>
         </mat-expansion-panel>
             </mat-accordion>
             <!-- Invoice Details-->
@@ -186,6 +189,7 @@
                             Goods Details
                         </mat-panel-title>
                     </mat-expansion-panel-header>
+                    <div class="table-res">
                     <table mat-table [dataSource]="dataSourceOne">
                         <ng-container matColumnDef="descGoods">
                         <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
@@ -260,6 +264,7 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
                         </table>
+                        </div>
                 </mat-expansion-panel>
             </mat-accordion>
        

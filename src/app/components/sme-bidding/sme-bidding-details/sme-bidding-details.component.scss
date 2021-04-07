@@ -243,4 +243,33 @@ mat-card-content[_ngcontent-njk-c181]
     font-size: 16px;
   }
 
+  //April-7 css
+  .mt20{margin-top: 20px!important;}
+@media only screen and (max-width: 1025px)
+{
+ 
+    header{margin: 0px;padding: 0px;
+        margin-top: 50px;
+    } 
+    .table-res
+    {
+        overflow-x: auto;
+    } 
+    .mmt20{margin-top: 45px;}
+    .mmt70{margin-top: 70px;}
+}
+
+@media only screen and (max-width: 768px)
+{
+  
+   .table-res table
+   {
+       margin: 11px 10px 18px 5px;
+   }
+   .app-content
+   {
+       padding: 20px;
+   }
+
+}
 

@@ -614,25 +614,33 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     margin-right: -16px;
     margin-left: -16px;
     }
-    table{
-        &.table-responsive{
-            display: block;
-        }
-        &.inv-table{
-                td{
-                    display: block;
-                }
-                table.fun-table{
-                    .spilt-input, .select-split-input{
-                        width: 402px;
-                    }
+  table{
+    &.table-responsive{
+        display: block;
+    }
+    &.inv-table{
+            td{
+                display: block;
+            }
+            .mat-form-field{
+                width: 270px;
+            }
+            table.fun-table{
+                .spilt-input, .select-split-input{
+                    width: 270px;
                 }
             }
-            .add-good-plusbtn{
-                padding: 3% 20% 6% 20%;
-                float: left;
-            }
         }
+        .add-good-plusbtn{
+            padding: 3% 20% 6% 20%;
+            float: left;
+        }
+    }
+.sme-fin-modal{
+    .modal-content {
+        max-width: 360px;
+    }
+}
     }
 //ipad
     @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -645,6 +653,30 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
             .fundreq-btn{
                 margin-right: 0;
             } 
+            table{
+                &.table-responsive{
+                    display: block;
+                }
+                &.inv-table{
+                        .mat-form-field{
+                            width:230px;
+                        }
+                        table.fun-table{
+                            .spilt-input, .select-split-input{
+                                width:113px;
+                            }
+                        }
+                    }
+                    .add-good-plusbtn{
+                        padding: 3% 20% 6% 20%;
+                        float: left;
+                    }
+                }
+                .sme-fin-modal{
+                    .modal-content {
+                        max-width: 500px;
+                    }
+                }
     }
 //ipadpro
     @media screen and (min-width: 992px) and (max-width: 1199px) {
@@ -653,6 +685,31 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
             }   
             .fundreq-btn{
                 margin-right: 130px;
+            }
+            table{
+                &.table-responsive{
+                    display: block;
+                }
+                &.inv-table{
+                        .mat-form-field{
+                            width: 230px;
+                        }
+                        table.fun-table{
+                            .spilt-input, .select-split-input{
+                                width: 113px;
+                            }
+                        }
+                    }
+                    .add-good-plusbtn{
+                        padding: 3% 20% 6% 20%;
+                        float: left;
+                    }
+            }
+            .sme-fin-modal{
+                .modal-content {
+                    max-width: 500px;
+                    margin: auto;
+                }
             }
     }
 .dynamicForm-textarea{

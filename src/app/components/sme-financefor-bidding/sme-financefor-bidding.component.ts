@@ -166,7 +166,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
 
   openModal(event, template, data) {
     event.preventDefault();
-    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg sme-fin-modal' });
    
     this.SmeFinancierForBiddingServices.getInvoiceRequestLists(data.invoiceId).subscribe(resp => {
       let status = "";
