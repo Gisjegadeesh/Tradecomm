@@ -2,7 +2,7 @@
     <header>
         <br>
         <h5>Finance Requests</h5>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="position: relative;top: 100px;">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-responsive table-post">
           <ng-container matColumnDef="invId">
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceId}}" [matTooltipPosition]="'below'"> Invoice Id  </th>
@@ -146,7 +146,7 @@
           <div style="overflow-x:auto;">
             <p style="font-weight: 500;
             color: #a899e4;margin-left: 14px;">Invoice Details</p>
-            <table mat-table [dataSource]="dataSourceTwo">
+            <table mat-table [dataSource]="dataSourceTwo" class="table-responsive">
                 <ng-container matColumnDef="invId">
                     <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
                     matTooltip="{{biddingTooltip.invoiceNumber}}" [matTooltipPosition]="'below'">Invoice No</th>
@@ -191,7 +191,7 @@
                         Goods Details
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <table mat-table [dataSource]="dataSourceOne">
+                <table mat-table [dataSource]="dataSourceOne" class="table-responsive">
         
                     <ng-container matColumnDef="descGoods">
                         <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"

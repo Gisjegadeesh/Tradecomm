@@ -76,6 +76,14 @@ header {
     z-index: 1;
 }
 
+.table-post{
+    position: relative;
+    top: 100px;
+}
+table.table-responsive{
+    display: inline-table;
+}
+
 @media only screen and (min-width: 377px) and (max-width: 415px) {
     header {
         height: 35%;
@@ -104,8 +112,9 @@ header {
 @media only screen and (max-width: 376px) {
     header {
         margin-bottom: $uxg-spacing-5;
-        height: 35%;
-
+        height: 35%;    
+        padding: 15px;
+        margin: auto;
         .wave {
             overflow: hidden;
             ::ng-deep svg {
@@ -124,14 +133,19 @@ header {
             }
         }
     }
+    .table-post{
+        top: 26px;
+    }
 }
+
 
 /* Tablet Styles */
 @media only screen and (min-width: 500px) and (max-width: 1024px) {
     header {
         margin-bottom: $margin;
         height: 30%;
-
+        margin: auto;
+        padding: 10px;
         .wave {
             overflow: hidden;
             ::ng-deep svg {
@@ -143,6 +157,9 @@ header {
     .accounts-list {
         overflow: hidden;
         padding-top: $margin;
+    }
+    .table-post{
+        top: 31px;
     }
 }
 .app-content.active{
@@ -231,7 +248,6 @@ mat-card-content[_ngcontent-njk-c181]
 .modal-lg {
     max-width: 559px !important;
 }
-
 .example-margin {
     margin: 10px;
   }

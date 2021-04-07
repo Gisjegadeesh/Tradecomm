@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'invoice-request', component: InvoiceRequestComponent , data : {"HeaderName" : "New Funding Request / Seller Dashboard","homePath" : "/sme-dashboard"}},
 
 
-  { path: 'financier-onboarding', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding / ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},
+  { path: 'financier-onboarding', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding / ICC TradeComm Dashssboard","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding-list', component: FinancierOnboardingListComponent ,  data : {"HeaderName" : "Financier Onboarding / ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding/:edit/:id', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding / ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},
   { path: 'financier-onboarding/:view/:id', component: FinancierOnboardingComponent ,  data : {"HeaderName" : "Financier Onboarding / ICC TradeComm Dashboard","homePath" : "/icc-dashboard"}},

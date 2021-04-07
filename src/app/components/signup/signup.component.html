@@ -17,38 +17,36 @@
         <input matInput name="country" [(ngModel)]="country" required>
         <mat-hint>Please enter your country</mat-hint>
       </mat-form-field> -->
-      
       <ng-multiselect-dropdown class="sign-select"
                       name=""
+                      placeholder="Country"
                       [settings]="dropdownSettings"
                       [data]="cities"
                       (onSelect)="onItemSelect($event)" 
+                      (onDeSelect)="onItemDeSelect($event)" 
                   >
                   </ng-multiselect-dropdown>
-      
-      <mat-form-field>
+                    <mat-form-field *ngIf="showCountSignBtn">
         <mat-icon matPrefix>person</mat-icon>
-        <mat-label>UEN</mat-label>
-        <input matInput name="uen" [(ngModel)]="uen" required>
-        <mat-hint>Please enter UEN</mat-hint>
+        <mat-label>{{CountryPinLabel}}</mat-label>
+        <input matInput name="CountryPin" [(ngModel)]="CountryPin" required>
+        <mat-hint>Please enter {{CountryPinLabel}}</mat-hint>
       </mat-form-field>
-      
-      <button mat-flat-button color="primary">
-        <mat-icon (click)="signup()">arrow_right_alt</mat-icon>
+      <button mat-flat-button color="primary"  *ngIf="showCountSignBtn">
+        <mat-icon (click)="signup()"></mat-icon><!-- arrow_right_alt -->
         Sign Up
       </button>
     </form>
-
     <div class="login-actions">
       <a routerLink="/login" class="uxg-body-2">Back to Login Page</a>
     </div>
 
     <span class="fill-remaining-space"></span>
 
-    <div class="signup-footer">
+    <!-- <div class="signup-footer">
       <a href="https://www.finastra.com/support" class="uxg-body-3" target="_blank">Support</a>&nbsp;/&nbsp;
       <a href="https://www.finastra.com" class="uxg-body-3" target="_blank">Finastra.com</a>
-    </div>
+    </div> -->
 
   </div>
 
