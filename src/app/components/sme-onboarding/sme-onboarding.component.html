@@ -7,9 +7,35 @@
 
 <div class="row col-md-12">
   <div class="col-md-3" >
-    <div *ngFor="let sections of questionnaireSections;let secIndex=index" style="text-align: center;">
+    <!-- <div *ngFor="let sections of questionnaireSections;let secIndex=index" style="text-align: center;">
     <button class="ques-sec-btn section-title" [ngClass]="{'selbut': secIndex == sectionIndex}" type="button" (click)="onSectionClick(secIndex)">{{sections.label}}</button>
+  </div> -->
+
+  <div class="step section-title" [ngClass]="{'step-active': secIndex == sectionIndex}" *ngFor="let sections of questionnaireSections;let secIndex=index" (click)="onSectionClick(secIndex)">
+    <div>
+      <div class="circle" *ngIf="!checkFormComp(secIndex)">{{secIndex+1}} </div>
+      <div class="circle" *ngIf="checkFormComp(secIndex)"><mat-icon>check_circle</mat-icon> </div>
+    </div>
+    <div>
+      <div class="title">{{sections.label}}</div>
+    </div>
   </div>
+  <!-- <div class="step step-active">
+    <div>
+      <div class="circle">2</div>
+    </div>
+    <div>
+      <div class="title">Second Step</div>
+    </div>
+  </div>
+  <div class="step">
+    <div>
+      <div class="circle">3</div>
+    </div>
+    <div>
+      <div class="title">Third Step</div>
+    </div>
+  </div> -->
   <!-- <mat-form-field class="example-chip-list">
     <mat-label>Favorite Fruits</mat-label>
     <mat-chip-list #chipList aria-label="Fruit selection">

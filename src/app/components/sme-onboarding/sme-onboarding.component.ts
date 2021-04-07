@@ -4469,6 +4469,7 @@ export class SmeOnboardingComponent implements OnInit {
             }
         }
     })
+    this.questionnaireSections[secIndex].questions[quesIndex]['response']=data.value
   }
   onDropdownChange(data,secIndex,quesIndex){
     this.questionnaireSections[secIndex].questions.map((item)=>{
@@ -4549,5 +4550,16 @@ export class SmeOnboardingComponent implements OnInit {
       })
   }
   onTextListChange(event,secIndex,quesIndex){
+  }
+
+  checkFormComp(sectionIndex){
+    this.questionnaireSections[sectionIndex].questions.map((item)=>{
+        if(!item.response && item.required){
+            return false
+        }
+        else{
+            return true
+        }
+    })
   }
 }

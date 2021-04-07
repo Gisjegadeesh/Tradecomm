@@ -19,6 +19,12 @@ export class TextboxComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        if(this.questionDatas.format == 'Range'){
+            this.sliderValue=this.questionDatas.response ? this.questionDatas.response : 0
+        }
+        else{
+            this.textboxValue=this.questionDatas.response ? this.questionDatas.response : ''
+        }
      }
      formatLabel(value: number) {
         // if (value >= 1000) {

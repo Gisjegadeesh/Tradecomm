@@ -172,6 +172,16 @@ table{
 
 /* Tablet Styles */
 @media only screen and (min-width: 500px) and (max-width: 1024px) {
+    mat-form-field{
+        width: 300px !important;
+    }
+    .spilt-input{
+        width: 140px !important;
+        
+    }
+    .select-split-input{
+        width: 155px !important;   
+    }
     header {
         margin-bottom: $margin;
         height: 30%;

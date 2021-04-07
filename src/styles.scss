@@ -669,8 +669,3 @@ input.custom-autofill {
     @include cdk-text-field-autofill-color(transparent, red);
   }
 
-  @media(max-width:767px) {
-    .section-title .title {
-        font-size: 20px
-    }
-}
