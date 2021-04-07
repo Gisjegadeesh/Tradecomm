@@ -11,7 +11,7 @@ table {
 
 mat-form-field {
     align-self: stretch;
-    margin-bottom: $uxg-spacing-2;
+    // margin-bottom: $uxg-spacing-2;
     margin-left: $uxg-spacing-3 * 6;
     width: 400px;
 }
@@ -37,4 +37,92 @@ mat-form-field {
     border-bottom: 1px solid #694ed6;
     padding-top: 5px;
     border-radius: 3px;
+}
+.ques-sec-btn{
+    margin: 20px 0px 15px 0px;
+    border-radius: 10px;
+    background-color: #4d95c7;
+    border: 1px;
+    color: white;
+    padding: 4px 14px 2px 14px;
+    cursor: pointer;
+    &.selbut{
+        border:2px solid black;
+    }
+}
+
+
+// STEPS
+
+.step {
+    position: relative;
+    min-height: 1em;
+    color: rgb(22, 21, 21);
+    cursor: pointer;
+  }
+  .step + .step {
+    margin-top: 1.5em
+  }
+  .step > div:first-child {
+    position: static;
+    height: 0;
+  }
+  .step > div:not(:first-child) {
+    margin-left: 1.5em;
+    padding-left: 1em;
+  }
+  .step.step-active {
+    color: #2e70db
+  }
+  .step.step-active .circle {
+    background-color: #2e70db;
+  }
+  
+  /* Circle */
+  .circle {
+    background: gray;
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    border-radius: 100%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 0 0 3px #fff;
+  }
+  
+  /* Vertical Line */
+  .circle:after {
+    content: ' ';
+    position: absolute;
+    display: block;
+    top: 1px;
+    right: 50%;
+    bottom: 1px;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    transform: scale(1, 2);
+    transform-origin: 50% -100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: -1;
+  }
+  .step:last-child .circle:after {
+    display: none
+  }
+  
+  /* Stepper Titles */
+  .title {
+    line-height: 1.5em;
+    font-weight: bold;
+  }
+  .caption {
+    font-size: 0.8em;
+  }
+
+  
+  @media(max-width:767px) {
+    .section-title {
+        // background-color: red;
+    }
 }

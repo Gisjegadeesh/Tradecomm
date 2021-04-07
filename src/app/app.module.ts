@@ -38,6 +38,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {DatePipe} from '@angular/common';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSliderModule} from '@angular/material/slider';
 import { LoaderService } from './service/loader.service';
 
 import {ApiService} from './service/api.service';
@@ -105,6 +106,7 @@ import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/i
 
 import { TextAreaComponent } from './shared/textArea/textArea.component';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import { TextListComponent } from './shared/textList/textList.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +135,7 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     DateFieldComponent,
     FileUploadComponent,
     TextAreaComponent,
+    TextListComponent,
     FinanceBiddingExpiredComponent,
     InvoiceDetailsExpiredComponent,
     FinanceBiddingRejectedComponent,
@@ -184,7 +187,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     MatExpansionModule,
     MatTooltipModule,
     ToastrModule.forRoot(),
-    TextFieldModule
+    TextFieldModule,
+    MatSliderModule
   ],
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,
