@@ -117,7 +117,17 @@ mat-form-field {
     font-weight: bold;
   }
   .caption {
-    font-size: 0.8em;
+    font-size: smaller;
+    margin-left: 30px;
+    margin-top: 10px;
+    &.subSecSel{
+      border-radius: 3px;
+    background-color: #2e70db;
+    color: white;
+    width: 130px;
+    padding-left: 5px;
+    display: flex;
+    }
   }
 
   
@@ -125,4 +135,21 @@ mat-form-field {
     .section-title {
         // background-color: red;
     }
+}
+
+.pft-scrollbar{
+  max-height: calc(100vh - 115px);
+}
+
+@media(max-width:767px) {
+  .pft-scrollbar{
+    max-height: unset;
+  }
+  .caption{
+    width: 80px!important;
+    margin-left: 0px;
+    &.subSecSel{
+      padding-left: 3px;
+    }
+  }
 }

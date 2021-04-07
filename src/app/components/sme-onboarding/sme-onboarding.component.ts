@@ -48,6 +48,7 @@ export class SmeOnboardingComponent implements OnInit {
   sectionIndex=0
   smeForm1:FormGroup
   disableSubbtn=true
+  subSection=false
   // smeForm2:FormGroup
   // smeForm3:FormGroup
   // smeForm4:FormGroup
@@ -4385,7 +4386,7 @@ export class SmeOnboardingComponent implements OnInit {
       itemsShowLimit: 3
     };
     this.questionnaireSections.forEach((secItem,secIndex)=>{
-      secItem && secItem.questions.map((quesItem)=>{
+      secItem && secItem.questions.map((quesItem,quesIndex)=>{
           if((quesItem.number - Math.floor(quesItem.number)) !== 0 && this.checkParentresp(secIndex,parseInt(quesItem.number))){
             quesItem.show=false
             quesItem.parentNumber=parseInt(quesItem.number)
@@ -4394,9 +4395,14 @@ export class SmeOnboardingComponent implements OnInit {
             quesItem.show=true
             quesItem.parentNumber= (quesItem.number - Math.floor(quesItem.number)) !== 0 ? parseInt(quesItem.number) : ''
           }
+         quesItem.sectionType = secIndex == 0 && quesIndex < 10 ? 'personal' : 'other'
       })
     })
     console.log(this.questionnaireSections)
+    if(this.sectionIndex == 0){
+        let tempArr=this.questionnaireSections[0].questions
+        this.questions= tempArr.slice(0,11)
+    }
   }
 //   ngDoCheck(){
 //        this.checkForm()
@@ -4475,20 +4481,23 @@ export class SmeOnboardingComponent implements OnInit {
   onDropdownChange(data,secIndex,quesIndex){
     this.questionnaireSections[secIndex].questions.map((item)=>{
         if(data.number == item.parentNumber ){
-          data.selectedItems && data.selectedItems.length && data.selectedItems.map((selItem)=>{
-                if(item.conditions && item.conditions.length && item.conditions[0]['optionAlias'] == selItem.id){
-                    item.show= true
-                }
-                // else {
-                //     item.show=  item.show ? false : true
-                // }
-            })
-            if(data.selectedItems && data.selectedItems.length == 0){
-                item.show = false
-            }
+           item.show = this.checkDropdownCond(data.selectedItems,item.conditions && item.conditions.length && item.conditions[0]['optionAlias'])
         }
     })
-    console.log(this.questionnaireSections)
+    let respArr=[]
+    data.selectedItems && data.selectedItems.length && data.selectedItems.map((selItem)=>{
+        respArr.push(selItem.id)
+    })
+    this.questionnaireSections[secIndex].questions[quesIndex].response=respArr
+  }
+  checkDropdownCond(selectedItems,conditionAlias){
+      let returnValue=false
+    selectedItems.length &&  selectedItems.map((item)=>{
+        if(item.id == conditionAlias){
+            returnValue=true
+        }
+    })
+    return returnValue
   }
   onRadioChange(data,secIndex,quesIndex){
     this.radioChecked={
@@ -4503,7 +4512,7 @@ export class SmeOnboardingComponent implements OnInit {
         return true;
       }
     })
-
+    this.questionnaireSections[secIndex].questions[quesIndex].response=data.condition
     //  this.radioChecked && this.radioChecked['isTrue'] && this.checkCon(data,data.secIndex,data.quesIndex)
 }
   onFileChange(data,secIndex,quesIndex){
@@ -4536,7 +4545,17 @@ export class SmeOnboardingComponent implements OnInit {
   }
 
   onSectionClick(index){
-      this.sectionIndex=index
+    this.sectionIndex=index
+      let questionLength=this.questionnaireSections[index].questions.length
+      if(index == 0 && !this.subSection){
+        this.questions= this.questionnaireSections[0].questions.slice(0,11)
+      }
+      else if(index !=0){
+          this.subSection=false
+        this.questions=this.questionnaireSections[this.sectionIndex].questions
+      }
+      console.log(this.questions)
+
   }
   checkForm(){
       this.questionnaireSections.forEach((item)=>{
@@ -4565,7 +4584,17 @@ export class SmeOnboardingComponent implements OnInit {
     })
     return isFormComp
   }
-
-
-  
+  onSubSection(type){
+      if(type == 'personal'){
+          this.subSection=false
+        let tempArr=this.questionnaireSections[0].questions
+        this.questions= tempArr.slice(0,11)
+      }
+      else{
+          this.subSection=true
+        let tempArr=this.questionnaireSections[0].questions
+        this.questions= tempArr.slice(11)
+        console.log(this.questions)
+      }
+  }
 }

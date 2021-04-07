@@ -731,3 +731,17 @@ input.custom-autofill {
     @include cdk-text-field-autofill-color(transparent, red);
   }
 
+
+  @media(max-width:767px) {
+      .dynamicForm-example-full-width {
+          & .form{
+              width: 225px;
+          }
+      }
+      .dynamic-radio-btn {
+            width: 225px;
+    }
+    .dyn-Formmultiselect-dropdown-dsgn{
+        width: 225px;
+    }
+  }
