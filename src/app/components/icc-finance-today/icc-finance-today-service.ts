@@ -22,5 +22,9 @@ export class IccFinanceTodayServices {
     // bidding-details/getBiddingDetails/{invoiceId}    http://950f76a46a8b.ngrok.io/api/v1
     return this.apiService.tempGet(environment.serviePath_2+'api/v1/bidding-details/getBiddingDetails/'+id);
   }
+
+  getAcceptedFinanceDetails(id){
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/financing-details/getFinancingDetails/'+id);
+  }  
   
 }

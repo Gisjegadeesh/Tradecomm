@@ -8,7 +8,7 @@ export class IccFinanceMasterServices {
   constructor(private apiService: ApiService) { this.baseUrl = "http://localhost:8080/ "; }
   
   getFinanceMasterLists(){
-    return this.apiService.tempGet(environment.serviePath_2+'/api/v1/icc-dashboard/getAllFinanceMaster');
+    return this.apiService.tempGet(environment.serviePath_2+'api/v1/icc-dashboard/getAllFinanceMaster');
   }
   getInvoiceRequestLists(id){
     // let stringifyObj = JSON.stringify( { invoiceDetails : { id : 1} })

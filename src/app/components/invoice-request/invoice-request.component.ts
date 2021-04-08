@@ -298,8 +298,10 @@ private _filter(value: string): string[] {
           "smeId":item['smeId'],
           "invoiceAmt":item['invAmt'],
           "invoiceCcy":item['invCcy'],
-          "status" : "A",
+          "status" : "A", 
           "buyerName": item.buyerName,
+          "buyerAddr":item['buyerAddr'],
+          "dispDate":item['dispDate'],
            "invDueDate":item.invDueDate
         }
         reqParams.push(obj)
