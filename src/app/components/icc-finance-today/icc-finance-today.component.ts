@@ -55,6 +55,11 @@ export interface biddingDetails {
   'financeOfferAmt' : String, 'ccy' : String, 'fxRate' : String, 'margin' : String, 'netAmtDisc' : String,'discAmt' : String,'discRate' : String,'offerExpPeriod' : String}
 const BIDDING_DATA: biddingDetails[] = [];
      
+
+export interface bidDetails {
+  'financeOfferAmt' : String, 'ccy' : String, 'fxRate' : String, 'margin' : String, 'netAmtDisc' : String,'discAmt' : String,'discRate' : String,'offerExpPeriod' : String}
+const BID_DATA: bidDetails[] = [];
+
 @Component({
   selector: 'app-icc-finance-today',
   templateUrl: './icc-finance-today.component.html',
@@ -63,7 +68,7 @@ const BIDDING_DATA: biddingDetails[] = [];
 
 export class IccFinanceTodayComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'invDueDate', 'status','action'];
+  displayedColumns: string[] = ['invoiceNo', 'baseCcyAmt', 'fundablePercent', 'baseCcyFundingAmt', 'baseCcyNetAmtPayable','smeId','action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -79,6 +84,10 @@ export class IccFinanceTodayComponent implements OnInit {
   dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
   displayedColumnsThree: string[] = ['financeOfferAmt', 'ccy', 'fxRate', 'margin', 'netAmtDisc','discAmt','discRate','offerExpPeriod'];
 
+  dataSourceFour = new MatTableDataSource(BID_DATA); //data
+  displayedColumnsFour: string[] = [
+    'id','finId','invoiceId','fxRate','baseCcyAmt' ,'fundablePercent' ,'baseCcyFundingAmt' ,'repaymentDate' ,
+    'baseCcyNetAmtPayable', 'annualYeild' ]
 
   isOpen = ""
   mobileScreen = false;
@@ -193,12 +202,27 @@ export class IccFinanceTodayComponent implements OnInit {
       
     })
 
+
+    this.getBidDetails(data)
+
     // this.dataSourceThree = new MatTableDataSource([
     //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
 
     this.IccFinanceTodayServices.getFinanceBiddingLists(data.INV_ID).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
+      }
+    })
+
+    
+
+
+  }
+
+  getBidDetails(data){
+    this.IccFinanceTodayServices.getAcceptedFinanceDetails(data.invoiceId).subscribe(resp => {
+      if(resp){
+        this.dataSourceFour = new MatTableDataSource(resp);
       }
     })
   }
