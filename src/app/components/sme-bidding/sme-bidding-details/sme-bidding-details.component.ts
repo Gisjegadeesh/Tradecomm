@@ -340,8 +340,11 @@ rejectQustionTwo = {
         alert("Please fill Mandatory fields")
         return;
       }
+      let obj = {
+        Remarks : this.Rejectform.value
+      }
       if (this.Rejectform.valid){
-      this.smeBiddingServices.rejectFinBid(data.filteredData[0].id,this.Rejectform.value).subscribe(resp => {
+      this.smeBiddingServices.rejectFinBid(data.filteredData[0].id,'').subscribe(resp => {
         this.toastr.success("Rejected successfully")
           this.issubmitTrue = false;
           this.modalRef.hide()
