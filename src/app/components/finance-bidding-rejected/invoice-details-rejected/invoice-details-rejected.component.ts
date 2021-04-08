@@ -92,6 +92,7 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
     {value: 'R', viewValue: 'R'},
   ];
   detailsTooltip=INVOICEDETAILSCONSTANTS
+  TextAreaDiv: boolean;
   
   constructor(private FinanceBiddingRejectedServices:FinanceBiddingRejectedServices,private datePipe: DatePipe,private activatedRoute: ActivatedRoute,private modalService: BsModalService,private authenticationService:AuthenticationService,
     private router :Router,private modalDialogService:ModalDialogService,private fb: FormBuilder,private invoiceRequestServices:InvoiceRequestServices,private toastr: ToastrService) { }
@@ -194,7 +195,23 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
   FinancebiddingDetails: any;
   type: string;
   isView: boolean;
-
+  Rejectform: FormGroup;
+  rejectQustionOne = {
+    subrejectQustionOne: [
+      { name: 'Inv Discount Rate High',labelPosition:'before',formControlName:'Inv_Discount_Low'},
+      { name: 'Annual Yield (Basis a360) Too High',labelPosition:'before',formControlName:'Annual_Yield'},
+      { name: 'Fundable percentage Less',labelPosition:'before',formControlName:'Fundable_percentage_low'},
+      { name: 'Funding Amount Less',labelPosition:'before',formControlName:'Funding_Amount_High' },
+    ]
+};
+rejectQustionTwo = {
+  subrejectQustionTwo: [
+    { name: 'Net Amt payable (Base CCY) Low',labelPosition:'before',formControlName:'Net_payable'},
+    { name: 'Repayment Date Less',labelPosition:'before',formControlName:'Repayment_Date'},
+    { name: 'Off Exp date /time Less',labelPosition:'before',formControlName:'Off_date'},
+    { name: 'Others',labelPosition:'before',formControlName:'Others'},
+  ]
+}
   ngOnInit(): void {
     this.type = this.activatedRoute.snapshot.paramMap.get("type");
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
@@ -205,6 +222,7 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
       this.mobileScreen = true;
     }
     this.buildform()
+    this.buildformSecond()
     this.FinanceBiddingRejectedServices.getInvDetailsLists_ForFinanceBidding(this.id).subscribe(resp => {
       if(resp){
         this.FinancebiddingDetails = resp
@@ -395,6 +413,41 @@ export class InvoiceDetailsRejectedComponent implements OnInit {
       invCcyNetAmtPayable:this.finBidform.value.baseCcyNetAmtPayable.toFixed(2)
       });
     }
+  }
+  openModalsecond(event,template,id) {
+    this.TextAreaDiv = true;
+    event.preventDefault();
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+  }
+  buildformSecond() {
+    // this.Rejectform = this.fb.group({
+    //   Inv_Discount_Low: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Inv_Discount_Low : false],
+    //   Annual_Yield: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Annual_Yield : false],
+    //   Fundable_percentage_low: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Fundable_percentage_low : false],
+    //   Funding_Amount_High: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Funding_Amount_High : false],
+    //   Net_payable: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Net_payable : false],
+    //   Base_Amount: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Base_Amount : false],
+    //   invoiceAmt: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.invoiceAmt : false],
+    //   Repayment_Date: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Repayment_Date : false],
+    //   Funding_CCY: [this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Funding_CCY : false],
+    //   Off_date:[this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Off_date : false],
+    //   Others:[this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.Others : false],
+    //   OthersRemarks:[this.FinancebiddingDetails.Remarks ? this.FinancebiddingDetails.Remarks.OthersRemarks : '']
+    // })
+    this.Rejectform = this.fb.group({
+      Inv_Discount_Low: [false],
+      Annual_Yield: [false],
+      Fundable_percentage_low: [false],
+      Funding_Amount_High: [false],
+      Net_payable: [false],
+      Base_Amount: [false],
+      invoiceAmt: [false],
+      Repayment_Date: [false],
+      Funding_CCY: [false],
+      Off_date:[false],
+      Others:[false],
+      OthersRemarks:['']
+    })
   }
 }
 
