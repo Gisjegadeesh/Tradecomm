@@ -1,8 +1,8 @@
 <div class="card-form-container" style="padding-bottom:35px">
-    <div class="dynamic-radio-btn">
+    <div class="dynamic-radio-btn" [ngStyle]="{'width': dynWidth}">
       <h6>{{questionDatas && questionDatas.label}}</h6>
         <!-- <label id="example-radio-group-label">{{questionDatas && questionDatas.label}}</label> -->
-        <mat-radio-group #tooltip="matTooltip"
+        <mat-radio-group #tooltip="matTooltip" 
         matTooltip="{{questionDatas.description}}" [matTooltipPosition]="'below'"
           aria-labelledby="example-radio-group-label"
           class="example-radio-group form"

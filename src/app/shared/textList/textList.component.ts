@@ -16,18 +16,20 @@ export class TextListComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl=new FormControl
+  respValue=new FormControl
   listData: string[] = [];
 
   @Input() questionDatas
   @Output("formChange") change: EventEmitter<any> = new EventEmitter();
     textboxValue=''
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-
+  @ViewChild('chipsInput') chipsInput: ElementRef<HTMLInputElement>;
+  dynWidth=''
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+      this.dynWidth='400px'
+     }
 
     add(event: MatChipInputEvent): void {
         const input = event.input;
@@ -43,7 +45,7 @@ export class TextListComponent implements OnInit {
           input.value = '';
         }
     
-        this.fruitCtrl.setValue(null);
+        this.respValue.setValue(null);
         let obj={
             questionDatas: this.questionDatas,
             value:this.listData,
@@ -66,7 +68,7 @@ export class TextListComponent implements OnInit {
       }
       selected(event: MatAutocompleteSelectedEvent): void {
         // this.fruits.push(event.option.viewValue);
-        this.fruitInput.nativeElement.value = '';
-        this.fruitCtrl.setValue(null);
+        this.chipsInput.nativeElement.value = '';
+        this.respValue.setValue(null);
       }
 }
