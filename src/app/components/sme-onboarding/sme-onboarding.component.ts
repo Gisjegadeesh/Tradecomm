@@ -4508,11 +4508,11 @@ export class SmeOnboardingComponent implements OnInit {
 
      this.questionnaireSections[secIndex].questions.map((item)=>{
       if(data.questionDatas.number == item.parentNumber && (item.number - Math.floor(item.number)) !== 0){
-        item.show = data.condition == "true" ? true : false
+        item.show = data.condition 
         return true;
       }
     })
-    this.questionnaireSections[secIndex].questions[quesIndex].response=data.condition
+    this.questionnaireSections[secIndex].questions[quesIndex].response=data.condition ? "true" : "false"
     //  this.radioChecked && this.radioChecked['isTrue'] && this.checkCon(data,data.secIndex,data.quesIndex)
 }
   onFileChange(data,secIndex,quesIndex){
@@ -4573,15 +4573,14 @@ export class SmeOnboardingComponent implements OnInit {
   }
 
   checkFormComp(sectionIndex){
-      let isFormComp = true
+      let isFormComp = false
+    if(this.sectionIndex == sectionIndex){
     this.questionnaireSections[sectionIndex].questions.map((item)=>{
-        if(!item.response && item.required){
-            isFormComp = false
-        }
-        else{
-            isFormComp = true
+        if(item.required){
+            isFormComp = item.response == "true" ?  true : false
         }
     })
+    }
     return isFormComp
   }
   onSubSection(type){

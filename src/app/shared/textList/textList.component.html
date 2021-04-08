@@ -1,7 +1,7 @@
 <div class="card-form-container" >
-    <div class="dynamicForm-example-full-width">
+    <div class="dynamicForm-example-full-width" >
       
-  <mat-form-field class="example-chip-list form" #tooltip="matTooltip"
+  <mat-form-field class="example-chip-list form" #tooltip="matTooltip" [ngStyle]="{'width': dynWidth}"
   matTooltip="{{questionDatas.description}}" [matTooltipPosition]="'below'">
     <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
     <mat-chip-list #chipList aria-label="Fruit selection">
@@ -15,8 +15,8 @@
     </mat-chip>
     <input
     placeholder="Enter Values..."
-    #fruitInput
-    formControlName="fruitCtrl"
+    #chipsInput
+    formControlName="respValue"
     [matChipInputFor]="chipList"
     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
     (matChipInputTokenEnd)="add($event)">

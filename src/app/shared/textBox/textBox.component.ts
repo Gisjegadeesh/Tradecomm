@@ -15,6 +15,8 @@ export class TextboxComponent implements OnInit {
     tickInterval = 1;
     showTicks = false;
     autoTicks = true;
+    dynWidth=''
+    characterMax=''
 
     constructor() { }
 
@@ -25,6 +27,9 @@ export class TextboxComponent implements OnInit {
         else{
             this.textboxValue=this.questionDatas.response ? this.questionDatas.response : ''
         }
+        // this.dynWidth= this.questionDatas.characterMax <= 30 ? '280px' : this.questionDatas.characterMax <= 50 ?  '400px' : '820px'
+        this.dynWidth= '400px'
+        this.characterMax=this.questionDatas.characterMax ? this.questionDatas.characterMax : ''
      }
      formatLabel(value: number) {
         // if (value >= 1000) {

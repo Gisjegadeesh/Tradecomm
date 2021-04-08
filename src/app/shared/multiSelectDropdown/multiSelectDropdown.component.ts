@@ -12,6 +12,7 @@ export class MultiSelectDropdown implements OnInit {
     optionDatas=[]
     dropdownSettings:any={}
     selectedItems=[]
+    dynWidth=''
     constructor() { }
 
     ngOnInit() {
@@ -34,6 +35,8 @@ export class MultiSelectDropdown implements OnInit {
         // this.dropdownSettings['singleSelection'] = this.questionDatas.allowMultiple ? true : false;
         // this.dropdownSettings['showCheckbox']=this.questionDatas.allowMultiple ? true : false;
         this.dropdownSettings['text']=this.questionDatas.label
+        // this.dynWidth=this.questionDatas.label.length <= 50 ? '260px' : '827px'
+        this.dynWidth='400px'
      }
      onChange(event){
          let obj={

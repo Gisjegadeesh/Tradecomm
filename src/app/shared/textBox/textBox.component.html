@@ -1,11 +1,11 @@
 <div class="card-form-container"  *ngIf="questionDatas.type == 'QuestionTextDto'">
     <div class="dynamicForm-example-full-width">
-      <mat-form-field floatLabel="never" dense appearance="fill" class="form" #tooltip="matTooltip"
+      <mat-form-field floatLabel="never" dense appearance="fill" class="form"  [ngStyle]="{'width': dynWidth}" #tooltip="matTooltip"
       matTooltip="{{questionDatas.description}}" [matTooltipPosition]="'below'" >
         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
         <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
         <input matInput type="text" (change)="onChange($event)" [(ngModel)]="textboxValue"
-        [maxLength]="questionDatas.characterMax" [required]="questionDatas.required" />
+        [maxLength]="characterMax" [required]="questionDatas.required" />
 
       </mat-form-field>
     </div>
@@ -15,12 +15,12 @@
     <div class="dynamicForm-example-full-width">
 
       <!-- Number -->
-      <mat-form-field floatLabel="never" dense appearance="fill" class="form" *ngIf="questionDatas.format == 'Number'" #tooltip="matTooltip"
+      <mat-form-field floatLabel="never" dense appearance="fill" class="form" [ngStyle]="{'width': dynWidth}"  *ngIf="questionDatas.format == 'Number'" #tooltip="matTooltip"
       matTooltip="{{questionDatas.description}}" [matTooltipPosition]="'below'">
         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
         <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
         <input matInput type="number" (change)="onChange($event)" *ngIf="questionDatas.type == 'QuestionNumberDto'" [(ngModel)]="textboxValue" 
-        [maxLength]="questionDatas.characterMax" [required]="questionDatas.required" />
+        [maxLength]="" [required]="questionDatas.required" />
       </mat-form-field>
       
       <!-- RANGE -->
@@ -35,6 +35,7 @@
         max="{{questionDatas && questionDatas.max}}"
         [step]="step"
         [(ngModel)]="sliderValue"
-        class="form" ></mat-slider>
+        class="form" style="width: 860px;"
+        ></mat-slider>
     </div>
   </div>

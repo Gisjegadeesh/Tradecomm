@@ -18,8 +18,8 @@
     </div>
     <div>
       <div class="title">{{sections.label}}</div>
-      <div class="caption" [ngClass]="{subSecSel: !subSection}" *ngIf="secIndex == 0 && secIndex == sectionIndex" (click)="onSubSection('personal')"> 1.1  Personal Details</div>
-      <div class="caption" [ngClass]="{subSecSel: subSection}"  *ngIf="secIndex == 0 && secIndex == sectionIndex" (click)="onSubSection('other')"> 1.2  Others</div>
+      <!-- <div class="caption" [ngClass]="{subSecSel: !subSection}" *ngIf="secIndex == 0 && secIndex == sectionIndex" (click)="onSubSection('personal')"> 1.1  Personal Details</div>
+      <div class="caption" [ngClass]="{subSecSel: subSection}"  *ngIf="secIndex == 0 && secIndex == sectionIndex" (click)="onSubSection('other')"> 1.2  Others</div> -->
     </div>
   </div>
   <!-- <div class="step step-active">
@@ -62,7 +62,8 @@
   <div class="col-md-9 col-9">
     <!-- <div class="row" *ngFor="let questionType of questionnaireSections[sectionIndex].questions;let questionIndex=index"> -->
       <perfect-scrollbar class="pft-scrollbar" >
-          <div class="row" *ngFor="let questionType of questions;let questionIndex=index">
+          <div class="row" >
+          <div *ngFor="let questionType of questionnaireSections[sectionIndex].questions;let questionIndex=index">
             <span class="form-group" *ngIf="questionType.show">
               <textBox  [questionDatas]="questionType" (formChange)="onTextBoxChange($event,sectionIndex,questionIndex)" *ngIf="(questionType.type == 'QuestionTextDto' || 'QuestionNumberDto')"></textBox>
               <multiSelectDropdown [questionDatas]="questionType" (formChange)="onDropdownChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionMultipleChoiceDto'" ></multiSelectDropdown>
@@ -72,6 +73,7 @@
               <textList [questionDatas]="questionType" (formChange)="onTextListChange($event,sectionIndex,questionIndex)" *ngIf="questionType.type == 'QuestionTextListDto'"></textList>
 
             </span>
+          </div>
           </div>
         </perfect-scrollbar>
 

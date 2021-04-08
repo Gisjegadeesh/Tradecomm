@@ -539,8 +539,8 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
   & .form{
     align-self: stretch;
     margin-bottom: 0px;
-    margin-left: 60px;
-    width: 860px;
+    margin-left: 15px;
+    // width: 860px;
     margin-top: 8px;
   }
   & .dynamic-file-upload{
@@ -554,8 +554,13 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     }
 }
 .dyn-Formmultiselect-dropdown-dsgn{
-    width: 860px;
-    margin: 2px 8px 24px 60px;
+    // width: 860px;
+    // margin: 2px 8px 24px 60px;
+    // background-color: #f3f1fc;
+    // border-bottom: 1px solid #694ed6;
+    // padding-top: 5px;
+    // border-radius: 3px;
+    margin: 10px 0px 18px 14px;
     background-color: #f3f1fc;
     border-bottom: 1px solid #694ed6;
     padding-top: 5px;
@@ -567,8 +572,8 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 .dynamic-radio-btn{
     background: #f3f1fc;
     // border-bottom: 1px solid #694ed6;
-    width: 860px;
-    margin-left: 60px;
+    // width: 860px;
+    margin-left: 15px;
     h6{
         color: #616065;
     font: 500 16px/24px Roboto, roboto, "Helvetica Neue", sans-serif;
@@ -578,6 +583,9 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     }
     & .mat-radio-group {
         padding-left: 10px;
+    }
+    &.file-input{
+        margin-bottom: 10px;
     }
 }
 .selected-list .c-list .c-token .c-remove svg {

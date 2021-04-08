@@ -1,6 +1,6 @@
 <div class="card-form-container">
     <div class="dynamicForm-example-full-width">
-<mat-form-field dense class="form" #tooltip="matTooltip"
+<mat-form-field dense class="form" #tooltip="matTooltip" style="width: 400px;"
 matTooltip="{{questionDatas.description}}" [matTooltipPosition]="'below'">
     <mat-label>{{questionDatas && questionDatas.label}}</mat-label>
     <input matInput   [matDatepicker]="pickers" (dateChange)="onChange($event)"  />
