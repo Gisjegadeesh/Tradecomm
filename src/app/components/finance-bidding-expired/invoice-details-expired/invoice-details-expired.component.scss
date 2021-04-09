@@ -300,3 +300,37 @@ mat-form-field {
     display: flex;
     justify-content: flex-end;
 }
+@media only screen and (max-width: 1030px)
+{
+    .dis-block 
+    {     
+        .mat-form-field{width: 100%;}
+    }
+}
+
+@media only screen and (max-width: 780px)
+{
+    .dis-block 
+    {
+        width: 100%;
+        margin: 0px;                 
+    }
+    .mob-btn
+    {
+        white-space: normal;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    .table-res
+    {
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 500px)
+{
+    .dis-block 
+    {            
+        td{display: block;}           
+    }
+}

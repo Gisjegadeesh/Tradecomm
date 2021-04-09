@@ -13,7 +13,10 @@
     width: 100%;
     margin-left: 0px!important;
     button{    margin-right: -8px;}
-    li{font-size: 12px;} 
+    li{font-size: 12px;
+        &:last-child{padding-right: 25px;}
+    }
+    
 }
 }
 

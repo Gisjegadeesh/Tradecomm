@@ -106,14 +106,13 @@ header {
     header {
         margin-bottom: $uxg-spacing-5;
         height: 35%;
-
+        margin:auto;
         .wave {
             overflow: hidden;
             ::ng-deep svg {
                 height: 200px;
             }
         }
-
         .account-services-headline {
             font-size: $margin;
 
@@ -132,7 +131,7 @@ header {
     header {
         margin-bottom: $margin;
         height: 30%;
-
+        margin: auto;
         .wave {
             overflow: hidden;
             ::ng-deep svg {
