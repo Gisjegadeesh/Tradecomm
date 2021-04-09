@@ -174,11 +174,15 @@ table#financBidding {
     padding: 0px;
     font-size: 14px;
   }
+  uxg-account-card.mat-tooltip-trigger {
+    cursor: pointer;
+    }
 @media (min-width: 992px){
 .modal-lg {
     max-width: 1200px;
 }
 }
+
 .mat-tab-list {
     // background-image: linear-gradient(to bottom right, #d706dafa, #790cdc,#4d00e4) !important;
     }
@@ -228,7 +232,9 @@ table#financBidding {
         border-color: #7c49cb;
     }
 
-
+uxg-account-card.mat-tooltip-trigger {
+cursor: pointer;
+}
 
     /***** SLIDER CSS UNBLOCK BLOCK CSS *****/
 .switchStatus {
@@ -605,6 +611,16 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 }
 //iphonex
 @media screen and (max-width: 575px) {
+
+.mat-paginator-container{
+    justify-content: center;
+}
+.mat-paginator .mat-paginator-container .mat-paginator-range-actions .mat-paginator-range-label {
+    margin-left: 0;
+}
+.toast-top-right{
+    left: 9%;
+}
     table#customers{
     width:250px;
     }
@@ -690,6 +706,21 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
                         max-width: 500px;
                     }
                 }
+                .mod-box{
+                    table{
+                        &.table-responsive{
+                            &.inv-table{
+                                td{
+                                    display: block;
+                                }
+                            }
+                        }
+                }
+                }
+                .toast-top-right{
+                    left: 34%;
+                }
+
     }
 //ipadpro
     @media screen and (min-width: 992px) and (max-width: 1199px) {
@@ -723,6 +754,10 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
                     max-width: 500px;
                     margin: auto;
                 }
+            }
+            .mod-box{
+                max-width: 750px;
+                margin: auto;
             }
     }
 .dynamicForm-textarea{

@@ -357,7 +357,7 @@ export class InvoiceDetailsComponent implements OnInit {
       this.launchBid_Popup = new MatTableDataSource(array);
       console.log(this.finBidform.value)
       console.log(this.finBidform,"this.finBidform")
-    this.modalRef = this.modalService.show(template, {class: 'modal-lg'});
+    this.modalRef = this.modalService.show(template, {class: 'modal-lg mod-box'});
   }
  
   onSubmitBidForm() {

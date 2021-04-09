@@ -1,7 +1,7 @@
 <div class="app-content {{isOpen}} ">
     <header>
   <div class="data-section">
-    <table>
+    <table  class="dis-block">
       <tbody>
           <tr>
               <td rowspan="1" colspan="1">
@@ -372,6 +372,7 @@
                   Goods Details
                   </mat-panel-title>
                   </mat-expansion-panel-header>
+                  <div class="table-res"> 
                   <table mat-table [dataSource]="dataSourceOne">
                   <ng-container matColumnDef="descGoods">
                   <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
@@ -441,11 +442,12 @@
                   <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
                   </table>
+                  </div>
                   </mat-expansion-panel>
                 </mat-accordion>
           </div>
           <div class="modal-footer" style="justify-content: center;">
-              <button type="button" class="btn model-btn-outline">Invoice Preview (double click will pop up the PDF invoice)</button>
+              <button type="button" class="btn model-btn-outline  mob-btn">Invoice Preview (double click will pop up the PDF invoice)</button>
            </div>
       </mat-tab>
     </mat-tab-group>

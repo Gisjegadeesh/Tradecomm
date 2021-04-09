@@ -94,6 +94,9 @@ header {
     bottom: $uxg-spacing-0;
     z-index: 1;
 }
+table.table-responsive{
+    display:inline-table;
+}
 
 @media only screen and (min-width: 377px) and (max-width: 415px) {
     header {
@@ -143,8 +146,21 @@ header {
             }
         }
     }
+    table.table-responsive{
+        display:block;
+    }
 }
+@media screen and (min-width: 768px) and (max-width: 991px) {
 
+    table{
+        &.table-responsive{
+            display: block;
+            &.gd-table{
+                display: inline-table;
+            }
+        }   
+    }
+}
 /* Tablet Styles */
 @media only screen and (min-width: 500px) and (max-width: 1024px) {
     header {
@@ -155,6 +171,13 @@ header {
             overflow: hidden;
             ::ng-deep svg {
                 height: 300px;
+            }
+        }
+    }
+    table{
+        &.table-responsive{
+            &.bid-table, &.mod-table{
+                display: block;
             }
         }
     }

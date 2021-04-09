@@ -93,6 +93,9 @@ header {
     bottom: $uxg-spacing-0;
     z-index: 1;
 }
+table.table-responsive{
+    display:inline-table;
+}
 
 @media only screen and (min-width: 377px) and (max-width: 415px) {
     header {
@@ -115,6 +118,7 @@ header {
                 }
             }
         }
+        
     }
 }
 
@@ -123,7 +127,8 @@ header {
     header {
         margin-bottom: $uxg-spacing-5;
         height: 35%;
-
+        margin: auto;
+        padding: 15px;
         .wave {
             overflow: hidden;
             ::ng-deep svg {
@@ -141,6 +146,10 @@ header {
                 }
             }
         }
+
+    }
+    table.table-responsive{
+        display:block;
     }
 }
 
@@ -149,7 +158,7 @@ header {
     header {
         margin-bottom: $margin;
         height: 30%;
-
+        margin: auto;
         .wave {
             overflow: hidden;
             ::ng-deep svg {

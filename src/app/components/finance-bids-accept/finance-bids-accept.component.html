@@ -6,7 +6,7 @@
         <div class="uxg-h4" style="text-align: center">Bids to be Accepted</div>
         <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" (mouseenter)="isHover=true" 
-        (mouseleave)="isHover=false">
+        (mouseleave)="isHover=false" class="table-responsive">
           <ng-container matColumnDef="BIDID">
             <th mat-header-cell *matHeaderCellDef scope="column" #tooltip="matTooltip"
             matTooltip="{{dashboardTooltip.invoiceId}}" [matTooltipPosition]="'below'">BID ID</th>

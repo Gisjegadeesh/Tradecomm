@@ -95,6 +95,11 @@ header {
     z-index: 1;
 }
 
+table.table-responsive{
+    display: inline-table;
+    overflow: hidden;
+}
+
 @media only screen and (min-width: 377px) and (max-width: 415px) {
     header {
         height: 35%;
@@ -143,6 +148,10 @@ header {
             }
         }
     }
+    table.table-responsive{
+        display: block;
+        overflow: auto;
+    }
 }
 
 /* Tablet Styles */
@@ -158,10 +167,13 @@ header {
             }
         }
     }
-
     .accounts-list {
         overflow: hidden;
         padding-top: $margin;
+    }
+    table.table-responsive{
+        display: block;
+        overflow: auto;
     }
 }
 .app-content.active{
