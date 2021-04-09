@@ -8,10 +8,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class DateFieldComponent implements OnInit {
     @Input() questionDatas
     @Output("formChange") change: EventEmitter<any> = new EventEmitter();
+    date=''
 
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+    }
 
     onChange(event){
         this.change.emit(event.target.value);

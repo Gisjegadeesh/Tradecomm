@@ -152,4 +152,34 @@ mat-form-field {
       padding-left: 3px;
     }
   }
+  .ques-sec{
+    margin-top:45px;
+  }
+  .ques-col{
+    margin-top:45px;
+    padding-left: 15px;
+  }
+  .step{
+    margin: 0px 0px 0px -10px;
+  }
+  .col-12{
+    padding-right: 0px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+  .ques-sec{
+    margin-top:45px;
+  }
+  .ques-col{
+    margin-top:45px;
+  }
+}
+
+.ques-sec{
+  margin-top: 50px;
+}
+
+.ques-col{
+  box-shadow: -11px 0px 10px -9px #ccc7c7;
 }

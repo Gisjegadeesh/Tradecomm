@@ -546,8 +546,11 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     align-self: stretch;
     margin-bottom: 0px;
     margin-left: 15px;
-    // width: 860px;
+    width: 400px;
     margin-top: 8px;
+  }
+  &.input-slider-range{
+      width:860px
   }
   & .dynamic-file-upload{
     background-color: #f3f1fc;
@@ -560,7 +563,7 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     }
 }
 .dyn-Formmultiselect-dropdown-dsgn{
-    // width: 860px;
+    width: 400px;
     // margin: 2px 8px 24px 60px;
     // background-color: #f3f1fc;
     // border-bottom: 1px solid #694ed6;
@@ -578,8 +581,9 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 .dynamic-radio-btn{
     background: #f3f1fc;
     // border-bottom: 1px solid #694ed6;
-    // width: 860px;
+    width: 400px;
     margin-left: 15px;
+    margin-bottom: 10px;
     h6{
         color: #616065;
     font: 500 16px/24px Roboto, roboto, "Helvetica Neue", sans-serif;
@@ -793,23 +797,67 @@ input.custom-autofill {
     @include cdk-text-field-autofill-color(transparent, red);
   }
 
-
-  @media(max-width:767px) {
+//   SME ONBOARDING RESPONSIVE 
+  @media screen and (max-width: 575px) {
       .dynamicForm-example-full-width {
           & .form{
-              width: 225px;
+              width: 250px;
+              & .input-text{
+                  padding-top: 3px;
+              }
           }
-      }
-      .dynamic-radio-btn {
-            width: 225px;
+          padding-left: 10px;
+          & .mat-form-field-label-wrapper{
+            padding: 1px 0px 20px 7px;
+          }
+        }
+        .dynamic-radio-btn {
+            width: 240px;
+            margin: 10px 0px 0px 24px;
+            &.file-input{
+                width: 238px;
+                margin: 10px 0px 0px 24px;
+            }
+        }
+        .dyn-Formmultiselect-dropdown-dsgn{
+            width: 235px;
+            margin: 5px 5px 3px 25px;
+        }
+        .title{
+            font-size: 12px;
+            font-weight: 400;
+        }
+  }
+  @media screen and (min-width: 992px) and (max-width: 1199px){
+    .dynamicForm-example-full-width {
+        & .form{
+            width: 350px;
+        }
+    }
+    .dynamic-radio-btn {
+        width: 350px;
     }
     .dyn-Formmultiselect-dropdown-dsgn{
-        width: 225px;
+        width: 350px;
     }
+    .mat-slider{
+        margin-left: 15px;
+        width:350px !important;
+    }
+
   }
-  .textarea-h
-{
+
+.textarea-h{
     .mat-form-field-flex{
         height: 100px !important;
     }
+}
+
+.mat-slider{
+    margin-left: 15px;
+    width:400px;
+}
+
+.mat-form-field-appearance-fill[dense] .mat-form-field-wrapper .mat-form-field-flex {
+    padding-top: 0.2px;
 }

@@ -24,11 +24,10 @@ export class TextListComponent implements OnInit {
     textboxValue=''
 
   @ViewChild('chipsInput') chipsInput: ElementRef<HTMLInputElement>;
-  dynWidth=''
-    constructor() { }
+
+  constructor() { }
 
     ngOnInit() {
-      this.dynWidth='400px'
      }
 
     add(event: MatChipInputEvent): void {
