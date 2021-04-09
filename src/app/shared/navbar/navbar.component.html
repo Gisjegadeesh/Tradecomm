@@ -14,7 +14,8 @@
 
     </ul>
     <span class="fill-remaining-space"></span>
-    <div class="uxg-toolbar-actions">
+
+    <div class="uxg-toolbar-actions" *ngIf="!isHide">
         <button mat-icon-button color="neutral">
             <mat-icon>search</mat-icon>
         </button>
@@ -28,12 +29,13 @@
         <mat-icon>apps</mat-icon>
         </button>
     </div>
-    <button mat-icon-button [matMenuTriggerFor]="menuHero">
+    <button mat-icon-button [matMenuTriggerFor]="menuHero" *ngIf="!isHide">
         <mat-icon>account_circle</mat-icon>
     </button>
     <button mat-icon-button class="uxg-toolbar-icon-menu">
         <mat-icon>more_vert</mat-icon>
     </button>
+
   </mat-toolbar>
   <mat-menu #menuHero="matMenu" class="uxg-user-profile s">
     <div class="uxg-menu-header">

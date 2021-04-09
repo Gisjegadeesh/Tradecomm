@@ -11,12 +11,11 @@ export class RadioButtonComponent implements OnInit {
     @Input() questionIndex
     @Output("formChange") change: EventEmitter<any> = new EventEmitter();
     radioChecked=''
-    dynWidth=''
+
     constructor() { }
 
     ngOnInit() {
         this.radioChecked=this.questionDatas.response ? "true" : ""
-        this.dynWidth='400px'
      }
 
     radioChange(event){

@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   userName
   homePath = "";
   headerPaths = [];
+  isHide=false;
 
   constructor(public router: Router, private route: ActivatedRoute,public authenticationService:AuthenticationService,private _location: Location) { }
   ngOnInit(): void {
@@ -46,9 +47,10 @@ export class NavbarComponent implements OnInit {
     const result = this.router.config && this.router.config.filter(item => item.data && item.data.HeaderName == componentName);
     this.currentHeaderName = result && result[0] && result[0].data && result[0].data.HeaderName
     this.homePath = result && result[0] && result[0].data && result[0].data.homePath
-
     this.headerPaths = result && result[0] && result[0].data && result[0].data.headerPaths ? result[0].data.headerPaths : []
-
+    if(this.router.url == '/sme-onboarding'){
+      this.isHide=true
+    }
   }
 
   goHome(){
@@ -60,7 +62,7 @@ export class NavbarComponent implements OnInit {
     }
 
     backNavigation() {
-      this._location.back();
+     !this.isHide ? this._location.back() : this.router.navigateByUrl('/signup')
     }
 
     navigationHeadersPath(path){
