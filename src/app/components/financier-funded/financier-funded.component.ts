@@ -1,3 +1,21 @@
+// import { Component, OnInit } from '@angular/core';
+
+// @Component({
+//   selector: 'app-financier-funded',
+//   templateUrl: './financier-funded.component.html',
+//   styleUrls: ['./financier-funded.component.scss']
+// })
+// export class FinancierFundedComponent implements OnInit {
+
+//   constructor() { }
+
+//   ngOnInit(): void {
+//   }
+
+// }
+
+
+
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ModalDialogService } from '../../service/modal-dialog.service';
@@ -5,10 +23,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MatTableDataSource } from '@angular/material/table';
 import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
-import { IccFinanceTodayServices } from './icc-finance-today-service';
-import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
+import { FinancierFundedServices } from './financier-funded-service'
 import * as moment from 'moment';
-import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -34,7 +50,7 @@ const ELEMENT_DATA: financeForBiddingData[] = [];
 export interface goodsDetails {
   descGoods: String;
   idNo: String;
-  // dateOfInvoice: String;
+  dateOfInvoice: String;
   quantity: String;
   rate: String;
   amt: String;
@@ -54,21 +70,23 @@ const INVOICE_DATA: invoiceDetails[] = [];
 export interface biddingDetails {
   'financeOfferAmt' : String, 'ccy' : String, 'fxRate' : String, 'margin' : String, 'netAmtDisc' : String,'discAmt' : String,'discRate' : String,'offerExpPeriod' : String}
 const BIDDING_DATA: biddingDetails[] = [];
-     
 
-export interface bidDetails {
-  'financeOfferAmt' : String, 'ccy' : String, 'fxRate' : String, 'margin' : String, 'netAmtDisc' : String,'discAmt' : String,'discRate' : String,'offerExpPeriod' : String}
-const BID_DATA: bidDetails[] = [];
+// @Component({
+//   selector: 'app-sme-financefor-bidding',
+//   templateUrl: './sme-financefor-bidding.component.html',
+//   styleUrls: ['./sme-financefor-bidding.component.scss']
+// })
 
-@Component({
-  selector: 'app-icc-finance-today',
-  templateUrl: './icc-finance-today.component.html',
-  styleUrls: ['./icc-finance-today.component.scss']
+// export class SmeFinanceforBiddingComponent implements OnInit {
+
+ @Component({
+  selector: 'app-financier-funded',
+  templateUrl: './financier-funded.component.html',
+  styleUrls: ['./financier-funded.component.scss']
 })
+export class FinancierFundedComponent implements OnInit {
 
-export class IccFinanceTodayComponent implements OnInit {
-
-  displayedColumns: string[] = ['invoiceNo', 'baseCcyAmt', 'fundablePercent', 'baseCcyFundingAmt', 'baseCcyNetAmtPayable','smeId','action'];
+  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status','action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
  
 
@@ -76,18 +94,17 @@ export class IccFinanceTodayComponent implements OnInit {
   dataSourceOne = new MatTableDataSource(GOODS_DATA); //data
 
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSourceTwo = new MatTableDataSource(INVOICE_DATA); //data
   displayedColumnsTwo: string[] = ['invId', 'invDate', 'buyerName', 'invAmt', 'status'];
 
   dataSourceThree = new MatTableDataSource(BIDDING_DATA); //data
-  displayedColumnsThree: string[] = ['financeOfferAmt', 'ccy', 'fxRate', 'margin', 'netAmtDisc','discAmt','discRate','offerExpPeriod'];
-
-  dataSourceFour = new MatTableDataSource(BID_DATA); //data
-  displayedColumnsFour: string[] = [
-    'id','finId','invoiceId','fxRate','baseCcyFundingAmt' ,'fundablePercent' ,'repaymentDate' ,
+  displayedColumnsThree: string[] = [
+    'id','finId','invoiceId','fxRate','baseCcyAmt' ,'fundablePercent' ,'baseCcyFundingAmt' ,'repaymentDate' ,
     'baseCcyNetAmtPayable', 'annualYeild' ]
+  // ['financierRef', 'financier', 'invoiceAmt',  'marginPercent',   'financierAmt',   'discRate', 'discAmt',  'netAmtDisc',    'fundedAmt', 'fxRate', 'dateOfFunding', 'tenorDays', 
+  //   'dueDate', 'paymentDate', 'relInvRef',  'relBidRef'];
+
 
   isOpen = ""
   mobileScreen = false;
@@ -100,10 +117,9 @@ export class IccFinanceTodayComponent implements OnInit {
   color: ThemePalette = 'warn';
   ischecked = "true"
   bidpanelOpenState = false;
-  biddingTooltip = BIDDINGCONSTANTS;
   moment: any = moment;
 
-  
+
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -116,7 +132,7 @@ export class IccFinanceTodayComponent implements OnInit {
     }
   }
   constructor(public router: Router, private modalService: BsModalService, private modalDialogService: ModalDialogService,
-    private authenticationService: AuthenticationService, private IccFinanceTodayServices: IccFinanceTodayServices) { }
+    private authenticationService: AuthenticationService, private FinancierFundedServices: FinancierFundedServices) { }
 
 
   ngOnInit() {
@@ -137,11 +153,15 @@ export class IccFinanceTodayComponent implements OnInit {
       status: "I"
     }]);
 
-    this.IccFinanceTodayServices.getFinanceTodayLists().subscribe(resp => {
+    this.FinancierFundedServices.getFinanceForBiddingLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
-      this.dataSource.paginator = this.paginator
     })
+
+
+   
+
+    
 
   }
 
@@ -180,7 +200,7 @@ export class IccFinanceTodayComponent implements OnInit {
     event.preventDefault();
     this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
    
-    this.IccFinanceTodayServices.getInvoiceRequestLists(data.INV_ID).subscribe(resp => {
+    this.FinancierFundedServices.getInvoiceRequestLists(data.id).subscribe(resp => {
       let status = "";
       if (resp.status == "I") {
         status = "Initiated"
@@ -202,29 +222,14 @@ export class IccFinanceTodayComponent implements OnInit {
       
     })
 
-
-    this.getBidDetails(data)
-
-    // this.dataSourceThree = new MatTableDataSource([
-    //   {'financeOfferAmt' : 'financeOfferAmt', 'ccy' : 'ccy', 'fxRate' : 'fxRate', 'margin' : 'margin', 'netAmtDisc' : 'netAmtDisc','discAmt' : 'discAmt','discRate' : 'discRate','offerExpPeriod' : 'offerExpPeriod'}]);
-
-    this.IccFinanceTodayServices.getFinanceBiddingLists(data.INV_ID).subscribe(resp => {
+    this.FinancierFundedServices.getAcceptedFinanceDetails(data.invoiceId).subscribe(resp => {
       if(resp){
         this.dataSourceThree = new MatTableDataSource(resp);
       }
     })
 
-    
+    // this.dataSourceThree = new MatTableDataSource([{'financeOfferAmt' : 'test', 'ccy' : 'test', 'fxRate' : 'test', 'margin' : 'test', 'netAmtDisc' : 'test','discAmt' : 'test','discRate' : 'test','offerExpPeriod' : 'test','offerExpPeriod1' : 'test','offerExpPeriod2' : 'test','offerExpPeriod3' : 'test','offerExpPeriod4' : 'test','offerExpPeriod5' : 'test','offerExpPeriod6' : 'test','offerExpPeriod7' : 'test','offerExpPeriod8' : 'test','offerExpPeriod9' : 'test','offerExpPeriod10' : 'test'}])
 
-
-  }
-
-  getBidDetails(data){
-    this.IccFinanceTodayServices.getAcceptedFinanceDetails(data.invoiceId).subscribe(resp => {
-      if(resp){
-        this.dataSourceFour = new MatTableDataSource(resp);
-      }
-    })
   }
 
   handleToggle(e, status) {
@@ -240,4 +245,6 @@ export class IccFinanceTodayComponent implements OnInit {
     this.authenticationService.logout()
   }
 }
+
+
 
