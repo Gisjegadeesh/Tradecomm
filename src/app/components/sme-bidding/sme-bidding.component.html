@@ -96,10 +96,8 @@
     <header>
         <br>
         <h5 class="mmt20">Funding Bids</h5>
-
-        <div class="table-res">
-
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="position: relative;top: 100px;">
+        <div class="mat-elevation-z8 table-res">
+        <table mat-table [dataSource]="dataSource" >
             <ng-container matColumnDef="refNo">
               <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
               matTooltip="{{financierTooltip.tradecommRef}}" [matTooltipPosition]="'below'"> ICC Tradecomm Ref </th>
@@ -198,10 +196,10 @@
                    </td>
               </ng-container>
           
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row style="background-color:#B4A6EA" *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row class="BID-Details" *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-    
+          <mat-paginator [hidePageSize]="true" showFirstLastButtons></mat-paginator>
         </div>
     </header>
 </div>
