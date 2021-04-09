@@ -40,6 +40,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSliderModule} from '@angular/material/slider';
 import { LoaderService } from './service/loader.service';
+import {MatSelectModule} from '@angular/material/select';
 
 import {ApiService} from './service/api.service';
 import { SignupComponent } from './components/signup/signup.component';
@@ -103,6 +104,7 @@ import { IccInvoiceMasterServices } from './components/icc-invoice-master/icc-in
 import { IccFundingRequestComponent } from './components/icc-funding-request/icc-funding-request.component';
 import { IccOfferAcceptanceComponent } from './components/icc-offer-acceptance/icc-offer-acceptance.component';
 
+import {FinancierFundedServices} from './components/financier-funded/financier-funded-service'
 
 import { TextAreaComponent } from './shared/textArea/textArea.component';
 import {TextFieldModule} from '@angular/cdk/text-field';
@@ -111,6 +113,7 @@ import { TextListComponent } from './shared/textList/textList.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { FinancierFundedComponent } from './components/financier-funded/financier-funded.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -153,7 +156,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     IccFinanceMasterComponent,
     IccInvoiceMasterComponent,
     IccFundingRequestComponent,
-    IccOfferAcceptanceComponent
+    IccOfferAcceptanceComponent,
+    FinancierFundedComponent
   ],
   imports: [
     BrowserModule,
@@ -197,12 +201,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToastrModule.forRoot(),
     TextFieldModule,
     MatSliderModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    MatSelectModule
   ],
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,
     FinanceRequestServices,FinanceBiddingRejectedServices,FinanceBiddingExpiryServices,DatePipe,FinancierService,FinanceBiddingService,SmeFinancierForBiddingServices,SmeDashboardServices,
     FinancierDashboardServices,IccDashboardServices,AcceptedFinanceServices,SmeBiddingServices,FinancierOnboardingService,IccFinanceTodayServices,IccFinanceMasterServices,IccInvoiceMasterServices,IccFundingServices,IccOfferAcceptServices,
+    FinancierFundedServices,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
     { provide: MAT_RADIO_DEFAULT_OPTIONS, useValue: { color: 'primary' } },
     {

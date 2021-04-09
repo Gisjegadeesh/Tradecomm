@@ -8,6 +8,7 @@ import {FinanceRequestServices} from './finance-service'
 import {FinanceBiddingService} from '../../service/finance_bidding/finance-bidding.service';
 import { FINANCIERDASHBOARDCONSTANTS} from '../../shared/constants/constants';
 import { MatPaginator } from '@angular/material/paginator';
+import {FormControl} from '@angular/forms';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -22,6 +23,14 @@ const ELEMENT_DATA: any[] = [
   }
 ];
 
+
+interface ICity {
+  // item_id: number;
+  // item_text: string;
+
+  id: number;
+  itemName: string;
+}
  
 
 @Component({
@@ -32,6 +41,8 @@ const ELEMENT_DATA: any[] = [
 export class FinanceBiddingComponent implements OnInit {
   @Input() InvoiceDetailsComponent: InvoiceDetailsComponent;
   ELEMENT_DATA1: any[] ;
+
+  
   constructor(public router: Router, public authenticationService:AuthenticationService,
     private modalService: BsModalService,private FinanceRequestServices : FinanceRequestServices,private FinanceBiddingService:FinanceBiddingService) { }
 
@@ -40,7 +51,8 @@ export class FinanceBiddingComponent implements OnInit {
     // 'billNo',
     'invId',
     // 'invoiceId',
-    'invAmt',
+    'invoiceAmt',
+    'smeId',
     'buyerName',
     'invDate',
     'action'
@@ -57,6 +69,15 @@ export class FinanceBiddingComponent implements OnInit {
   modalRef: BsModalRef;
   isHover: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  cities: Array<ICity> = [];
+  dropdownSettings = {
+    singleSelection: true,
+    defaultOpen: false,
+    idField: "item_id",
+    textField: "item_text",
+    allowSearchFilter: true,
+    text: 'Country',
+  };
 
 
   ngOnInit() {
@@ -72,6 +93,20 @@ export class FinanceBiddingComponent implements OnInit {
 
      
     })
+
+    this.cities = [
+      // { item_id: 1, item_text: "India" },
+      // { item_id: 2, item_text: "Australia" },
+      // { item_id: 3, item_text: "America" },
+      // { item_id: 4, item_text: "Singapore" }
+
+
+      { id: 1, itemName: "India" },
+      { id: 2, itemName: "Australia" },
+      { id: 3, itemName: "America" },
+      { id: 4, itemName: "Singapore" }
+
+    ];
 
     
 

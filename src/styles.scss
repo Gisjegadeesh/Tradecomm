@@ -609,6 +609,25 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
     right: 0;
     left: 40%;
 }
+.selected-list .c-btn{
+    border-bottom: 2px solid #B4A6EA;
+    border-radius: 0;
+}
+.multi-srch{
+    margin: 20px 0;
+}
+.mat-icon.m-icon{
+    background: #F3F1FC;
+    width: 100%;
+    height: 42px;
+    line-height: 2;
+    border-bottom: 2px solid #B4A6EA;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    text-align: center;
+    margin-top: 27px;
+}
+
 //iphonex
 @media screen and (max-width: 575px) {
 

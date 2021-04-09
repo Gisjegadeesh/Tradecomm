@@ -28,6 +28,8 @@ import {IccOfferAcceptanceComponent}  from './components/icc-offer-acceptance/ic
 import {IccFinanceMasterComponent} from './components/icc-finance-master/icc-finance-master.component';
 import {IccInvoiceMasterComponent} from './components/icc-invoice-master/icc-invoice-master.component';
 import {IccFinanceTodayComponent} from './components/icc-finance-today/icc-finance-today.component';
+import {FinancierFundedComponent} from './components/financier-funded/financier-funded.component'
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
@@ -57,6 +59,9 @@ const routes: Routes = [
   { path: 'finance-bidding-expired-details/:type/:id', component: InvoiceDetailsExpiredComponent , data : {"HeaderName" : "Invoice Details", "headerPaths" : [{ path : "/finance-bidding-expired",pathName : "Financier Offer Expired"},{ path : "/financier-dashboard",pathName : "Financier Dashboard"}]}},
   { path: 'finance-bidding-rejected', component: FinanceBiddingRejectedComponent, data : {"HeaderName" : "Financier Offer Rejected","headerPaths" : [{ path : "/financier-dashboard",pathName : "Financier Dashboard"}]} },
   { path: 'finance-bidding-rejected/:type/:id', component: InvoiceDetailsRejectedComponent , data : {"HeaderName" : "Invoice Details","headerPaths" : [{ path : "/finance-bidding-rejected",pathName : "Financier Offer Rejected"},{ path : "/financier-dashboard",pathName : "Financier Dashboard"}]}},
+  { path: 'finance-funded', component: FinancierFundedComponent, data : {"HeaderName" : "Financier Funded","headerPaths" : [{ path : "/financier-dashboard",pathName : "Financier Dashboard"}]} },
+
+  
 
   { path: 'icc-dashboard', component: IccDashboardComponent , data : {"HeaderName" : "ICC TradeComm Administrator Dashboard"}},
   { path: 'icc-finance-today', component: IccFinanceTodayComponent , data : {"HeaderName" : "Finance-Today","headerPaths" : [{ path : "/icc-dashboard",pathName : "ICC TradeComm Administrator Dashboard"}]}},
