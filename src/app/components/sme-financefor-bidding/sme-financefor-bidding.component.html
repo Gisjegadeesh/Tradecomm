@@ -2,7 +2,8 @@
     <header>
         <br>
         <h5>Finance Requests</h5>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-responsive table-post">
+        <div class="mat-elevation-z8 table-responsive table-post">
+        <table mat-table [dataSource]="dataSource" >
           <ng-container matColumnDef="invId">
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
             matTooltip="{{biddingTooltip.invoiceId}}" [matTooltipPosition]="'below'"> Invoice Id  </th>
@@ -101,10 +102,11 @@
                    </td>
               </ng-container>
               
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-header-row style="background-color:#B4A6EA" *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row class="BID-Details" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-    
+        <mat-paginator [hidePageSize]="true" showFirstLastButtons></mat-paginator>
+        </div>
     </header>
   </div>
   

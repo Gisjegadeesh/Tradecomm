@@ -125,7 +125,7 @@ rejectQustionTwo = {
   openModal(event,template,id) {
     this.FinanceBiddingRejectedServices.getInvDetailsLists_ForFinanceBidding(id).subscribe(resp => {
       if(resp){
-        this.FinancebiddingDetails = resp
+        this.FinancebiddingDetails = resp ? resp : ''
         this.TextAreaDiv = true;
         this.buildform()
       }
@@ -135,18 +135,18 @@ rejectQustionTwo = {
   }
   buildform() {
     // this.Rejectform = this.fb.group({
-    //   Inv_Discount_Low: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Inv_Discount_Low : false],
-    //   Annual_Yield: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Annual_Yield : false],
-    //   Fundable_percentage_low: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Fundable_percentage_low : false],
-    //   Funding_Amount_High: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Funding_Amount_High : false],
-    //   Net_payable: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Net_payable : false],
-    //   Base_Amount: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Base_Amount : false],
-    //   invoiceAmt: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.invoiceAmt : false],
-    //   Repayment_Date: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Repayment_Date : false],
-    //   Funding_CCY: [this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Funding_CCY : false],
-    //   Off_date:[this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Off_date : false],
-    //   Others:[this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.Others : false],
-    //   OthersRemarks:[this.FinancebiddingDetails ? this.FinancebiddingDetails.Remarks.OthersRemarks : '']
+    //   Inv_Discount_Low: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Inv_Discount_Low : false],
+    //   Annual_Yield: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Annual_Yield : false],
+    //   Fundable_percentage_low: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Fundable_percentage_low : false],
+    //   Funding_Amount_High: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Funding_Amount_High : false],
+    //   Net_payable: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Net_payable : false],
+    //   Base_Amount: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Base_Amount : false],
+    //   invoiceAmt: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.invoiceAmt : false],
+    //   Repayment_Date: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Repayment_Date : false],
+    //   Funding_CCY: [this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Funding_CCY : false],
+    //   Off_date:[this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Off_date : false],
+    //   Others:[this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.Others : false],
+    //   OthersRemarks:[this.FinancebiddingDetails ? this.FinancebiddingDetails.remarks.OthersRemarks : '']
     // })
     this.Rejectform = this.fb.group({
       Inv_Discount_Low: [false],

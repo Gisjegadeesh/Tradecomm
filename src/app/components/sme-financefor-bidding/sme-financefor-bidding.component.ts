@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { SmeFinancierForBiddingServices } from './sme-financefor-bidding-service';
 import { BIDDINGCONSTANTS} from '../../shared/constants/constants'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -92,7 +93,8 @@ export class SmeFinanceforBiddingComponent implements OnInit {
   biddingTooltip = BIDDINGCONSTANTS;
   moment: any = moment;
 
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
 
@@ -129,6 +131,7 @@ export class SmeFinanceforBiddingComponent implements OnInit {
     this.SmeFinancierForBiddingServices.getFinanceForBiddingLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
   }

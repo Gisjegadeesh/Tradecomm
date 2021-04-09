@@ -13,6 +13,7 @@ import { SMEDASHBOARDCONSTANTS } from '../../shared/constants/constants';
 import { SmeBiddingServices } from './sme-bidding-services';
 import {INVOICEDETAILSCONSTANTS} from '../../shared/constants/constants';
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 const ELEMENT_DATA: any[] = [
   {
@@ -169,7 +170,8 @@ export class SmeBiddingComponent implements OnInit {
     'Buyer',
     'Amount',
   ];
-  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   goods_array : object [];
   ngOnInit() {
     if (window.innerWidth < 415) {
@@ -178,6 +180,7 @@ export class SmeBiddingComponent implements OnInit {
     this.financierService.getInvoiceDetails().subscribe(resp => {
       console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
   }
 

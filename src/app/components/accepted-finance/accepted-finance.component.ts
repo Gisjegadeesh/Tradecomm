@@ -25,6 +25,7 @@ import { ThemePalette } from '@angular/material/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { AcceptedFinanceServices } from './accepted-finance-service'
 import * as moment from 'moment';
+import { MatPaginator } from '@angular/material/paginator';
 
 // const ELEMENT_DATA: any[] = [
 //   {
@@ -122,6 +123,7 @@ export class AcceptedFinanceComponent implements OnInit {
 
   @ViewChild('accountList', { read: ElementRef })
   public accountList: ElementRef<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -156,6 +158,7 @@ export class AcceptedFinanceComponent implements OnInit {
     this.AcceptedFinanceServices.getFinanceForBiddingLists().subscribe(resp => {
       const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator
     })
 
 
