@@ -4610,14 +4610,13 @@ export class SmeOnboardingComponent implements OnInit {
 
   checkFormComp(sectionIndex){
       let isFormComp = false
-    if(this.sectionIndex == sectionIndex){
-    this.questionnaireSections[sectionIndex].questions.map((item)=>{
+    // if(this.sectionIndex == sectionIndex){
+    this.questionnaireSections[sectionIndex].questions.map((item,index)=>{
         if(item.required){
-            isFormComp = item.response == "true" ?  true : false
+            isFormComp = item.response && item.response.length ?  true : false
         }
     })
-    }
-    return isFormComp
+    return isFormComp 
   }
   onSubSection(type){
       if(type == 'personal'){

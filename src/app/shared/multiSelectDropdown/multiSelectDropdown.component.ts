@@ -30,11 +30,12 @@ export class MultiSelectDropdown implements OnInit {
             idField: "item_id",
             textField: "item_text",
             allowSearchFilter: true,
-            showCheckbox:this.questionDatas.allowMultiple ? true : false
+            showCheckbox:this.questionDatas.allowMultiple ? true : false,
+            position:'bottom'
           };
         // this.dropdownSettings['singleSelection'] = this.questionDatas.allowMultiple ? true : false;
         // this.dropdownSettings['showCheckbox']=this.questionDatas.allowMultiple ? true : false;
-        this.dropdownSettings['text']=this.questionDatas.label
+        this.dropdownSettings['text']=this.questionDatas.required ? this.questionDatas.label + '*' : this.questionDatas.label;
         // this.dynWidth=this.questionDatas.label.length <= 50 ? '260px' : '827px'
      }
      onChange(event){

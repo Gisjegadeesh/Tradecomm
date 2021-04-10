@@ -5,7 +5,7 @@
         <mat-icon color="primary" dense matPrefix>person_outline</mat-icon>
         <mat-label style="white-space: normal;">{{questionDatas && questionDatas.label}}</mat-label>
         <input matInput type="text" class="input-text" (change)="onChange($event)" [(ngModel)]="textboxValue"
-        [maxLength]="characterMax" [required]="questionDatas.required" />
+        [maxLength]="" [required]="questionDatas.required" />
 
       </mat-form-field>
     </div>
