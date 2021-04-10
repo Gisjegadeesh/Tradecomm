@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -10,12 +11,14 @@ export class DateFieldComponent implements OnInit {
     @Output("formChange") change: EventEmitter<any> = new EventEmitter();
     date=''
 
-    constructor() { }
+    constructor(public datePipe:DatePipe) { }
 
     ngOnInit() { 
     }
 
     onChange(event){
-        this.change.emit(event.target.value);
+        this.date=event.target.value
+        
+        this.change.emit(this.datePipe.transform(this.date,'MM/dd/YYYY'));
     }
 }
