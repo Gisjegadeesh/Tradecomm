@@ -37,11 +37,11 @@ import * as moment from 'moment';
 // ];
 
 export interface financeForBiddingData {
-  invId: String;
-  invAmt: String;
+  invoiceRef: String;
+  invoiceAmt: Number;
   smeId: String;
   buyerName: String;
-  invDate: String;
+  invoiceDate: String;
   invDueDate: String;
   status: String;
 }
@@ -86,8 +86,8 @@ const BIDDING_DATA: biddingDetails[] = [];
 })
 export class FinancierFundedComponent implements OnInit {
 
-  displayedColumns: string[] = ['invId', 'invAmt', 'smeId', 'buyerName', 'invDate', 'invDueDate', 'status','action'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['invoiceRef', 'invoiceAmt', 'smeId', 'buyerName', 'invoiceDate', 'invDueDate', 'status','action'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA); 
  
 
   displayedColumnsOne: string[] = ['descGoods', 'quantity','taxRate','amt','rate','total'];
@@ -139,22 +139,49 @@ export class FinancierFundedComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.dataSource = new MatTableDataSource([{
-      buyerAddr: "Singapore",
-      buyerName: "Tata Steel",
-      dispDate: "17/03/2021",
-      id: 2,
-      invAmt: "10000",
-      invCcy: "SGD",
-      invDate: "17/03/2021",
-      invDueDate: "17/06/2021",
-      invId: "INV102",
-      smeId: "SME101",
-      status: "I"
-    }]);
+    this.dataSource = new MatTableDataSource(
+    //   [{
+    //   buyerAddr: "Singapore",
+    //   buyerName: "Tata Steel",
+    //   dispDate: "17/03/2021",
+    //   id: 2,
+    //   invAmt: "10000",
+    //   invCcy: "SGD",
+    //   invDate: "17/03/2021",
+    //   invDueDate: "17/06/2021",
+    //   invId: "INV102",
+    //   smeId: "SME101",
+    //   status: "I"
+    // }]
+    // [Yesterday 16:07] Monica P (APMEA)
+    
+
+[{​​​​​​​​
+"id": 1,
+"smeId": "SME101",
+"invoiceRef": "INV202100010",
+"invoiceNo": "111",
+"invoiceAmt": 1000.0,
+"invoiceCcy": "SGD",
+"buyerName": "sds",
+"invoiceDate": "2021-04-08T00:00:00.000+00:00",
+"invDueDate": "2021-04-23T00:00:00.000+00:00",
+"invoiceId": "10",
+"buyerAddr": "chennai",
+"dispDate": "2021-04-22T00:00:00.000+00:00",
+"baseAmt": null,
+"baseCcy": null,
+"fxRate": null,
+"transactionRating": 0,
+"smeRating": 0,
+"source": null,
+"status": "A"
+}​​​​​​​​]
+
+
+    );
 
     this.FinancierFundedServices.getFinanceForBiddingLists().subscribe(resp => {
-      const ELEMENT_DATA: financeForBiddingData[] = resp;
       this.dataSource = new MatTableDataSource(resp);
     })
 

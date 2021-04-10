@@ -11,6 +11,10 @@ export class FinancierDashboardServices {
   getExpireOffer(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/allExpiredBids/'+localStorage.getItem("userId"));
   }
+
+  getFinancierFunded(){
+    return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/invoice-request/getSumOfFinancingDueByFinId/'+localStorage.getItem("userId"));
+  }
   getRejectOffer(){
     return this.apiService.generalServiceget(environment.serviePath_2+'api/v1/financing-details/allRejectedBids/'+localStorage.getItem("userId"));
   }

@@ -42,6 +42,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import { LoaderService } from './service/loader.service';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatSortModule } from '@angular/material/sort';
 
 import {ApiService} from './service/api.service';
 import { SignupComponent } from './components/signup/signup.component';
@@ -204,7 +205,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TextFieldModule,
     MatSliderModule,
     PerfectScrollbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSortModule
   ],
 
   providers: [LoaderService,FinancebidsRequestServices,CustomerService, SmeDashboardComponent, ModalDialogService,ApiService,InvoiceRequestServices,MatRadioModule,

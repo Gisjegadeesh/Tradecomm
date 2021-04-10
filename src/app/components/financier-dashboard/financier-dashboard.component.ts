@@ -238,6 +238,7 @@ export class FinancierDashboardComponent implements OnInit {
   }
   getSumofgetOpenForOffer;
   getSumofgetbidsToBeAccepted;
+  getSumofgetFinancierFunded;
   getFinMaturityData;
   getFinnSizeData
   constructor(public router: Router,public authenticationService: AuthenticationService,public financierDashboardServices: FinancierDashboardServices) { }
@@ -247,6 +248,7 @@ export class FinancierDashboardComponent implements OnInit {
     }
     this.getOpenForOffer();
     this.getbidsToBeAccepted();
+    this.getFinancierFunded();
     this.getFinMatData();
     this.getFinSizeData();
     this.getChartData();
@@ -304,6 +306,18 @@ export class FinancierDashboardComponent implements OnInit {
         this.getSumofgetbidsToBeAccepted = resp;
       })
     }
+
+    getFinancierFunded(){
+      this.getSumofgetFinancierFunded = {
+        "INVCCY": "SGD",
+        "INVTOTALAMT": 4151.64
+    }
+      this.financierDashboardServices.getFinancierFunded().subscribe(resp => {
+        this.getSumofgetFinancierFunded = resp;
+      })
+    }
+
+    
     getFinMatData(){
       this.financierDashboardServices.getFinMatData().subscribe(resp => {
       this.getFinMaturityData = resp;
