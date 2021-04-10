@@ -8,6 +8,7 @@ import { FinanceBiddingRejectedServices } from './finance-bidding-rejected-servi
 import { FinanceBiddingService } from '../../service/finance_bidding/finance-bidding.service';
 import { FINANCIERDASHBOARDCONSTANTS } from '../../shared/constants/constants';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-finance-bidding-rejected',
@@ -19,6 +20,8 @@ export class FinanceBiddingRejectedComponent implements OnInit {
   ELEMENT_DATA1: any[];
   TextAreaDiv: boolean;
   FinancebiddingDetails: any;
+  searchDivOpen: boolean;
+  filterDivOpen: boolean;
   constructor(private fb: FormBuilder,public router: Router, public authenticationService: AuthenticationService,
     private modalService: BsModalService, private FinanceBiddingRejectedServices: FinanceBiddingRejectedServices, private FinanceBiddingService: FinanceBiddingService) { }
 
@@ -30,6 +33,16 @@ export class FinanceBiddingRejectedComponent implements OnInit {
     'offer Expires',
     'remark',
     'action'
+  ]
+  displayedColumnsload: string[] = [
+    'TopBar',
+  ]
+  displayedColumnsearch: string[] = [
+    'BIDID1',
+    'Invoice Amount1',
+    'BIDing Amount1',
+    'offer Expires1',
+    'Action'
   ]
   mobileScreen = false;
   end = false;
@@ -47,6 +60,12 @@ export class FinanceBiddingRejectedComponent implements OnInit {
   modalRef: BsModalRef;
   isHover: boolean = false;
   Rejectform: FormGroup;
+  value: number = 10;
+  highValue: number = 60;
+  options: Options = {
+    floor: 0,
+    ceil: 100
+  };
   rejectQustionOne = {
     subrejectQustionOne: [
       { name: 'Inv Discount Rate High',labelPosition:'before',formControlName:'Inv_Discount_Low'},
@@ -72,6 +91,23 @@ rejectQustionTwo = {
       console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
     })
+  }
+ 
+  searchDiv(){
+    if(this.filterDivOpen === true){
+    this.searchDivOpen = !this.searchDivOpen
+    this.filterDivOpen = !this.filterDivOpen
+    }else{
+      this.searchDivOpen = !this.searchDivOpen
+    }
+  }
+  filterDiv(){
+    if(this.searchDivOpen === true){
+      this.searchDivOpen = !this.searchDivOpen
+      this.filterDivOpen = !this.filterDivOpen
+    }else{
+      this.filterDivOpen = !this.filterDivOpen
+    }
   }
   onResize() {
     if (window.innerWidth < 415) {

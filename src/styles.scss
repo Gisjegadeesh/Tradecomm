@@ -862,3 +862,41 @@ input.custom-autofill {
 .mat-form-field-appearance-fill[dense] .mat-form-field-wrapper .mat-form-field-flex {
     padding-top: 0.2px;
 }
+.multiselectCus{
+    .multiselect-dropdown{
+        align-self: stretch;
+        margin-bottom: 45px;
+        margin-left: 0px;
+        max-width: unset;
+        width: 100%;
+        border-bottom: 1px solid transparent;
+        transition: .3s ease;
+        &:hover{
+            border-bottom: 1px solid #694ED6 !important;
+        }
+        .dropdown-btn{
+            border: 0!important;
+            border-bottom-right-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-bottom: 1px solid #694ED6 !important;
+            background-color: rgba(var(--color-primary),0.08);
+            padding-top: 15px !important;
+    
+        }
+    }
+    .dropdown-multiselect__caret{
+        top: 6px!important;
+
+    }
+    }
+
+    .searchInput{
+        th{
+            padding-top: 10px;
+            .mat-form-field-flex{
+                max-width: 160px!important;
+                background-color:white;
+                padding-left: 20px!important;
+            }
+        }
+    }
