@@ -7,7 +7,7 @@ import {FinancebidsRequestServices} from './finance-bids-accept'
 import {FinanceBiddingService} from '../../service/finance_bidding/finance-bidding.service';
 import { FINANCIERDASHBOARDCONSTANTS} from '../../shared/constants/constants';
 import { MatPaginator } from '@angular/material/paginator';
-
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-finance-bids-accept',
@@ -15,15 +15,18 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./finance-bids-accept.component.scss']
 })
 export class FinanceBiddingAcceptsComponent implements OnInit {
+
+
   constructor(public router: Router, public authenticationService:AuthenticationService,
   private modalService: BsModalService,private FinanceRequestServices : FinancebidsRequestServices,private FinanceBiddingService:FinanceBiddingService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   dataSource ;//data
   displayedColumns: string[] = [
-    'BIDID',
-    'Invoice Amount',
-    'BIDing Amount', 
-    'offer Expires',
+    'id',
+    'invoiceAmt',
+    'baseCcyNetAmtPayable', 
+    'offerExpDateTime',
     'action'
   ];
   modalRef: BsModalRef;
@@ -45,12 +48,17 @@ export class FinanceBiddingAcceptsComponent implements OnInit {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;
     }
-    this.FinanceBiddingService.getBidingAcceptDetails().subscribe(resp => {
-      console.log(resp);
+   this.FinanceBiddingService.getBidingAcceptDetails().subscribe(resp => {
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator
+      this.dataSource.sort = this.sort;
     })
   }
+
+  // ngAfterViewInit() {
+  //   this.dataSource.sort = this.sort;
+  // }
+
   onResize() {
     if (window.innerWidth < 415) {
       this.mobileScreen = true;

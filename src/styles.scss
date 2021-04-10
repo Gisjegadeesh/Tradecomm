@@ -639,6 +639,10 @@ mat-card[_nghost-tcy-c194] mat-card[_ngcontent-tcy-c194]
 }
 .multi-srch{
     margin: 20px 0;
+    label{
+        font-size: 13px;
+        margin-bottom: 0;
+    }
 }
 .mat-icon.m-icon{
     background: #F3F1FC;
