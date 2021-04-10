@@ -1,9 +1,10 @@
 <div class="app-content {{isOpen}} ">
-    <header *ngIf="!AllFundingOpen">
+    <header *ngIf="!AllFundingOpen" class="m0p0">
         <br>
         <h5>Offer For Acceptance</h5>
         <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" (mouseenter)="isHover=true" 
+          <div class="table-res">
+           <table mat-table [dataSource]="dataSource" (mouseenter)="isHover=true" 
         (mouseleave)="isHover=false">
           <ng-container matColumnDef="invNo">
             <th mat-header-cell *matHeaderCellDef #tooltip="matTooltip"
@@ -97,6 +98,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
           <tr mat-row class="BID-Details" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+      </div>
         <mat-paginator [hidePageSize]="true" showFirstLastButtons></mat-paginator>
         </div>
     </header>

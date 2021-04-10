@@ -1,9 +1,10 @@
 <div class="app-content {{isOpen}}">
-  <header>
+  <header class="m0p0">
       <br>
       <!-- <div class="table-section"> -->
         <div class="uxg-h4" style="text-align: center">Offer Rejected</div>
         <div class="mat-elevation-z8">
+          <div class="table-res">
         <table mat-table [dataSource]="dataSource" (mouseenter)="isHover=true" 
         (mouseleave)="isHover=false">
           <ng-container matColumnDef="BIDID">
@@ -75,6 +76,7 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color:#B4A6EA"></tr>
           <tr mat-row class="BID-Details" *matRowDef="let row; columns: displayedColumns"></tr>
         </table>  
+      </div>
         <mat-paginator [hidePageSize]="true" showFirstLastButtons></mat-paginator>
       </div>
   </header>
