@@ -41,6 +41,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSliderModule} from '@angular/material/slider';
 import { LoaderService } from './service/loader.service';
 import {MatSelectModule} from '@angular/material/select';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 import {ApiService} from './service/api.service';
 import { SignupComponent } from './components/signup/signup.component';
@@ -166,6 +167,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    NgxSliderModule,
     ChartsModule,
     MatTabsModule,
     MatInputModule,
