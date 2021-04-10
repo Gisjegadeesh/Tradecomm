@@ -1,7 +1,7 @@
 <div class="app-content {{isOpen}} ">
   <header>
 <div class="data-section">
-  <table>
+  <table  class="dis-block">
     <tbody>
         <tr>
             <td rowspan="1" colspan="1">
@@ -68,7 +68,7 @@
     </tbody>
   </table>
   <div style="text-align:right">
-    <button mat-raised-button color="accent" (click)="openModalsecond($event,Rejecttemplate,'')">
+    <button mat-raised-button color="accent" (click)="openModalsecond($event,Rejecttemplate,'')" class="remarkbtn">
       <mat-icon #tooltip="matTooltip"
       matTooltip="Remarks" [matTooltipPosition]="'below'">mode_comment</mat-icon>  Remark
     </button>
@@ -81,6 +81,7 @@
                 <div id="container">
                   <div class="mat-elevation-z8">
                     <form [formGroup]="finBidform">
+                      <div class="table-res">
                      <table mat-table [dataSource]="dataSourceTwo">
                           <ng-container matColumnDef="Funding CCY" >
                               <th mat-header-cell *matHeaderCellDef scope="column">Funding CCY</th>
@@ -176,6 +177,8 @@
                       <tr mat-row *matRowDef="let row; columns: displayedColumnsTwo"></tr>
                   
                      </table>
+                    </div>
+                    <div class="table-res">
                      <table mat-table [dataSource]="dataSourceTwo">
                       <ng-container matColumnDef="Inv Discount  Rate">
                           <th mat-header-cell *matHeaderCellDef scope="column" >Inv Discount  Rate%</th>
@@ -287,6 +290,7 @@
                     <tr mat-row *matRowDef="let row; columns: displayedInvoiceTwo"></tr>
                 
                    </table>
+                  </div>
                     </form>
                   </div>
                 </div>
@@ -378,6 +382,7 @@
                 Goods Details
                 </mat-panel-title>
                 </mat-expansion-panel-header>
+                <div class="table-res">
                 <table mat-table [dataSource]="dataSourceOne">
                 <ng-container matColumnDef="descGoods">
                 <th mat-header-cell *matHeaderCellDef scope="column"  #tooltip="matTooltip"
@@ -447,11 +452,12 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsOne" style="background-color:#B4A6EA"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsOne"></tr>
                 </table>
+              </div>
                 </mat-expansion-panel>
               </mat-accordion>
         </div>
         <div class="modal-footer" style="justify-content: center;">
-            <button type="button" class="btn model-btn-outline">Invoice Preview (double click will pop up the PDF invoice)</button>
+            <button type="button" class="btn model-btn-outline mob-btn">Invoice Preview (double click will pop up the PDF invoice)</button>
          </div>
     </mat-tab>
   </mat-tab-group>
@@ -470,7 +476,8 @@
      <div class="container-fluid">
          <div class="row">
             <div class="data-section">
-                <table>
+              <div class="table-res">
+                <table class="dis-block">
                 <tbody>
                   <tr>
                       <td rowspan="1" colspan="1">
@@ -496,11 +503,12 @@
               
                 </tbody>
               </table>
+            </div>
                 <br>
           </div>
          </div>     
          <div class="row">
-           
+          <div class="table-res">
             <table mat-table [dataSource]="launchBid_Popup" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="Funding CCY">
@@ -533,10 +541,11 @@
                 <tr mat-header-row *matHeaderRowDef="launchBidPopup" style="background-color:#B4A6EA"></tr>
                 <tr mat-row *matRowDef="let row; columns: launchBidPopup;"></tr>
               </table>
-              
-              
+              </div>
          </div>
          <div class="row">
+              
+          <div class="table-res">
             <table mat-table [dataSource]="launchBid_Popup" class="mat-elevation-z8">
 
                 <!--- Note that these columns can be defined in any order.
@@ -578,7 +587,7 @@
                 <tr mat-row *matRowDef="let row; columns: launchBidTableTwoPopup;"></tr>
               </table>
               
-              
+              </div>
          </div>          
      </div>
   </div>
@@ -639,4 +648,3 @@
      <!-- <button type="button"  (click)="rejectBid(dataBIDDetails)"class="btn model-btn-outline">Reject</button> -->
   </div>
 </ng-template>
-
